@@ -1,29 +1,29 @@
-# Explanation of the RPY files 
-The '.rpy' files in the game folder are copies of important script files found in DDLC's `scripts.rpa` archive that are necessary to change for the most basic modding projects.
+# Пояснение по RPY-файлам
+Файлы формата `.rpy` в папке `game` являются копиями важных файлов со скриптами, найденных в архиве `scripts.rpa` оригинального DDLC, которые необходимо изменять для большинства простых проектов моддинга.
 
 ### **cgs.rpy**
 
-This file contains the defintions for the CGs in the original game to be called on when needed.
+Этот файл содержит определения для сценок в оригинальной игре, которые вызываются при необходимости.
 
 ### **console.rpy**
 
-This file contains the definitions and label calls needed to prompt Monika's "Python Console" from within the game.
+Этот файл содержит определения и лейблы с вызовами, которые необходимы для вывода "консоли" Моники в игре.
 
 ### **credits.rpy**
 
-This file contains the definitions, text and label calls needed to play the credits of the game when the game is finished.
+Этот файл содержит определения, тексты и лейблы с вызовами, которые необходимы для воспроизведения титров игры после прохождения оной.
 
 ### **definitions.rpy**
 
-This file contains the definitions and python defines to define the character's images, the background, music, variables, and story python code to execute in the game when needed.
+Этот файл содержит определения Ren'Py и определения Python для определения изображений персонажей, фонов, музыки, переменных и сюжетного кода, который выполняется в игре при необходимости.
 
 ### **effects.rpy**
 
-This file contains the python classes, define, and definitions needed to show some different effects in the game like blood and such.
+Этот файл содержит классы и определения Python, а также определения Ren'Py, необходимые для вывода на экран различных игровых эффектов, таких как кровь и прочее.
 
 ### **gui.rpy**
 
-This file controls the definitions used for the main menu and game interface such as color, audio to be played at startup, positions of text and other inteface elements and more. This is also where the android interface code is located in to define the interface for mobile users.
+Этот файл управляет такими определениями, используемыми для главного меню и игрового интерфейса, как цвет, музыка при запуске, позиции текста и других элементов интерфейса и др. <s>Также здесь приведён код для Android-интерфейса для определения оного на мобильных устройствах.</s> В большинстве случаев этот пласт кода бесполезен, особенно если вы хотите, чтобы ваша модификация выглядела и работала на всех устройствах одинаково — прим. пер.
 
 ### **lockdown_check.rpy** 
 
@@ -31,23 +31,23 @@ This file was introduced in Version 2.4.6 of the mod template. This file makes t
 
 ### **monika.chr**, **natsuki.chr**, **sayori.chr** & **yuri.chr**
 
-These files are in the game directory so the game can re-add the characters files to the `characters` folder when the defines in `definitions.rpy` are called to restore them.
+Эти файлы лежат в директории игры, и игра повторно добавляет эти файлы персонажей в папку `characters`, когда вызываются соответствующие определения, прописанные в `definitions.rpy`.
 
 ### **options.rpy**
 
-This file contains options that can be changed to customize your game. This file also includes the build options used when exporting your game for others to download.
+Этот файл содержит опции, которые могут быть изменены для кастомизации вашей игры. В этом файле также приведены классификации сборки, используемые для экспорта вашей игры для загрузки оной другими пользователями в дальнейшем.
 
 ### **poems_special.rpy**
 
-This file defines the images and label calls needed to display the special poems that are prompted in Act 2 of the original game. Make sure if you add a new special poem to change line 361 to how many additional poems you added i.e. 2 new poems would make line 361 be `a = range(1,14)`.
+В этом файле определены изображения и лейблы с вызовами, которые необходимы для вывода на экран особых стихотворений, запрос на отображение которых появляется во втором акте оригинальной игры. Если вы добавили новые особые стихи, обязательно измените строку 361 на значение итогового количества таких стихов, напр. для 2-х новых стихов содержание строки 361 будет `a = range(1,14)`.
 
 ### **poems.rpy**
 
-This file defines the Poem class and poems that are used in the poem sharing game in the original game and the labels to show the poem to the user.
+В этом файле определён класс Poem и стихотворения, используемые в моментах обмена стихотворениями в оригинальной игре, и лейблы для вывода конкретного стихотворения на экран.
 
 ### **poemwords.txt**
 
-This text file contains all the poem words, and points that the character likes said word to determine who's exclusive scene you get in the next day.
+В этом текстовом файле содержатся все слова для сочинения стихотворения и число очков, указывающее на то, какие из них нравятся тому или иному персонажу, которые определяют, чья эксклюзивная сцена будет вызвана на следующий день.
 
 ### **pronoun_example.rpy**
 
@@ -55,26 +55,25 @@ This file showcases a examole of the pronoun system implemented in Version 2.4.8
 
 ### **screens.rpy**
 
-This file controls the main menu and settings interface look for images, transforms, styles and such in the original game. This should be the file you look into if you want to customize your menu to be something different.
+Этот файл управляет общим оформлением главного меню и интерфейса путём использования изображений, трансформаций, стилей и пр. в оригинальной игре. Именно в этот файл вы должны заглянуть в первую очередь, если вы хотите кастомизировать своё меню так, чтобы оно выглядело иначе.
 
 ### **script-poemgame.rpy**
 
-This is where the game runs all the code needed to play the poem game in the original game.
+Именно отсюда игра берёт весь код и обрабатывает его для проигрывания мини-игры про сочинение стихов в оригинальной игре.
 
 ### **script-poemresponses.rpy**
 
-This is where the game runs all the code needed to play the poem sharing game in the original game. `script-poemresponses2.rpy` is mainly additional text for the game in Act 2 in response to your poems there and is located in `original_scripts`.
+Именно отсюда игра берёт весь код и обрабатывает его для проигрывания моментов обмена стихотворениями в оригинальной игре. `script-poemresponses2.rpy`, в основном, является файлом с дополнительным текстом для моментов обмена стихотворениями во втором акте, который лежит в папке `original_scripts`.
 
 ### **script.rpy**
 
-This is used to call scripts and set defaults to the game on startup. It should not include any actual events or scripting; only logic and calling other labels. 
-**This is the place to start for building your mod.**
+Этот файл используется для вызова скриптов и установки значений в игре по умолчанию при запуске. Он не должен включать в себя какие-либо реальные события или любой другой код; только логика и вызов других лейблов.
+**Именно отсюда можно начать формировать структуру своей модификации.**
 
 ### **splash.rpy**
 
-This splash screen is the first thing that DDLC will show the player. It also defines a lot of the behavior when first loading the game, such as checking for character files and 
-jumping to scenes currently in progress.
+Этот вступительный экран - первое, что DDLC выводит на экран для взаимодействия с игроком. Также здесь определено многое из взаимодействия с операционной системой при первой загрузке игры, как, например, проверка файлов персонажей и переход к конкретным сценам.
 
 ### **transforms.rpy**
 
-This file defines the transfors and transition code used in the game to position characters, prepare a new scene with a transition effect and more.
+В этом файле определены трансформации и переходы, используемые в игре для позиционирования персонажей, подготовки новой сцены с эффектом перехода и прочее.
