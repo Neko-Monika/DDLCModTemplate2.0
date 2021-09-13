@@ -1,92 +1,92 @@
-# Explanation of the RPY files 
+# Пояснение по RPY-файлам
 
 ### **achievements.rpy**
-This file was introduced in Version 3.0.0 of the mod template. This file contains the code for the achievements menu and notification that shows your progress throughout the mod.
+Этот файл был представлен в мод-шаблоне версии 3.0.0. Данный файл содержит код меню достижений и уведомления, которое отражает прогресс во время прохождения модификации.
 
 ### **cgs.rpy**
 
-This file defines all the character graphics (CGs) in DDLC such as Yuri's Chocolate CG and Natsuki's Manga CG.
+Этот файл содержит определения всех сценок (CG) у персонажей из DDLC, такие как сценка с Юри и шоколадной конфетой, и Нацуки с её мангой.
 
 ### **console.rpy**
 
-This file defines the Monika Console contents that appears in the game when Monika deletes characters.
+Этот файл содержит определения содержимого консоли Моники, появляющейся в игре, когда Моника удаляет персонажей.
 
 ### **credits.rpy**
 
-This file controls the ending of DDLC and your mod!
+Этот файл управляет поведением концовки DDLC и вашей модификации!
 
 ### **definitions.rpy**
 
-This file defines important stuff for DDLC and your mod!
+Этот файл содержит определения важный вещей для DDLC и вашей модификации!
 
 ### **effects.rpy**
 
-This file defines all the effects in DDLC used in Act 2.
+Этот файл содержит определения всех эффектов в DDLC, используемый во Втором акте.
 
 ### **gallery.rpy**
 
-This file was introduced in Version 3.0.0 of the mod template. This file contains the code for the gallery menu that shows backgrounds and sprites from your mod.
+Этот файл был представлен в мод-шаблоне версии 3.0.0. Данный файл содержит код меню галереи, которое показывает фоны и спрайты из вашей модификации.
 
 ### **glitchtext.rpy**
 
-This file defines the glitched/corrupted text seen in DDLC.
+Этот файл содержит определения глючного/сломанного текста, который можно было наблюдать в DDLC.
 
 ### **gui.rpy**
 
-This file defines all the positions, colors, paths and more of DDLC's GUI interface.
+Этот файл содержит определения всех координат расположения, цветов, путей и прочих нужностей для графического интерфейса.
 
 ### **lockdown_check.rpy** 
 
-This file was introduced in Version 2.4.6 of the mod template. This file is mainly designed to warn new modders about bugs with certain Ren'Py versions or warn them about QA issues with running Ren'Py versions higher than the one the mod template was tested for.
+Этот файл был представлен в мод-шаблоне версии 2.4.6. Данный файл, в основном, предназначен для того, чтобы предупредить мододелов-новичков о багах в конкретных версиях Ren'Py или о проблемах с контролем качества, если модификация была запущена на Ren'Py версии выше той, на которой мод-шаблон тестировался.
 
-### **monika.chr**, **natsuki.chr**, **sayori.chr** & **yuri.chr**
+### **monika.chr**, **natsuki.chr**, **sayori.chr** и **yuri.chr**
 
-These files are in the game directory so the game can re-add the characters files to the `characters` folder when needed.
+Эти файлы лежат в рабочей папке игры, дабы последняя могла добавить файлы персонажей в папку `characters` повторно при необходимости.
 
 ### **options.rpy**
 
-This file customizes what your mod is and and how it starts and builds!
+Этот файл настраивает то, чем является ваша модификация, а также то, как она запускается и собирается!
 
 ### **poems_special.rpy**
 
-This file defines the special poems that the player can see during Act 2. Only three poems are ever shown to the player which are selected at random by `splash.rpy`.
+Этот файл содержит определения особых стихотворений, которые игрок мог видеть во время прохождения Второго акта. Игроку показывается только три таких стихотворения, которые были выбраны случайным образом в файле `splash.rpy`.
 
 ### **poems.rpy**
 
-This file defines all the poems in the game that can be shown to the player by the girls in the poem sharing mini-game.
+Этот файл содержит определения всех стихотворений в игре, которые девушки показывают игроку во время обмена стихами.
 
 ### **poemwords.txt**
 
-This file declares the poem words for each character for the poem writing mini-game.
+В этом файле определяются слова для стихотворения, которые нравятся конкретному персонажу, для мини-игры с сочинением стихотворения.
 
 ### **pronoun_example.rpy**
 
-This file was introduced in Version 2.4.8 of the mod template. This file serves as a example to the pronoun feature and how to use it.
+Этот файл был представлен в мод-шаблоне версии 2.4.8. Данный файл служит примером того, чем представляет собой функция местоимений и как её использовать.
 
 ### **renpy_patches.rpy**
 
-This file was introduced in Version 3.0.0 of the mod template. It's purpose is to patch problematic code that can affect DDLC/DDLC mods on certain versions of Ren'Py that is tied to the Ren'Py engine itself.
+Этот файл был представлен в мод-шаблоне версии 3.0.0. Он предназначен для внесения правок в проблемный код, который может повлиять на саму DDLC или модификации для неё на конкретных версиях движка Ren'Py, и который также связан с самим движком Ren'Py.
 
 ### **screens.rpy**
 
-This file declares all the screens and styles in DDLC.
+В этом файле определяются все экраны и стили для DDLC.
 
 ### **script-poemgame.rpy**
 
-This file is where the game runs all the code needed to play the poem game in the original game.
+Из этого файла игра исполняет весь необходимый код для запуска мини-игры про сочинение стихов в оригинальной игре.
 
 ### **script-poemresponses.rpy**
 
-This is where the Doki's respond to how much they like your poem. Act 2 uses script-poemresponses2 which is in 'original_scripts'.
+В этом файле хранятся реакции участниц клуба на ваши стихотворения. Во Втором акте используется код скрипта `script-poemresponses2.rpy`, который лежит в папке `original_scripts`.
 
 ### **script.rpy**
 
-This file is the main script that Ren'Py calls upon to start your mod's story! 
+Этот файл является основным скриптом, который Ren'Py исполняет, чтобы начать историю вашей модификации!
 
 ### **splash.rpy**
 
-This file is where the splashscreen, disclaimer and menu code reside in.
+В этом файле хранятся вступительная заставка, отказ от ответственности и прочий код главного меню.
 
 ### **transforms.rpy**
 
-This file defines the placements and animations in DDLC.
+Этот файл содержит определения расположений и анимаций в DDLC.
