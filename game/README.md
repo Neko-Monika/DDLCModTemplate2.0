@@ -13,7 +13,7 @@
 В этой папке находятся модули Python, необходимые для запуска DDLC или модификации к ней.
 
 ### **\_\_imports\_\_.rpy**
-This file was introduced in Version 4.0.0 of the mod template. This file contains the imports necessary to run DDLC.
+Этот файл впервые появился в мод-шаблоне версии 4.0.0. Данный файл содержит необходимые импорты для запуска DDLC.
 
 ### **cgs.rpy**
 
@@ -37,7 +37,7 @@ This file was introduced in Version 4.0.0 of the mod template. This file contain
 
 ### **exceptions.rpy**
 
-This file defines all the common exceptions of the mod template for Python 2 and 3. This file should not be removed for any reason.
+Этот файл определяет все распространённые исключения мод-шаблона для Python 3. Его ни в коем случае не стоит удалять.
 
 ### **glitchtext.rpy**
 
