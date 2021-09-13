@@ -1,53 +1,53 @@
-# Contents
+# Содержание
 
 ### <u>act_two</u>
 
-This folder contains the files used in Act Two of the game. (Glitched Text, Special Poems, and the Console)
+В этой папке хранятся файлы, используемые во Втором акте игры. (глючный текст, особые стихотворения и консоль)
 
 ### <u>chrs</u>
 
-This folder contains the character files of the girls themselves.
+В этой папке хранятся файлы самих героинь.
 
 ### <u>core</u>
 
-This folder contains the needed files for DDLC and the template to run. (Patches, Lockdown, Imports/Exceptions, and Credits)
+В этой папке хранятся необходимые для работоспособности DDLC и мод-шаблона файлы. (патчи, программная блокировка, импорты/исключения и авторы)
 
 ### <u>definitions</u>
 
-This folder contains the definition files for images, sprites, music, etc. that are used in DDLC. (CGs, Definitions, Effects, Splash, Transforms)
+В этой папке хранятся файлы с определениями изображений, спрайтов, музыки и т.д., используемых в DDLC. (сценки, определения, эффекты, заставка, трансформации)
 
 ### <u>mod_assets</u>
 
-This folder stores all your images, music/sfx, and more relating to your mod along with files needed for the Extras screen.
+В этой папке хранятся все ваши изображения, музыка/звуки и многое другое, имеющее прямое отношение к вашей модификации, вкупе с файлами, необходимыми для работы экрана Доп. контента.
 
 ### <u>mod_extras</u>
 
-This folder contains the extra features in the template that is available for modders to use. (BSOD, Extras Screen, Gallery, Achievements, Pronouns)
+В этой папке хранятся файлы с дополнительным функционалом шаблона, которым мододелы могут воспользоваться. (Синий экран смерти, экран Доп. контента, галерея, достижения, местоимения)
 
 ### <u>poem_game</u>
 
-This folder contains the files used for the poem minigame in DDLC.
+В этой папке хранятся файлы, используемые мини-игрой про сочинение стихотворений в DDLC.
 
 ### <u>poem_responses</u>
 
-This folder contains the files used for the poem response minigame in DDLC.
+В этой папке хранятся файлы, используемые в мини-игре про реакции героинь на стихотворения в DDLC.
 
 ### <u>python-packages</u>
 
-This folder stores third-party python modules that you can use in your mod and contains the modules necessary to run DDLC.
+В этой папке хранятся сторонние модули Python, которые вы можете использовать в своей модификации; также здесь хранятся модули, необходимые для работы DDLC.
 
 ### gui.rpy
 
-This file defines all the positions, colors, paths and more of DDLC's GUI interface.
+Этот файл содержит определения всех координат расположения, цветов, путей и прочих нужностей для графического интерфейса DDLC.
 
 ### options.rpy
 
-This file defines information about your mod and contains the necessary code to build it that complies to Team Salvato's IPG.
+Этот файл содержит информацию о вашей модификации и необходимый код для построения дистрибутивов, соответствующих требованиям Руководства по использованию ИС Team Salvato.
 
 ### screens.rpy
 
-This file declares all the screens and styles used in DDLC like the main menu, dialog windows, etc.
+В этом файле объявлены все экраны и стили, используемые в DDLC, по типу главного меню, диалоговых окон и т.д.
 
 ### script.rpy
 
-This file is the main script that Ren'Py calls upon to start your mod's story! 
+Этот файл является основным сценарием, который движок Ren'Py вызывает, чтобы начать историю вашей модификации! 
