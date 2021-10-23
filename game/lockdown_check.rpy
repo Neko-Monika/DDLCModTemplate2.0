@@ -1,10 +1,10 @@
 # Lockdown_check.rpy
 
-# This file is not part of DDLC. This file is mainly designed to 
-# warn new users about template issues with certain Ren'Py versions
-# or warn them about Quality Assurance with Ren'Py versions higher 
-# than the one the mod template was tested for.
-## DO NOT MODIFY THIS FILE! ##
+# Этот файл не является частью DDLC. Этот файл, в основном, предназначен
+# для предупреждения новичков о проблемах шаблона с конкретными версиями
+# Ren'Py или предупредить их о Контроле качества в случае с версиями
+# Ren'Py, которые вышли позднее, чем та, на которой тестировался шаблон.
+## НЕ МОДИФИЦИРУЙТЕ ЭТОТ ФАЙЛ! ##
 
 label lockdown_check:
 
@@ -13,26 +13,26 @@ label lockdown_check:
     if renpy.version_tuple >= (7, 4, 6, 1693) and renpy.version_tuple < (7, 4, 9, 2142):
 
         scene black
-        "{b}Warning:{/b} A bug was introduced with the release of Ren'Py 7.4.6 that breaks DDLC transforms heavily."
-        "This bug is semi-present still into Ren'Py 7.4.7 up to 7.4.8."
-        "If you want to mod DDLC in Ren'Py 7, you should mod under {a=https://renpy.org/release/7.4.5}{i}Ren'Py 7.4.5{/i}{/a} or {a=https://renpy.org/release/7.4.9}{i}Ren'Py 7.4.9{/i}{/a}{a=https://renpy.org/release/7.4.10}{i}Ren'Py 7.4.10{/i}{/a}."
-        "Sorry for the modding inconvenience. Happy modding though!"
+        "{b}Внимание:{/b} В релизе \"Ren'Py 7.4.6\" был обнаружен баг, который сильно ломает трансформации DDLC."
+        "Этот баг в какой-то мере ещё присутствует в Ren'Py версий 7.4.7 и вплоть до 7.4.8."
+        "Если вы хотите писать модификации для DDLC на Ren'Py 7, вы должны использовать {a=https://renpy.org/release/7.4.5}{i}Ren'Py 7.4.5{/i}{/a} или {a=https://renpy.org/release/7.4.9}{i}Ren'Py 7.4.9{/i}{/a}|{a=https://renpy.org/release/7.4.10}{i}Ren'Py 7.4.10{/i}{/a}."
+        "Простите за доставленные неудобства. Но мы желаем вам приятного моддинга!"
         $ renpy.quit()
 
     if renpy.version_tuple > (7, 4, 10, 2178):
 
         scene black
-        "{b}Warning:{/b} The version of Ren'Py you are trying to mod DDLC on has not been tested for modding compatibility."
-        "The last recent version of Ren'Py that works for DDLC mods is \"{i}Ren'Py 7.4.10{/i}\"."
-        "Running DDLC or your DDLC mod on a higher version than the one tested may introduce bugs and other game breaking features."
+        "{b}Внимание:{/b} Версия Ren'Py, на которой вы пытаетесь написать модификацию для DDLC, не была проверена на предмет совместимости с модификациями."
+        "Самая недавняя версия Ren'Py, которая работает с модификациями для DDLC – \"{i}Ren'Py 7.4.10{/i}\"."
+        "Запуск DDLC или вашей модификации для DDLC на версии выше проверенной может привести к появлению багов и прочих сломанных функций игры."
         
         menu:
-            "By continuing to run your mod on [version!q], you acknoledge that you have read this warning message and understand the possible problems that can happen on a untested Ren'Py version."
-            "I agree.":
+            "Продолжая запуск своей модификации на версии [version!q], вы соглашаетесь с тем, что вы прочитали текст этого предупреждения и осознаёте факт возникновения проблем на непроверенной версии Ren'Py."
+            "Я согласен.":
                 $ persistent.lockdown_warning = True
                 return
-            "I disagree.":
-                "You have disagreed to this warning message. In order to mod DDLC on a higher version of Ren'Py than the one tested, you must accept the warning message."
+            "Я не согласен.":
+                "Вы не согласны с условиями данного предупреждения. Для того, чтобы писать модификацию для DDLC на версии Ren'Py выше проверенной, вы должны принять условия предупреждения."
                 $ renpy.quit()
 
     else:
