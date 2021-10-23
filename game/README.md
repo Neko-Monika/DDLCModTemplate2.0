@@ -27,7 +27,7 @@
 
 ### **lockdown_check.rpy** 
 
-This file was introduced in Version 2.4.6 of the mod template. This file makes the template lock itself from running unsupported Ren'Py versions or warn mod developers of untested Ren'Py versions. This is not part of DDLC.
+Этот файл был впервые добавлен в версии 2.4.6. Данный файл предотвращает запуск шаблона на неподдерживаемых версиях Ren'Py или предупреждает разработчиков модификаций, работающих на непроверенных версиях Ren'Py. Этот файл не является частью DDLC.
 
 ### **monika.chr**, **natsuki.chr**, **sayori.chr** & **yuri.chr**
 
@@ -51,7 +51,7 @@ This file was introduced in Version 2.4.6 of the mod template. This file makes t
 
 ### **pronoun_example.rpy**
 
-This file showcases a examole of the pronoun system implemented in Version 2.4.8 of the mod template for players that go by different pronouns. This is not part of DDLC.
+В этом файле представлен пример системы местоимений, добавленной в версии 2.4.8 для игроков, предпочитающих разные обращения по местоимениям. Этот файл не является частью DDLC.
 
 ### **screens.rpy**
 
