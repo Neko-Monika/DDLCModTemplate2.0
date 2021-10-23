@@ -1,59 +1,61 @@
-# Welcome to the **New** Modification Club!
+# Добро пожаловать в Новый клуб модификаций!
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K22K8SU)
 
-<u>Downloads</u>: [2.4.9 (Standard Template with Android Support)](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/2.4.9) | [2.3.1-u8 (Standard Template)](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/2.3.1-u8)
+<u>Загрузки</u>: [2.4.9 (Стандартный шаблон с поддержкой Android)](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/2.4.9) | [2.3.1-u8 (Стандартный шаблон)](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/2.3.1-u8)
 
-The **new** DDLC Mod Template is a mod template made by GanstaKingofSA for the **original** Doki Doki Literature Club that adheres to [Team Salvato's IP Guidelines](http://teamsalvato.com/ip-guidelines/) for fan mods on Ren'Py 6.99.12.4, 7.3.5 - 7.4.5 and 7.4.9 - 7.4.10.
+**Новый** Мод-шаблон для DDLC - это мод-шаблон, созданный GanstaKingofSA для **оригинальной** игры «Литературный клуб "Тук-тук!"», который придерживается требований [Руководства по использованию интеллектуальной собственности Team Salvato](http://teamsalvato.com/ip-guidelines/) для фанатских модов, работающих на движке Ren'Py версий 6.99.12.4 и 7.3.5 - 7.4.5, а также 7.4.9 - 7.4.10.
 
-### **<u>A request from the developer</u>**
-> If the template has been useful to you, please credit me in your mods' release. Not all mod tool developers are thanked as much as regular mod teams by people outside the modding community and it will be appreciated to credit those that put the effort into making modding easier for you to make your own mod for others to enjoy.
+### **<u>Просьба разработчика</u>**
+> Если этот шаблон был полезен для вас, пожалуйста, упомяните меня в релизах ваших модификаций. Не все разработчики инструментариев для модификаций получают столько же благодарности от людей, не находящихся в моддинг-сообществе, сколько обычные команды разработчиков модификаций, и не было бы лишним поблагодарить тех, кто приложил усилия, чтобы сделать моддинг проще, дабы вы могли создать свою модификацию для других.
 
-### Legal Disclaimer
-The template is designed for original DDLC fan games and mods that use DDLC assets. 
-It is not meant for projects that does not use them, or as code to be copied to your non-DDLC project. 
-Most code in this template are the IP of Team Salvato and may not be copied to non-DDLC fan projects or mods.
-The DDLC Mod Template is not afilliated in anyway with Team Salvato.
+### Отказ от ответственности
+Данный шаблон предназначен для оригинальных фанатских игр по DDLC и модификаций, использующих ресурсы DDLC. 
+Он не предназначен для проектов, которые их не используют, или в качестве кода, который будет скопирован в ваш проект, не относящийся к DDLC.
+Большая часть кода в данном шаблоне является интеллектуальной собственностью Team Salvato, и она не может быть скопирована в фанатские проекты или модификации, не имеющие отношения к DDLC.
+Мод-шаблон для DDLC никоим образом не связан с Team Salvato.
 
-### Getting Started for Beginners (Ren'Py 6)
-Follow the steps listed [here](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Legacy.html) in order to install the mod template.
-> Once you finished writing your script, select *Build Distributions*. Uncheck all the options and check only `Ren'Py 6 DDLC Compliant Mod` and click <u>Build</u>. This will create a cross-platform .ZIP file with files for your mod.
+### Начало работы для новичков (Ren'Py 6)
+Следуйте шагам, приведённым [здесь](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Legacy.html), чтобы установить мод-шаблон.
+> Как только вы закончите писать свой скрипт, выберите *Построить дистрибутивы*. Снимите флажки со всех вариантов и отметьте только `DDLC-совместимый мод на Ren'Py 6`, после чего нажмите на <u>Построить</u>. Это создаст кроссплатформенный .ZIP-архив с файлами вашей модификации.
 
-### Getting Started for Advanced Users (Ren'Py 7)
-Follow the steps listed [here](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Recent.html) in order to install the mod template.
-> Once you finished writing your script, select *Build Distributions*. Uncheck all the options and check only `Ren'Py 7 DDLC Compliant Mod` and click <u>Build</u>. This will create a cross-platform .ZIP file with files for your mod.
+### Начало работы для продвинутых пользователей (Ren'Py 7)
+Следуйте шагам, приведённым [здесь](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Recent.html), чтобы установить мод-шаблон.
+> Как только вы закончите писать свой скрипт, выберите *Построить дистрибутивы*. Снимите флажки со всех вариантов и отметьте только `DDLC-совместимый мод на Ren'Py 7`, после чего нажмите на <u>Построить</u>. Это создаст кроссплатформенный .ZIP-архив с файлами вашей модификации.
 
-### Getting Started For Android Porting/Modding (Versions 2.4.0 and higher)
-Refer to [*guide.pdf*](guide.pdf) for more in-depth information about making your mod work on Android.
-> For older templates, refer to the PDF in your templates' ZIP file as the latest guide may not match your current template.
+### Начало работы для портирования/моддинга на Android (шаблоны версии 2.4.0 и выше)
+Прочтите файл [*guide.pdf*](guide.pdf) для подробной информации о создании вашей модификации на Android.
+> В случае со старыми шаблонами, читайте PDF-документ, вложенный в ZIP-архив вашей копии шаблона, так как последняя ревизия руководства может не подойти к вашему текущему шаблону.
 
 ### Template Features
-1. Build Packaging on Ren'Py 6 or 7!
-2. Splash screen when your mod is launched for the first time.
-3. DDLC's exact RPY fiiles with explainations.
-4. Customizable! Use this as a starting point for any ideas you wish to create.
-5. macOS and Linux `.sh` support.
-6. Android Support!
-7. Xcode Support! Open this project in Xcode and you can edit, build, and run your mod without opening the Ren'Py Launcher ever again! 
-    > Note: You need to change your `RENPY_TOOL` location and the Ren'Py app location in the target scheme for Xcode. [Learn more &rsaquo;](XCODE.md)
-8. [BETA] Pronoun Support! Allow users to identify with what pronoun they go by!
-    > See *pronoun_example.rpy* in the `game` folder for a example on how to use this feature.
-9. Better Blue Screens of Death! Make your own BSOD easily in-game now than ever on every operating system! (even Mac and Linux!)
+1. Сборка на Ren'Py версий 6 или 7!
+2. Заставка при первом запуске вашей модификации.
+3. Оригинальные RPY-файлы DDLC с пояснениями.
+4. Кастомизация! Используйте шаблон как отправную точку для любых идей, которые вы хотите воплотить в реальность.
+5. Поддержка Пакетов приложений macOS (`.app`) и Bash-файлов Linux (`.sh`).
+6. Поддержка Android!
+7. Поддержка Xcode! Открыв этот проект в Xcode, вы сможете редактировать, собирать и запускать модификацию, не открывая Лаунчер Ren'Py!
+    > Примечание: Вам понадобится изменить значение переменной `RENPY_TOOL` и директорию пакета приложения Ren'Py в целевой схеме Xcode. [Подробнее &rsaquo;](XCODE.md)
+8. [БЕТА] Поддержка местоимений! Дайте возможность пользователям выбрать подходящее для них местоимение!
+    > См. файл *pronoun_example.rpy* в папке `game`, чтобы ознакомиться с примером использования этой функции.
+9. Улучшенный Синий экран смерти! Теперь создать свой внутриигровой Синий экран смерти стало проще, чем когда-либо, на всех операционных системах! (даже на macOS и Linux!)
 
-### Added Features
-1. Terra's in-depth poem game guide!
-2. Xcode support for macOS by Alicerunsonfedora!
-3. NVL support thanks to Yagamirai01!
+### Добавленные особенности
+1. Подробное руководство по мини-игре по написанию стихотворения от Terra!
+2. Поддержка Xcode для macOS от Alicerunsonfedora!
+3. Поддержка NVL, спасибо Yagamirai01!
 
-### Returned Features
-1. Ghost menu (Dan's spooky easter egg).
-2. Sayori kill script (If you delete Sayori before the game starts, a new screen takes over).
-3. Monika kill script (If you delete Monika after the game starts a new game, a new script plays out).
-4. Special poems! (The random poems in DDLC in Act 2).
-5. Poem responses! (Doki's respond to your poems!)
+### Возвращённые функции
+1. Призрачное меню (жуткая пасхалка от Дэна).
+2. Скрипт убийства Сайори (если вы удалите Сайори до начала игры, появится новый экран).
+3. Скрипт убийства Моники (если вы удалите Монику перед тем, как начать новую игру, запустится новый скрипт).
+4. Особые стихотворения! (случайные стихи, появляющиеся во втором акте DDLC).
+5. Реакции на стихотворения! (девушки делятся своим мнением о ваших стихотворениях!)
 
-This template is included with [DDMMaker](https://github.com/GanstaKingofSA/DDLC-ModMaker/releases), a Ren'Py SDK to build only DDLC mods.
+Данный шаблон идёт в комплекте с [DDMMaker](https://github.com/GanstaKingofSA/DDLC-ModMaker/releases), версией Ren'Py SDK, которая собирает только модификации для DDLC.
 
-Copyright © 2019-2021 GanstaKingofSA. All rights reserved.
+Авторское право © 2019-2021 GanstaKingofSA. Все права защищены.
 
-Doki Doki Literature Club, the Doki Doki Literature Club code, is the property of Team Salvato (Dan Salvato LLC). Copyright © 2017 Team Salvato. All rights reserved.
+Игра «Литературный клуб "Тук-тук!"» и её составляющие являются собственностью Team Salvato (Dan Salvato LLC). Авторское право © 2017 Team Salvato. Все права защищены.
+
+Перевод оригинального сценария (с рядом мелких правок) и прочие оптимизации для кроссплатформенности позаимствованы из русификатора от Энтузиасты Team.
