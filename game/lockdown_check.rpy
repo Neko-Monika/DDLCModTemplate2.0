@@ -1,20 +1,20 @@
 # Lockdown_check.rpy
 
-# This file is not part of DDLC. This file is mainly designed to 
-# warn new users about template issues with certain Ren'Py versions
-# or warn them about Quality Assurance with Ren'Py versions higher 
-# than the one the mod template was tested for.
-## DO NOT MODIFY THIS FILE! ##
+# Этот файл не является частью DDLC. Этот файл, в основном, предназначен
+# для предупреждения новичков о проблемах шаблона с конкретными версиями
+# Ren'Py или предупредить их о Контроле качества в случае с версиями
+# Ren'Py, которые вышли позднее, чем та, на которой тестировался шаблон.
+## НЕ МОДИФИЦИРУЙТЕ ЭТОТ ФАЙЛ! ##
 
 label lockdown_check:
 
     if renpy.version_tuple >= (7, 4, 6, 1693):
         scene black
-        "{b}Warning:{/b} A recent bug was introduced with the release of \"Ren'Py 7.4.6\" that breaks DDLC transforms heavily."
-        "This bug is semi-present still into Ren'Py 7.4.7 and higher with high uncertainty for future releases."
-        "Currently, there is yet no fix to this issue. Due to this, the DDLC Mod Template has been disabled on any Ren'Py version higher than 7.4.5."
-        "For now, if you want to mod DDLC in Ren'Py 7, you should mod under {a=https://renpy.org/release/7.4.5}{i}Ren'Py 7.4.5{/i}{/a} and wait until the issue is mitigated in a new release and is tested by GanstaKingofSA."
-        "Sorry for the modding inconvenience. Happy modding though!"
+        "{b}Внимание:{/b} В релизе \"Ren'Py 7.4.6\" был обнаружен баг, который сильно ломает трансформации DDLC."
+        "Этот баг в какой-то мере ещё присутствует в Ren'Py версий 7.4.7 и выше, и нет гарантии, что этот баг будет исправлен в будущих релизах."
+        "Пока что нет способа решить данную проблему. И поэтому Мод-шаблон будет неработоспособен на какой-либо версии Ren'Py выше 7.4.5."
+        "На данный момент времени, если вы хотите писать модификации для DDLC на Ren'Py 7, вы должны использовать {a=https://renpy.org/release/7.4.5}{i}Ren'Py 7.4.5{/i}{/a} и ждать, пока проблема не будет устранена в новом релизе и данный факт не будет проверен лично GanstaKingofSA."
+        "Простите за доставленные неудобства. Но мы желаем вам приятного моддинга!"
         $ renpy.quit()
     else:
         $ persistent.lockdown_warning = True
