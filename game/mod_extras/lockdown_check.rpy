@@ -1,11 +1,11 @@
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
 ## lockdown_check.rpy
-# This file is mainly designed to warn new modders about bugs with certain Ren'Py 
-# versions or warn them about QA issues with running Ren'Py versions higher than 
-# the one the mod template was tested for.
+# Этот файл, в основном, предназначен для предупреждения мододелов-новичков о багах
+# в конкретных версиях Ren'Py или чтобы предупредить их о проблемах Контроля качества в
+# случае с версиями Ren'Py, которые вышли позднее той, на которой тестировался мод-шаблон.
 
-## DO NOT MODIFY THIS FILE! ##
+## НЕ МОДИФИЦИРУЙТЕ ЭТОТ ФАЙЛ! ##
 
 label lockdown_check:
 
@@ -14,13 +14,13 @@ label lockdown_check:
     if renpy.version_tuple > (7, 4, 11, 2266):
 
         scene black
-        "{b}Warning:{/b} The version of Ren'Py you are trying to mod DDLC on has not been tested for modding compatibility."
-        "The last recent version of Ren'Py that works for DDLC mods is \"{i}Ren'Py 7.4.10{/i}\"."
-        "Running DDLC or your DDLC mod on a higher version than the one tested may introduce bugs and other game breaking features."
+        "{b}Внимание:{/b} Версия Ren'Py, на которой вы пытаетесь написать модификацию для DDLC, не была проверена на предмет совместимости с модификациями."
+        "Самая недавняя версия Ren'Py, которая работает с модификациями для DDLC – \"{i}Ren'Py 7.4.10{/i}\"."
+        "Запуск DDLC или вашей модификации для DDLC на версии выше проверенной может привести к появлению багов и прочих сломанных функций игры."
         
         menu:
-            "By continuing to run your mod on [version!q], you acknoledge this disclaimer and the possible problems that can happen on a untested Ren'Py version."
-            "I agree.":
+            "Продолжая запуск своей модификации на версии [version!q], вы соглашаетесь с тем, что вы прочитали текст этого предупреждения и осознаёте факт возникновения проблем на непроверенной версии Ren'Py."
+            "Я согласен.":
                 $ persistent.lockdown_warning = True
                 return
 
