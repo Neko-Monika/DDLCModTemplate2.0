@@ -1,71 +1,70 @@
-# Welcome to the **New** Python 3 Modification Club!
+# Добро пожаловать в Новый клуб модификаций на Python 3!
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K22K8SU)
 
-[<u>Download the Mod Template Here!</u>](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/latest)
+[<u>Скачайте мод-шаблон здесь!</u>](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/latest)
 
-The **new** Python 3 DDLC Mod Template is a mod template made by Azariel Del Carmen (GanstaKingofSA) for the **original** Doki Doki Literature Club that adheres to [Team Salvato's IP Guidelines](http://teamsalvato.com/ip-guidelines/) for fan mods on Ren'Py 8.
+**Новый** мод-шаблон DDLC на Python 3 - это мод-шаблон, созданный Азариэль Дель Карменом (GanstaKingofSA) для **оригинальной** игры «Литературный клуб "Тук-тук!"», который придерживается требований [Руководства по использованию интеллектуальной собственности Team Salvato](http://teamsalvato.com/ip-guidelines/) для фанатских модификаций на движке Ren'Py 8-й версии.
 
-> For Ren'Py 6-7 support, see the [Python 2](https://github.com/GanstaKingofSA/DDLCModTemplate2.0/tree/python-2) branch.
+> Шаблон можно скачивать/форкать/использовать для создания модификаций к DDLC, создания переводов на другие языки (с указанием оригинального автора) или отправления исправлений ошибок через Пул-реквесты. Вы не можете использовать шаблон для создания неофициальных патчеров, исправлений и прочего для DDLC.
 
-> The template can be downloaded/forked/used to create DDLC mods, make translations for other languages (with name credit) or submit fixes via a pull request. You may not use the template to make unofficial DDLC patchers, fixes, etc.
+### Требования к упоминаниям авторов
+Вы должны оставить упоминание автора шаблона либо на экране авторов своей модификации, либо в файле `credits.txt`, добавляемым в дистрибутив оной. Ниже расположен пример упоминания автора, который вы можете использовать:
+   > Этот мод появился на свет благодаря мод-шаблону версии 2.0 от GanstaKingofSA: https://github.com/GanstaKingofSA/DDLCModTemplate2.0
 
-### **Credit Requirements**
-You must include a name credit in your mods' credits screen and/or `credits.txt` file. Below is a example credit you may use.
-   > This mod was made possible by GanstaKingofSA's DDLC Mod Template 2.0: https://github.com/GanstaKingofSA/DDLCModTemplate2.0
+Экран авторов включён в игре по умолчанию, и открыть его можно либо через раздел Доп. контента, либо по нажатию на отдельную кнопку, если искомый раздел отключён.
 
-By default a credits screen is enabled in-game, either in the Extras screen or as a button in-game if the Extras screen is disabled.
+Перечень необязательных, но очень ценных упоминаний авторов, которые вы можете добавить:
+   1. Собственное изображение заставки, на котором имеется логотип Team Salvato (и/или логотип вашей модификации) и логотип `GanstaKingofSA` (найти его можно [здесь](.github/IMAGES)).
+   2. Небольшое примечание во время показа Отказа от ответственности, которое указывает на то, что модификация появилась на свет благодаря мод-шаблону от GanstaKingofSA.
+   3. Изображение заставки предзагрузки, на котором имеется логотип `GanstaKingofSA` (найти его можно [здесь](.github/IMAGES)).
+   4. Пришлите мне на утверждение свою реализацию упоминания оригинального автора в Discord или Reddit.
 
-Optional but very appreciated credits that you can also add are
-   1. A custom splash screen that features the Team Salvato logo (and/or your mod logo) and a `GanstaKingofSA` logo (which can be found [here](.github/IMAGES)).
-   2. A small mention in the game's disclaimer saying that this mod was not possible without using GanstaKingofSA's mod template.
-   3. A presplash screen that contains a `GanstaKingofSA` logo (which can be found [here](.github/IMAGES)).
-   4. Present a custom idea to me for approval either through Discord or Reddit.
+### Отказ от ответственности (Team Salvato)
+> Код/файлы шаблона предназначены для использования в оригинальных фанатских играх по DDLC и модификациях, которые используют ресурсы DDLC и движок Ren'Py. Он не предназначен для использования в проектах, не относящихся к DDLC. 
+Мод-шаблон DDLC никоим образом не связан с Team Salvato.
 
-### Team Salvato Disclaimer
-> The template code/files are designed for original DDLC fan games and mods that use DDLC assets with Ren'Py. It is not meant for non-DDLC projects. 
-The DDLC Mod Template is not afilliated in anyway with Team Salvato.
+### Особенности шаблона
+1. Сборка дистрибутивов на движке Ren'Py 8-й версии!
+2. Вступительная заставка, соответствующая требованиям Team Salvato.
+3. Оригинальные RPY-файлы DDLC с пояснениями.
+4. Поддержка приложений macOS (`.app`) и Linux (с использованием `LinuxLauncher.sh`).
+5. Поддержка Android! Выпустите свою модификацию на мобильную платформу!\*
+    > Только если ваша модификация использует простой код или функционал DDLC. Для более сложного кода или функционала, использование которого на мобильных устройствах может быть затруднено, может потребоваться адаптация для корректной работы оного. См. файл *guide.pdf* или посетите сервер DDMC в Дискорде, чтобы получить помощь.
+6. Поддержка Xcode! Открыв этот проект в Xcode, вы сможете редактировать, собирать и запускать модификацию, не открывая Лаунчер Ren'Py!
+    > Примечание: Вам понадобится изменить значение переменной `RENPY_TOOL` и директорию пакета приложения Ren'Py в целевой схеме Xcode. [Подробнее &rsaquo;](XCODE.md)
+7. [БЕТА] Поддержка местоимений! Дайте возможность игрокам выбрать подходящее для них местоимение!
+    > См. файл *mod_extras/pronouns.rpy* в папке `game`, чтобы ознакомиться с примером использования этой функции.
+8. Улучшенный Синий экран смерти! С лёгкостью создавайте свой внутриигровой Синий экран смерти на любой операционной системе!
+9. Режим «Без цензуры»! Предоставьте возможность показать в игре более чувствительный контент.
+10. Режим летсплейщика (Режим стримера)! Лучшая альтернатива для скрытия информации о стримерах и многое другое!
+11. Меню Галереи! Дайте игрокам возможность посмотреть внутри игры, какую работу вы проделали, и экспортировать это!
+12. Меню Достижений! Настройте достижения в своей модификации, дабы игроки проходили её полностью!
+13. Разные цвета для кнопок меню! Раскрашивайте кнопки в меню разными цветами на своё усмотрение.
+14. Автоматическое раскрашивание интерфейса! Раскрашивайте интерфейс в игре так, как вам угодно, не редактируя файлы ресурсов вручную!
+15. Меню Доп. контента! Добавьте ещё одну кнопку в свою игру, которая будет открывать меню с другими дополнительными кнопками!
+16. Подробное руководство по мини-игре по написанию стихотворения от Terra!
+17. Поддержка NVL, спасибо Yagamirai01!
+18. Патчи для некоторых версий Ren'Py и функционала систем Windows.
+19. Теперь можно использовать код, написанный под Python 3!
+20. [БЕТА] Поддержка Игровой активности в Discord!
 
-### Template Features
-1. Build Packaging on Ren'Py 8!
-2. Team Salvato compliant splash screen.
-3. DDLC's exact RPY files with explainations.
-4. macOS `.app` and Linux support via `LinuxLauncher.sh`.
-5. Android Support! Bring your mod over to a mobile platform!\*
-    > If your mod uses simple code or DDLC functions. More complex code or non-mobile friendly features may require some adjustments to get working. See *guide.pdf* or visit the DDMC Discord for additional help.
-6. Xcode Support! Open this project in Xcode and you can edit, build, and run your mod without opening the Ren'Py Launcher ever again! 
-    > Note: You need to change your `RENPY_TOOL` location and the Ren'Py app location in the target scheme for Xcode. [Learn more &rsaquo;](XCODE.md)
-7. [BETA] Pronoun Support! Allow players to identify with the pronoun they go by!
-    > See *mod_extras/pronouns.rpy* in the `game` folder for a example on how to use this feature.
-8. Better Blue Screens of Death! Make your own BSOD easily in-game on every operating system! 
-9. Uncensored Mode! Allow more sensitive content to be shown in-game.
-10. Let's Play Mode (Streamer Mode)! A better alternative to hide streamer information and more!
-11. Gallery Menu! Allow players to see the work you have done in-game and export it!
-12. Achievements Menu! Set up achievements in your mod for players to complete your mod in full!
-13. Different Menu Button Colors! Have different colored buttons in the menu prompt to your hearts content.
-14. Automatic GUI Coloring! Color the GUI in the game to whatever you like without editing the asset files themselves! 
-15. Extras Menu! Add additional button options to your game for additional button options!
-16. Terra's in-depth Poem Game guide!
-17. NVL Support thanks to Yagamirai01!
-18. Patches for several Ren'Py releases and Windows features.
-19. Python 3 code now in use!
-20. [BETA] Discord Rich Presence support!
+### Возвращённые функции
+1. Призрачное меню. (жуткая пасхалка от Дэна)
+2. Скрипт убийства Сайори. (если вы удалите Сайори до начала игры, появится новый экран)
+3. Скрипт убийства Моники. (если вы удалите Монику после начала игры, запустится новый скрипт)
+4. Особые стихотворения! (случайные стихи, появляющиеся во втором акте DDLC)
+5. Реакции на стихотворения! (девушки делятся своим мнением о ваших стихотворениях!)
 
-### Returned Features
-1. Ghost Menu. (Dan's spooky easter egg)
-2. Sayori Kill Script. (If you delete Sayori before the game starts, a new screen takes over)
-3. Monika Kill Script. (If you delete Monika after the game loads, a new script plays out)
-4. Special Poems! (The random poems in DDLC that appear in Act 2)
-5. Poem Responses! (The Doki's respond to your poems!)
+### Начало работы
+Следуйте шагам, приведённым [здесь](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Recent.html), чтобы установить мод-шаблон.
+> Как только вы закончите писать свой скрипт, выберите *Построить дистрибутивы*. Снимите флажки со всех вариантов и отметьте только `DDLC-совместимый мод на Ren'Py 8`, после чего нажмите на <u>Построить</u>. Это создаст кроссплатформенный .ZIP-архив, имеющий *Renpy8-DDLCMod* в названии, с файлами вашей модификации.
 
-### Getting Started
-Follow the steps listed [here](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Recent.html) in order to install the mod template.
-> Once you finished writing your script, select *Build Distributions*. Uncheck all the options, check only `Ren'Py 8 DDLC Compliant Mod` and click <u>Build</u>. This will create a cross-platform *Renpy8-DDLCMod* ZIP file with your mod files.
+### Начало работы для портирования/моддинга на Android
+Прочтите файл [*guide.pdf*](guide.pdf), чтобы узнать больше о создании вашей модификации на Android.
 
-### Getting Started For Android Porting/Modding
-Refer to [*guide.pdf*](guide.pdf) for more in-depth information about making your mod work on Android.
-> For older templates, refer to the PDF in your templates' ZIP file as the latest guide may not match your current template.
+Авторское право © 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
-Copyright © 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+Игра «Литературный клуб "Тук-тук!"» и её составляющие являются собственностью Team Salvato (Dan Salvato LLC). Авторское право © 2017 Team Salvato. Все права защищены.
 
-Doki Doki Literature Club, the Doki Doki Literature Club code, is the property of Team Salvato (Dan Salvato LLC). Copyright © 2017 Team Salvato. All rights reserved.
+Перевод оригинального сценария (с рядом мелких правок) и прочие оптимизации для кроссплатформенности позаимствованы из русификатора от Энтузиасты Team.
