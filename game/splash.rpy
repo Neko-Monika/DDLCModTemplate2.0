@@ -323,6 +323,14 @@ label splashscreen:
                 import pwd
                 currentuser = pwd.getpwuid(os.getuid()).pw_gecos.replace(",","") # это нужно для забора "человеческого" имени на Unix-like системах — прим. пер.
             except: pass
+        if renpy.windows:
+            try: currentuser = os.environ.get("USERNAME") # "%username%" из Винды никуда не денется, так что оставлять перебор разных переменных сред - кринж — прим. пер.
+            except: pass
+        elif renpy.linux or renpy.macintosh:
+            try:
+                import pwd
+                currentuser = pwd.getpwuid(os.getuid()).pw_gecos.replace(",","") # это нужно для забора "человеческого" имени на Unix-like системах — прим. пер.
+            except: pass
 
     ## Это выражение «если» проверяет, прошли ли мы экран отказа от ответственности,
     ## и равняется ли текущая версия модификации старой, или стоит ли автозагрузка на
