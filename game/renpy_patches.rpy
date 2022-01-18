@@ -1,18 +1,18 @@
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
-## This file may only be used if the author is credited in text by name.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
+## Этот файл можно использовать, только если автор упомянут в титрах по имени.
 
 ## renpy_patches.rpy
 
-# This file is not part of DDLC. This file is mainly designed to 
-# patch certain versions of Ren'Py that break DDLC/DDLC mods by
-# patching the Ren'Py engine at startup.
-### DO NOT MODIFY THIS FILE WHATSOEVER! ###
+# Этот файл не является частью DDLC. Этот файл, в основном, предназначен
+# для патчинга конкретных версий Ren'Py, которые ломают DDLC или модификации к ней,
+# путём внесения правок в движок Ren'Py перед стартом.
+### НИ В КОЕМ СЛУЧАЕ НЕ МОДИФИЦИРУЙТЕ ЭТОТ ФАЙЛ! ###
 
 init -1 python:
 
     if renpy.version_tuple >= (7, 4, 6, 1693) and renpy.version_tuple < (7, 4, 9, 2142):
 
-        # Patches the 7.4.6 - 7.4.8 transform bugs. Based off 7.4.9
+        # Устранение багов трансформации в версиях 7.4.6 - 7.4.8. Основан на версии 7.4.9
         class NewSceneLists(renpy.display.core.SceneLists):
 
             @staticmethod
@@ -30,10 +30,10 @@ init -1 python:
                 keep_st=False):
 
                 if not isinstance(thing, renpy.display.core.Displayable):
-                    raise Exception("Attempting to show something that isn't a displayable:" + repr(thing))
+                    raise Exception("Попытка отобразить что-то, что не является отображаемым элементом: " + repr(thing))
 
                 if layer not in self.layers:
-                    raise Exception("Trying to add something to non-existent layer '%s'." % layer)
+                    raise Exception("Попытка добавить что-то на несуществующий слой '%s'." % layer)
 
                 if key:
                     self.remove_hide_replaced(layer, key)
@@ -91,11 +91,11 @@ init -1 python:
 
                     self.hide_or_replace(layer, remove_index, "replaced")
 
-                # use visit_all than _show() due to depreciation
+                # используется visit_all вместо _show() в связи с устареванием
                 thing.visit_all(lambda d : None)
         
         renpy.display.core.SceneLists.add = NewSceneLists.add
 
-    # Fixes a issue where some transitions (menu bg) reset themselves
+    # Устранение проблемы, из-за которой некоторые переходы (в фонах меню) начинали проигрываться заново
     if renpy.version_tuple >= (7, 4, 7, 1862):
         config.atl_start_on_show = False 
