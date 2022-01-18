@@ -1,11 +1,12 @@
-﻿## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+﻿## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
 ## pronoun_example.rpy
-# This file asks the user for their pronoun input.
+# В этом файле спрашивают предпочтительные местоимения игрока.
 
 default pronoun_temp = ""
 
 init python:
+    # Азя, ты чёрт, можно же писать [he!c]... - прим. пер.
     def SetPronoun(type):
         global pronoun_temp
         if not pronoun_temp: return
@@ -28,15 +29,15 @@ init python:
         pronoun_temp = ""
 
 label pronoun_screen:
-    $ renpy.call_screen("pronoun_input", message="Enter your first pronoun (He/She/They)", ok_action=Function(SetPronoun, type="he"))
-    $ renpy.call_screen("pronoun_input", message="Enter your second pronoun (He's/She's/They're)", ok_action=Function(SetPronoun, type="he's"), hes=True)
-    $ renpy.call_screen("pronoun_input", message="Enter your third pronoun (Him/Her/Them)", ok_action=Function(SetPronoun, type="him"))
-    $ renpy.call_screen("pronoun_input", message="Enter your fourth pronoun (Is/Are)", ok_action=Function(SetPronoun, type="are"))
+    $ renpy.call_screen("pronoun_input", message="Введите первое местоимение (Он/Она)", ok_action=Function(SetPronoun, type="he"))
+    $ renpy.call_screen("pronoun_input", message="Введите второе местоимение (Его/Её)", ok_action=Function(SetPronoun, type="he's"), hes=True)
+    $ renpy.call_screen("pronoun_input", message="Введите третье местоимение (Ему/Ей)", ok_action=Function(SetPronoun, type="him"))
+    $ renpy.call_screen("pronoun_input", message="Введите четвёртое местоимение ((о) Нём/Ней)", ok_action=Function(SetPronoun, type="are"))
     return
 
 screen pronoun_input(message, ok_action, hes=False):
 
-    ## Ensure other screens do not get input while this screen is displayed.
+    ## Гарантирует, что другие экраны будут недоступны, пока показан этот экран.
     modal True
 
     zorder 200
@@ -58,9 +59,12 @@ screen pronoun_input(message, ok_action, hes=False):
                 xalign 0.5
             
             python:
-                allowList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                allowList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+                # Бесполезно в русском языке. Оставлено для ввода английских местоимений - прим. пер.
                 if hes:
                     allowList = allowList + "'"
+                else:
+                    allowList = allowList.replace("'", "")
 
             input default "" value VariableInputValue("pronoun_temp") length 12 allow allowList
 
@@ -68,4 +72,4 @@ screen pronoun_input(message, ok_action, hes=False):
                 xalign 0.5
                 spacing 100
 
-                textbutton _("OK") action [ok_action, Return(0)]
+                textbutton _("ОК") action [ok_action, Return(0)]
