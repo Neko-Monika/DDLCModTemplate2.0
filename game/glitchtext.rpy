@@ -1,14 +1,14 @@
 ## glitchtext.rpy
 
-# This file defines the glitched/corrupted text seen in DDLC.
+# Этот файл содержит определения глючного/сломанного текста, который можно было наблюдать в DDLC.
 
 init python:
     import random
 
     nonunicode = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž"
 
-    # This function grabs a random amount of non-unicode letters based off
-    # the length requested and returns it to the game to be displayed.
+    # Эта функция берёт случайно выбранное число знаков, не входящих в Юникод, исходя из
+    # запрошенной длины, после чего возвращает их игре для дальнейшего отображения.
     def glitchtext(length):
         output = ""
         for x in range(length):
