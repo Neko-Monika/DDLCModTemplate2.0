@@ -208,7 +208,7 @@ init python:
     build.classify("**.rpa", None)
     build.classify("README.html","mod")
     build.classify("README.linux", "linux")
-   
+
     # Это указывает файл README.html как файл документации
     build.documentation("README.html")
 
