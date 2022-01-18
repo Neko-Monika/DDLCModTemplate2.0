@@ -1,108 +1,107 @@
-﻿## This template version is 4.1.0. When asked to provide the template version
-## you are using, give them this version number. 
-### DO NOT REMOVE OR CHANGE THE ABOVE COMMENT. ###
+## Это шаблон версии 4.1.0. Если у вас спросят версию использованного шаблона,
+## назовите им этот номер версии.
+### НЕ УДАЛЯЙТЕ И НЕ ИЗМЕНЯЙТЕ ВЫШЕПРИВЕДЁННЫЙ КОММЕНТАРИЙ. ###
 
 ## options.rpy
-# This file customizes what your mod is and and how it starts and builds!
+# Этот файл настраивает то, чем является ваша модификация, а также то, как она запускается и собирается!
 
-# This controls what your mod is called.
-define config.name = "DDLC Mod Template – Python 3 Edition"
+# Указывает название вашей модификации.
+define config.name = "Мод-шаблон DDLC – Издание для Python 3"
 
-# This controls whether you want your mod name to show in the main menu.
-# If your mod name is big, it is suggested to turn this off.
+# Указывает, хотите ли вы, чтобы название вашей модификации отображалось в главном меню.
+# Если название длинное, эту надстройку лучше отключить.
 define gui.show_name = True
 
-# This controls the version number of your mod.
+# Указывает номер версии вашей модификации.
 define config.version = "4.2.1–Py3"
 
-# This adds information about your mod in the About screen.
-# DDLC does not have a 'About' screen so you can leave this blank.
+# Добавляет информацию о вашей модификации на экран «Об игре».
+# В DDLC нет возможности перехода на экран «Об игре», так что можете оставить это пустым.
 define gui.about = _("")
 
-# This control the name of your mod build when you package your mod
-# in the Ren'Py Launcher or DDMM (Doki Doki Mod Maker).
-# Note:
-#   The build name is ASCII only so no numbers, spaces, or semicolons.
-#   Example: Doki Doki Yuri Time to DokiDokiYuriTime
+# Указывает название дистрибутива вашей модификации во время упаковки оного
+# в Лаунчере Ren'Py или DDMM (Doki Doki Mod Maker).
+# Примечание:
+# Название сборки поддерживает только символы ASCII, т.е. числа, пробелы и точки с запятой должны быть удалены.
+# Пример: было «Doki Doki Yuri Time», стало - «DokiDokiYuriTime»
 define build.name = "DDLCModTemplateTwo-Py3"
 
-# This configures whether your mod has sound effects.
+# Указывает, есть ли в вашей модификации звуковые эффекты.
 define config.has_sound = True
 
-# This configures whether your mod has music.
+# Указывает, есть ли в вашей модификации музыка.
 define config.has_music = True
 
-# This configures whether your mod has voices.
+# Указывает, есть ли в вашей модификации озвучка.
 define config.has_voice = False
 
-# This configures what music will play when you launch your mod and in the 
-# main menu.
+# Указывает, какую музыку играть при запуске модификации и в главном меню.
 define config.main_menu_music = audio.t1
 
-# These variables control the transition effects of DDLC when entering and exiting
-# a menu.
-#   config.enter_transition controls the effect seen when entering the game menu.
-#   config.exit_transition controls the effect when returning to the game.
-#   Dissolve(X) dissolves the menu or last screen by X seconds.
+# Эти переменные управляют эффектами переходов в DDLC, когда игрок входит и
+# выходит из меню.
+# config.enter_transition указывает эффект, которым сопровождается вход в игровое меню.
+# config.exit_transition указывает эффект, которым сопровождается возврат в игру.
+# Dissolve(X) «растворяет» меню или последний экран в течение X секунд.
 define config.enter_transition = Dissolve(.2)
 define config.exit_transition = Dissolve(.2)
 
-# This controls the transition effect of DDLC after loading the game.
+# Указывает эффект перехода в DDLC после загрузки сохранения.
 define config.after_load_transition = None
 
-# This controls the transition effect when your mod has reached the end of its' story.
+# Указывает эффект перехода, когда сюжет в вашей модификации подошёл к своему финалу.
 define config.end_game_transition = Dissolve(.5)
 
-# This controls the textbox that the characters use to speak.
-#   "auto" sets the textbox to hide during scenes and show when a character speaks
-#   "show" sets the textbox to show at all times
-#   "hide" only shows dialogue when a character speaks.
+# Указывает поведение диалогового окна, которое персонажи используют для проговаривания своих фраз.
+# "auto" - диалоговое окно будет скрываться во время смены сцен и показываться, когда персонаж говорит;
+# "show" - диалоговое окно будет отображаться постоянно;
+# "hide" - диалоговое окно будет показываться только тогда, когда персонаж говорит.
 define config.window = "auto"
 
-# This controls the transition effects of the textbox.
-#   config.window_show_transition controls the effect when the textbox is shown.
-#   config.window_hide_transition controls the effect when the textbox is hidden.
-#   Dissolve(X) dissolves the menu or last screen by X seconds.
+# Указывает эффекты переходов диалогового окна.
+# config.window_show_transition указывает эффект, которым сопровождается появление диалогового окна.
+# config.window_hide_transition указывает эффект, которым сопровождается скрытие диалогового окна.
+# Dissolve(X) «растворяет» меню или последний экран в течение X секунд.
 define config.window_show_transition = Dissolve(.2)
 define config.window_hide_transition = Dissolve(.2)
 
-# This sets the text speed of your mod.
+# Указывает скорость вывода текста в вашей модификации.
 default preferences.text_cps = 50
 
-# This controls the auto-text forward speed of your mod.
+# Указывает задержку при включённом режиме авточтения в вашей модификации.
 default preferences.afm_time = 15
 
-# This controls the audio level of your mod.
+# Указывает уровни громкости микшеров по умолчанию в вашей модификации.
 default preferences.music_volume = 0.75
 default preferences.sfx_volume = 0.75
 
-# This controls the save folder name of your mod.
-# Finding your Saves:
-#   Windows: %AppData%/RenPy/
-#   macOS: $HOME/Library/RenPy/ (Un-hide the Library Folder)
-#   Linux: $HOME/.renpy/
+# Указывает название папки сохранённых данных вашей модификации.
+# Сохранения можно найти здесь:
+# Windows: %AppData%/RenPy/
+# macOS: $HOME/Library/RenPy/ (включите показ папки «Библиотеки» в Настройках Finder)
+# Linux: $HOME/.renpy/ (включите показ скрытых файлов в Настройках вашего файлового менеджера)
 define config.save_directory = "DDLCModTemplateTwo-Py3"
 
-# This controls the window logo of your mod.
+# Указывает логотип окна вашей модификации.
 define config.window_icon = "gui/window_icon.png"
 
-# This controls whether your mod allows the player to skip dialogue.
+# Указывает, разрешено ли игроку пропускать диалоги.
 define config.allow_skipping = True
 
-# This controls whether your mod saves automatically.
+# Указывает, может ли модификация автоматически сохраняться.
 define config.has_autosave = False
 
-# This controls whether you mod saves automatically when quitting the game.
+# Указывает, может ли модификация автоматически сохраняться во время выхода из игры.
 define config.autosave_on_quit = False
 
-# This controls the number of slots auto-save can use for saving the game.
+# Указывает количество слотов, которые автосохранение может использовать для сохранения игры.
 define config.autosave_slots = 0
 
-# This controls whether the player can rollback to the previous dialogue in-game.
+# Указывает, может ли игрок откатываться назад по сюжету игры.
 define config.rollback_enabled = config.developer
 
-# These variables controls the layers placement of screens, images, and more. 
-# It is highly recommended to leave these variables alone.
+# Эти переменные контролируют расположение слоёв экранов, изображений и прочего. 
+# Настоятельно рекомендуется не трогать их.
 define config.layers = [ 'master', 'transient', 'screens', 'overlay', 'front' ]
 define config.image_cache_size = 64
 define config.predict_statements = 50
@@ -129,79 +128,88 @@ init python:
         else:
             return (float(height) * (float(config.screen_width) / float(config.screen_height)), height)
 
-## Build configuration #########################################################
+## Настройка дистрибуции #########################################################
 ##
-## This section controls how Ren'Py turns your project into distribution files.
+## Этот раздел контролирует, как Ren'Py строит файлы дистрибутива из вашего проекта.
 
 init python:
-    ## The following variables take file patterns. File patterns are case-
-    ## insensitive, and matched against the path relative to the base directory,
-    ## with and without a leading /. If multiple patterns match, the first is
-    ## used.
+    ## Следующие функции берут образцы файлов. Образцы файлов не учитывают
+    ## регистр и соответствующе зависят от директории проекта (base), с или без
+    ## учёта /, задающей директорию. Если обнаруживается множество одноимённых
+    ## файлов, то используется только первый.
     ##
-    ## In a pattern:
-    ##  * matches all characters, except the directory separator.
-    ##  ** matches all characters, including the directory separator.
+    ## Внутри образца:
+    ## * включает в себя все символы, исключая разделитель директорий.
+    ## ** включает в себя все символы, включая разделитель директорий.
     ##
-    ## Examples:
-    ##  "*.txt" matches txt files in the base directory.
-    ##  "game/**.ogg" matches ogg files in the game directory or any of its
-    ## subdirectories.
-    ##  "**.psd" matches psd files anywhere in the project.
+    ## Примеры:
+    ## "*.txt" охватывает все файлы формата «.txt» из директории проекта.
+    ## "game/**.ogg" охватывает все файлы «.ogg» из директории «game» и 
+    ## всех поддиректорий.
+    ## "**.psd" охватывает все файлы «.psd» из любого места проекта.
 
-    # These variables declare the packages to build your mod that is Team Salvato
-    # IPG compliant. Do not mess with these variables whatsoever.
+    # Эти переменные объявляют названия пакетов для дистрибуции вашей модификации, которые соответствуют
+    # условиям Руководства по использованию ИС Team Salvato. Никоим образом не изменяйте эти переменные.
     build.package("Renpy8-DDLCMod", 'zip', 'windows linux mac renpy mod',
         description="Ren'Py 8 DDLC Compliant Mod")
 
-    # These variables declare the archives that will be made to your packaged mod.
-    # To add another archive, make a build.archive variable like in this example:
+    # Эти переменные объявляют архивы, которые будут сделаны для упаковки вашей модификации.
+    # Чтобы добавить ещё один архив, пропишите ещё один «build.archive», взяв в качестве примера одну из уже имеющихся переменных:
     build.archive("scripts", 'mod')
     build.archive("mod_assets", 'mod')
 
-    # Do not touch these lines. This is so Ren'Py can add your mods' py file
-    # and a special launcher for Linux and macOS to run your mod. 
+    # Не трогайте эти строчки. Это нужно для того, чтобы Ren'Py добавил файл формата «.py» вашей модификации
+    # и специальный лаунчер для систем Linux и macOS, необходимый для запуска.
     build.renpy_patterns.remove(('renpy.py', ['all']))
     build.classify_renpy("renpy.py", "renpy all")
-    
+
     build.early_base_patterns.remove(('*.sh', None))
-    build.classify("LinuxLauncher.sh", "linux") ## Linux Launcher Script
+    build.classify("LinuxLauncher.sh", "linux") ## Скрипт лаунчера для Linux
     build.classify("*.sh", None)
-    
+
     #############################################################
-    # These variables classify packages for PC and Android platforms.
-    # Make sure to add 'all' to your build.classify variable if you are planning
-    # to build your mod on Android like in this example.
-    #   Example: build.classify("game/**.pdf", "scripts all")
-    build.classify("game/mod_assets/**", "mod_assets all")
-    build.classify("game/presplash.png", "scripts all")
-    build.classify("game/**.rpyc", "scripts all")
+    # Эти функции классифицируют пакеты для настольных (PC, Linux, macOS) и мобильных (Android, iOS) платформ.
+    # 
+    # Примечание переводчика: категорически не рекомендую прописывать добавление файлов «наголо» вместе с архивами,
+    # в которые они уже упакованы, а аффтару советую выпить йаду за «рекомендацию», которую он написал в оригинальном скрипте.
+    # Поэтому здесь, в тех местах, где это наиболее уместно, вместо «all» будет написано «android».
+    # Для добавления файлов иного формата в конечный дистрибутив сделайте отступ на следующую строку, напишите build.classify(),
+    # в первых кавычках внутри скобок укажите "game/**.формат", а во вторых - куда они должны быть помещены (первое слово - искомый архив,
+    # второе и третье - дистрибуция для Android и iOS соответственно)
+    # Пример: build.classify("game/**.pdf", "scripts android ios")
+    build.classify("game/mod_assets/**", "mod_assets android ios")
+    build.classify("game/presplash.png", "scripts")
+    build.classify("game/**.rpyc", "scripts android ios")
     build.classify("game/README.md", None)
     build.classify("game/**/README.md", None)
-    build.classify("game/**.txt", "scripts all")
-    build.classify("game/**.chr", "scripts all")
-    build.classify("game/advanced_scripts/**","scripts all") ## Backwards Compatibility
-    build.classify("game/tl/**", "scripts all") ## Translation Folder
-    build.classify("game/mod_extras/**.rpyc", "scripts") ## Extra Features (Backwards Compatibility)
+    build.classify("game/**.txt", "scripts android ios")
+    build.classify("game/**.chr", "scripts android ios")
+    build.classify("game/advanced_scripts/**","scripts android ios") ## Обратная совместимость
+    build.classify("game/tl/**.rpymc", "scripts android ios") ## Базовый перевод интерфейса
+    build.classify("game/tl/**", "scripts android ios") ## Переводы на разные языки
+    build.classify("game/mod_extras/**.rpyc", "scripts android ios") ## Дополнительные фишки (обратная совместимость)
 
-    build.classify('**~', None)
-    build.classify('**.bak', None)
-    build.classify('**/.**', None)
-    build.classify('**/#**', None)
-    build.classify('**/thumbs.db', None)
-    build.classify('**.rpy', None)
-    build.classify('**.psd', None)
-    build.classify('**.sublime-project', None)
-    build.classify('**.sublime-workspace', None)
-    build.classify('/music/*.*', None)
-    build.classify('script-regex.txt', None)
-    build.classify('/game/10', None)
-    build.classify('/game/cache/*.*', None)
-    build.classify('**.rpa', None)
-    build.classify('README.html','mod all')
-    build.classify('README.linux', 'linux')
+    build.classify("**~", None)
+    build.classify("**.bak", None)
+    build.classify("**/.**", None)
+    build.classify("**/#**", None)
+    build.classify("**/thumbs.db", None)
+    build.classify("**.rpy", None)
+    build.classify("**.rpym", None)
+    build.classify("**.psd", None)
+    build.classify("**.sublime-project", None)
+    build.classify("**.sublime-workspace", None)
+    build.classify("/music/*.*", None)
+    build.classify("script-regex.txt", None)
+    build.classify("/game/10", None)
+    build.classify("/game/cache/*.*", None)
+    build.classify("**/.DS_Store", None) # Удаление кэша Finder из дистрибутива - прим. пер.
+    build.classify("**/.vscode/**", None) # Удаление папки .vscode с конфигом VS Code из дистрибутива - прим. пер.
+    build.classify("**.rpa", None)
+    build.classify("README.html","mod")
+    build.classify("README.linux", "linux")
    
-    # This sets' README.html as documentation
-    build.documentation('README.html')
+    # Это указывает файл README.html как файл документации
+    build.documentation("README.html")
 
     build.include_old_themes = False
