@@ -61,6 +61,10 @@ screen pronoun_input(message, ok_action, hes=False):
             python:
                 allowList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
                 # Бесполезно в русском языке. Оставлено для ввода английских местоимений - прим. пер.
+                if hes:
+                    allowList = allowList + "'"
+                else:
+                    allowList = allowList.replace("'", "")
 
             input default "" value VariableInputValue("pronoun_temp") length 12 allow f"{allowList}{chr(39) if hes else ''}"
 
