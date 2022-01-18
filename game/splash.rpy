@@ -353,7 +353,7 @@ label splashscreen:
         with Dissolve(1.0)
         pause 1.0
 
-        ## Переключение на выбор языка. Позаимствовано у Ren'Py.
+        ## Переключение на выбор языка. Позаимствовано из Ren'Py.
         if not persistent.has_chosen_language and translations:
 
             if _preferences.language is None:
