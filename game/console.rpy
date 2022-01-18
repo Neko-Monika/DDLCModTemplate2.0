@@ -1,39 +1,39 @@
 ## console.rpy
 
-# This file defines the Monika Console contents that appears in the game when
-# Monika deletes characters.
+# Этот файл содержит определения содержимого консоли Моники,
+# появляющейся в игре, когда Моника удаляет персонажей.
 
-# This image makes a gray imagebox for the console in-game.
+# Это изображение создаёт серую «коробку» для внутриигровой консоли.
 image console_bg:
     "#333"
     topleft
     alpha 0.75 xysize (480,180)
 
-# This style declares the text appearance of the text shown in the console in-game.
+# Этот стиль объявляет оформление отображаемого текста во внутриигровой консоли.
 style console_text:
-    font "gui/font/F25_Bank_Printer.ttf"
+    font "gui/font/consola.ttf"
     color "#fff"
     size 18
     outlines []
 
-# This style controls the text speed of text shown in the console in-game.
+# Этот стиль управляет скоростью вывода отображаемого текста во внутриигровой консоли.
 style console_text_console is console_text:
     slow_cps 30
 
-# This variable stores the console input and output sent to the console in-game.
+# Эта переменная хранит весь ввод и вывод (т.е. «выхлоп») внутриигровой консоли.
 default consolehistory = []
 
-# This image shows the console text in the console in-game.
+# Это изображение отображает текст во внутриигровой консоли.
 image console_text = ParameterizedText(style="console_text_console", anchor=(0,0), xpos=30, ypos=10)
 
-# This image shows the console's past commands in the console in-game.
+# Это изображение показывает историю команд во внутриигровой консоли.
 image console_history = ParameterizedText(style="console_text", anchor=(0,0), xpos=30, ypos=50)
 
-# This image shows a right arrow in the console for command input in the console 
-# in-game.
+# Это изображение показывает стрелку в консоли справа от вводимой команды
+# во внутриигровой консоли.
 image console_caret = Text(">", style="console_text", anchor=(0,0), xpos=5, ypos=10)
 
-# This label calls the console used in-game for commands.
+# Этот лейбл вызывает консоль для дальнейшей манипуляции с командами.
 label updateconsole(text="", history=""):
     show console_bg zorder 100
     show console_caret zorder 100
@@ -46,13 +46,15 @@ label updateconsole(text="", history=""):
     $ pause(0.5)
     return
 
-# This label clears all console history and commands from the console in-game.
+# Примечание переводчика: этот лейбл используется для пропуска консоли в титрах, когда игрок 
+# прошёл DDLC на Истинную концовку; аффтар просто внушил себе бог знает что.
+# Для стирания всей истории консоли используйте `$ consolehistory = []`
 label updateconsole_clearall(text="", history=""):
     $ pause(len(text) / 30.0 + 0.5)
     $ pause(0.5)
     return
 
-# This label is a left-over label for the console in-game from DDLC's development.
+# Этот лейбл является устаревшей реализацией внутриигровой консоли, почему-то оставленной в исходном скрипте.
 label updateconsole_old(text="", history=""):
     $ starttime = datetime.datetime.now()
     $ textlength = len(text)
@@ -84,7 +86,7 @@ label updateconsole_old(text="", history=""):
 
         return
 
-# This label adds certain text to the console history.
+# Этот лейбл добавляет конкретный текст в историю консоли.
 label updateconsolehistory(text=""):
     if text:
         python:
@@ -95,7 +97,7 @@ label updateconsolehistory(text=""):
         show console_history "[consolehistorydisplay]" as chistory zorder 100
     return
 
-# This label hides the console in-game.
+# Этот лейбл скрывает внутриигровую консоль.
 label hideconsole:
     hide console_bg
     hide console_caret
