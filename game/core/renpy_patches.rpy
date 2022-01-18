@@ -1,17 +1,17 @@
-## Copyright 2019-2023 Azariel Del Carmen (bronya_rand). All rights reserved.
+## Авторское право 2019-2023 Азариэль Дель Кармен (bronya_rand). Все права защищены.
 
 ## renpy_patches.rpy
-# This file is mainly designed to patch certain versions of Ren'Py that break 
-# DDLC/DDLC mods by patching the Ren'Py engine at startup.
-        
+# Этот файл, в основном, предназначен для патчинга конкретных версий Ren'Py, которые ломают
+# DDLC или модификации к ней, путём внесения правок в движок Ren'Py перед стартом.
+
 python early:
     import os
-    ## Readds WMIC using Powershell's Get-WmiObject class (for Win 11)
+    ## Забор значений из Инструментария управления Windows путём использования класса Powershell Get-WmiObject (для Windows 11)
     os.environ['wmic process get Description'] = "powershell (Get-Process).ProcessName"
     os.environ['wmic os get version'] = "powershell (Get-WmiObject -class Win32_OperatingSystem).Version"
 
-    ## An ATL displayable will now start its animation when it first 
-    ## appears, rather than when the screen itself is shown.
-    ## We will disable this for DDLC's transform's sakes.
+    ## Отображаемые элементы, использующие ATL, запускают свою анимацию при первом появлении,
+    ## а не в том случае, когда появился сам экран.
+    ## Нижеследующие две строки отключают подобное поведение ради блага трансформаций DDLC.
     if renpy.version_tuple >= (7, 4, 7, 1862):
         config.atl_start_on_show = False 
