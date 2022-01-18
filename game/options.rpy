@@ -168,13 +168,13 @@ init python:
         build.renpy_patterns.remove(("renpy.py", ["all"]))
         build.classify_renpy("renpy.py", "renpy")
     except: pass
-    
+
     try:
         build.early_base_patterns.remove(("*.sh", None))
         build.classify("LinuxLauncher.sh", "linux") ## Скрипт лаунчера для Linux
         build.classify("*.sh", None)
     except: pass
-    
+
     #############################################################
     # Эти функции классифицируют пакеты для настольных (PC, Linux, macOS) и мобильных (Android) платформ.
     # Примечание переводчика: категорически не рекомендую прописывать добавление файлов «наголо» вместе с архивами,
@@ -211,7 +211,7 @@ init python:
     build.classify("**.rpa", None)
     build.classify("README.html","mod")
     build.classify("README.linux", "linux")
-   
+
     # Это указывает файл README.html как файл документации
     build.documentation("README.html")
 
