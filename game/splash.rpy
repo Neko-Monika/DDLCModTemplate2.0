@@ -8,7 +8,7 @@
 # распаковать их, дабы сборка дистрибутива работала.
 init -100 python:
     if not renpy.android:
-        for archive in ['audio','images','fonts']:
+        for archive in ["audio", "fonts", "images"]:
             if archive not in config.archives:
                 raise DDLCRPAsMissing(archive)
 
@@ -60,7 +60,7 @@ image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign
 
 # Это изображение показывает логотип DDLC в той точке, на которой он находится в оригинальной игре.
 image menu_logo:
-    "/mod_assets/DDLCModTemplateLogo.png"
+    "mod_assets/DDLCModTemplateLogo.png"
     # Composite((512, 512), (0, 0), recolorize("mod_assets/logo_bg.png"), (0, 0), "mod_assets/logo_fg.png")
     subpixel True
     xcenter 240
