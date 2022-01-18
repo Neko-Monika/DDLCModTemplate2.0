@@ -1,73 +1,72 @@
 ## script.rpy
 
-# This is the main script that Ren'Py calls upon to start
-# your mod's story! 
+# Этот файл является основным скриптом, который Ren'Py 
+# исполняет, чтобы начать историю вашей модификации!
 
 label start:
 
-    # This label configures the anticheat number for the game after Act 1.
-    # It is recommended to leave this as-is and use the following in your script:
-    #   $ persistent.anticheat = renpy.random.randint(X, Y) 
-    #   X - The minimum number | Y - The maximum number
+    # Эта переменная настраивает число анти-чита для игры после прохождения Первого акта.
+    # Настоятельно рекомендуется оставить её как есть и использовать в своём скрипте следующее:
+    # $ persistent.anticheat = renpy.random.randint(X, Y) 
+    # X - минимальное число | Y - максимальное число
     $ anticheat = persistent.anticheat
 
-    # This variable sets the chapter number to 0 to use in the mod.
+    # Эта переменная устанавливает номер главы как 0 для использования в модификации.
     $ chapter = 0
 
-    # This variable controls whether the player can dismiss a pause in-game.
+    # Эта переменная указывает, может ли игрок пропускать паузы в игре.
     $ _dismiss_pause = config.developer
 
-    ## Names of the Characters
-    # These variables set up the names of the characters in the game.
-    # To add a character, use the following example below: 
-    #   $ mi_name = "Mike". 
-    # Don't forget to add the character to 'definitions.rpy'!
+    ## Имена персонажей
+    # Эти переменные настраивают имена персонажей в игре.
+    # Чтобы добавить персонажа, используйте нижеприведённый пример: 
+    # $ mi_name = "Майк". 
+    # Не забудьте добавить своего персонажа в файл «definitions.rpy»!
     $ s_name = "???"
-    $ m_name = "Girl 3"
-    $ n_name = "Girl 2"
-    $ y_name = "Girl 1"
+    $ m_name = "Девушка 3"
+    $ n_name = "Девушка 2"
+    $ y_name = "Девушка 1"
 
-    # This variable controls whether the quick menu in the textbox is enabled.
+    # Эта переменная указывает, включено ли быстрое меню в диалоговом окне.
     $ quick_menu = True
 
-    # This variable c ontrols whether we want normal or glitched dialogue
-    # For glitched dialogue, use 'style.edited'.
+    # Эта переменная указывает, хотим ли мы нормальный или глючный стиль диалогов.
+    # Для глючных диалогов используйте «style.edited».
     $ style.say_dialogue = style.normal
 
-    # This variable controls whether Sayori is dead. It is recommended to leave
-    # this as-is.
+    # Эта переменная указывает, мертва ли сейчас Сайори. Настоятельно рекомендуется
+    # оставить её значение как есть.
     $ in_sayori_kill = None
     
-    # These variables controls whether the player can skip dialogue or transitions.
+    # Эта переменная указывает, может ли игрок пропускать диалоги или переходы.
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    ## The Main Part of the Script
-    # This is where your script code is called!
-    # 'persistent.playthrough' controls the playthrough number the player is on i.e (Act 1, 2, 3, 4)
+    ## Основная часть скрипта
+    # Именно здесь и вызываются ваши скрипты!
+    # «persistent.playthrough» указывает прогресс прохождения игрока, т.е. на каком он сейчас акте. (Первый, Второй, Третий, Четвёртый)
     if persistent.playthrough == 0:
 
-        # This variable sets the chapter number to X depending on the chapter
-        # your player is experiencing ATM.
+        # Эта переменная ставит номер главы на X в зависимости от того, какой главой игрок сейчас наслаждается.
         $ chapter = 0
 
-        # This call statement calls your script label to be played.
+        # Это выражение вызова запускает конкретный лейбл в скрипте.
         call ch0_main
         
-        # This call statement calls the poem mini-game to be played.
+        # Это выражение вызова запускает мини-игру про сочинение стихотворений.
         call poem
 
-        ## Day 1
+        ## День 1
         $ chapter = 1
         call ch1_main
 
-        # This call statement calls the poem sharing minigame to be played.
+        # Это выражение вызова запускает мини-игру про обмен стихотворениями.
         call poemresponse_start
         call ch1_end
 
         call poem
 
-        ## Day 2
+        ## День 2
         $ chapter = 2
         call ch2_main
         call poemresponse_start
@@ -75,31 +74,26 @@ label start:
 
         call poem
 
-        ## Day 3
+        ## День 3
         $ chapter = 3
         call ch3_main
         call poemresponse_start
         call ch3_end
 
-        ## Day 4
+        ## День 4
         $ chapter = 4
         call ch4_main
 
-        # This python statement writes a file from within the game to the game folder
-        # or to the Android/data/[modname]/files/game folder.
+        # Это выражение Python записывает файл в корневую папку игры или в папку Android/data/имя.пакета.абв/files
         python:
-            if renpy.android:
-                try: renpy.file(os.environ['ANDROID_PUBLIC'] + "/hxppy thxughts.png")
-                except IOError: open(os.environ['ANDROID_PUBLIC'] + "/hxppy thxughts.png", "wb").write(renpy.file("hxppy thxughts.png").read())
-            else:
-                try: renpy.file(config.basedir + "/hxppy thxughts.png")
-                except IOError: open(config.basedir + "/hxppy thxughts.png", "wb").write(renpy.file("hxppy thxughts.png").read())
+            try: open(f"{user_dir}/счхстлхвые мхсли.png", "rb")
+            except IOError: open(f"{user_dir}/счхстлхвые мхсли.png", "wb").write(renpy.file("hxppy thxughts.png").read())
 
-        ## Day 5
+        ## День 5
         $ chapter = 5
         call ch5_main
 
-        # This call statement ends the game but doesn't play the credits.
+        # Это выражение вызова завершает игру, но не запускает титры.
         call endgame
         return
 
@@ -107,43 +101,35 @@ label start:
         $ chapter = 0
         call ch10_main
         
-        # This jump statement jumps over to Act 2 from Act 1.
+        # Это выражение прыжка заставляет интерпретатор «перескочить» на Второй акт из начала Первого.
         jump playthrough2
 
 
     elif persistent.playthrough == 2:
-        ## Day 1 - Act 2
+        ## День 1 - Акт 2
         $ chapter = 0
         call ch20_main
         label playthrough2:
             call poem
 
             python:
-                if renpy.android:
-                    try: renpy.file(os.environ['ANDROID_PUBLIC'] + "/CAN YOU HEAR ME.txt")
-                    except IOError: open(os.environ['ANDROID_PUBLIC'] + "/CAN YOU HEAR ME.txt", "wb").write(renpy.file("CAN YOU HEAR ME.txt").read())
-                else:
-                    try: renpy.file(config.basedir + "/CAN YOU HEAR ME.txt")
-                    except IOError: open(config.basedir + "/CAN YOU HEAR ME.txt", "wb").write(renpy.file("CAN YOU HEAR ME.txt").read())
+                try: open(f"{user_dir}/ТЫ МЕНЯ СЛЫШИШЬ.txt", "rb")
+                except IOError: open(f"{user_dir}/ТЫ МЕНЯ СЛЫШИШЬ.txt", "wb").write(renpy.file("CAN YOU HEAR ME.txt").read())
 
-            ## Day 2 - Act 2
+            ## День 2 - Акт 2
             $ chapter = 1
             call ch21_main
             call poemresponse_start
             call ch21_end
 
-            # This call statement calls the poem mini-game with no transition.
+            # Это выражение вызова запускает мини-игру про обмен стихотворениями, но без перехода.
             call poem(False)
 
             python:
-                if renpy.android:
-                    try: renpy.file(os.environ['ANDROID_PUBLIC'] + "/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt")
-                    except IOError: open(os.environ['ANDROID_PUBLIC'] + "/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt", "wb").write(renpy.file("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt").read())
-                else:
-                    try: renpy.file(config.basedir + "/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt")
-                    except IOError: open(config.basedir + "/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt", "wb").write(renpy.file("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt").read())
+                try: open(f"{user_dir}/яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя.txt", "rb")
+                except IOError: open(f"{user_dir}/яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя.txt", "wb").write(renpy.file("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt").read())
 
-            ## Day 3 - Act 2
+            ## День 3 - Акт 2
             $ chapter = 2
             call ch22_main
             call poemresponse_start
@@ -151,23 +137,22 @@ label start:
 
             call poem(False)
 
-            ## Day 4 - Act 2
+            ## День 4 - Акт 2
             $ chapter = 3
             call ch23_main
 
-            # This if statement calls either a special poem response game or play
-            # as normal.
+            # Это выражение «если» либо вызывает особый обмен стихами, либо продолжает игру как обычно.
             if y_appeal >= 3:
                 call poemresponse_start2
             else:
                 call poemresponse_start
 
-            # This if statement is leftover code from DDLC where if your game is
-            # a demo that it ends the game fully.
+            # Это выражение «если» является остатками кода из наработок по DDLC,
+            # который завершает игру, если она является демоверсией.
             if persistent.demo:
                 stop music fadeout 2.0
                 scene black with dissolve_cg
-                "End of demo"
+                "Конец демоверсии."
                 return
 
             call ch23_end
@@ -177,12 +162,12 @@ label start:
         jump ch30_main
 
     elif persistent.playthrough == 4:
-        ## Day 1 - Act 4
+        ## День 1 - Акт 4
         $ chapter = 0
         call ch40_main
         jump credits
 
-# This label is where the game 'ends' during Act 1.
+# Этот лейбл «завершает» игру во время Первого акта.
 label endgame(pause_length=4.0):
     $ quick_menu = False
     stop music fadeout 2.0
