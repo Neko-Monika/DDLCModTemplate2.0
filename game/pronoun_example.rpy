@@ -1,11 +1,11 @@
-﻿## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
-## You may only use this file/feature only for DDLC mods and not for DDLC patchers,
-## unofficial fixes, etc.
+﻿## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
+## Вы можете использовать этот файл/эту функцию только в модификациях для DDLC, а не для патчеров,
+## неофициальных фиксов DDLC, и так далее.
 
 ## pronoun_example.rpy
 
-# This file serves as a example to the pronoun feature.
-# Use this as a example on how to use the pronoun feature.
+# Этот файл служит примером функции местоимений.
+# Используйте это в качестве примера, дабы научиться пользоваться этой функцией.
 
 label pronoun_example:
     stop music fadeout 2.0
@@ -15,29 +15,29 @@ label pronoun_example:
     
 label pronoun_menu:
     menu:
-        "Select a option."
-        "Select a Pronoun":
+        "Сделай выбор."
+        "Выбрать местоимение":
             call set_pronoun
 
-        "Current Pronoun":
+        "Текущее местоимение":
             if not he:
-                "You have yet set a pronoun."
+                "Вы пока не выбрали местоимение."
             else:
-                "Your current pronoun is [he_capital]/[him_capital]."
+                "Ваше текущее местоимение: [he_capital]/[him_capital]."
             jump pronoun_menu
 
-        "Play a sample.":
+        "Проиграть пример.":
             if not he:
-                "You have yet set a pronoun. Set one up before proceeding."
+                "Вы пока не выбрали местоимение. Выберите его, прежде чем продолжить."
                 jump pronoun_menu
-            mc "My pronouns are [he]/[him]."
-            m "[hes_capital] here to learn about how dense [he] really [are]."
-            s "Don't say mean things to [him]!"
-            n "I don't like the looks of [him]."
-            y "[are_capital[0]]-[are_capital] [he] going to be okay?"
+            mc "Мои местоимения – [he]/[him]."
+            m "[he_capital] здесь, чтобы узнать о том, что [he] тот ещё чёрт."
+            s "Не говори про н[are] такое!"
+            n "[he_capital] мне не очень нравится."
+            y "С н-н[hes] всё будет хорошо?"
             jump pronoun_menu
 
-        "Clear Pronouns":
+        "Очистить местоимения":
             $ he = ""
             $ him = ""
             $ are = ""
@@ -46,48 +46,35 @@ label pronoun_menu:
             $ him_capital = ""
             $ are_capital = ""
             $ hes_capital = ""
-            python:
-                finishPronouns()
+            $ finishPronouns()
 
-            "Cleared all Pronouns."
+            "Все местоимения очищены."
             jump pronoun_menu
             
-        "Exit":
+        "Выйти":
             return
     return
 
 label set_pronoun:
     menu:
-        "What is your pronoun?"
-        "He/Him":
-            $ he = "he"
-            $ him = "him"
-            $ are = "is"
-            $ hes = "he's"
-            python:
-                finishPronouns()
+        "Какие твои местоимения?"
+        "Он/Ему":
+            $ he = "он"
+            $ him = "ему"
+            $ are = "его"
+            $ hes = "им"
+            $ finishPronouns()
 
-            "Set Pronoun to He/Him."
+            "Местоимения установлены на «Он/Ему»."
 
-        "She/Her":
-            $ he = "she"
-            $ him = "her"
-            $ are = "is"
-            $ hes = "she's"
-            python:
-                finishPronouns()
+        "Она/Ей":
+            $ he = "она"
+            $ him = "ей"
+            $ are = "её"
+            $ hes = "ей"
+            $ finishPronouns()
 
-            "Set Pronoun to She/Her."
-
-        "They/Them":
-            $ he = "they"
-            $ him = "them"
-            $ are = "are"
-            $ hes = "they're"
-            python:
-                finishPronouns()
-
-            "Set Pronoun to They/Them."
+            "Местоимения установлены на «Она/Ей»."
 
     $ he_capital = he.capitalize()
     $ him_capital = him.capitalize()
