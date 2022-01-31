@@ -7,6 +7,8 @@
 # Этот файл служит примером функции местоимений.
 # Используйте это в качестве примера, дабы научиться пользоваться этой функцией.
 
+# Для капитализации местоимений используется нативный флаг "!c" - прим. пер.
+
 label pronoun_example:
     stop music fadeout 2.0
     scene bg club_day
@@ -23,7 +25,7 @@ label pronoun_menu:
             if not he:
                 "Вы пока не выбрали местоимение."
             else:
-                "Ваше текущее местоимение: [he_capital]/[him_capital]."
+                "Ваше текущее местоимение: [he!c]/[him!c]."
             jump pronoun_menu
 
         "Проиграть пример.":
@@ -31,9 +33,9 @@ label pronoun_menu:
                 "Вы пока не выбрали местоимение. Выберите его, прежде чем продолжить."
                 jump pronoun_menu
             mc "Мои местоимения – [he]/[him]."
-            m "[he_capital] здесь, чтобы узнать о том, что [he] тот ещё чёрт."
+            m "[he!c] здесь, чтобы узнать о том, что [he] тот ещё чёрт."
             s "Не говори про н[are] такое!"
-            n "[he_capital] мне не очень нравится."
+            n "[he!c] мне не очень нравится."
             y "С н-н[hes] всё будет хорошо?"
             jump pronoun_menu
 
@@ -42,10 +44,6 @@ label pronoun_menu:
             $ him = ""
             $ are = ""
             $ hes = ""
-            $ he_capital = ""
-            $ him_capital = ""
-            $ are_capital = ""
-            $ hes_capital = ""
             $ finishPronouns()
 
             "Все местоимения очищены."
@@ -76,8 +74,4 @@ label set_pronoun:
 
             "Местоимения установлены на «Она/Ей»."
 
-    $ he_capital = he.capitalize()
-    $ him_capital = him.capitalize()
-    $ are_capital = are.capitalize()
-    $ hes_capital = hes.capitalize()
     jump pronoun_menu
