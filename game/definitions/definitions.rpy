@@ -1,110 +1,105 @@
 ## definitions.rpy
 
-# This file defines important stuff for DDLC and your mod!
+# Этот файл содержит определения важных вещей для DDLC и вашей модификации!
 
-# This variable declares if the mod is a demo or not.
-# Leftover from DDLC.
+# Эта переменная указывает, является ли модификация демоверсией или нет.
+# Остатки старого кода DDLC.
 define persistent.demo = False
 
-# This variable declares whether the mod is in the 'steamapps' folder.
+# Эта переменная указывает, находится ли модификация в папке «steamapps».
 define persistent.steam = ("steamapps" in config.basedir.lower())
 
-# This variable declares whether Developer Mode is on or off in the mod.
+# Эта переменная указывает, включён ли в модификации Режим разработчика.
 define config.developer = False
 
-# This python statement starts singleton to make sure only one copy of the mod
-# is running.
+# Это выражение на Python запускает модуль singleton, дабы был разрешён
+# запуск только одной копии модификации.
 python early:
     import singleton
     me = singleton.SingleInstance()
 
 init -3 python:
-    ## Dynamic Super Position (DSP)
-    # DSP is a feature in where the game upscales the positions of assets 
-    # with higher resolutions (1080p).
-    # This is just simple division from Adobe, implemented in Python.
+    ## Динамическая супер-позиция (DSP)
+    # DSP - это функция, которая подгоняет позиции ресурсов игры под более
+    # высокие разрешения экрана (1080p).
+    # Это обычная операция деления, взятая у Adobe и реализованная в Python.
     def dsp(orig_val):
         ceil = not isinstance(orig_val, float)
         dsp_scale = config.screen_width / 1280.0 
         if ceil: return math.ceil(orig_val * dsp_scale)
-        # since `absolute * float` -> `float`
-        # we wanna keep the same type
+        # поскольку `абсолютное_число * дробное` -> `дробное`,
+        # мы хотим сохранить тот же тип
         return type(orig_val)(orig_val * dsp_scale)
-    
-    # This makes evaluating the value faster
+
+    # Это делает вычисление значения быстрее
     renpy.pure(dsp)
 
-    ## Dynamic Super Resolution
-    # DSR is a feature in where the game upscales asset sizes to higher
-    # resolutions (1080p) and sends back a modified transform.
-    # (Recommend that you just make higher res assets than upscale lower res ones)
+    ## Динамическое супер-разрешение (DSR)
+    # DSR - это функция, которая подгоняет размер ресурсов игры под более
+    # высокие разрешения экрана (1080p) и возвращает модифицированную трансформацию.
+    # (Настоятельно рекомендуется создать ресурсы в более высоком разрешении, а не масштабировать оные низкого разрешения)
     def dsr(path):
         img_bounds = renpy.image_size(path)
         return Transform(path, size=(dsp(img_bounds[0]), dsp(img_bounds[1])))
 
-## Android Gestures (provided by Tulkas)
-## These gestures allow players to access different settings using the touch screen.
-# Swipe Up - Saves
-# Swipe Down - Hide Dialogue Box
-# Swipe Left - History
-# Swipe Right - Skip Dialogue
+## Жесты для ОС Android (предоставлены Tulkas)
+## Эти жесты дают игрокам доступ к различным разделам настроек, используя только сенсорный экран.
+# Провести пальцем вверх - экран Сохранений
+# Провести пальцем вниз - скрыть диалоговое окно
+# Провести пальцем влево - экран Истории
+# Провести пальцем вправо - пропуск текста
 define config.gestures = { "n" : 'game_menu', "s" : "hide_windows", "e" : 'toggle_skip', "w" : "history" }
 
-# This init python statement sets up the functions, keymaps and channels
-# for the game.
+# Это выражение Python, исполняемое во время инициализации (init python) настраивает функции,
+# горячие клавиши и аудио-каналы для игры.
 init python:
-    ## More Android Gestures
-    # This variable makes a keymap for the history screen.
+    ## Прочие жесты для ОС Android
+    # Эта переменная создаёт горячую клавишу для экрана Истории.
     if renpy.android:
         config.underlay.append(renpy.Keymap(history = ShowMenu("history"))) 
 
-        # These commented variables sets all keybinds from Rollback to History.
+        # Эти закомментированные переменные переназначают горячие клавиши с Отката диалога на вызов экрана Истории.
         # config.keymap["rollback"] = []
         # config.keymap["history"] = [ 'K_PAGEUP', 'repeat_K_PAGEUP', 'K_AC_BACK', 'mousedown_4' ]
 
-    # These variable declarations adjusts the mapping for certain actions in-game.
+    # Эти объявления переменных настраивают горячие клавиши для определённых действий в игре.
     config.keymap['game_menu'].remove('mouseup_3')
     config.keymap['hide_windows'].append('mouseup_3')
     config.keymap['self_voicing'] = []
     config.keymap['clipboard_voicing'] = []
     config.keymap['toggle_skip'] = []
 
-    # This variable declaration registers the music poem channel for the poem sharing music.
+    # Это объявление переменной указывает рабочую папку игры для дальнейшей работы с файлами персонажей и всякой всячиной - прим. пер.
+    user_dir = os.environ["ANDROID_PUBLIC"] if renpy.android else config.basedir
+
+    # Это объявление переменной регистрирует аудио-канал для музыкального сопровождения стихотворений во время обмена оными.
     renpy.music.register_channel("music_poem", mixer="music", tight=True)
     
-    # This function gets the postition of the music playing in a given channel.
+    # Эта функция берёт текущую позицию воспроизводимой музыки на указанном канале.
     def get_pos(channel='music'):
         pos = renpy.music.get_pos(channel=channel)
         if pos: return pos
         return 0
 
-    # This function deletes all the saves made in the mod.
+    # Эта функция удаляет все сохранения, созданные пользователем в запущенной модификации.
     def delete_all_saves():
         for savegame in renpy.list_saved_games(fast=True):
             renpy.unlink_save(savegame)
 
-    # This function deletes a given character name from the characters folder.
+    # Эта функция удаляет указанного персонажа из папки «characters».
     def delete_character(name):
-        if renpy.android:
-            try: os.remove(os.environ['ANDROID_PUBLIC'] + "/characters/" + name + ".chr")
-            except: pass
-        else:
-            try: os.remove(config.basedir + "/characters/" + name + ".chr")
-            except: pass
+        try: os.remove(f"{user_dir}/characters/{name}.chr")
+        except: pass
 
-    # These functions restores all the character CHR files to the characters folder 
-    # given the playthrough number in the mod and list of characters to restore.
+    # Эти функции восстанавливают все файлы персонажей в папке «characters» с учётом
+    # текущего акта в модификации и перечня восстанавливаемых персонажей.
     def restore_character(names):
         if not isinstance(names, list):
-            raise Exception("'names' parameter must be a list. Example: [\"monika\", \"sayori\"].")
+            raise Exception("Аргумент 'names' должен быть списком. Пример: [\"monika\", \"sayori\"].")
 
         for x in names:
-            if renpy.android:
-                try: renpy.file(os.environ['ANDROID_PUBLIC'] + "/characters/" + x + ".chr")
-                except: open(os.environ['ANDROID_PUBLIC'] + "/characters/" + x + ".chr", "wb").write(renpy.file("chrs/" + x + ".chr").read())
-            else:
-                try: renpy.file(config.basedir + "/characters/" + x + ".chr")
-                except: open(config.basedir + "/characters/" + x + ".chr", "wb").write(renpy.file("chrs/" + x + ".chr").read())
+            try: open(f"{user_dir}/characters/{x}.chr", "rb")
+            except: open(f"{user_dir}/characters/{x}.chr", "wb").write(renpy.file(f"{x}.chr").read())
 
     def restore_all_characters():
         if persistent.playthrough == 0:
@@ -115,13 +110,13 @@ init python:
             restore_character(["monika"])
         else:
             restore_character(["sayori", "natsuki", "yuri"])
-    
-    # This function is obsolete as all characters now restores only
-    # relevant characters to the characters folder.
+
+    # Эта функция является устаревшей, ибо функция восстановления всех персонажей
+    # восстанавливает только необходимых персонажей в папке «characters».
     def restore_relevant_characters():
         restore_all_characters()
 
-    # This function pauses the time for a certain amount of time or indefinite.
+    # Эта функция ставит паузу на какое-то время или делает пропускаемую паузу.
     def pause(time=None):
         global _windows_hidden
 
@@ -136,53 +131,53 @@ init python:
         renpy.pause(time)
         _windows_hidden = False
 
-## Music
-# This section declares the music available to be played in the mod.
-# Syntax:
-#   audio. - This tells Ren'Py this is a audio variable.
-#   t1 - This tells Ren'Py the label of the music/sound file being declared.
-#   <loop 22.073> - This tells Ren'Py to loop the music/sound to this position when the song completes.
-#   "bgm/1.ogg" - This tells Ren'Py the path of the music/sound file to use.
-# Example: 
-#   define audio.t2 = "bgm/2.ogg"
+## Музыка
+# В этом разделе объявляется доступная для воспроизведения в модификации музыка.
+# Синтаксис:
+# audio. - Это указывает интерпретатору Ren'Py, что это аудио-переменная.
+# t1 - Это указывает интерпретатору Ren'Py метку объявляемого музыкального/звукового файла.
+# <loop 22.073> - Это указывает интерпретатору Ren'Py, что по завершении воспроизведения песни должен пойти цикл с этой позиции.
+# "bgm/1.ogg" - Это указывает интерпретатору Ren'Py путь к используемому музыкальному/звуковому файлу.
+# Пример: 
+# define audio.t2 = "bgm/2.ogg"
 
-define audio.t1 = "<loop 22.073>bgm/1.ogg" # Doki Doki Literature Club! - Main Theme
-define audio.t2 = "<loop 4.499>bgm/2.ogg" # Ohayou Sayori! - Sayori Theme
+define audio.t1 = "<loop 22.073>bgm/1.ogg" # Литературный клуб "Тук-тук!" - Тема главного меню
+define audio.t2 = "<loop 4.499>bgm/2.ogg" # Охайо, Сайори! - Тема Сайори
 define audio.t2g = "bgm/2g.ogg"
 define audio.t2g2 = "<from 4.499 loop 4.499>bgm/2.ogg"
 define audio.t2g3 = "<loop 4.492>bgm/2g2.ogg"
-define audio.t3 = "<loop 4.618>bgm/3.ogg" # Main Theme - In Game 
+define audio.t3 = "<loop 4.618>bgm/3.ogg" # Тема главного меню - В игре
 define audio.t3g = "<to 15.255>bgm/3g.ogg"
 define audio.t3g2 = "<from 15.255 loop 4.618>bgm/3.ogg"
 define audio.t3g3 = "<loop 4.618>bgm/3g2.ogg"
 define audio.t3m = "<loop 4.618>bgm/3.ogg"
-define audio.t4 = "<loop 19.451>bgm/4.ogg" # Dreams of Love and Literature - Poem Game Theme
+define audio.t4 = "<loop 19.451>bgm/4.ogg" # Мечты о любви и литературе - Тема мини-игры про сочинение стихов
 define audio.t4g = "<loop 1.000>bgm/4g.ogg"
-define audio.t5 = "<loop 4.444>bgm/5.ogg" # Okay Everyone! - Sharing Poems Theme
+define audio.t5 = "<loop 4.444>bgm/5.ogg" # Итак, друзья! - Тема обмена стихами
 
-define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Okay Everyone! (Monika)
-define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Okay Everyone! (Sayori)
-define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki)
-define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Okay Everyone! (Yuri)
+define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Итак, друзья! (Моника)
+define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Итак, друзья! (Сайори)
+define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Итак, друзья! (Нацуки)
+define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Итак, друзья! (Юри)
 
 define audio.t5b = "<loop 4.444>bgm/5.ogg"
 define audio.t5c = "<loop 4.444>bgm/5.ogg"
-define audio.t6 = "<loop 10.893>bgm/6.ogg" # Play With Me - Yuri/Natsuki Theme
+define audio.t6 = "<loop 10.893>bgm/6.ogg" # Поиграй со мной - Тема Юри/Нацуки
 define audio.t6g = "<loop 10.893>bgm/6g.ogg"
 define audio.t6r = "<to 39.817 loop 0>bgm/6r.ogg"
 define audio.t6s = "<loop 43.572>bgm/6s.ogg"
-define audio.t7 = "<loop 2.291>bgm/7.ogg" # Poem Panic - Argument Theme
+define audio.t7 = "<loop 2.291>bgm/7.ogg" # Стихотворный переполох - Тема споров
 define audio.t7a = "<loop 4.316 to 12.453>bgm/7.ogg"
 define audio.t7g = "<loop 31.880>bgm/7g.ogg"
-define audio.t8 = "<loop 9.938>bgm/8.ogg" # Daijoubu! - Argument Resolved Theme
-define audio.t9 = "<loop 3.172>bgm/9.ogg" # My Feelings - Emotional Theme
-define audio.t9g = "<loop 1.532>bgm/9g.ogg" # My Feelings but 207% Speed
-define audio.t10 = "<loop 5.861>bgm/10.ogg" # My Confession - Sayori Confession Theme
+define audio.t8 = "<loop 9.938>bgm/8.ogg" # Дайдзёбу! - Тема урегулированного спора
+define audio.t9 = "<loop 3.172>bgm/9.ogg" # Мои чувства - Эмоциональная тема
+define audio.t9g = "<loop 1.532>bgm/9g.ogg" # Мои чувства, скорость 207%
+define audio.t10 = "<loop 5.861>bgm/10.ogg" # Моё признание - Тема признания Сайори
 define audio.t10y = "<loop 0>bgm/10-yuri.ogg"
 define audio.td = "<loop 36.782>bgm/d.ogg"
 
-define audio.m1 = "<loop 0>bgm/m1.ogg" # Just Monika. - Just Monika.
-define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # I Still Love You - Monika Post-Delete Theme
+define audio.m1 = "<loop 0>bgm/m1.ogg" # Только Моника. - Только Моника.
+define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # Я всё ещё люблю тебя - Тема после удаления Моники
 
 define audio.ghostmenu = "<loop 0>bgm/ghostmenu.ogg"
 define audio.g1 = "<loop 0>bgm/g1.ogg"
@@ -194,12 +189,12 @@ define audio.closet_close = "sfx/closet-close.ogg"
 define audio.page_turn = "sfx/pageflip.ogg"
 define audio.fall = "sfx/fall.ogg"
 
-## Backgrounds
-# This section declares the backgrounds available to be shown in the mod.
-# To define a new color background, declare a new image statement like in this example:
-#     image blue = "X" where X is your color hex i.e. '#158353'
-# To define a new background, declare a new image statement like this instead:
-#     image bg bathroom = "mod_assets/bathroom.png" 
+## Фоны
+# В этом разделе объявляются доступные для отображения в модификации фоны.
+# Чтобы определить новую сплошную заливку, объявите новое событие «image» как в этом примере:
+# image blue = "X" где X - ваш HEX-код цвета, напр. "#158353"
+# Чтобы определить новый фон, объявлять новое событие «image» надо уже как в этом примере:
+# image bg bathroom = "mod_assets/bathroom.png" 
 
 image black = "#000000"
 image dark = "#000000e4"
@@ -210,11 +205,11 @@ image end:
     truecenter
     "gui/end.png"
 
-image bg residential_day = "bg/residential.png" # Start of DDLC BG
-image bg class_day = "bg/class.png" # The classroom BG
-image bg corridor = "bg/corridor.png" # The hallway BG
-image bg club_day = "bg/club.png" # The club BG
-image bg club_day2: # Glitched Club BG
+image bg residential_day = "bg/residential.png" # Фон DDLC в начале
+image bg class_day = "bg/class.png" # Фон класса
+image bg corridor = "bg/corridor.png" # Фон коридора
+image bg club_day = "bg/club.png" # Фон клуба
+image bg club_day2: # Глючный фон клуба
     choice:
         "bg club_day"
     choice:
@@ -228,20 +223,20 @@ image bg club_day2: # Glitched Club BG
     choice:
         "bg/club-skill.png"
 
-image bg closet = "bg/closet.png" # The closet BG
-image bg bedroom = "bg/bedroom.png" # MC's Room BG
-image bg sayori_bedroom = "bg/sayori_bedroom.png" # Sayori's Room BG
-image bg house = "bg/house.png" # Sayori's House BG
-image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
+image bg closet = "bg/closet.png" # Фон кладовки
+image bg bedroom = "bg/bedroom.png" # Фон комнаты Протагониста
+image bg sayori_bedroom = "bg/sayori_bedroom.png" # Фон комнаты Сайори
+image bg house = "bg/house.png" # Фон дома Сайори
+image bg kitchen = "bg/kitchen.png" # Фон кухни Протагониста
 
-image bg notebook = "bg/notebook.png" # Poem Game Notebook Scene
-image bg notebook-glitch = "bg/notebook-glitch.png" # Glitched Poem Game BG
+image bg notebook = "bg/notebook.png" # Сцена с тетрадью в мини-игре про сочинение стихов
+image bg notebook-glitch = "bg/notebook-glitch.png" # Фон глючной мини-игры про сочинение стихов
 
-# This image shows a glitched screen during Act 2 poem sharing with Yuri.
+# Это изображение показывает глючный экран во время обмена стихами с Юри во Втором акте.
 image bg glitch = LiveTile("bg/glitch.jpg")
 
-# This image transform shows a glitched scene effect
-# during Act 3 when we delete Monika.
+# Это изображение с трансформациями показывает глючный
+# эффект сцены в Третьем акте, когда мы удаляем Монику.
 image glitch_color:
     ytile 3
     zoom 2.5
@@ -284,8 +279,8 @@ image glitch_color:
         alpha 0.7
         linear 0.45 alpha 0
 
-# This image transform shows another glitched scene effect
-# during Act 3 when we delete Monika.
+# Это изображение с трансформациями показывает другой глючный
+# эффект сцены в Третьем акте, когда мы удаляем Монику.
 image glitch_color2:
     ytile 3
     zoom 2.5
@@ -322,13 +317,13 @@ image glitch_color2:
         alpha 0.7
         linear 0.45 alpha 0
 
-# Characters
-# This is where the characters bodies and faces are defined in the mod.
-# They are defined by a left half, a right half and their head.
-# To define a new image, declare a new image statement like in this example:
-#     image sayori 1ca = Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
+# Персонажи
+# Здесь определяются тела и лица персонажей, используемые в модификации.
+# Порядок определения следующий: левая половина, правая половина, голова.
+# Чтобы определить новое изображение, объявите новое событие «image» как в этом примере:
+#     image sayori 1ca = im.Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
 
-# Sayori's Character Definitions
+# Определения спрайтов Сайори
 image sayori 1 = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1a = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1b = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/b.png")
@@ -443,7 +438,7 @@ image sayori 5b = im.Composite((960, 960), (0, 0), "sayori/3b.png")
 image sayori 5c = im.Composite((960, 960), (0, 0), "sayori/3c.png")
 image sayori 5d = im.Composite((960, 960), (0, 0), "sayori/3d.png")
 
-# Sayori in her Casual Outfit [Day 4]
+# Повседневная одежда Сайори [День 4]
 image sayori 1ba = im.Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/a.png")
 image sayori 1bb = im.Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/b.png")
 image sayori 1bc = im.Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/c.png")
@@ -548,7 +543,7 @@ image sayori 4bw = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "s
 image sayori 4bx = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/x.png")
 image sayori 4by = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/y.png")
 
-# This image shows a glitched Sayori sprite during Act 2.
+# Это изображение показывает глючный спрайт Сайори во Втором акте.
 image sayori glitch:
     "sayori/glitch1.png"
     pause 0.01666
@@ -556,7 +551,7 @@ image sayori glitch:
     pause 0.01666
     repeat
 
-# Natsuki's Character Definitions
+# Определения спрайтов Нацуки
 image natsuki 11 = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 1a = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/a.png")
 image natsuki 1b = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/b.png")
@@ -719,7 +714,7 @@ image natsuki 5x = im.Composite((960, 960), (18, 22), "natsuki/x.png", (0, 0), "
 image natsuki 5y = im.Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "natsuki/3.png")
 image natsuki 5z = im.Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3.png")
 
-# Natsuki in her casual outfit [Day 4 - Natsuki Route]
+# Повседневная одежда Нацуки [День 4 - Тропа Нацуки]
 image natsuki 1ba = im.Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/a.png")
 image natsuki 1bb = im.Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/b.png")
 image natsuki 1bc = im.Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/c.png")
@@ -875,26 +870,26 @@ image natsuki 5bx = im.Composite((960, 960), (18, 22), "natsuki/x.png", (0, 0), 
 image natsuki 5by = im.Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "natsuki/3b.png")
 image natsuki 5bz = im.Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3b.png")
 
-# These image definitions are left-overs of certain Natsuki expressions 
-# found in the original 1.0 release of DDLC.
+# Эти определения изображений являются остатками кода конкретных выражений лица Нацуки,
+# которые были найдены в первой ревизии DDLC.
 image natsuki 1 = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 2 = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/2r.png", (0, 0), "natsuki/1t.png")
 image natsuki 3 = im.Composite((960, 960), (0, 0), "natsuki/2l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 4 = im.Composite((960, 960), (0, 0), "natsuki/2l.png", (0, 0), "natsuki/2r.png", (0, 0), "natsuki/1t.png")
 image natsuki 5 = im.Composite((960, 960), (18, 22), "natsuki/1t.png", (0, 0), "natsuki/3.png")
 
-# This image shows the realistic mouth on Natsuki on a random playthrough
-# of Act 2.
+# Это изображение показывает реалистичный рот поверх спрайта Нацуки при случайных
+# обстоятельствах во Втором акте.
 image natsuki mouth = im.Composite((960, 960), (0, 0), "natsuki/0.png", (390, 340), "n_rects_mouth", (480, 334), "n_rects_mouth")
 
-# This image shows black rectangles on Natsuki on a random playthrough
-# of Act 2.
+# Это изображение показывает чёрные прямоугольники поверх спрайта Нацуки при случайных
+# обстоятельствах во Втором акте.
 image n_rects_mouth:
     RectCluster(Solid("#000"), 4, 15, 5).sm
     size (20, 25)
 
-# This image transform makes the realistic mouth move on Natsuki's face
-# on a random playthrough of Act 2.
+# Это изображение с трансформацией заставляет реалистичный рот, появляющийся поверх
+# спрайта Нацуки, двигаться.
 image n_moving_mouth:
     "images/natsuki/mouth.png"
     pos (615, 305)
@@ -943,8 +938,8 @@ image n_moving_mouth:
         ease 0.2 xzoom 0.8
         repeat
 
-# These images show the Natsuki ghost sprite shown in the poemgame of 
-# Act 2.
+# Эти изображения показывают призрачный спрайт Нацуки, который появлялся в мини-игре
+# про обмен стихами во Втором акте.
 image natsuki_ghost_blood:
     "#00000000"
     "natsuki/ghost_blood.png" with ImageDissolve("images/menu/wipedown.png", 80.0, ramplen=4, alpha=True)
@@ -968,8 +963,8 @@ image natsuki ghost4:
     0.25
     "black"
 
-# This image makes Natsuki's sprite glitch up for a bit before
-# returning to normal.
+# Это изображение искажает спрайт Нацуки на мгновение, а потом
+# возвращает в норму.
 image natsuki glitch1:
     "natsuki/glitch1.png"
     zoom 1.25
@@ -984,13 +979,13 @@ image natsuki glitch1:
 image natsuki scream = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/scream.png")
 image natsuki vomit = "natsuki/vomit.png"
 
-# These images declare alterative eyes for Natsuki on a random playthrough of
-# Act 2.
+# Эти изображения определяют альтернативные глаза у Нацуки, появляющиеся при случайных
+# обстоятельствах во Втором акте.
 image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
-# Yuri's Character Definitions
-# Note: Sprites with a 'y' in the middle are Yuri's Yandere Sprites.
+# Определения спрайтов Юри
+# Примечание: Спрайты с буквой «y» посередине - яндере-спрайты Юри.
 image yuri 1 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
 image yuri 3 = im.Composite((960, 960), (0, 0), "yuri/2l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1098,7 +1093,7 @@ image yuri 4c = im.Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/c2.
 image yuri 4d = im.Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/d2.png")
 image yuri 4e = im.Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/e2.png")
 
-# Yuri in her casual outfit [Day 4 - Yuri Route]
+# Повседневная одежда Юри [День 4 - Тропа Юри]
 image yuri 1ba = im.Composite((960, 960), (0, 0), "yuri/a.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bb = im.Composite((960, 960), (0, 0), "yuri/b.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bc = im.Composite((960, 960), (0, 0), "yuri/c.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
@@ -1177,7 +1172,7 @@ image yuri 4bc = im.Composite((960, 960), (0, 0), "yuri/c2.png", (0, 0), "yuri/3
 image yuri 4bd = im.Composite((960, 960), (0, 0), "yuri/d2.png", (0, 0), "yuri/3b.png")
 image yuri 4be = im.Composite((960, 960), (0, 0), "yuri/e2.png", (0, 0), "yuri/3b.png")
 
-# This image shows the looping Yuri glitched head in Act 2.
+# Это изображение показывает голову Юри крупным планом с графическими аномалиями во Втором акте.
 image y_glitch_head:
     "images/yuri/za.png"
     0.15
@@ -1189,7 +1184,7 @@ image y_glitch_head:
     0.15
     repeat
 
-# These images shows Yuri stabbing herself at the end of Act 2 in six stages.
+# Эти изображения показывают, как Юри протыкает себя ножом в конце Второго акта в шести этапах.
 image yuri stab_1 = "yuri/stab/1.png"
 image yuri stab_2 = "yuri/stab/2.png"
 image yuri stab_3 = "yuri/stab/3.png"
@@ -1197,7 +1192,7 @@ image yuri stab_4 = "yuri/stab/4.png"
 image yuri stab_5 = "yuri/stab/5.png"
 image yuri stab_6 = im.Composite((960,960), (0, 0), "yuri/stab/6-mask.png", (0, 0), "yuri stab_6_eyes", (0, 0), "yuri/stab/6.png")
 
-# This image transform animates Yuri's eyes on her 6th stabbing in Act 2.
+# Это изображение с трансформацией анимирует глаза Юри на шестом этапе протыкания ножом во Втором акте.
 image yuri stab_6_eyes:
     "yuri/stab/6-eyes.png"
     subpixel True
@@ -1224,8 +1219,8 @@ image yuri stab_6_eyes:
         easeout 1.0 yoffset -15
         linear 10 yoffset -15
 
-# These images shows Yuri with a offcenter right eye moving slowing away
-# from her face.
+# Эти изображения показывают Юри с медленно сползающим с её лица
+# правым глазом.
 image yuri oneeye = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/oneeye.png", (0, 0), "yuri oneeye2")
 image yuri oneeye2:
     "yuri/oneeye2.png"
@@ -1233,7 +1228,7 @@ image yuri oneeye2:
     pause 5.0
     linear 60 xoffset -50 yoffset 20
 
-# These images show a glitched Yuri during Act 2.
+# Эти изображения показывают искажённую Юри во Втором акте.
 image yuri glitch:
     "yuri/glitch1.png"
     pause 0.1
@@ -1257,20 +1252,20 @@ image yuri glitch2:
     pause 0.3
     "yuri 1"
 
-# These image declarations show Yuri's moving eyes in Act 2.
+# Это изображение показывает двигающиеся глаза Юри во Втором акте.
 image yuri eyes = im.Composite((1280, 720), (0, 0), "yuri/eyes1.png", (0, 0), "yuripupils")
 
-# This image shows the base of Yuri's sprite as her eyes move.
+# Это изображение показывает основание спрайта Юри для двигающихся глаз.
 image yuri eyes_base = "yuri/eyes1.png"
 
-# This image shows Yuri's realistic moving eyes during Act 2.
+# Это изображение показывает двигающиеся реалистичные глаза Юри во Втором акте.
 image yuripupils:
     "yuri/eyes2.png"
     yuripupils_move
 
 image yuri cuts = "yuri/cuts.png"
 
-# This image shows another glitched Yuri from Act 2. 
+# Это изображение показывает другой искажённый спрайт Юри во Втором акте.
 image yuri dragon:
     "yuri 3"
     0.25
@@ -1296,7 +1291,7 @@ image yuri dragon:
     xoffset 0
     "yuri 3"
 
-# Monika's Character Definitions
+# Определения спрайтов Моники
 image monika 1 = im.Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
 image monika 2 = im.Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/2r.png", (0, 0), "monika/a.png")
 image monika 3 = im.Composite((960, 960), (0, 0), "monika/2l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
@@ -1382,7 +1377,7 @@ image monika 4r = im.Composite((960, 960), (0, 0), "monika/2l.png", (0, 0), "mon
 image monika 5a = im.Composite((960, 960), (0, 0), "monika/3a.png")
 image monika 5b = im.Composite((960, 960), (0, 0), "monika/3b.png")
 
-# This image transform shows a glitched Monika during a special poem.
+# Это изображение с трансформацией показывает искажённый спрайт Моники во время показа особого стиха.
 image monika g1:
     "monika/g1.png"
     xoffset 35 yoffset 55
@@ -1406,8 +1401,8 @@ image monika g1:
     xoffset 0 yoffset 0 zoom 1.00
     "monika 3"
 
-# This image transform shows Monika being glitched as she is 
-# deleted in Act 3.
+# Это изображение с трансформацией показывает распадающуюся на пиксели Монику
+# после удаления в Третьем акте.
 image monika g2:
     block:
         choice:
@@ -1427,12 +1422,12 @@ image monika g2:
             pause 0.2
     repeat
 
-## Character Variables
-# This is where the characters are declared in the mod.
-# To define a new character with assets, declare a character variable like in this example:
+## Переменные персонажей
+# Здесь объявляются персонажи, используемые в модификации.
+# Чтобы определить нового персонажа с его ресурсами, объявите его переменную как в этом примере:
 #   define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-# To define a new character without assets, declare a character variable like this instead:
-#   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# Чтобы определить нового персонажа без ресурсов, объявите его переменную следующим образом:
+#   define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 define narrator = Character(ctc="ctc", ctc_position="fixed")
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
@@ -1442,15 +1437,15 @@ define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suf
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
-# This variable determines whether to allow the player to dismiss pauses.
-# By default this is set by config.developer which is normally set to false
-# once you packaged your mod.
+# Эта переменная определяет, могут ли игроки пропускать паузы.
+# По умолчанию она имеет значение config.developer, которое, как правило,
+# является False после сборки модификации.
 define _dismiss_pause = config.developer
 
-## [BETA] Pronoun Variables
-# This section adds the feature to use player pronouns within the game text easily.
-# To use this feature, simply ask the user for their pronoun and use it here.
-# For capitalization, use heC, himC, areC and hesC
+## [БЕТА] Переменные местоимений
+# В этом разделе добавляются функции, которые упрощают использование местоимений при обращении к игроку.
+# Для использования этой функции предложите игроку выбрать их, а затем вставьте их в свой сценарий.
+# Для местоимений, написанных С Большой Буквы, используйте heC, himC, areC и hesC
 default persistent.he = ""
 default persistent.him = ""
 default persistent.are = ""
@@ -1464,19 +1459,19 @@ default him_capital = him.capitalize()
 default are_capital = are.capitalize()
 default hes_capital = hes.capitalize()
 
-## Extra Settings Variables
-# This section controls whether the mod is censored or is in let's play mode.
+## Переменные доп. настроек
+# В этом разделе указывается, включены ли цензура и/или режим летсплейщика в модификации.
 default persistent.uncensored_mode = False
 default persistent.lets_play = False
 
-## Variables
-# This section declares variables when the mod runs for the first time on all saves.
-# To make a new persistent variable, make a new variable with the 'persistent.' in it's name
-# like in this example:
+## Основные переменные
+# В этом разделе объявляются переменные со своими значениями по умолчанию.
+# Чтобы создать новую постоянную переменную, пропишите её с «persistent.» в
+# названии, как в этом примере:
 #   default persistent.monika = 1
-# To make a non-persistent variable, make a new variable like this instead:
+# Чтобы создать непостоянную переменную, пропишите её таким образом:
 #   default cookies = False
-# To make sure a variable is set to a given condition use 'define' rather than 'default'.
+# Для того, чтобы переменная имела конкретное значение, укажите «define» вместо «default».
 
 default persistent.playername = ""
 default player = persistent.playername
@@ -1502,27 +1497,27 @@ default in_yuri_kill = None
 default anticheat = 0
 define config.mouse = None
 default allow_skipping = True
-default basedir = config.basedir
+default basedir = user_dir
 default chapter = 0
 default currentpos = 0
 default faint_effect = None
 
-# Default Name Variables
-# To define a default name make a character name variable like in this example:
-#   default e_name = "Eileen"
+# Переменные имён со значениями по умолчанию
+# Чтобы определить новое имя, создайте переменную имени как в этом примере:
+#   default e_name = "Эйлин"
 
-default s_name = "Sayori"
-default m_name = "Monika"
-default n_name = "Natsuki"
-default y_name = "Yuri"
+default s_name = "Сайори"
+default m_name = "Моника"
+default n_name = "Нацуки"
+default y_name = "Юри"
 
-# Poem Variables
-# This section records how much each character likes your poem in-game.
-# Syntax:
-#   -1 - Bad
-#   0 - Neutral
-#   1 - Good
-# To add a new poem person, make a poem array like in this example:
+# Переменные стихотворений
+# В этом разделе ведётся учёт, как сильно тому или иному персонажу понравился ваш стих.
+# Синтаксис:
+#   -1 - Плохо
+#   0 - Нейтрально
+#   1 - Хорошо
+# Чтобы добавить нового человека, которому можно отдать на оценку свой стих, создайте стихотворный массив как в этом примере:
 #   default e_poemappeal = [0, 0, 0]
 
 default n_poemappeal = [0, 0, 0]
@@ -1530,47 +1525,47 @@ default s_poemappeal = [0, 0, 0]
 default y_poemappeal = [0, 0, 0]
 default m_poemappeal = [0, 0, 0]
 
-# This variable keeps tracks on which person won the poem session after each day.
+# Эта переменная ведёт учёт того, какому персонажу в течение того или иного дня ваш стих понравился больше всего.
 default poemwinner = ['sayori', 'sayori', 'sayori']
 
-# These variables keep track on who has read your poem during poem sharing
+# Эти переменные ведут учёт того, кто читал ваш стих во время обмена стихотворениями.
 default s_readpoem = False
 default n_readpoem = False
 default y_readpoem = False
 default m_readpoem = False
 
-# This variable keeps track on how many people have read your poem.
+# Эта переменная ведёт учёт того, сколько людей прочитало ваш стих.
 default poemsread = 0
 
-# These variables control if we have seen Natsuki's or Yuri's exclusive scenes
+# Эти переменные указывают, видели ли мы эксклюзивные сценки с Нацуки или Юри.
 default n_exclusivewatched = False
 default y_exclusivewatched = False
 
-# These variables track whether we gave Yuri our poem in Act 2 and if she
-# ran away during Act 2 poem sharing.
+# Эти переменные ведут учёт того, давали ли мы свой стих Юри во Втором акте,
+# и сбегала ли она во время обмена стихами там же.
 default y_gave = False
 default y_ranaway = False
 
-# These variables track whether we read Natsuki's or Yuri's 3rd poem in poem sharing.
+# Эти переменные ведут учёт того, читали ли мы третье стихотворение Нацуки или Юри во время обмена стихами.
 default n_read3 = False
 default y_read3 = False
 
-# This variable tracks which person we sided with in Day 2 of the game.
+# Эта переменная ведёт учёт того, на чью сторону мы встали во втором дне игры.
 default ch1_choice = "sayori"
 
-# This variable tracks if we gave Natsuki our poem first during poem sharing.
+# Эта переменная ведёт учёт того, давали ли мы Нацуки свой стих в первую очередь во время обмена стихами.
 default n_poemearly = False
 
-# These variables track whether we tried to help Monika or Sayori during Day 3's ending.
+# Эти переменные ведут учёт того, пытались ли мы помочь Монике или Сайори во время конца третьего дня.
 default help_sayori = None
 default help_monika = None
 
-# These variables track which route Day 4 will play and who is their name.
+# Эти переменные ведут учёт того, на чью тропу выйти в четвёртом дне, и чьё имя Сайори назовёт после.
 default ch4_scene = "yuri"
-default ch4_name = "Yuri"
+default ch4_name = "Юри"
 
-# This variable tracks whether we accepted Sayori's confession or not.
+# Эта переменная ведёт учёт того, приняли ли мы признание Сайори или нет.
 default sayori_confess = True
 
-# This variable tracks whether we read Natsuki's 3rd poem in Act 2.
+# Эта переменная ведёт учёт того, читали ли мы третий стих Нацуки во Втором акте.
 default natsuki_23 = None
