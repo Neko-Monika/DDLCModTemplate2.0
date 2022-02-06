@@ -1440,7 +1440,7 @@ style name_label is pref_label
 style name_label_text is pref_label_text
 
 style name_text:
-    font "gui/font/Halogen.ttf"
+    font "gui/font/comic.ttf"
     size 24
     color gui.idle_color
     outlines []
