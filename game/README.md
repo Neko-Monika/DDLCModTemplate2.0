@@ -33,7 +33,7 @@ This file was introduced in Version 4.0.0 of the mod template. This file contain
 
 ### **effects.rpy**
 
-Этот файл содержит определения всех эффектов в DDLC, используемый во Втором акте.
+Этот файл содержит определения всех эффектов в DDLC, используемых во Втором акте.
 
 ### **exceptions.rpy**
 
