@@ -301,10 +301,10 @@ image glitch_color2:
         linear 0.45 alpha 0
 
 # Персонажи
-# Здесь определяются тела и лица персонажей, используемые в модификации.
+# В этом разделе определяются тела и лица персонажей, используемые в модификации.
 # Порядок определения следующий: левая половина, правая половина, голова.
 # Чтобы определить новое изображение, объявите новое событие «image» как в этом примере:
-#     image sayori 1ca = Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
+# image sayori 1ca = Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
 
 # Определения спрайтов Сайори
 image sayori 1 = Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
@@ -421,7 +421,7 @@ image sayori 5b = Composite((960, 960), (0, 0), "sayori/3b.png")
 image sayori 5c = Composite((960, 960), (0, 0), "sayori/3c.png")
 image sayori 5d = Composite((960, 960), (0, 0), "sayori/3d.png")
 
-# Повседневная одежда Сайори [День 4]
+# Сайори в своей повседневной одежде [День 4]
 image sayori 1ba = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/a.png")
 image sayori 1bb = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/b.png")
 image sayori 1bc = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/c.png")
@@ -697,7 +697,7 @@ image natsuki 5x = Composite((960, 960), (18, 22), "natsuki/x.png", (0, 0), "nat
 image natsuki 5y = Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "natsuki/3.png")
 image natsuki 5z = Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3.png")
 
-# Повседневная одежда Нацуки [День 4 - Тропа Нацуки]
+# Нацуки в своей повседневной одежде [День 4 - Тропа Нацуки]
 image natsuki 1ba = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/a.png")
 image natsuki 1bb = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/b.png")
 image natsuki 1bc = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/c.png")
@@ -968,7 +968,7 @@ image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
 # Определения спрайтов Юри
-# Примечание: Спрайты с буквой «y» посередине - яндере-спрайты Юри.
+# Примечание: Спрайты с буквой «y» посередине являются спрайтами яндере-Юри.
 image yuri 1 = Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
 image yuri 3 = Composite((960, 960), (0, 0), "yuri/2l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1076,7 +1076,7 @@ image yuri 4c = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/c2.png
 image yuri 4d = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/d2.png")
 image yuri 4e = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/e2.png")
 
-# Повседневная одежда Юри [День 4 - Тропа Юри]
+# Юри в своей повседневной одежде [День 4 - Тропа Юри]
 image yuri 1ba = Composite((960, 960), (0, 0), "yuri/a.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bb = Composite((960, 960), (0, 0), "yuri/b.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bc = Composite((960, 960), (0, 0), "yuri/c.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
@@ -1406,11 +1406,11 @@ image monika g2:
     repeat
 
 ## Переменные персонажей
-# Здесь объявляются персонажи, используемые в модификации.
+# В этом разделе объявляются персонажи, присутствующие в модификации.
 # Чтобы определить нового персонажа с его ресурсами, объявите его переменную как в этом примере:
-#   define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 # Чтобы определить нового персонажа без ресурсов, объявите его переменную следующим образом:
-#   define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 define narrator = Character(ctc="ctc", ctc_position="fixed")
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
@@ -1418,7 +1418,7 @@ define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suff
 define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+define ny = Character('Нацуки и Юри', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 # Эта переменная определяет, могут ли игроки пропускать паузы.
 # По умолчанию она имеет значение config.developer, которое, как правило,
@@ -1437,12 +1437,8 @@ default he = persistent.he
 default him = persistent.him
 default are = persistent.are
 default hes = persistent.hes
-default he_capital = he.capitalize()
-default him_capital = him.capitalize()
-default are_capital = are.capitalize()
-default hes_capital = hes.capitalize()
 
-## Переменные доп. настроек
+## Переменные дополнительных настроек
 # В этом разделе указывается, включены ли цензура и/или режим летсплейщика в модификации.
 default persistent.uncensored_mode = False
 default persistent.lets_play = False
@@ -1451,9 +1447,9 @@ default persistent.lets_play = False
 # В этом разделе объявляются переменные со своими значениями по умолчанию.
 # Чтобы создать новую постоянную переменную, пропишите её с «persistent.» в
 # названии, как в этом примере:
-#   default persistent.monika = 1
+# default persistent.monika = 1
 # Чтобы создать непостоянную переменную, пропишите её таким образом:
-#   default cookies = False
+# default cookies = False
 # Для того, чтобы переменная имела конкретное значение, укажите «define» вместо «default».
 
 default persistent.playername = ""
@@ -1478,7 +1474,7 @@ default persistent.monika_back = None
 default in_sayori_kill = None
 default in_yuri_kill = None
 default anticheat = 0
-define config.mouse = None
+# define config.mouse = None - закомментировано для применения схемы указателей в ПК-версиях во время инициализации — прим. пер.
 default allow_skipping = True
 default basedir = user_dir
 default chapter = 0
@@ -1487,7 +1483,7 @@ default faint_effect = None
 
 # Переменные имён со значениями по умолчанию
 # Чтобы определить новое имя, создайте переменную имени как в этом примере:
-#   default e_name = "Эйлин"
+# default e_name = "Эйлин"
 
 default s_name = "Сайори"
 default m_name = "Моника"
@@ -1497,11 +1493,11 @@ default y_name = "Юри"
 # Переменные стихотворений
 # В этом разделе ведётся учёт, как сильно тому или иному персонажу понравился ваш стих.
 # Синтаксис:
-#   -1 - Плохо
-#   0 - Нейтрально
-#   1 - Хорошо
-# Чтобы добавить нового человека, которому можно отдать на оценку свой стих, создайте стихотворный массив как в этом примере:
-#   default e_poemappeal = [0, 0, 0]
+# -1 - Плохо
+# 0 - Нейтрально
+# 1 - Хорошо
+# Чтобы добавить нового человека, который будет оценивать ваши стихи, создайте стихотворный массив как в этом примере:
+# default e_poemappeal = [0, 0, 0]
 
 default n_poemappeal = [0, 0, 0]
 default s_poemappeal = [0, 0, 0]
