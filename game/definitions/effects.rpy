@@ -1,19 +1,19 @@
 ## effects.rpy
 
-# This file defines all the effects in DDLC used in Act 2.
+# Этот файл содержит определения всех эффектов в DDLC, используемых во Втором акте.
 
 init python:
-    # This screenshot is used to screenshot the game which is used for different
-    # effects in-game.
+    # Эта функция делает снимок экрана игры для дальнейшего накладывания
+    # на него разных эффектов.
     def screenshot_srf():
         if renpy.version_tuple > (7, 3, 5, 606):
             srf = renpy.display.draw.screenshot(None)
         else:
             srf = renpy.display.draw.screenshot(None, False)
-        
+
         return srf
 
-    # This function inverts the image in-game for the Invert Class.
+    # Эта функция инвертирует изображение для дальнейшего использования классом «Invert».
     def invert():
         srf = screenshot_srf()
         inv = renpy.Render(srf.get_width(), srf.get_height()).canvas().get_surface()
@@ -21,7 +21,7 @@ init python:
         inv.blit(srf, (0,0), None, 2) 
         return inv
 
-    # This class defines the code to invert the screen in 'screen invert'
+    # Этот класс содержит код для инвертирования цветов и дальнейшего вывода экраном «invert».
     class Invert(renpy.Displayable):
         def __init__(self, delay=0.0, screenshot_delay=0.0):
             super(Invert, self).__init__()
@@ -29,23 +29,23 @@ init python:
             self.height = self.width * 9 / 16
             self.srf = invert()
             self.delay = delay
-        
+
         def render(self, width, height, st, at):
             render = renpy.Render(self.width, self.height)
             if st >= self.delay:
                 render.blit(self.srf, (0, 0))
             return render
 
-    # This function hides all the windows in-game.
+    # Эта функция скрывает все внутриигровые окна.
     def hide_windows_enabled(enabled=True):
         global _windows_hidden
         _windows_hidden = not enabled
 
 ## Invert(length, delay)
-# This screen is called using the state `show screen invert(0.15, 0.3)` to invert the screen.
-# Syntax
-#   length - This declares how long the effect plays for.
-#   delay - Delays the effect for X time before it starts.
+# Этот экран вызывается выражением `show screen invert()` для инвертирования цветов экрана.
+# Синтаксис:
+# length - Указывает, сколько будет длиться эффект.
+# delay - Ждёт X секунд, прежде чем показать эффект.
 screen invert(length, delay=0.0):
     add Invert(delay) size (1280, 720)
     timer delay action PauseAudio("music")
@@ -57,7 +57,7 @@ screen invert(length, delay=0.0):
     on "hide" action Function(hide_windows_enabled, enabled=True)
 
 init python:
-    # This class defines the code for the tear piece effect in 'screen tear'.
+    # В этом классе содержится код для эффекта разрыва экрана.
     class TearPiece:
         def __init__(self, startY, endY, offtimeMult, ontimeMult, offsetMin, offsetMax):
             self.startY = startY
@@ -75,7 +75,7 @@ init python:
             elif st <= self.offTime and self.offset != 0:
                 self.offset = 0
     
-    # This class defines the code for the 'screen tear' effect in-game.
+    # В этом классе содержится код для вывода эффекта разрыва экраном «tear».
     class Tear(renpy.Displayable):
         def __init__(self, number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf=None):
             super(Tear, self).__init__()
@@ -108,14 +108,14 @@ init python:
             return render
 
 ## Tear
-# This screen is called using `show screen tear()` to tear the screen.
-# Syntax
-#   number - This declares how many pieces the screen tears on-screen.
-#   offtimeMult - This declares the multiplier of time the effect lasts off.
-#   ontimeMult - This declares the multiplier of time the effect lasts on.
-#   offsetMin - This declares the minimum offset of time by the multiplier.
-#   offsetMax - This declares the minimum offset of time by the multiplier.
-#   srf - This declares the screen image from 'screenshot_srf' if it is declared.
+# Этот экран вызывается выражением `show screen tear()` для разрыва экрана.
+# Синтаксис:
+# number - Указывает, на сколько частей будет разрываться экран.
+# offtimeMult - Определяет множитель времени действия эффекта.
+# ontimeMult - Определяет множитель времени, в течение которого длится эффект.
+# offsetMin - Определяет минимальное смещение времени по множителю.
+# offsetMax - Определяет the максимальное смещение времени по множителю.
+# srf - Определяет изображение экрана, полученное функцией «screenshot_srf», если оное было объявлено.
 screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None):
     zorder 150
     add Tear(number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf) size (1280,720)
@@ -123,25 +123,25 @@ screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, s
     on "hide" action Function(hide_windows_enabled, enabled=True)
 
 # RectStatic
-# These images transforms show glitched rectangles in-game during Act 3 when Monika
-# is deleted from the game.
+# Эти изображения с преобразованиями показывают глючные прямоугольники в игре во время Третьего акта,
+# когда Моника была удалена из игры.
 
-# This image transform adds multiple black squares to the screen.
+# Это изображение с преобразованиями добавляет несколько чёрных квадратов на экран.
 image m_rectstatic:
     RectStatic(Solid("#000"), 32, 32, 32).sm
     pos (0, 0)
     size (32, 32)
 
-# This image transform adds multiple squares of the DDLC logo to the screen.
+# Это изображение с преобразованиями добавляет несколько квадратов, вырезанных из логотипа DDLC.
 image m_rectstatic2:
     RectStatic(im.FactorScale(im.Crop("gui/logo.png", (100, 100, 128, 128)), 0.25), 2, 32, 32).sm
 
-# This image transform adds multiple squares of Sayori's menu sprite to the screen.
+# Это изображение с преобразованиями добавляет несколько квадратов спрайта Сайори из главного меню.
 image m_rectstatic3:
     RectStatic(im.FactorScale(im.Crop("gui/menu_art_s.png", (100, 100, 64, 64)), 0.5), 2, 32, 32).sm
 
 init python:
-    # This class declares the code used for the RectStatic effect.
+    # Этот класс определяет код, используемый для эффекта статичных прямоугольников (RectStatic).
     class RectStatic(object):
         def __init__(self, theDisplayable, numRects=12, rectWidth = 30, rectHeight = 30):
             self.sm = SpriteManager(update=self.update)
@@ -151,11 +151,11 @@ init python:
             self.numRects = numRects
             self.rectWidth = rectWidth
             self.rectHeight = rectHeight
-            
+
             for i in range(self.numRects):
                 self.add(self.displayable)
                 self.timers.append(random.random() * 0.4 + 0.1)
-        
+
         def add(self, d):
             s = self.sm.create(d)
             s.x = random.randint(0, 40) * 32
@@ -163,7 +163,7 @@ init python:
             s.width = self.rectWidth
             s.height = self.rectHeight
             self.rects.append(s)
-        
+
         def update(self, st):
             for i, s in enumerate(self.rects):
                 if st >= self.timers[i]:
@@ -173,7 +173,7 @@ init python:
             return 0
 
     ## ParticleBurst
-    # This class declares the code used for the ParticleBurst effect.
+    # Этот класс определяет код, используемый для эффекта разрыва частиц (ParticleBurst).
     class ParticleBurst(object):
         def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 3, particleYSpeed = 5):
             self.sm = SpriteManager(update=self.update)
@@ -187,10 +187,10 @@ init python:
             self.particleYSpeed = particleYSpeed
             self.gravity = 240
             self.timePassed = 0
-            
+
             for i in range(self.numParticles):
                 self.add(self.displayable, 1)
-        
+
         def add(self, d, speed):
             s = self.sm.create(d)
             speed = random.random()
@@ -201,7 +201,7 @@ init python:
             s.y = ySpeed * 24
             pTime = self.particleTime
             self.stars.append((s, ySpeed, xSpeed, pTime))
-        
+
         def update(self, st):
             sindex=0
             for s, ySpeed, xSpeed, particleTime in self.stars:
@@ -213,9 +213,9 @@ init python:
                     self.stars.pop(sindex)
                 sindex += 1
             return 0
-    
+
     ## Blood
-    # This class declares the code used for the Blood effect for Yuri in Act 2.
+    # Этот класс определяет код, используемый для эффекта крови (Blood) для Юри во Втором акте.
     class Blood(object):
         def __init__(self, theDisplayable, density=120.0, particleTime=1.0, dripChance=0.05, dripSpeedX=0.0, dripSpeedY=120.0, dripTime=180.0, burstSize=100, burstSpeedX=200.0, burstSpeedY=400.0, numSquirts=4, squirtPower=400, squirtTime=0.25):
             self.sm = SpriteManager(update=self.update)
@@ -234,18 +234,18 @@ init python:
             self.burstSpeedY = burstSpeedY
             self.lastUpdate = 0
             self.delta = 0.0
-            
+
             for i in range(burstSize): self.add_burst(theDisplayable, 0)
             for i in range(numSquirts): self.add_squirt(squirtPower, squirtTime)
-        
-        # This function makes a single squirt of blood that follows an arc.
+
+        # Эта функция создаёт одну струйку крови по дуге.
         def add_squirt(self, squirtPower, squirtTime):
             angle = random.random() * 6.283
             xSpeed = squirtPower * math.cos(angle)
             ySpeed = squirtPower * math.sin(angle)
             self.squirts.append([xSpeed, ySpeed, squirtTime])
-        
-        # This function makes a burst of blood that pops out of some area
+
+        # Эта функция создаёт всплеск крови, возникающий из конкретного участка.
         def add_burst(self, d, startTime):
             s = self.sm.create(d)
             xSpeed = (random.random() - 0.5) * self.burstSpeedX + 20
@@ -253,14 +253,14 @@ init python:
             pTime = self.particleTime
             self.drops.append([s, xSpeed, ySpeed, pTime, startTime])
 
-        # This function makes a dripping stream of blood
+        # Эта функция создаёт текущий поток крови.
         def add_drip(self, d, startTime):
             s = self.sm.create(d)
             xSpeed = (random.random() - 0.5) * self.dripSpeedX + 20
             ySpeed = random.random() * self.dripSpeedY + 20
             pTime = self.particleTime
             self.drops.append([s, xSpeed, ySpeed, pTime, startTime])
-        
+
         def update(self, st):
             delta = st - self.lastUpdate
             self.delta += st - self.lastUpdate
@@ -270,7 +270,7 @@ init python:
             for xSpeed, ySpeed, squirtTime in self.squirts:
                 if st > squirtTime: self.squirts.pop(sindex)
                 sindex += 1
-            
+
             pindex = 0
             if st < self.dripTime:
                 while self.delta * self.density >= 1.0:
@@ -292,15 +292,15 @@ init python:
                 pindex += 1
             return 0
 
-# This image transform adds a blood drop that gets longer and 
-# thinner over time.
+# Это изображение с преобразованиями добавляет каплю крови, которая со
+# временем становится длиннее и тоньше.
 image blood_particle_drip:
     "gui/blood_drop.png"
     yzoom 0 yanchor 0.2 subpixel True
     linear 10 yzoom 8
 
-# This image transform adds a blood drop that gets thinner
-# randomly by time.
+# Это изображение с преобразованиями добавляет каплю крови, которая со
+# временем случайным образом становится тоньше.
 image blood_particle:
     subpixel True
     "gui/blood_drop.png"
@@ -315,22 +315,22 @@ image blood_particle:
     choice:
         linear 0.55 zoom 0
 
-# This image transform adds a blood drop that squirts and
-# drops for three minutes.
+# Это изображение с преобразованиями добавляет каплю крови, которая
+# создаёт всплеск и капает в течение трёх минут.
 image blood:
     size (1, 1)
     truecenter
     Blood("blood_particle").sm
 
-# This image transform adds a blood drop that doesn't squirts,
-# and increases the chance of dropping.
+# Это изображение с преобразованиями добавляет каплю крови, которая
+# не создаёт всплеск, а вероятность капания увеличивается.
 image blood_eye:
     size (1, 1)
     truecenter
     Blood("blood_particle", dripChance=0.5, numSquirts=0).sm
 
-# This image transform adds a blood drop that has a very low
-# chance to drop.
+# Это изображение с преобразованиями добавляет каплю крови, которая
+# имеет очень низкий шанс капания.
 image blood_eye2:
     size (1, 1)
     truecenter
@@ -338,7 +338,7 @@ image blood_eye2:
 
 init python:
     ## AnimatedMask
-    # This class declares the code used for the AnimatedMask effect in Act 3.
+    # Этот класс определяет код, используемый для эффекта анимированной маски (AnimatedMask) в Третьем акте.
     class AnimatedMask(renpy.Displayable):
         
         def __init__(self, child, mask, maskb, oc, op, moving=True, speed=1.0, frequency=1.0, amount=0.5, **properties):
@@ -422,16 +422,16 @@ init python:
             renpy.redraw(self, 0)
             return rv
 
-    # This function makes a image be transparent for a bit then 
-    # fade in and out in Act 3.
+    # Эта функция делает изображение прозрачным на короткое мгновение, а затем 
+    # проявляет и растворяет его в Третьем акте.
     def monika_alpha(trans, st, at):
         trans.alpha = math.pow(math.sin(st / 8), 64) * 1.4
         return 0
 
-## The Old Blue Screen of Death
-# These images tricks the player to think their PC has crashed.
-# This feature has been depreciated in favor for Better BSODs 
-# but here for compatibility.
+## Старый Синий экран смерти
+# Эти изображения заставляют игрока думать, что его система крашнулась.
+# Данная функция была упразднена в угоду более лучшей реализации СЭС, но 
+# оставлена здесь для совместимости.
 
 image bsod_1:
     "images/bg/bsod.png"
@@ -447,9 +447,9 @@ image bsod_2:
 
 image bsod = LiveComposite((1280, 720), (0, 0), "bsod_1", (0, 0), "bsod_2")
 
-## Veins
-# This image transform creates a veiny border around the screen that shakes and pulses
-# during a random playthrough in Act 2.
+## Вены
+# Это изображение с преобразованиями создаёт ореол из вен вокруг экрана, которые трясутся и пульсируют
+# случайным образом во Втором акте.
 image veins:
     AnimatedMask("images/bg/veinmask.png", "images/bg/veinmask.png", "images/bg/veinmaskb.png", 0.15, 16, moving=False, speed=10.0, frequency=0.25, amount=0.1)
     xanchor 0.05 zoom 1.10
