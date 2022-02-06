@@ -126,7 +126,7 @@ if enable_achievements:
                             else:
                                 null height 128
 
-                # This vpgrid is responsible for the list of achievements in the game.
+                # Этот vpgrid отвечает за список достижений в игре.
                 vpgrid:
                     id "avp"
                     rows math.ceil(len(achievementList) / 6.0)
