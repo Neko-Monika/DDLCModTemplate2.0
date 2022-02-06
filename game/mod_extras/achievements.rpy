@@ -1,8 +1,8 @@
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
 ## achievements.rpy
-# This file contains the code for the achievements menu and notification that 
-# shows your progress throughout the mod.
+# Данный файл содержит код меню достижений и уведомления,
+# отображающего прогресс прохождения модификации..
 
 default enable_achievements = True
 
@@ -11,41 +11,41 @@ if enable_achievements:
         achievementList = None
         selectedAchievement = None
 
-        # This class declares the code to make a achievement.
-        # Syntax:
-        #   name - This variable contains the human-readable name of the achievement.
-        #   description - This variable contains the human-readable description of your
-        #                   achievement.
-        #   image - This variable contains the path or image tag of the achievement.
-        #   persistent - This variable contain the name of a in-game variable to check if the
-        #                   achievement has been completed or not.
-        #   count - This variable checks if the achievement declared requires a number to match.
-        #   maxCount - This variable stores the maxCount a achievement needs to be completed.
+        # Этот класс определяет код для создания достижения.
+        # Синтаксис:
+        # name - Эта переменная содержит читабельное название достижения.
+        # description - Эта переменная содержит читабельное описание достижения.
+        # image - Эта переменная содержит путь или тег изображения достижения.
+        # persistent - Эта переменная содержит название внутриигровой переменной для
+        #              проверки факта получения достижения.
+        # count - Эта переменная проверяет, требует ли достижение искомое число для получения.
+        # maxCount - Эта переменная хранит максимальное число (maxCount), которое нужно набрать
+        #            для получения достижения.
         class Achievements:
 
             def __init__(self, name, description, image, persistent, count=False, maxCount=100):
                 global achievementList
-                
-                # The human readable name of the achievement.
+
+                # Читабельное название достижения.
                 self.name = name
 
-                # The description of the achievement.
+                # Описание достижения.
                 self.description = description
 
-                # The image variable or path of the achievement image.
+                # Тег изображения или путь к оному для иллюстрации достижения.
                 self.image = image
 
-                # The image variable or path of the achievement image if the 
-                # achievement hasn't been unlocked.
+                # Тег изображения или путь к оному для иллюстрации достижения, если
+                # достижение не получено.
                 self.locked = im.MatrixColor(image, im.matrix.desaturate())
 
-                # A condition to see if a set number is needed to unlock the achievement.
+                # Условие, которое указывает, требуется ли установленное число для получения достижения.
                 self.count = count
 
-                # The name of the variable to check if it's T/F | meets the maxCount or more.
+                # Название переменной для проверки соответствия текущего прогресса требуемому переменной maxCount.
                 self.persistent = persistent
-                
-                # The max number of items the user needs to unlock the achievements.
+
+                # Максимальное число предметов, которое надо собрать пользователю для получения достижения.
                 self.maxCount = maxCount
 
                 if achievementList is None:
@@ -53,34 +53,34 @@ if enable_achievements:
                 else:
                     achievementList[self.name] = self
 
-        # This section declares the achievements. See the 'Achievements' class
-        # syntax to declare one.
-        startup = Achievements("Welcome to DDLC!", "Thanks for accepting the TOS.",
+        # В этом разделе объявляются достижения. См. класс «Achievements»
+        # для объявления своих достижений.
+        startup = Achievements("Добро пожаловать в DDLC!", "Спасибо за принятие условий Отказа от ответственности.",
                 "gui/logo.png", "persistent.first_run")
 
-    ## Achievements Screen #############################################################
+    ## Экран достижений ################################################################
     ##
-    ## This screen is used to make a achievements view of all possible achievements
-    ## the mod has in the main menu.
+    ## Этот экран используется для создания галереи доступных в модификации достижений,
+    ## которую можно просмотреть в главном меню.
     ##
-    ## Syntax:
-    ##   al.image - This variable contains the path or image tag of the achievement.
-    ##   al.locked - This variable contains the locked image of the achievement.
-    ##   al.persistent - This variable contains the name of the in-game variable to check
-    ##                      if the achievement is completed or not.
-    ##   al.maxCount - This variable contains the number needed for the achievement to be
-    ##                  unlocked.
-    ##   gl.description - This variable contains the description of the achievement.
+    ## Синтаксис:
+    ## al.image - Эта переменная содержит путь или тег изображения достижения.
+    ## al.locked - Эта переменная содержит изображение неполученного достижения.
+    ## al.persistent - Эта переменная содержит название внутриигровой переменной 
+    ##                 для проверки факта получения достижения.
+    ## al.maxCount - Эта переменная содержит число, которое необходимо набрать для получения
+    ##               достижения.
+    ## gl.description - Эта переменная содержит описание достижения.
     screen achievements():
 
         tag menu
         style_prefix "achievements"
 
-        use game_menu(_("Awards")):
+        use game_menu(_("Награды")):
 
             fixed:
-                # This vbox is responsible for the achievement display above the list
-                # of possible achievements to display the selected achievements' info.
+                # Этот vbox отвечает за отображение достижения над списком всех 
+                # доступных достижений для отображения информации о выбранном достижении.
                 vbox:
                     xpos 0.26
                     ypos -0.1
@@ -169,26 +169,28 @@ if enable_achievements:
             textbutton "?":
                 style "return_button"
                 xpos 0.99 ypos 1.1
-                action ShowMenu("dialog", "{b}Help{/b}\nGray icons indicate that this achievement is locked.\nContinue your progress in [config.name]\nto unlock all the achievements possible.", ok_action=Hide("dialog"))
+                action ShowMenu("dialog", """{b}Справка{/b}
+Серые значки означают, что это достижение ещё не получено.
+Продолжайте своё прохождение «[config.name]», чтобы открыть все доступные достижения.""", ok_action=Hide("dialog"))
 
             if config.developer:
-                textbutton "Test Notif":
+                textbutton "Тест увед.":
                     style "return_button"
                     xpos 0.8 ypos 1.1
                     action ShowMenu("achievement_notify", startup)
 
-    ## Achievements Notify Screen #############################################################
+    ## Экран уведомления достижений ###########################################################
     ##
-    ## This screen is used to notify a user of a unlocked achievement.
+    ## Этот экран используется для уведомления пользователя о полученном достижении.
     ##
-    ## Syntax:
-    ##   reward.image - This variable contains the path or image tag of the achievement.
-    ##   reward.name - This variable contains the locked image of the achievement.
+    ## Синтаксис:
+    ## reward.image - Эта переменная содержит путь или тег изображения достижения.
+    ## reward.name - Эта переменная содержит читабельное название достижения.
     ## 
-    ## To call on this menu, do 'show screen achievement_notify(X)' where X is the achievement in question itself.
-    ## Make sure to set the variable assign to it or else it will show up as locked.
+    ## Для вызова этого экрана используйте «show screen achievement_notify(X)», где X - само достижение.
+    ## Обязательно настройте переменную, привязанную к нему, иначе достижение будет отображаться как неполученное.
     screen achievement_notify(reward):
-        
+
         style_prefix "achievements"
 
         frame at achievement_notif_transition:
@@ -203,9 +205,9 @@ if enable_achievements:
                 spacing 20
                 vbox:
                     spacing 5
-                    text "Achievement Unlocked!" size 16
+                    text "Достижение разблокировано!" size 16
                     text reward.name size 14
-        
+
         timer 5.0 action [Hide("achievement_notify"), With(Dissolve(1.0))]
 
 style achievements_text is gui_text
