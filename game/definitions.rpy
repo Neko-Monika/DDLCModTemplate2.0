@@ -1,68 +1,63 @@
 ## definitions.rpy
 
-# This file defines important stuff for DDLC and your mod!
+# Этот файл содержит определения важный вещей для DDLC и вашей модификации!
 
-# This variable declares if the mod is a demo or not.
+# Эта переменная указывает, является ли модификация демоверсией или нет.
 define persistent.demo = False
 
-# This variable declares whether the mod is in the 'steamapps' folder.
+# Эта переменная указывает, находится ли модификация в папке «steamapps».
 define persistent.steam = ("steamapps" in config.basedir.lower())
 
-# This variable declares whether Developer Mode is on or off in the mod.
+# Эта переменная указывает, включён ли в модификации Режим разработчика.
 define config.developer = False
 
-# This python statement starts singleton to make sure only one copy of the mod
-# is running.
+# Это выражение на Python запускает модуль singleton, дабы был разрешён
+# запуск только одной копии модификации.
 python early:
     import singleton
     me = singleton.SingleInstance()
 
-# This init python statement sets up the functions, keymaps and channels
-# for the game.
+# Это выражение Python, исполняемое во время инициализации (init python) настраивает функции,
+# горячие клавиши и аудио-каналы для игры.
 init python:
-    # These variable declarations adjusts the mapping for certain actions in-game.
+    # Эти объявления переменных настраивают горячие клавиши для определённых действий в игре.
     config.keymap['game_menu'].remove('mouseup_3')
     config.keymap['hide_windows'].append('mouseup_3')
     config.keymap['self_voicing'] = []
     config.keymap['clipboard_voicing'] = []
     config.keymap['toggle_skip'] = []
 
-    # This variable declaration registers the music poem channel for the poem sharing music.
+    # Это объявление переменной указывает рабочую папку игры для дальнейшей работы с файлами персонажей и всякой всячиной - прим. пер.
+    user_dir = os.environ["ANDROID_PUBLIC"] if renpy.android else config.basedir
+
+    # Это объявление переменной регистрирует аудио-канал для музыкального сопровождения стихотворений во время обмена оными.
     renpy.music.register_channel("music_poem", mixer="music", tight=True)
     
-    # This function gets the postition of the music playing in a given channel.
+    # Эта функция берёт текущую позицию воспроизводимой музыки на указанном канале.
     def get_pos(channel='music'):
         pos = renpy.music.get_pos(channel=channel)
         if pos: return pos
         return 0
 
-    # This function deletes all the saves made in the mod.
+    # Эта функция удаляет все сохранения, созданные пользователем в запущенной модификации.
     def delete_all_saves():
         for savegame in renpy.list_saved_games(fast=True):
             renpy.unlink_save(savegame)
 
-    # This function deletes a given character name from the characters folder.
+    # Эта функция удаляет указанного персонажа из папки «characters».
     def delete_character(name):
-        if renpy.android:
-            try: os.remove(os.environ['ANDROID_PUBLIC'] + "/characters/" + name + ".chr")
-            except: pass
-        else:
-            try: os.remove(config.basedir + "/characters/" + name + ".chr")
-            except: pass
+        try: os.remove(user_dir + "/characters/" + name + ".chr")
+        except: pass
 
-    # These functions restores all the character CHR files to the characters folder 
-    # given the playthrough number in the mod and list of characters to restore.
+    # Эти функции восстанавливают все файлы персонажей в папке «characters» с учётом
+    # текущего акта в модификации и перечня восстанавливаемых персонажей.
     def restore_character(names):
         if type(names) != list:
-            raise Exception("'names' parameter must be a list. Example: [\"monika\", \"sayori\"].")
+            raise Exception("Аргумент 'names' должен быть списком. Пример: [\"monika\", \"sayori\"].")
 
         for x in names:
-            if renpy.android:
-                try: renpy.file(os.environ['ANDROID_PUBLIC'] + "/characters/" + x + ".chr")
-                except: open(os.environ['ANDROID_PUBLIC'] + "/characters/" + x + ".chr", "wb").write(renpy.file(x + ".chr").read())
-            else:
-                try: renpy.file("../characters/" + x + ".chr")
-                except: open(config.basedir + "/characters/" + x + ".chr", "wb").write(renpy.file(x + ".chr").read())
+            try: open(user_dir + "/characters/" + x + ".chr", "rb")
+            except: open(user_dir + "/characters/" + x + ".chr", "wb").write(renpy.file(x + ".chr").read())
 
     def restore_all_characters():
         if persistent.playthrough == 0:
@@ -74,12 +69,12 @@ init python:
         else:
             restore_character(["sayori", "natsuki", "yuri"])
     
-    # This function is obsolete as all characters now restores only
-    # relevant characters to the characters folder.
+    # Эта функция является устаревшей, ибо функция восстановления всех персонажей
+    # восстанавливает только необходимых персонажей в папке «characters».
     def restore_relevant_characters():
         restore_all_characters()
 
-    # This function pauses the time for a certain amount of time or indefinite.
+    # Эта функция ставит паузу на какое-то время или делает пропускаемую паузу.
     def pause(time=None):
         if not time:
             renpy.ui.saybehavior(afm=" ")
@@ -88,61 +83,61 @@ init python:
         if time <= 0: return
         renpy.pause(time)
 
-    # This function sets up the pronouns of the user for 
-    # they, them, are, and they are phrases in game for dialogue.
+    # Эта функция настраивает местоимения пользователя, которые
+    # подставляются в фразы героев игры.
     def finishPronouns():
         persistent.he = he
         persistent.him = him
         persistent.are = are
         persistent.hes = hes
 
-## Music
-# This section declares the music available to be played in the mod.
-# Syntax:
-#   audio. - This tells Ren'Py this is a audio variable.
-#   t1 - This tells Ren'Py the label of the music/sound file being declared.
-#   <loop 22.073> - This tells Ren'Py to loop the music/sound to this position when the song completes.
-#   "bgm/1.ogg" - This tells Ren'Py the path of the music/sound file to use.
-# Example: 
-#   define audio.t2 = "bgm/2.ogg"
+## Музыка
+# В этом разделе объявляется доступная для воспроизведения в модификации музыка.
+# Синтаксис:
+# audio. - Это указывает интерпретатору Ren'Py, что это аудио-переменная.
+# t1 - Это указывает интерпретатору Ren'Py метку объявляемого музыкального/звукового файла.
+# <loop 22.073> - Это указывает интерпретатору Ren'Py, что по завершении воспроизведения песни должен пойти цикл с этой позиции.
+# "bgm/1.ogg" - Это указывает интерпретатору Ren'Py путь к используемому музыкальному/звуковому файлу.
+# Пример: 
+# define audio.t2 = "bgm/2.ogg"
 
-define audio.t1 = "<loop 22.073>bgm/1.ogg" # Doki Doki Literature Club! - Main Theme
-define audio.t2 = "<loop 4.499>bgm/2.ogg" # Ohayou Sayori! - Sayori Theme
+define audio.t1 = "<loop 22.073>bgm/1.ogg" # Литературный клуб "Тук-тук!" - Тема главного меню
+define audio.t2 = "<loop 4.499>bgm/2.ogg" # Охайо, Сайори! - Тема Сайори
 define audio.t2g = "bgm/2g.ogg"
 define audio.t2g2 = "<from 4.499 loop 4.499>bgm/2.ogg"
 define audio.t2g3 = "<loop 4.492>bgm/2g2.ogg"
-define audio.t3 = "<loop 4.618>bgm/3.ogg" # Main Theme - In Game 
+define audio.t3 = "<loop 4.618>bgm/3.ogg" # Тема главного меню - В игре
 define audio.t3g = "<to 15.255>bgm/3g.ogg"
 define audio.t3g2 = "<from 15.255 loop 4.618>bgm/3.ogg"
 define audio.t3g3 = "<loop 4.618>bgm/3g2.ogg"
 define audio.t3m = "<loop 4.618>bgm/3.ogg"
-define audio.t4 = "<loop 19.451>bgm/4.ogg" # Dreams of Love and Literature - Poem Game Theme
+define audio.t4 = "<loop 19.451>bgm/4.ogg" # Мечты о любви и литературе - Тема мини-игры про сочинение стихов
 define audio.t4g = "<loop 1.000>bgm/4g.ogg"
-define audio.t5 = "<loop 4.444>bgm/5.ogg" # Okay Everyone! - Sharing Poems Theme
+define audio.t5 = "<loop 4.444>bgm/5.ogg" # Итак, друзья! - Тема обмена стихами
 
-define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Okay Everyone! (Monika)
-define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Okay Everyone! (Sayori)
-define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki)
-define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Okay Everyone! (Yuri)
+define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Итак, друзья! (Моника)
+define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Итак, друзья! (Сайори)
+define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Итак, друзья! (Нацуки)
+define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Итак, друзья! (Юри)
 
 define audio.t5b = "<loop 4.444>bgm/5.ogg"
 define audio.t5c = "<loop 4.444>bgm/5.ogg"
-define audio.t6 = "<loop 10.893>bgm/6.ogg" # Play With Me - Yuri/Natsuki Theme
+define audio.t6 = "<loop 10.893>bgm/6.ogg" # Поиграй со мной - Тема Юри/Нацуки
 define audio.t6g = "<loop 10.893>bgm/6g.ogg"
 define audio.t6r = "<to 39.817 loop 0>bgm/6r.ogg"
 define audio.t6s = "<loop 43.572>bgm/6s.ogg"
-define audio.t7 = "<loop 2.291>bgm/7.ogg" # Poem Panic - Argument Theme
+define audio.t7 = "<loop 2.291>bgm/7.ogg" # Стихотворный переполох - Тема споров
 define audio.t7a = "<loop 4.316 to 12.453>bgm/7.ogg"
 define audio.t7g = "<loop 31.880>bgm/7g.ogg"
-define audio.t8 = "<loop 9.938>bgm/8.ogg" # Daijoubu! - Argument Resolved Theme
-define audio.t9 = "<loop 3.172>bgm/9.ogg" # My Feelings - Emotional Theme
-define audio.t9g = "<loop 1.532>bgm/9g.ogg" # My Feelings but 207% Speed
-define audio.t10 = "<loop 5.861>bgm/10.ogg" # My Confession - Sayori Confession Theme
+define audio.t8 = "<loop 9.938>bgm/8.ogg" # Дайдзёбу! - Тема урегулированного спора
+define audio.t9 = "<loop 3.172>bgm/9.ogg" # Мои чувства - Эмоциональная тема
+define audio.t9g = "<loop 1.532>bgm/9g.ogg" # Мои чувства, скорость 207%
+define audio.t10 = "<loop 5.861>bgm/10.ogg" # Моё признание - Тема признания Сайори
 define audio.t10y = "<loop 0>bgm/10-yuri.ogg"
 define audio.td = "<loop 36.782>bgm/d.ogg"
 
-define audio.m1 = "<loop 0>bgm/m1.ogg" # Just Monika. - Just Monika.
-define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # I Still Love You - Monika Post-Delete Theme
+define audio.m1 = "<loop 0>bgm/m1.ogg" # Только Моника. - Только Моника.
+define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # Я всё ещё люблю тебя - Тема после удаления Моники
 
 define audio.ghostmenu = "<loop 0>bgm/ghostmenu.ogg"
 define audio.g1 = "<loop 0>bgm/g1.ogg"
@@ -154,27 +149,26 @@ define audio.closet_close = "sfx/closet-close.ogg"
 define audio.page_turn = "sfx/pageflip.ogg"
 define audio.fall = "sfx/fall.ogg"
 
-## Backgrounds
-# This section declares the backgrounds available to be shown in the mod.
-# To define a new color background, declare a new image statement like in this example:
-#     image blue = "X" where X is your color hex i.e. '#158353'
-# To define a new background, declare a new image statement like this instead:
-#     image bg bathroom = "mod_assets/bathroom.png" 
+## Фоны
+# В этом разделе объявляются доступные для отображения в модификации фоны.
+# Чтобы определить новую сплошную заливку, объявите новое событие «image» как в этом примере:
+# image blue = "X" где X - ваш HEX-код цвета, напр. "#158353"
+# Чтобы определить новый фон, объявлять новое событие «image» надо уже как в этом примере:
+# image bg bathroom = "mod_assets/bathroom.png" 
 
 image black = "#000000"
 image dark = "#000000e4"
 image darkred = "#110000c8"
 image white = "#ffffff"
-image splash = "bg/splash.png"
 image end:
     truecenter
     "gui/end.png"
 
-image bg residential_day = "bg/residential.png" # Start of DDLC BG
-image bg class_day = "bg/class.png" # The classroom BG
-image bg corridor = "bg/corridor.png" # The hallway BG
-image bg club_day = "bg/club.png" # The club BG
-image bg club_day2: # Glitched Club BG
+image bg residential_day = "bg/residential.png" # Фон DDLC в начале
+image bg class_day = "bg/class.png" # Фон класса
+image bg corridor = "bg/corridor.png" # Фон коридора
+image bg club_day = "bg/club.png" # Фон клуба
+image bg club_day2: # Глючный фон клуба
     choice:
         "bg club_day"
     choice:
@@ -187,20 +181,20 @@ image bg club_day2: # Glitched Club BG
         "bg club_day"
     choice:
         "bg/club-skill.png"
-image bg closet = "bg/closet.png" # The closet BG
-image bg bedroom = "bg/bedroom.png" # MC's Room BG
-image bg sayori_bedroom = "bg/sayori_bedroom.png" # Sayori's Room BG
-image bg house = "bg/house.png" # Sayori's House BG
-image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
+image bg closet = "bg/closet.png" # Фон кладовки
+image bg bedroom = "bg/bedroom.png" # Фон комнаты Протагониста
+image bg sayori_bedroom = "bg/sayori_bedroom.png" # Фон комнаты Сайори
+image bg house = "bg/house.png" # Фон дома Сайори
+image bg kitchen = "bg/kitchen.png" # Фон кухни Протагониста
 
-image bg notebook = "bg/notebook.png" # Poem Game Notebook Scene
-image bg notebook-glitch = "bg/notebook-glitch.png" # Glitched Poem Game BG
+image bg notebook = "bg/notebook.png" # Сцена с тетрадью в мини-игре про сочинение стихов
+image bg notebook-glitch = "bg/notebook-glitch.png" # Фон глючной мини-игры про сочинение стихов
 
-# This image shows a glitched screen during Act 2 poem sharing with Yuri.
+# Это изображение показывает глючный экран во время обмена стихами с Юри во Втором акте.
 image bg glitch = LiveTile("bg/glitch.jpg")
 
-# This image transform shows a glitched scene effect
-# during Act 3 when we delete Monika.
+# Это изображение с преобразованиями показывает глючный
+# эффект сцены в Третьем акте, когда мы удаляем Монику.
 image glitch_color:
     ytile 3
     zoom 2.5
