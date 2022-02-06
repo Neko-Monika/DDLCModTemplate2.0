@@ -318,7 +318,7 @@ image glitch_color2:
         linear 0.45 alpha 0
 
 # Персонажи
-# Здесь определяются тела и лица персонажей, используемые в модификации.
+# В этом разделе определяются тела и лица персонажей, используемые в модификации.
 # Порядок определения следующий: левая половина, правая половина, голова.
 # Чтобы определить новое изображение, объявите новое событие «image» как в этом примере:
 #     image sayori 1ca = im.Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
@@ -1423,11 +1423,11 @@ image monika g2:
     repeat
 
 ## Переменные персонажей
-# Здесь объявляются персонажи, используемые в модификации.
+# В этом разделе объявляются персонажи, присутствующие в модификации.
 # Чтобы определить нового персонажа с его ресурсами, объявите его переменную как в этом примере:
-#   define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 # Чтобы определить нового персонажа без ресурсов, объявите его переменную следующим образом:
-#   define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 define narrator = Character(ctc="ctc", ctc_position="fixed")
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
@@ -1435,7 +1435,7 @@ define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suff
 define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+define ny = Character('Нацуки и Юри', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 # Эта переменная определяет, могут ли игроки пропускать паузы.
 # По умолчанию она имеет значение config.developer, которое, как правило,
@@ -1454,12 +1454,8 @@ default he = persistent.he
 default him = persistent.him
 default are = persistent.are
 default hes = persistent.hes
-default he_capital = he.capitalize()
-default him_capital = him.capitalize()
-default are_capital = are.capitalize()
-default hes_capital = hes.capitalize()
 
-## Переменные доп. настроек
+## Переменные дополнительных настроек
 # В этом разделе указывается, включены ли цензура и/или режим летсплейщика в модификации.
 default persistent.uncensored_mode = False
 default persistent.lets_play = False
@@ -1468,9 +1464,9 @@ default persistent.lets_play = False
 # В этом разделе объявляются переменные со своими значениями по умолчанию.
 # Чтобы создать новую постоянную переменную, пропишите её с «persistent.» в
 # названии, как в этом примере:
-#   default persistent.monika = 1
+# default persistent.monika = 1
 # Чтобы создать непостоянную переменную, пропишите её таким образом:
-#   default cookies = False
+# default cookies = False
 # Для того, чтобы переменная имела конкретное значение, укажите «define» вместо «default».
 
 default persistent.playername = ""
@@ -1495,7 +1491,7 @@ default persistent.monika_back = None
 default in_sayori_kill = None
 default in_yuri_kill = None
 default anticheat = 0
-define config.mouse = None
+# define config.mouse = None - закомментировано для применения схемы указателей в ПК-версиях во время инициализации — прим. пер.
 default allow_skipping = True
 default basedir = user_dir
 default chapter = 0
@@ -1504,7 +1500,7 @@ default faint_effect = None
 
 # Переменные имён со значениями по умолчанию
 # Чтобы определить новое имя, создайте переменную имени как в этом примере:
-#   default e_name = "Эйлин"
+# default e_name = "Эйлин"
 
 default s_name = "Сайори"
 default m_name = "Моника"
@@ -1514,11 +1510,11 @@ default y_name = "Юри"
 # Переменные стихотворений
 # В этом разделе ведётся учёт, как сильно тому или иному персонажу понравился ваш стих.
 # Синтаксис:
-#   -1 - Плохо
-#   0 - Нейтрально
-#   1 - Хорошо
-# Чтобы добавить нового человека, которому можно отдать на оценку свой стих, создайте стихотворный массив как в этом примере:
-#   default e_poemappeal = [0, 0, 0]
+# -1 - Плохо
+# 0 - Нейтрально
+# 1 - Хорошо
+# Чтобы добавить нового человека, который будет оценивать ваши стихи, создайте стихотворный массив как в этом примере:
+# default e_poemappeal = [0, 0, 0]
 
 default n_poemappeal = [0, 0, 0]
 default s_poemappeal = [0, 0, 0]
