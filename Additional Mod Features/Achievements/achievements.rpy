@@ -178,7 +178,7 @@ screen achievements():
         textbutton "?":
             style "return_button"
             xpos 0.99 ypos 1.1
-            action ShowMenu("dialog", _p("""{b}Справка{/b}
+            action Show("dialog", _p("""{b}Справка{/b}
 Серые значки означают, что это достижение ещё не получено.
 Продолжайте своё прохождение «[config.name!t]», чтобы открыть все доступные достижения."""), ok_action=Hide("dialog"))
 
