@@ -163,7 +163,7 @@ screen achievements():
         textbutton "?":
             style "return_button"
             xpos 0.99 ypos 1.1
-            action ShowMenu("dialog", _p("""{b}Справка{/b}
+            action Show("dialog", _p("""{b}Справка{/b}
 Серые значки означают, что это достижение ещё не получено.
 Продолжайте своё прохождение «[config.name]», чтобы открыть все доступные достижения."""), ok_action=Hide("dialog"))
 
@@ -200,7 +200,7 @@ screen achievement_notify(reward):
             vbox:
                 spacing 5
                 text _("Достижение разблокировано!") size 16
-                text reward.name size 14
+                text "[reward.name!t]" size 14
 
     timer 5.0 action [Hide("achievement_notify"), With(Dissolve(1.0))]
 
