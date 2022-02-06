@@ -237,8 +237,8 @@ image glitch_color:
         alpha 0.7
         linear 0.45 alpha 0
 
-# This image transform shows another glitched scene effect
-# during Act 3 when we delete Monika.
+# Это изображение с преобразованиями показывает другой глючный
+# эффект сцены в Третьем акте, когда мы удаляем Монику.
 image glitch_color2:
     ytile 3
     zoom 2.5
@@ -275,13 +275,13 @@ image glitch_color2:
         alpha 0.7
         linear 0.45 alpha 0
 
-# Characters
-# This is where the characters bodies and faces are defined in the mod.
-# They are defined by a left half, a right half and their head.
-# To define a new image, declare a new image statement like in this example:
-#     image sayori 1ca = Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
+# Персонажи
+# В этом разделе определяются тела и лица персонажей, используемые в модификации.
+# Они определяются в следующем порядке: левая половина, правая половина, голова.
+# Чтобы определить новое изображение, объявите новое событие «image» как в этом примере:
+# image sayori 1ca = Composite((960, 960), (0, 0), "mod_assets/sayori/1cl.png", (0, 0), "mod_assets/sayori/1cr.png", (0, 0), "sayori/a.png")
 
-# Sayori's Character Definitions
+# Определения персонажа Сайори
 image sayori 1 = Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1a = Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1b = Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/b.png")
@@ -396,7 +396,7 @@ image sayori 5b = Composite((960, 960), (0, 0), "sayori/3b.png")
 image sayori 5c = Composite((960, 960), (0, 0), "sayori/3c.png")
 image sayori 5d = Composite((960, 960), (0, 0), "sayori/3d.png")
 
-# Sayori in her Casual Outfit [Day 4]
+# Сайори в своей повседневной одежде [День 4]
 image sayori 1ba = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/a.png")
 image sayori 1bb = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/b.png")
 image sayori 1bc = Composite((960, 960), (0, 0), "sayori/1bl.png", (0, 0), "sayori/1br.png", (0, 0), "sayori/c.png")
@@ -501,7 +501,7 @@ image sayori 4bw = Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayo
 image sayori 4bx = Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/x.png")
 image sayori 4by = Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/y.png")
 
-# This image shows a glitched Sayori sprite during Act 2.
+# Это изображение показывает глючный спрайт Сайори во Втором акте.
 image sayori glitch:
     "sayori/glitch1.png"
     pause 0.01666
@@ -509,7 +509,7 @@ image sayori glitch:
     pause 0.01666
     repeat
 
-# Natsuki's Character Definitions
+# Определения персонажа Нацуки
 image natsuki 11 = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 1a = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/a.png")
 image natsuki 1b = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/b.png")
@@ -672,7 +672,7 @@ image natsuki 5x = Composite((960, 960), (18, 22), "natsuki/x.png", (0, 0), "nat
 image natsuki 5y = Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "natsuki/3.png")
 image natsuki 5z = Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3.png")
 
-# Natsuki in her casual outfit [Day 4 - Natsuki Route]
+# Нацуки в своей повседневной одежде [День 4 - Тропа Нацуки]
 image natsuki 1ba = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/a.png")
 image natsuki 1bb = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/b.png")
 image natsuki 1bc = Composite((960, 960), (0, 0), "natsuki/1bl.png", (0, 0), "natsuki/1br.png", (0, 0), "natsuki/c.png")
@@ -828,26 +828,26 @@ image natsuki 5bx = Composite((960, 960), (18, 22), "natsuki/x.png", (0, 0), "na
 image natsuki 5by = Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "natsuki/3b.png")
 image natsuki 5bz = Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3b.png")
 
-# These image definitions are left-overs of certain Natsuki expressions 
-# found in the original 1.0 release of DDLC.
+# Эти определения изображения являются остатками кода определённых выражений
+# Нацуки, найденные в оригинальном релизе DDLC 1.0.
 image natsuki 1 = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 2 = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/2r.png", (0, 0), "natsuki/1t.png")
 image natsuki 3 = Composite((960, 960), (0, 0), "natsuki/2l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 4 = Composite((960, 960), (0, 0), "natsuki/2l.png", (0, 0), "natsuki/2r.png", (0, 0), "natsuki/1t.png")
 image natsuki 5 = Composite((960, 960), (18, 22), "natsuki/1t.png", (0, 0), "natsuki/3.png")
 
-# This image shows the realistic mouth on Natsuki on a random playthrough
-# of Act 2.
+# Это изображение показывает реалистичный рот у Нацуки при случайных
+# обстоятельствах во Втором акте.
 image natsuki mouth = Composite((960, 960), (0, 0), "natsuki/0.png", (390, 340), "n_rects_mouth", (480, 334), "n_rects_mouth")
 
-# This image shows black rectangles on Natsuki on a random playthrough
-# of Act 2.
+# Это изображение показывает чёрные прямоугольники у Нацуки при случайных
+# обстоятельствах во Втором акте.
 image n_rects_mouth:
     RectCluster(Solid("#000"), 4, 15, 5).sm
     size (20, 25)
 
-# This image transform makes the realistic mouth move on Natsuki's face
-# on a random playthrough of Act 2.
+# Это изображение с преобразованиями заставляет двигаться реалистичный рот, появляющийся на лице Нацуки
+# при случайных обстоятельствах во Втором акте.
 image n_moving_mouth:
     "images/natsuki/mouth.png"
     pos (615, 305)
@@ -896,8 +896,8 @@ image n_moving_mouth:
         ease 0.2 xzoom 0.8
         repeat
 
-# These images show the Natsuki ghost sprite shown in the poemgame of 
-# Act 2.
+# Эти изображения показывают призрачный спрайт Нацуки, который можно было увидеть
+# в мини-игре про сочинение стихов во Втором акте.
 image natsuki_ghost_blood:
     "#00000000"
     "natsuki/ghost_blood.png" with ImageDissolve("images/menu/wipedown.png", 80.0, ramplen=4, alpha=True)
@@ -921,8 +921,8 @@ image natsuki ghost4:
     0.25
     "black"
 
-# This image makes Natsuki's sprite glitch up for a bit before
-# returning to normal.
+# Это изображение слегка искажает спрайт Нацуки,
+# а потом возвращает его в норму.
 image natsuki glitch1:
     "natsuki/glitch1.png"
     zoom 1.25
@@ -937,13 +937,13 @@ image natsuki glitch1:
 image natsuki scream = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/scream.png")
 image natsuki vomit = "natsuki/vomit.png"
 
-# These images declare alterative eyes for Natsuki on a random playthrough of
-# Act 2.
+# Эти изображения объявляют альтернативные глаза для Нацуки,
+# появляющиеся при случайных обстоятельствах во Втором акте.
 image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
-# Yuri's Character Definitions
-# Note: Sprites with a 'y' in the middle are Yuri's Yandere Sprites.
+# Определения персонажа Юри
+# Примечание: спрайты с буквой «y» посередине являются спрайтами Яндере-Юри.
 image yuri 1 = Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
 image yuri 3 = Composite((960, 960), (0, 0), "yuri/2l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1051,7 +1051,7 @@ image yuri 4c = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/c2.png
 image yuri 4d = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/d2.png")
 image yuri 4e = Composite((960, 960), (0, 0), "yuri/3.png", (0, 0), "yuri/e2.png")
 
-# Yuri in her casual outfit [Day 4 - Yuri Route]
+# Юри в своей повседневной одежде [День 4 - Тропа Юри]
 image yuri 1ba = Composite((960, 960), (0, 0), "yuri/a.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bb = Composite((960, 960), (0, 0), "yuri/b.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
 image yuri 1bc = Composite((960, 960), (0, 0), "yuri/c.png", (0, 0), "yuri/1bl.png", (0, 0), "yuri/1br.png")
@@ -1130,7 +1130,7 @@ image yuri 4bc = Composite((960, 960), (0, 0), "yuri/c2.png", (0, 0), "yuri/3b.p
 image yuri 4bd = Composite((960, 960), (0, 0), "yuri/d2.png", (0, 0), "yuri/3b.png")
 image yuri 4be = Composite((960, 960), (0, 0), "yuri/e2.png", (0, 0), "yuri/3b.png")
 
-# This image shows the looping Yuri glitched head in Act 2.
+# Это изображение показывает глючную голову Юри крупным планом во Втором акте.
 image y_glitch_head:
     "images/yuri/za.png"
     0.15
@@ -1142,7 +1142,7 @@ image y_glitch_head:
     0.15
     repeat
 
-# These images shows Yuri stabbing herself at the end of Act 2 in six stages.
+# Эти изображения показывают Юри, протыкающую саму себя ножом в конце Второго акта, в шести этапах.
 image yuri stab_1 = "yuri/stab/1.png"
 image yuri stab_2 = "yuri/stab/2.png"
 image yuri stab_3 = "yuri/stab/3.png"
@@ -1150,7 +1150,7 @@ image yuri stab_4 = "yuri/stab/4.png"
 image yuri stab_5 = "yuri/stab/5.png"
 image yuri stab_6 = Composite((960,960), (0, 0), "yuri/stab/6-mask.png", (0, 0), "yuri stab_6_eyes", (0, 0), "yuri/stab/6.png")
 
-# This image transform animates Yuri's eyes on her 6th stabbing in Act 2.
+# Это изображение с преобразованиями анимирует глаза Юри во время шестого этапа протыкания ножом во Втором акте.
 image yuri stab_6_eyes:
     "yuri/stab/6-eyes.png"
     subpixel True
@@ -1177,8 +1177,8 @@ image yuri stab_6_eyes:
         easeout 1.0 yoffset -15
         linear 10 yoffset -15
 
-# These images shows Yuri with a offcenter right eye moving slowing away
-# from her face.
+# Эти изображения показывают Юри с медленно сползающим
+# с её лица правым глазом.
 image yuri oneeye = Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/oneeye.png", (0, 0), "yuri oneeye2")
 image yuri oneeye2:
     "yuri/oneeye2.png"
@@ -1186,7 +1186,7 @@ image yuri oneeye2:
     pause 5.0
     linear 60 xoffset -50 yoffset 20
 
-# These images show a glitched Yuri during Act 2.
+# Эти изображения показывают глючную Юри во Втором акте.
 image yuri glitch:
     "yuri/glitch1.png"
     pause 0.1
@@ -1210,20 +1210,20 @@ image yuri glitch2:
     pause 0.3
     "yuri 1"
 
-# These image declarations show Yuri's moving eyes in Act 2.
+# Это изображение показывает двигающиеся глаза Юри во Втором акте.
 image yuri eyes = Composite((1280, 720), (0, 0), "yuri/eyes1.png", (0, 0), "yuripupils")
 
-# This image shows the base of Yuri's sprite as her eyes move.
+# Это изображение показывает тело Юри для дальнейшей вставки двигающихся глаз.
 image yuri eyes_base = "yuri/eyes1.png"
 
-# This image shows Yuri's realistic moving eyes during Act 2.
+# Это изображение показывает реалистичные двигающиеся глаза Юри во Втором акте.
 image yuripupils:
     "yuri/eyes2.png"
     yuripupils_move
 
 image yuri cuts = "yuri/cuts.png"
 
-# This image shows another glitched Yuri from Act 2. 
+# Это изображение показывает другую глючную Юри во Втором акте.
 image yuri dragon:
     "yuri 3"
     0.25
@@ -1249,7 +1249,7 @@ image yuri dragon:
     xoffset 0
     "yuri 3"
 
-# Monika's Character Definitions
+# Определения персонажа Моники
 image monika 1 = Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
 image monika 2 = Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/2r.png", (0, 0), "monika/a.png")
 image monika 3 = Composite((960, 960), (0, 0), "monika/2l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
@@ -1335,7 +1335,7 @@ image monika 4r = Composite((960, 960), (0, 0), "monika/2l.png", (0, 0), "monika
 image monika 5a = Composite((960, 960), (0, 0), "monika/3a.png")
 image monika 5b = Composite((960, 960), (0, 0), "monika/3b.png")
 
-# This image transform shows a glitched Monika during a special poem.
+# Это изображение с преобразованиями показывает глючную Монику во время показа особого стиха.
 image monika g1:
     "monika/g1.png"
     xoffset 35 yoffset 55
@@ -1359,8 +1359,8 @@ image monika g1:
     xoffset 0 yoffset 0 zoom 1.00
     "monika 3"
 
-# This image transform shows Monika being glitched as she is 
-# deleted in Act 3.
+# Это изображение с преобразованиями показывает искажающуюся 
+# во время удаления Монику в Третьем акте.
 image monika g2:
     block:
         choice:
@@ -1380,12 +1380,12 @@ image monika g2:
             pause 0.2
     repeat
 
-## Character Variables
-# This is where the characters are declared in the mod.
-# To define a new character with assets, declare a character variable like in this example:
-#   define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-# To define a new character without assets, declare a character variable like this instead:
-#   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+## Переменные персонажей
+# В этом разделе объявляются персонажи, присутствующие в модификации.
+# Чтобы определить нового персонажа с его ресурсами, объявите переменную персонажа как в этом примере:
+# define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# Чтобы определить нового персонажа без ресурсов, объявлять переменную персонажа надо уже как в этом примере:
+# define en = Character('Эйлин и Нацуки', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 define narrator = Character(ctc="ctc", ctc_position="fixed")
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
@@ -1393,17 +1393,17 @@ define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suff
 define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+define ny = Character('Нацуки и Юри', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
-# This variable determines whether to allow the player to dismiss pauses.
-# By default this is set by config.developer which is normally set to false
-# once you packaged your mod.
+# Эта переменная указывает, разрешено ли игроку пропускать паузы.
+# По умолчанию её значение зависит от значения переменной config.developer, которое, как правило, является ложным (False),
+# как только вы упаковали свою модификацию.
 define _dismiss_pause = config.developer
 
-## [BETA] Pronoun Variables
-# This section adds the feature to use player pronouns within the game text easily.
-# To use this feature, simply ask the user for their pronoun and use it here.
-# For capitalization, use heC, himC, areC and hesC
+## [БЕТА] Переменные местоимений
+# Этот раздел добавляет возможность встраивания предпочтительных местоимений в текст игры.
+# Чтобы использовать эту возможность, просто предложите игроку выбрать свои местоимения, а затем просто встраивайте их в текст.
+# Для написания с большой буквы допишите в конце используемого местоимения !c
 default persistent.he = ""
 default persistent.him = ""
 default persistent.are = ""
@@ -1412,24 +1412,20 @@ default he = persistent.he
 default him = persistent.him
 default are = persistent.are
 default hes = persistent.hes
-default he_capital = he.capitalize()
-default him_capital = him.capitalize()
-default are_capital = are.capitalize()
-default hes_capital = hes.capitalize()
 
-## Extra Settings Variables
-# This section controls whether the mod is censored or is in let's play mode.
+## Переменные дополнительных настроек
+# Переменные в этом разделе указывают, есть ли в модификации цензура и включён ли режим летсплейщика.
 default persistent.uncensored_mode = False
 default persistent.lets_play = False
 
-## Variables
-# This section declares variables when the mod runs for the first time on all saves.
-# To make a new persistent variable, make a new variable with the 'persistent.' in it's name
-# like in this example:
-#   default persistent.monika = 1
-# To make a non-persistent variable, make a new variable like this instead:
-#   default cookies = False
-# To make sure a variable is set to a given condition use 'define' rather than 'default'.
+## Переменные
+# В этом разделе объявляются исходные значения переменных, когда модификация запускается впервые.
+# Чтобы создать новую постоянную переменную, пропишите новую переменную с «persistent.» в её названии,
+# как в этом примере:
+# default persistent.monika = 1
+# Чтобы создать непостоянную переменную, прописывать новую переменную надо уже как в этом примере:
+# default cookies = False
+# Чтобы у переменной было неизменяемое значение, используйте «define» вместо «default».
 
 default persistent.playername = ""
 default player = persistent.playername
@@ -1453,83 +1449,83 @@ default persistent.monika_back = None
 default in_sayori_kill = None
 default in_yuri_kill = None
 default anticheat = 0
-define config.mouse = None
+# define config.mouse = None - закомментировано для применения схемы указателей в ПК-версиях во время инициализации — прим. пер.
 default allow_skipping = True
-default basedir = config.basedir
+default basedir = user_dir
 default chapter = 0
 default currentpos = 0
 default faint_effect = None
 
-# Default Name Variables
-# To define a default name make a character name variable like in this example:
-#   default e_name = "Eileen"
+# Переменные имён героев по умолчанию
+# Чтобы определить имя по умолчанию, создайте отдельную переменную имени персонажа как в этом примере:
+# default e_name = "Эйлин"
 
-default s_name = "Sayori"
-default m_name = "Monika"
-default n_name = "Natsuki"
-default y_name = "Yuri"
+default s_name = "Сайори"
+default m_name = "Моника"
+default n_name = "Нацуки"
+default y_name = "Юри"
 
-# Poem Variables
-# This section records how much each character likes your poem in-game.
-# Syntax:
-#   -1 - Bad
-#   0 - Neutral
-#   1 - Good
-# To add a new poem person, make a poem array like in this example:
-#   default e_poemappeal = [0, 0, 0]
+# Переменные стихов
+# В этом разделе ведётся запись оценки ваших стихов персонажами во время игры.
+# Синтаксис:
+# -1 - Плохо
+# 0 - Нейтрально
+# 1 - Хорошо
+# Чтобы добавить нового человека, который будет оценивать стихи, создайте массив стихов как в этом примере:
+# default e_poemappeal = [0, 0, 0]
 
 default n_poemappeal = [0, 0, 0]
 default s_poemappeal = [0, 0, 0]
 default y_poemappeal = [0, 0, 0]
 default m_poemappeal = [0, 0, 0]
 
-# This variable keeps tracks on which person won the poem session after each day.
+# Эта переменная отслеживает, кому из персонажей какой стих понравился больше всего.
 default poemwinner = ['sayori', 'sayori', 'sayori']
 
-# These variables keep track on who has read your poem during poem sharing
+# Эти переменные отслеживают, кто читал ваше стихотворение во время обмена стихами.
 default s_readpoem = False
 default n_readpoem = False
 default y_readpoem = False
 default m_readpoem = False
 
-# This variable keeps track on how many people have read your poem.
+# Эта переменная отслеживает, сколько людей читало ваш стих.
 default poemsread = 0
 
-# These variables store the appeal a character has to your poem
+# Эти переменные считают количество сильно понравившихся стихотворений у каждого персонажа.
 default n_appeal = 0
 default s_appeal = 0
 default y_appeal = 0
 default m_appeal = 0
 
-# These variables control if we have seen Natsuki's or Yuri's exclusive scenes
+# Эти переменные указывают, видели ли мы эксклюзивные сценки Нацуки и Юри.
 default n_exclusivewatched = False
 default y_exclusivewatched = False
 
-# These variables track whether we gave Yuri our poem in Act 2 and if she
-# ran away during Act 2 poem sharing.
+# Эти переменные отслеживают, отдавали ли мы Юри наш стих во Втором акте,
+# и сбегала ли она во время обмена стихами на том же акте.
 default y_gave = False
 default y_ranaway = False
 
-# These variables track whether we read Natsuki's or Yuri's 3rd poem in poem sharing.
+# Эти переменные отслеживают, читали ли мы третий стих Нацуки или Юри во время обмена стихами.
 default n_read3 = False
 default y_read3 = False
 
-# This variable tracks which person we sided with in Day 2 of the game.
+# Эта переменная отслеживает, на чью сторону мы встали во втором дне Первого акта.
 default ch1_choice = "sayori"
 
-# This variable tracks if we gave Natsuki our poem first during poem sharing.
+# Эта переменная отслеживает, давали ли мы Нацуки свой стих в первую очередь во время первого обмена стихами.
 default n_poemearly = False
 
-# These variables track whether we tried to help Monika or Sayori during Day 3's ending.
+# Эти переменные отслеживают, пытались ли мы помочь Монике или Сайори во время концовки третьего дня Первого акта.
 default help_sayori = None
 default help_monika = None
 
-# These variables track which route Day 4 will play and who is their name.
+# Эти переменные отслеживают, чья тропа начнётся в четвёртом дне, и чьё имя будет озвучено Сайори.
 default ch4_scene = "yuri"
-default ch4_name = "Yuri"
+default ch4_name = "Юри"
 
-# This variable tracks whether we accepted Sayori's confession or not.
+# Эта переменная отслеживает, приняли ли мы признание Сайори.
 default sayori_confess = True
 
-# This variable tracks whether we read Natsuki's 3rd poem in Act 2.
+# Эта переменная отслеживает, читали ли мы третье стихотворение Нацуки во Втором акте.
 default natsuki_23 = None
