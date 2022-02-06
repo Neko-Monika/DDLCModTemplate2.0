@@ -821,7 +821,6 @@ screen about():
 Игра «Литературный клуб "Тук-тук"». Авторские права © 2017 Team Salvato. Все права защищены.
 Сделано на {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]""")
 
-
 ## Это переопределяется в options.rpy для добавления текста в экран «Об игре».
 define gui.about = ""
 
