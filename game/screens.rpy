@@ -485,9 +485,9 @@ screen navigation():
             if main_menu:
 
                 if persistent.playthrough == 1:
-                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show("name_input", message="Введите своё имя", ok_action=Function(FinishEnterName)))
+                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show("name_input", message=_("Введите своё имя"), ok_action=Function(FinishEnterName)))
                 else:
-                    textbutton _("Новая игра") action If(persistent.playername, true=Start(), false=Show("name_input", message="Введите своё имя", ok_action=Function(FinishEnterName)))
+                    textbutton _("Новая игра") action If(persistent.playername, true=Start(), false=Show("name_input", message=_("Введите своё имя"), ok_action=Function(FinishEnterName)))
 
             else:
 
@@ -518,7 +518,7 @@ screen navigation():
             if renpy.variant("pc"):
 
                 ## Помощь не необходима и не относится к мобильным устройствам.
-                textbutton _("Помощь") action [Help("README.html"), Show("dialog", message="Файл справки открыт в браузере.", ok_action=Hide("dialog"))]
+                textbutton _("Помощь") action [Help("README.html"), Show("dialog", message=_("Файл справки открыт в браузере."), ok_action=Hide("dialog"))]
 
                 ## Кнопка выхода блокирована в iOS и не нужна на Android. (Очень даже нужна, иначе девайс будет жрать батарею как не в себя - прим. пер.)
             textbutton _("Выход") action Quit(confirm=not main_menu)
