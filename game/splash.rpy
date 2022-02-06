@@ -315,7 +315,7 @@ label splashscreen:
         elif renpy.linux or renpy.macintosh:
             try:
                 import pwd
-                currentuser = pwd.getpwuid(os.getuid()).pw_gecos.replace(",","") # это нужно для забора "человеческого" имени на Unix-like системах — прим. пер.
+                currentuser = pwd.getpwuid(os.getuid()).pw_gecos.strip(",") # это нужно для забора "человеческого" имени на Unix-like системах — прим. пер.
             except: pass
         else:
             currentuser = "Amanda Watson" # заглушка для Android-устройств; можете оставить как есть, а можете написать другое имя — прим. пер.
