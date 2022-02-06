@@ -1082,7 +1082,7 @@ screen preferences():
                         viewport:
                             ysize 110
                             has vbox
-                            
+
                             python:
                                 lang_list = list(renpy.known_languages())
                                 lang_list.append('русский')
@@ -1090,7 +1090,7 @@ screen preferences():
 
                             for lang in lang_list:
                                 textbutton lang.capitalize() action If(lang == 'русский', Language(None), Language(lang))
-                            
+
     text "вер. [config.version]":
                 xalign 1.0 yalign 1.0
                 xoffset -10 yoffset -10
