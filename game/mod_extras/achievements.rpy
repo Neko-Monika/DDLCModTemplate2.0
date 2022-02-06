@@ -49,7 +49,7 @@ init python:
 
     # В этом разделе объявляются достижения. См. класс «Achievements»
     # для объявления своих достижений.
-    startup = Achievements("Добро пожаловать в DDLC!", "Спасибо за принятие условий Отказа от ответственности.",
+    startup = Achievements(_("Добро пожаловать в DDLC!"), _("Спасибо за принятие условий Отказа от ответственности."),
             "gui/logo.png", "persistent.first_run")
 
 ## Экран достижений ################################################################
@@ -163,9 +163,9 @@ screen achievements():
         textbutton "?":
             style "return_button"
             xpos 0.99 ypos 1.1
-            action ShowMenu("dialog", """{b}Справка{/b}
+            action Show("dialog", _p("""{b}Справка{/b}
 Серые значки означают, что это достижение ещё не получено.
-Продолжайте своё прохождение «[config.name]», чтобы открыть все доступные достижения.""", ok_action=Hide("dialog"))
+Продолжайте своё прохождение «[config.name]», чтобы открыть все доступные достижения."""), ok_action=Hide("dialog"))
 
         if config.developer:
             textbutton "Тест увед.":
@@ -199,8 +199,8 @@ screen achievement_notify(reward):
             spacing 20
             vbox:
                 spacing 5
-                text "Достижение разблокировано!" size 16
-                text reward.name size 14
+                text _("Достижение разблокировано!") size 16
+                text _(reward.name) size 14
 
     timer 5.0 action [Hide("achievement_notify"), With(Dissolve(1.0))]
 
