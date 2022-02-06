@@ -227,51 +227,51 @@ translate None strings:
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Jan"
-    new "{#month_short}Янв"
+    new "{#month_short}янв"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Feb"
-    new "{#month_short}Фев"
+    new "{#month_short}фев"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Mar"
-    new "{#month_short}Мар"
+    new "{#month_short}мар"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Apr"
-    new "{#month_short}Апр"
+    new "{#month_short}апр"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}May"
-    new "{#month_short}Мая"
+    new "{#month_short}мая"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Jun"
-    new "{#month_short}Июн"
+    new "{#month_short}июн"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Jul"
-    new "{#month_short}Июл"
+    new "{#month_short}июл"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Aug"
-    new "{#month_short}Авг"
+    new "{#month_short}авг"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Sep"
-    new "{#month_short}Сен"
+    new "{#month_short}сен"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Oct"
-    new "{#month_short}Окт"
+    new "{#month_short}окт"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Nov"
-    new "{#month_short}Ноя"
+    new "{#month_short}ноя"
 
     # renpy/common/00action_file.rpy:63
     old "{#month_short}Dec"
-    new "{#month_short}Дек"
+    new "{#month_short}дек"
 
     # renpy/common/00action_file.rpy:250
     old "%b %d, %H:%M"
