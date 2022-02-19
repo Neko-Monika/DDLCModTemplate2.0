@@ -1,8 +1,8 @@
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
 # gallery.rpy
-# This file contains the code for the gallery menu that shows backgrounds and 
-# sprites from your mod.
+# Данный файл содержит код меню галереи, отображающей фоны и
+# спрайты вашей модификации.
 
 init python:
     import math
@@ -12,64 +12,62 @@ init python:
     galleryList = None 
     current_img_name = None
 
-    # This class declares the code to make a image for the gallery menu.
-    # Syntax:
-    #   image - This variable contains the path or image tag (sayori 1a) of the 
-    #           image.
-    #   small_size - This variable contain the path or image tag of a shorten version
-    #                   of the image in the gallery.
-    #   name - This variable contains the human-readable name of the image in the
-    #           gallery.
-    #   artist - This variable contains the human-readable author name of the image.
-    #   sprite - This variable checks if the image declared is a character sprite.
-    #   watermark - This variable checks if the exporter should export a watermarked image
-    #               of the image shown in the gallery.
-    #   unlocked - This variable checks if this image should be included in the gallery
-    #               or until it is shown in-game.
-    #   locked - DEPRECIATED for unlocked. This variable was used to lock a image from 
-    #               the gallery.
+    # Этот класс определяет код для создания изображения для меню Галереи.
+    # Синтаксис:
+    # image - Эта переменная содержит путь к изображению или тег оного
+    #         (напр. sayori 1a).
+    # small_size - Эта переменная содержит путь к уменьшенной версии
+    #              изображения или тег оной.
+    # name - Эта переменная содержит читабельное название изображения
+    #        в Галерее.
+    # artist - Эта переменная содержит читабельное имя автора изображения.
+    # sprite - Эта переменная проверяет, является ли объявленное
+    #          изображение спрайтом персонажа.
+    # watermark - Эта переменная указывает, должен ли экспортер экспортировать
+    #             изображение, добавляемое в Галерею, с водяным знаком.
+    # unlocked - Эта переменная проверяет, должно ли это изображение добавляться
+    #            в Галерею сразу или только после того, как появится в игре.
+    # locked - УПРАЗДНЕНА, используйте «unlocked». Эта переменная использовалась
+    #          для блокировки отображения изображения в Галерее.
     class GalleryImage:
 
         def __init__(self, image, small_size=None, name=None, artist=None, sprite=False, watermark=False, unlocked=True, locked=None):
             global galleryList 
 
-            # The image variable name in-game
+            # Название внутриигровой переменной изображения, содержащегося в игре
             self.file = image
 
-            # The human readable name of the image
-            if name:
-                self.name = name
-            else:
-                self.name = image
+            # Читабельное название изображения
+            self.name = name if name else image
 
-            # The human readable author of the image
+            # Читабельное имя автора изображения
             self.artist = artist
 
-            # This condition sees if the image given is a sprite
+            # Это условие указывает, является ли данное изображение спрайтом
             self.sprite = sprite
 
-            # A condition to see if the image should be shown
+            # Это условие указывает, заблокировано ли изображение
             if unlocked and locked != True:
                 self.unlocked = True
             else:
                 self.unlocked = renpy.seen_image(image)
 
-            # A condition to see if we export a watermark version of the image
+            # Это условие указывает, должно ли изображение экспортироваться с водяным знаком
             self.watermark = watermark
 
             if sprite:
 
-                self.image = LiveComposite(
+                self.image = Composite(
                     (1280, 720), (0, 0), 
                     "black", (0.2, 0), 
                     Transform(image, zoom=0.75*0.95)
                 )
 
-                # A descaled version of the main image.
+                # Уменьшенная версия главного изображения
                 if small_size:
                     self.small_size = small_size 
                 else:               
-                    self.small_size = LiveComposite(
+                    self.small_size = Composite(
                         (234, 132), (0, 0), 
                         "black", (0.2, 0), 
                         Transform(image, zoom=0.137)
@@ -88,43 +86,30 @@ init python:
             else:
                 galleryList[self.name] = self
 
-        # This function exports the selected image to the players' computer.
+        # Эта функция экспортирует выбранное изображение на устройство игрока.
         def export(self):
 
-            if renpy.android:
-                try: os.mkdir(os.environ['ANDROID_PUBLIC'] + "/gallery")
-                except: pass
-            else:
-                try: os.mkdir(config.basedir + "/gallery")
-                except: pass
+            try: os.mkdir(user_dir + "/gallery")
+            except: pass
 
             if self.sprite:
-                renpy.show_screen("dialog", message="Sprites cannot be exported to the gallery folder. Please try another image.", ok_action=Hide("dialog"))
+                renpy.show_screen("dialog", message="Спрайты не могут быть экспортированы в папку галереи. Повторите попытку с другим изображением.", ok_action=Hide("dialog"))
             else:
                 try: 
                     renpy.file(self.file)
                     export = self.file
                 except:
                     export = get_registered_image(self.file).filename
-                
-                if renpy.android:
 
-                    with open(os.path.join(os.environ['ANDROID_PUBLIC'], "gallery", os.path.splitext(export)[0].split("/")[-1] + os.path.splitext(export)[-1]), "wb") as p:
-                        if self.watermark:
-                            p.write(renpy.file(os.path.splitext(export)[0] + "_watermark" + os.path.splitext(export)[-1]).read())
-                        else:
-                            p.write(renpy.file(export).read())
-                else:
-                    
-                    with open(os.path.join(config.basedir, "gallery", os.path.splitext(export)[0].split("/")[-1] + os.path.splitext(export)[-1]).replace("\\", "/"), "wb") as p:
-                        if self.watermark:
-                            p.write(renpy.file(os.path.splitext(export)[0] + "_watermark" + os.path.splitext(export)[-1]).read())
-                        else:
-                            p.write(renpy.file(export).read())
+                with open(os.path.join(user_dir, "gallery", os.path.splitext(export)[0].split("/")[-1] + os.path.splitext(export)[-1]).replace("\\", "/"), "wb") as p:
+                    if self.watermark:
+                        p.write(renpy.file(os.path.splitext(export)[0] + "_watermark" + os.path.splitext(export)[-1]).read())
+                    else:
+                        p.write(renpy.file(export).read())
 
-                renpy.show_screen("dialog", message='Exported "%s" to the gallery folder.' % self.name, ok_action=Hide("dialog"))
+                renpy.show_screen("dialog", message="Изображение «" + self.name + "» было экспортировано в папку галереи.", ok_action=Hide("dialog"))
 
-    # This function advances to the next/previous image in the gallery.
+    # Эта функция переходит к следующему/предыдущему изображению в галерее.
     def next_image(back=False):
         global current_img_name
 
@@ -142,8 +127,7 @@ init python:
             current_img_name = all_keys[next_index]
         except IndexError: current_img_name = all_keys[0]
 
-    # For Ren'Py 6 compatibility. This function gets the image displayed in the
-    # gallery from from 'renpy.display.image'.
+    # Для совместимости с Ren'Py 6. Эта функция выводит изображение на экран через «renpy.display.image».
     def get_registered_image(name): 
 
         if not isinstance(name, tuple):
@@ -151,35 +135,36 @@ init python:
 
         return imgcore.images.get(name)
 
-    # This section declares the images to be shown in the gallery. See the
-    # 'GalleryMenu' class syntax to declare a image to the gallery.
+    # В этом разделе объявляются изображения, показываемые в галерее. См. 
+    # синтаксис класса «GalleryMenu», чтобы добавить своё изображение.
     residential = GalleryImage("bg residential_day")
 
     s1a = GalleryImage("sayori 1", sprite=True)
 
-    m1a = GalleryImage("monika 1", name="Monika", artist="Satchely", sprite=True)
+    m1a = GalleryImage("monika 1", name="Моника", artist="Satchely", sprite=True)
 
-## Gallery Screen #############################################################
+## Экран галереи ##############################################################
 ##
-## This screen is used to make a gallery view of in-game art to the player in 
-## the main menu.
+## Этот экран используется для создания галереи внутриигровых артов, которые
+## игрок может просмотреть в главном меню.
 ##
-## Syntax:
-##   gl.image - This variable contains the path or image tag (sayori 1a) of the 
-##              image.
-##   gl.small_size - This variable contain the path or image tag of a shorten version
-##                   of the image in the gallery.
-##   gl.name - This variable contains the human-readable name of the image in the
-##               gallery.
-##   gl.sprite - This variable checks if the image declared is a character sprite.
-##   gl.locked - This variable checks if this image should not be included in
-##               the gallery until it is shown in-game.
+## Синтаксис:
+## gl.image - Эта переменная содержит путь к изображению или тег оного
+##            (напр. sayori 1a).
+## gl.small_size - Эта переменная содержит путь к уменьшенной версии
+##                 изображения или тег оной.
+## gl.name - Эта переменная содержит читабельное название изображения
+##           в галерее.
+## gl.sprite - Эта переменная проверяет, является ли объявленное
+##             изображение спрайтом персонажа.
+## gl.locked - Эта переменная указывает, должно ли добавляться это изображение
+##             в галерею, если оно ещё не было увидено в игре.
 
 screen gallery():
 
     tag menu
 
-    use game_menu(_("Gallery")):
+    use game_menu(_("Галерея")):
         
         fixed:
 
@@ -212,7 +197,7 @@ screen gallery():
                                 outlines []
                                 size 14
                             if gl.artist:
-                                text "Artist: [gl.artist]":
+                                text "Художник: [gl.artist]":
                                     xalign 0.5
                                     color "#555"
                                     outlines []
@@ -220,9 +205,9 @@ screen gallery():
 
             vbar value YScrollValue("gvp") xalign 0.99 ysize 560
 
-## Gallery Screen #################################################################
+## Экран галереи ##################################################################
 ##
-## This screen shows the currently selected screen to the player in-game.
+## Этот экран показывает выбранное игроком изображение крупным планом.
 
 screen preview():
 
@@ -238,17 +223,17 @@ screen preview():
         xalign 0.5 
         text current_img_name: 
             color "#000"
-            outlines[]
+            outlines []
             size 24 
 
     hbox:
         ypos 0.005
         xalign 0.98
-        textbutton "E":
+        textbutton "Э":
             text_style "navigation_button_text"
             action Function(galleryList[current_img_name].export) 
 
-        textbutton "X":
+        textbutton "Х":
             text_style "navigation_button_text"
             action ShowMenu("gallery")
 
