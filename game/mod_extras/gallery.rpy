@@ -188,7 +188,7 @@ screen gallery():
                             imagebutton:
                                 idle gl.small_size
                                 action [SetVariable("current_img_name", name), ShowMenu("preview"), With(Dissolve(0.5))]
-                            text "[name!t]": 
+                            text "[name!t]":
                                 xalign 0.5
                                 color "#555"
                                 outlines []
