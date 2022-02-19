@@ -83,7 +83,7 @@ init python:
             try: os.mkdir(f"{user_dir}/gallery")
             except: pass
 
-            if self.sprite: renpy.show_screen("dialog", message="Спрайты не могут быть экспортированы в папку галереи. Повторите попытку с другим изображением.", ok_action=Hide("dialog"))
+            if self.sprite: renpy.show_screen("dialog", message=_("Спрайты не могут быть экспортированы в папку галереи. Повторите попытку с другим изображением."), ok_action=Hide("dialog"))
             else:
                 try: 
                     renpy.file(self.file)
@@ -94,7 +94,7 @@ init python:
                 with open(f"{user_dir}/gallery/{os.path.splitext(export)[0].split('/')[-1]}{os.path.splitext(export)[-1]}", "wb") as p:
                     p.write(renpy.file(export).read())
 
-                    renpy.show_screen("dialog", message=f"Изображение «{self.name}» было экспортировано в папку галереи.", ok_action=Hide("dialog"))
+                    renpy.show_screen("dialog", message=_(f"Изображение «{self.name}» было экспортировано в папку галереи."), ok_action=Hide("dialog"))
 
     class GalleryThread():
         def __init__(self):
@@ -140,7 +140,7 @@ init python:
     # синтаксис класса «GalleryMenu», чтобы добавить своё изображение.
     residential = GalleryImage("bg residential_day")
     s1a = GalleryImage("sayori 1", sprite=True)
-    m1a = GalleryImage("monika 1", name="Моника", artist="Satchely", sprite=True)
+    m1a = GalleryImage("monika 1", name=_("Моника"), artist="Satchely", sprite=True)
 
 ## Экран галереи ##############################################################
 ##
@@ -188,7 +188,7 @@ screen gallery():
                             imagebutton:
                                 idle gl.small_size
                                 action [SetVariable("current_img_name", name), ShowMenu("preview"), With(Dissolve(0.5))]
-                            text "[name]": 
+                            text _(name):
                                 xalign 0.5
                                 color "#555"
                                 outlines []
@@ -196,8 +196,8 @@ screen gallery():
                         else:
                             imagebutton:
                                 idle "mod_assets/mod_extra_images/galleryLock.png"
-                                action Show("dialog", message="Это изображение закрыто. Продолжайте своё прохождение «[config.name]», чтобы открыть его.", ok_action=Hide("dialog"))
-                            text "Закрыто":
+                                action Show("dialog", message=_("Это изображение закрыто. Продолжайте своё прохождение «[config.name]», чтобы открыть его."), ok_action=Hide("dialog"))
+                            text _("Закрыто"):
                                 xalign 0.5
                                 color "#555"
                                 outlines []
@@ -231,13 +231,13 @@ screen preview():
         if galleryList[current_img_name].artist:
             textbutton "?":
                 text_style "navigation_button_text"
-                action Show("dialog", message=f"Художник: {galleryList[current_img_name].artist}", ok_action=Hide("dialog"))
+                action Show("dialog", message=_(f"Художник: {galleryList[current_img_name].artist}"), ok_action=Hide("dialog"))
 
-        textbutton "Э":
+        textbutton _("Э"):
             text_style "navigation_button_text"
             action Function(galleryList[current_img_name].export) 
 
-        textbutton "Х":
+        textbutton _("Х"):
             text_style "navigation_button_text"
             action ShowMenu("gallery")
 
