@@ -1,9 +1,9 @@
 #!/bin/sh
 
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
-## Based off the original renpy.sh file with Ren'Py 6 removal patch applied.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
+## Основано на оригинальном файле renpy.sh с добавлением возможности удаления остаточных файлов Ren'Py 6-й версии.
 
-# The directory containing this shell script - an absolute path.
+# Директория, в которой находится данный скрипт оболочки - абсолютный путь.
 ROOT=$(dirname "$SCRIPT")
 ROOT=$(cd "$ROOT"; pwd)
 
@@ -30,21 +30,21 @@ fi
 
 LIB="$ROOT/lib/$RENPY_PLATFORM"
 
-# Removes the lib folder left from Ren'Py 6
+# Удаляет папку «lib», оставшуюся от Ren'Py 6
 if [ -d "$LIB/lib" ]; then
-    echo "Removing Ren'Py 6 files due to 'future.standard_library' error."
+    echo "Удаление файлов Ren'Py 6 для предотвращения возникновения ошибки с модулем 'future.standard_library'."
     rm -r "$LIB/lib"
 fi
 
 SHFILE="$(ls -I "DDLC.sh" -I "LinuxLauncher.sh" "$ROOT" | grep "\.sh")"
 
 if test -z "$SHFILE"; then
-    echo "Error: Unable to find a mod shell script file. Defaulting to 'DDLC.sh'."
+    echo "Ошибка: Невозможно найти файл скрипта оболочки модификации. Откатываюсь к 'DDLC.sh'."
     SHFILE="DDLC.sh"
 fi
 
-# The name of this shell script without the .sh on the end.
+# Название этого скрипта оболочки без «.sh» на конце.
 SHNAME=$(basename "$SHFILE" .sh)
 
-echo "Preparing to launch $SHNAME..."
+echo "Подготовка к запуску $SHNAME..."
 exec "$ROOT/$SHFILE"
