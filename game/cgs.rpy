@@ -1,10 +1,10 @@
 ## cgs.rpy
 
-# This file defines all the character graphics (CGs) in DDLC such as Yuri's
-# Chocolate CG and Natsuki's Manga CG.
+# Этот файл содержит определения всех сценок (CG) у персонажей из DDLC, такие как сценка с Юри
+# и шоколадной конфетой, и Нацуки с её мангой.
 
-## Yuri's Chocolate CG [Yuri Route 2]
-# This is the background of the CG (Classroom Wall).
+## Сценка с Юри и шоколадной конфетой [Тропа Юри 2]
+# Это задний план сценки (стена класса).
 image y_cg2_bg:
     "images/cg/y_cg2_bg1.png"
     6.0
@@ -14,18 +14,17 @@ image y_cg2_bg:
     1
     repeat
 
-# This is the base of Yuri reading her book with chocolate.
+# Это базовая модель Юри, где она читает книгу и держит во рту шоколадку.
 image y_cg2_base:
     "images/cg/y_cg2_base.png"
 
-# This image hides the chocolate in Yuri's base image with a open mouth. 
+# Это изображение скрывает шоколадку на базовой модели Юри, оставляя её с открытым ртом. 
 image y_cg2_nochoc:
     "images/cg/y_cg2_nochoc.png"
     on hide:
         linear 0.5 alpha 0
 
-# This image transform adds some details to the CG to make the scene sparkle
-# a bit more.
+# Это изображение с трансформациями добавляет пару деталей к сценке, дабы придать ей блеска.
 image y_cg2_details:
     "images/cg/y_cg2_details.png"
     alpha 1.00
@@ -35,7 +34,7 @@ image y_cg2_details:
     linear 1.0 alpha 1.0
     repeat
 
-# This image makes Yuri appear shocked in the CG
+# Это изображение делает у Юри шокированное выражение лица на сценке.
 image y_cg2_exp2:
     "images/cg/y_cg2_exp2.png"
     alpha 0
@@ -43,7 +42,7 @@ image y_cg2_exp2:
     on hide:
         linear 0.5 alpha 0
 
-# This image makes Yuri appear embarrassed in the CG
+# Это изображение делает у Юри смущённое выражение лица на сценке.
 image y_cg2_exp3:
     "images/cg/y_cg2_exp3.png"
     alpha 0
@@ -51,8 +50,7 @@ image y_cg2_exp3:
     on hide:
         linear 0.5 alpha 0
 
-# These image transform adds a dust layer to the CG to make the scene sparkle
-# a bit more.
+# Эти изображения с трансформациями добавляют слой с пылью поверх сценки, дабы придать ей блеска.
 image y_cg2_dust1:
     "images/cg/y_cg2_dust1.png"
     subpixel True
@@ -137,39 +135,39 @@ image y_cg2_dust4:
         linear 19.0 xoffset -100 yoffset 100
         repeat
 
-## Natsuki Reading Manga CG [Natsuki Route 1]
-# This is the background of the CG (Classroom Wall).
+## Сценка с Нацуки, читающей мангу [Тропа Нацуки 1]
+# Это задний план сценки (стена класса).
 image n_cg1_bg:
     "images/cg/n_cg1_bg.png"
 
-# This is the base of Natsuki watching you read manga.
+# Это базовая модель Нацуки, где она смотрит, как игрок читает мангу.
 image n_cg1_base:
     "images/cg/n_cg1_base.png"
 
-# This image makes Natsuki look happy in the CG.
+# Это изображение делает у Нацуки радостное выражение лица на сценке.
 image n_cg1_exp1:
     "images/cg/n_cg1_exp1.png"
 
-# This image makes Natsuki look pouty in the CG.
+# Это изображение делает у Нацуки смущённое выражение лица на сценке.
 image n_cg1_exp2:
     "images/cg/n_cg1_exp2.png"
 
-# This image makes Natsuki look happy in the CG.
+# Это изображение делает у Нацуки сердитое выражение лица на сценке.
 image n_cg1_exp3:
     "images/cg/n_cg1_exp3.png"
 
-# This image makes Natsuki look sleepy in the CG.
+# Это изображение делает у Нацуки сонное выражение лица на сценке.
 image n_cg1_exp4:
     "images/cg/n_cg1_exp4.png"
 
-# This image makes Natsuki look half-awake in the CG.
+# Это изображение делает у Нацуки полусонное выражение лица на сценке.
 image n_cg1_exp5:
     "images/cg/n_cg1_exp5.png"
 
-# This image makes Natsuki look glitched in the CG during Act 2.
-image n_cg1b = LiveComposite((1280,720), (0,0), "images/cg/n_cg1b.png", (882,325), "n_rects1", (732,400), "n_rects2", (850,475), "n_rects3")
+# Это изображение искажает выражение лица Нацуки на сценке во Втором акте.
+image n_cg1b = Composite((1280,720), (0,0), "images/cg/n_cg1b.png", (882,325), "n_rects1", (732,400), "n_rects2", (850,475), "n_rects3")
 
-# These image transforms covers Natsuki's eyes with black squares during Act 2.
+# Эти изображения с трансформациями закрывают глаза Нацуки чёрными квадратами во Втором акте.
 image n_rects1:
     RectCluster(Solid("#000"), 12, 30, 30).sm
     pos (899, 350)
@@ -185,122 +183,122 @@ image n_rects3:
     pos (764, 490)
     size (30, 20)
 
-## Natsuki's Closet CG [Natsuki Route 2]
-# This is the background of the CG (Closet).
+## Сценка с Нацуки внутри кладовки [Тропа Нацуки 2]
+# Это задний план сценки (кладовка).
 image n_cg2_bg:
     "images/cg/n_cg2_bg.png"
 
-# This is the base of Natsuki moving her manga up the shelf.
+# Это базовая модель Нацуки, где она перекладывает свою мангу на другую полку.
 image n_cg2_base:
     "images/cg/n_cg2_base.png"
 
-# This image makes Natsuki look concerned in the CG.
+# Это изображение делает у Нацуки обеспокоенное выражение лица на сценке.
 image n_cg2_exp1:
     "images/cg/n_cg2_exp1.png"
 
-# This image makes Natsuki look shouty in the CG.
+# Это изображение делает у Нацуки кричащее выражение лица на сценке.
 image n_cg2_exp2:
     "images/cg/n_cg2_exp2.png"
 
-## Natsuki's Kitchen Incident CG [Natsuki Route 3]
-# This is the background of the CG (Kitchen Floor).
+## Сценка с Нацуки, где произошёл инцидент на кухне [Тропа Нацуки 3]
+# Это задний план сценки (кухонный пол).
 image n_cg3_base:
     "images/cg/n_cg3_base.png"
 
-# This adds cake frosting to Natsuki's finger.
+# Это изображение добавляет глазурь для кексов на палец Нацуки.
 image n_cg3_cake:
     "images/cg/n_cg3_cake.png"
 
-# This image makes Natsuki look like she is laughing in the CG.
+# Это изображение делает у Нацуки такое выражение лица, будто она смеётся, на сценке.
 image n_cg3_exp1:
     "images/cg/n_cg3_exp1.png"
 
-# This image makes Natsuki look embarrassed in the CG.
+# Это изображение делает у Нацуки смущённое выражение лица на сценке.
 image n_cg3_exp2:
     "images/cg/n_cg3_exp2.png"
 
-## Yuri's Reading Together CG [Yuri Route 1]
-# This is the background and base of Yuri in the CG (Classroom Desk).
+## Сценка с Юри, где она и игрок читают вместе [Тропа Юри 1]
+# Это задний план сценки (парта в классе) и базовая модель Юри.
 image y_cg1_base:
     "images/cg/y_cg1_base.png"
 
-# This image makes Yuri look at MC in the CG.
+# Это изображение заставляет Юри посмотреть на Протагониста на сценке.
 image y_cg1_exp1:
     "images/cg/y_cg1_exp1.png"
 
-# This image makes Yuri smile in the CG.
+# Это изображение делает у Юри улыбающееся выражение лица на сценке.
 image y_cg1_exp2:
     "images/cg/y_cg1_exp2.png"
 
-# This image makes Yuri panic as a yandere in the CG.
+# Это изображение заставляет Юри паниковать, словно яндере, на сценке.
 image y_cg1_exp3:
     "images/cg/y_cg1_exp3.png"
 
-## Yuri's Ink Incident CG [Yuri Route 3]
-# This is the background and base of Yuri in the CG (MC's Room).
+## Сценка с Юри, где произошёл инцидент с краской [Тропа Юри 3]
+# Это задний план сценки (комната Протагониста) и базовая модель Юри.
 image y_cg3_base:
     "images/cg/y_cg3_base.png"
 
-# This image makes Yuri close her eyes in the CG.
+# Это изображение заставляет Юри закрыть глаза на сценке.
 image y_cg3_exp1:
     "images/cg/y_cg3_exp1.png"
 
-## Sayori's Blazer CG [Sayori Route 1]
-# This is the background and base of Sayori in the CG (Classroom).
+## Сценка с пиджаком Сайори [Тропа Сайори 1]
+# Это задний план сценки (класс) и базовая модель Сайори.
 image s_cg1:
     "images/cg/s_cg1.png"
 
-## Sayori's Head Bump Incident CG [Sayori Route 2]
-# This is the background and base of Sayori in the CG (Classroom Closet).
+## Сценка с Сайори, где она ударилась головой и упала на пол [Тропа Сайори 2]
+# Это задний план сценки (кладовка в классе) и базовая модель Сайори.
 image s_cg2_base1:
     "images/cg/s_cg2_base1.png"
 
-# This is a alternative background and base of Sayori with a apple juice drink
-# in her hand.
+# Это альтернативный задний план и базовая модель Сайори, где она держит
+# бутылочку с яблочным соком в руке.
 image s_cg2_base2:
     "images/cg/s_cg2_base2.png"
 
-# This image makes Sayori look hurt in the CG.
+# Это изображение заставляет Сайори сжать зубы от боли на сценке.
 image s_cg2_exp1:
     "images/cg/s_cg2_exp1.png"
 
-# This image makes Sayori look upset in the CG.
+# Это изображение делает у Сайори расстроенное выражение лица на сценке.
 image s_cg2_exp2:
     "images/cg/s_cg2_exp2.png"
     
-# This image makes Sayori close her eyes in the CG.
+# Это изображение заставляет Сайори закрыть глаза на сценке.
 image s_cg2_exp3:
     "images/cg/s_cg2_exp3.png"
 
-## Sayori's Hug CG [Day 4]
-# This is the background and base of Sayori of the CG (Outside MC's House).
+## Сценка с Сайори, где она и игрок обнимаются [День 4]
+# Это задний план сценки (снаружи дома Протагониста) и базовая модель Сайори.
 image s_cg3:
     "images/cg/s_cg3.png"
 
-## Sayori Suicide CG
-# This is the background of the CG (Sayori's Room).
+## Сценка с Сайори, где она свела счёты с жизнью
+# Это задний план сценки (комната Сайори).
 image s_kill_bg:
     subpixel True
     "images/cg/s_kill_bg.png"
 
-# This image shows Sayori hanging in the CG.
+# Это изображение показывает повесившуюся Сайори на сценке.
 image s_kill:
     subpixel True
     "images/cg/s_kill.png"
 
-# This is the glitched background of the CG's original background.
+# Это искажённый вариант заднего плана сценки.
 image s_kill_bg2:
     subpixel True
     "images/cg/s_kill_bg2.png"
 
-# This is the glitched sprite of Sayori hanging in the CG.
+# Это искажённый вариант спрайта повесившейся Сайори.
 image s_kill2:
     subpixel True
     "images/cg/s_kill2.png"
 
-## Yuri Stab CG
-# This image condition displays certain images of Yuri's
-# stab CG given how much time has passed in-game.
+## Сценка, где Юри умирает от ножевого ранения
+# Это событие, опирающееся на данные условия, показывает конкретные изображения
+# покончившей с собой Юри, опираясь на то, сколько времени прошло в игре.
 image y_kill = ConditionSwitch(
     "persistent.yuri_kill >= 1380", "images/cg/y_kill/3a.png",
     "persistent.yuri_kill >= 1180", "images/cg/y_kill/3c.png",
@@ -311,32 +309,29 @@ image y_kill = ConditionSwitch(
     "persistent.yuri_kill >= 460", "images/cg/y_kill/2a.png",
     "persistent.yuri_kill >= 260", "images/cg/y_kill/1c.png",
     "persistent.yuri_kill >= 200", "images/cg/y_kill/1b.png",
-    "True", "images/cg/y_kill/1a.png",
-
+    "True", "images/cg/y_kill/1a.png"
     )
 
-# This transform starts off the animation for the background in Sayori's 
-# hanging CG.
+# Эта трансформация запускает анимацию заднего плана на сценке с повесившейся Сайори.
 transform s_kill_bg_start:
     truecenter
     zoom 1.10
     linear 4 zoom 1.00
 
-# This transform starts off the animation for Sayori's hanging sprite in 
-# Sayori's hanging CG.
+# Эта трансформация запускает анимацию спрайта повесившейся Сайори на вышеуказанной сценке.
 transform s_kill_start:
     truecenter
     xalign 0.3 yalign 0.25 zoom 0.8
     linear 4 zoom 0.75 xalign 0.315 yoffset 10
 
-# This image transform zooms in on the background in Sayori's hanging CG.
+# Это изображение с трансформацией делает приближение заднего плана на сценке с повесившейся Сайори.
 image s_kill_bg_zoom:
     contains:
         "s_kill_bg"
         xalign 0.2 yalign 0.3 zoom 2.0
     dizzy(0.25, 1.0)
 
-# This transform makes the image or sprite shake as if the player was dizzy.
+# Эта трансформация заставляет изображение или спрайт качаться так, будто у игрока головокружение.
 transform dizzy(m, t, subpixel=True):
     subpixel subpixel
     parallel:
@@ -357,8 +352,7 @@ transform dizzy(m, t, subpixel=True):
         easein 1.0 * t yoffset 0
         repeat
 
-# This image transform zooms in on Sayori's hanging sprite in Sayori's hanging
-# CG.
+# Это изображение с трансформацией делает приближение спрайта повесившейся Сайори на одноимённой сценке.
 image s_kill_zoom:
     contains:
         "s_kill"
@@ -366,8 +360,7 @@ image s_kill_zoom:
         zoom 2.0 xalign 0.5 yalign 0.05
     dizzy(1, 1.0)
 
-# This image transform zooms in on the glitched background in Sayori's hanging
-# CG.
+# Это изображение с трансформацией делает приближение искажённого фона сценки с повесившейся Сайори.
 image s_kill_bg2_zoom:
     contains:
         "s_kill_bg2"
@@ -387,8 +380,7 @@ image s_kill_bg2_zoom:
         linear 0.25 alpha 0.2
         repeat
 
-# This image transform zooms in on the glitched Sayori hanging sprite in 
-# Sayori's hanging CG.
+# Это изображение с трансформацией делает приближение искажённого спрайта повесившейся Сайори на вышеуказанной сценке.
 image s_kill2_zoom:
     contains:
         "s_kill2"
