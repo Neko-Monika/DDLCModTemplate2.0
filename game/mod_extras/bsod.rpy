@@ -1,23 +1,23 @@
-## Copyright 2019-2022 Azariel Del Carmen (GanstaKingofSA). All rights reserved.
+## Авторское право 2019-2022 Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
 
 # bsod.rpy
-# This file contains the screen code to display a fake Blue Screen of death.
+# В этом файле содержится код экрана для отображения ложного Синего экрана смерти.
 
-## BSOD screen ##################################################################\
+## Экран Синего экрана смерти ############################################################
 ##
-## This screen is used to fake a BSOD/kernel panic on the players' computer 
-## on all platforms (Mobile devices defaults to the Linux BSOD).
+## Этот экран используется для мимикрии СЭС/паники ядра на компьютере игроков на всех
+## возможных платформах (на мобильных устройствах будет использоваться экран паники ОС Linux).
 ##
-## Syntax:
-##     bsodCode - The error code message you want to show the player. Defaults to 
-##                DDLC_ESCAPE_PLAN_FAILED if no message is given.
-##     bsodFile (Windows 7 Only) - The fake file name that caused the 
-##                error. Defaults to libGLESv2.dll if no file name is given.
-##     rsod (Windows 11 Only) - Swaps the Windows 11 BSOD with a RSOD.
+## Синтаксис:
+## bsodCode - Код ошибки, который вы хотите показать игроку. Если не дано, будет 
+##            подставлено «DDLC_ESCAPE_PLAN_FAILED».
+## bsodFile (только Windows 7) - Мимикрия имени файла, из-за которого 
+##            возникла проблема. Если не дано, будет подставлено «libGLESv2.dll».
+## rsod (только Windows 11) - Меняет Чёрный ЭС Windows 11 на Красный.
 ##
-## Examples:
-##     show screen bsod("DOKI_DOKI", "renpy32.dll", False) 
-##     show screen bsod("EILEEN_EXCEPTION_NOT_HANDLED", rsod=True) 
+## Примеры:
+## show screen bsod("DOKI_DOKI", "renpy32.dll", False) 
+## show screen bsod("EILEEN_EXCEPTION_NOT_HANDLED", rsod=True)
 
 init python:
     cursor = 0
@@ -30,9 +30,9 @@ init python:
             percent = 100
 
         if winver == 8:
-            d = Text("we'll restart for you. (" + str(percent) + "% complete)\n", style="bsod_win8_text", size=28)
+            d = Text(f"автоматически выполнена перезагрузка. (выполнено: {percent}%)\n", style="bsod_win8_text", size=28)
         else:
-            d = Text(str(percent) + "% complete", style="bsod_win10_text", line_leading=20)
+            d = Text(f"{percent}% завершено", style="bsod_win10_text", line_leading=20)
 
         if percent < 100:
             return d, renpy.random.randint(1, 3)
@@ -49,8 +49,8 @@ init python:
             return Text("   ", style="bsod_linux_text"), 0.3
 
     if renpy.windows:
-        try: osVer = tuple(map(int, subprocess.run("powershell (Get-WmiObject -class Win32_OperatingSystem).Version", check=True, shell=True, stdout=subprocess.PIPE).stdout.split(b"."))) # Vista+
-        except: osVer = tuple(map(int, platform.version().split("."))) or (5, 1, 2600) # XP returns JIC (but Ren'Py 8 doesn't even support XP...)
+        try: osVer = tuple(map(int, subprocess.check_output("powershell (Get-WmiObject -class Win32_OperatingSystem).Version", universal_newlines=True, shell=True).split("."))) # Vista+
+        except: osVer = tuple(map(int, platform.version().split("."))) or (5, 1, 2600) # XP возвращает JIC (но Ren'Py 8 даже не поддерживает XP...)
 
 screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=False):
 
@@ -59,25 +59,25 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
     if renpy.windows:
 
         if osVer < (6, 2, 9200): # Windows 7
-            
+
             add Solid("#000082")
 
             vbox:
 
                 style_prefix "bsod_win7"
 
-                text "A problem has been detected and Windows has been shut down to prevent damage to your computer."
-                text "The problem seems to be caused by the following file: " + bsodFile.upper()
+                text "Вследствие возникшей проблемы система Windows принудительно завершила работу для предотвращения урона компьютеру."
+                text f"Проблема была вызвана следующим файлом: {bsodFile.upper()}"
                 text bsodCode.upper()
-                text "If this is the first time you've seen this Stop error screen, restart your computer. If this screens appears again, follow these steps:"
-                text "Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any Windows updates you might need."
-                text "If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options such as caching or shadowing. If you need to use Safe Mode to remove or disable components, restart your computer, press F8 to select Advanced Startup Options, and then select Safe Mode."
-                text "Technical information:"
-                text "*** STOP: 0x00000051 (OXFD69420, 0x00000005, OXFBF92317" + ", 0x00000000)\n"
-                text "*** " + bsodFile.upper() + "  -  Address FBF92317 base at FBF102721, Datestamp 3d6dd67c"
+                text "Если вы впервые видите этот Синий экран останова, перезагрузите компьютер. Если этот экран появился снова, следуйте нижеприведённым шагам:"
+                text "Убедитесь, что новое оборудование или ПО установлено корректно. Если оборудование/ПО было установлено впервые, попросите у производителя оборудования/ПО обновления Windows, которые могут вам понадобиться."
+                text "Если проблема не была устранена, отключите или удалите любое только что установленное оборудование или ПО. Отключите такие параметры памяти BIOS, как кэширование и теневое копирование. Если для удаления/отключения компонентов вам необходимо воспользоваться Безопасным режимом, перезагрузите компьютер, нажмите F8 для входа в Дополнительные параметры загрузки, а затем выберите Безопасный режим."
+                text "Техническая информация:"
+                text "*** STOP: 0x00000051 (OXFD69420, 0x00000005, OXFBF92317, 0x00000000)\n"
+                text f"*** {bsodFile.upper()}  -  Address FBF92317 base at FBF102721, Datestamp 3d6dd67c"
 
         elif osVer < (10, 0, 10240): # Windows 8/8.1
-            
+
             add Solid("#1273aa")
 
             style_prefix "bsod_win8"
@@ -88,18 +88,18 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
                 yalign 0.4
 
                 text ":(" style "bsod_win8_sad_text"
-                text "Your PC ran into a problem and needs to restart."
-                text "We're just collecting some error info, and then"
+                text "На вашем ПК возникла проблема, и его необходимо перезагрузить."
+                text "Мы лишь собираем некоторые сведения об ошибке, а затем будет"
                 add DynamicDisplayable(fakePercent, 8)
-                text "If you'd like to know more, you can search online later for this error: " + bsodCode.upper() style "bsod_win8_sub_text"
+                text f"При желании вы можете найти в Интернете информацию по этому коду ошибки: {bsodCode.upper()}" style "bsod_win8_sub_text"
 
-        else: # Windows 10, 11 and RSOD
-            
-            # After a silent update, Windows 11 now returns to a
-            # Windows 10 BSOD color. We will remove the black for
-            # blue now.
+        else: # Windows 10, 11 и Красный экран смерти
+
+            # После выпуска одного из незначительных обновлений в Windows 11
+            # Чёрный экран смерти стал снова Синим, как в Windows 10. В связи с этим
+            # мы поменяли чёрный цвет на синий.
             if rsod:
-                
+
                 add Solid("#d40e0eff")
                 python:
                     blackCol = "#f00"
@@ -123,17 +123,17 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
                     python:
                         bsodQRSize = 100
 
-                    text "Your PC ran into a problem and needs to restart. We're"
-                    text "just collecting some error info, and then we'll restart for"
-                    text "you."
+                    text "На вашем ПК возникла проблема, и его необходимо перезагрузить."
+                    text "Мы лишь собираем некоторые сведения об ошибке, а затем будет"
+                    text "автоматически выполнена перезагрузка."
 
                 else:
                     python:
                         bsodQRSize = 150
 
-                    text "Your device ran into a problem and needs to restart."
-                    text "We're just collecting some error info, and then we'll"
-                    text "restart for you."
+                    text "На вашем устройстве возникла проблема, и его необходимо перезагрузить."
+                    text "Мы лишь собираем некоторые сведения об ошибке, а затем будет"
+                    text "автоматически выполнена перезагрузка."
 
                 add DynamicDisplayable(fakePercent, 10)
 
@@ -145,15 +145,15 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
                         xpos 0.04
                         vbox:
                             spacing 2
-                            text "For more information about this issue and possible fixes, visit" style "bsod_win10_info_text" line_leading 30
+                            text "Дополнительные сведения об этой проблеме и возможных способах её решения см. на странице" style "bsod_win10_info_text" line_leading 30
                             text "https://www.windows.com/stopcode\n" style "bsod_win10_info_text"
                         null height 3
                         vbox:
                             spacing 4
-                            text "If you call a support person, give them this info:" style "bsod_win10_sub_text"
-                            text "Stop code: " + bsodCode.upper() style "bsod_win10_sub_text"
-                            text "What failed: " + bsodFile.lower() style "bsod_win10_sub_text"
-        
+                            text "При обращении в службу поддержки предоставьте следующие данные:" style "bsod_win10_sub_text"
+                            text f"Код остановки: {bsodCode.upper()}" style "bsod_win10_sub_text"
+                            text f"Что вызвало проблему: {bsodFile.lower()}" style "bsod_win10_sub_text"
+
     elif renpy.macintosh:
 
         add Solid("#222")
@@ -165,8 +165,9 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
             xalign 0.53
             yalign 0.51
 
-            text "You need to restart your computer. Hold down the Power\n"
-            text "button until it turns off, then press the Power button again." line_spacing 25
+            text "Вам необходимо перезагрузить компьютер. Удерживайте\n"
+            text "кнопку Питания, пока он не выключится, затем нажмите эту же\n"
+            text "кнопку снова." line_spacing 25
             text "Redémarrez l'ordinateur. Enfoncez le bouton de démarrage\n"
             text "jusqu'à l'extinction, puis appuyez dessus une nouvelle fois." line_spacing 25
             text "Debe reiniciar el o rdenador. Mantenga pulsado el botón de\n"
@@ -174,9 +175,11 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
             text "Sie müssen den Computer neu starten. Halten Sie den\n"
             text "Ein-/Ausschalter gedrückt bis das Gerät ausgeschaltet ist\n"
             text "und drücken Sie ihn dann erneut." line_spacing 25
-            text "Devi riavviare il computer. Tieni premuto il pulsante di\n"
-            text "accensione finché non si spegne, quindi premi di nuovo il\n"
-            text "pulsante di accensione."
+            text "コンピュータの再起動が必要です。電源が切れるまでパワーボタンを\n"
+            text "押し続けてから、もう一度パワーボタンを押します。"
+            # text "Devi riavviare il computer. Tieni premuto il pulsante di\n"
+            # text "accensione finché non si spegne, quindi premi di nuovo il\n"
+            # text "pulsante di accensione."
 
     else:
 
@@ -193,7 +196,7 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
             text "sr0 at 0x444 - 0x910, 0x211 on irq 15"
             text "fd0: METAVERSE ENTERPRISE VIRTUAL FLOPPY, ATA FLOPPY drive"
             text "ide2 at 0x7363-0x6e6565, 0x4569 on irq 16"
-            text "ACPI: PCI Interrupt Link [[LNKC] ebabked at IRQ 10"
+            text "ACPI: PCI Interrupt Link [[LNKC] enabled at IRQ 10"
             text "ACPI: PCI Interrupt 0000:00:03:.0[[A] -> Link [[LNKC] -> GSI 10 (level, low) -> IRQ 10"
             text "eno1: Metaverse Enterprise LIB-0922 found at 0xc453, IRQ 10, 09:10:21:86:75:30"
             text "sda: max request size: 4MiB"
@@ -201,17 +204,17 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
             text "sda: sda1"
             text "sr0: ATAPI 16x CD-ROM drive, 2MB Cache, (U)DMA"
             text "Uniform CD-ROM driver Revision: [renpy.version_tuple]"
-            text "Done."
-            text "Begin: DDLC.so"
-            text "Done."
-            text "DDLC.so[[3352]: Faled to initialize steam: FileNotFoundError(\"Could not find module '/usr/app/ddlc/lib/py3-linux-x86_64/steam_api64.so') (or one of its dependencies). Try using the full path with constructor syntax.\")"
-            text "DDLC.so[[3352]: nvdrs: Loaded, about to disable thread optimizations."
-            text "DDLC.so[[3352]: nvdrs: Disabled thread optimizations."
-            text "DDLC.so: SUCCESS."
-            text "Done."
-            text "Begin: DDLC.so -> linux-5.18"
-            text "/init: /init: 151: " + bsodCode.upper() + ": 0xforce=panic"
-            text "Kernel panic - not syncing: Attempted to kill init!"
+            text "Готово."
+            text "Запуск: DDLC.so"
+            text "Готово."
+            text "DDLC.so[[3352]: Не удалось инициализировать Steam: FileNotFoundError(\"Невозможно найти модуль '/usr/app/ddlc/lib/py3-linux-x86_64/steam_api64.so') (или одну из его зависимостей). Попробуйте использовать полный путь с синтаксисом конструктора.\")"
+            text "DDLC.so[[3352]: nvdrs: Загружен, идёт отключение оптимизации потоков."
+            text "DDLC.so[[3352]: nvdrs: Оптимизации потоков отключены."
+            text "DDLC.so: УСПЕШНО."
+            text "Готово."
+            text "Запуск: DDLC.so -> linux-5.18"
+            text f"/init: /init: 151: {bsodCode.upper()}: 0xforce=panic"
+            text "Паника ядра - невозможность синхронизации: Попытка убить инициализацию!"
             add DynamicDisplayable(constantCursor)
 
     add Solid("#000000") at bsod_transition
@@ -267,18 +270,18 @@ style bsod_win10_sub_text:
 
 style bsod_mac_text is gui_text
 style bsod_mac_text:
-    font gui.default_font
+    font "gui/font/SourceHanSansJP.otf"
     size 28
     outlines []
     line_spacing -30
 
 style bsod_linux_text is gui_text
 style bsod_linux_text:
-    font "gui/font/F25_Bank_Printer.ttf"
+    font "gui/font/consola.ttf"
     size 15
     outlines []
     line_leading 5
-            
+
 transform bsod_transition:
     "black"
     0.1
