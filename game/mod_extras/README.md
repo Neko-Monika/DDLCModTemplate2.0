@@ -1,10 +1,10 @@
-# Explaination of Mod Extras' RPY files
+# Пояснение по RPY-файлам Доп. контента модификации
 
 ### **achievements.rpy**
-This file was introduced in Version 3.0.0 of the mod template. This file contains the code for the achievements menu and notification that shows your progress throughout the mod.
+Этот файл впервые появился в мод-шаблоне версии 3.0.0. Данный файл содержит код меню достижений и уведомления, отображающего прогресс прохождения модификации.
 
 ### **bsod.rpy**
-This file was introduced in Version 2.4.9 of the mod template. This file contains the code to call a fake Blue Screen of Death/Kernel Panic to the players' computer.
+Этот файл впервые появился в мод-шаблоне версии 2.4.9. Данный файл содержит код для вызова ложного Синего экрана смерти/Паники ядра на компьютере игроков.
 
 ### **extras_screen.rpy**
 
@@ -12,8 +12,8 @@ This file was introduced in Version 3.0.1 of the mod template. This file contain
 
 ### **gallery.rpy**
 
-This file was introduced in Version 3.0.0 of the mod template. This file contains the code for the gallery menu that shows backgrounds and sprites from your mod.
+Этот файл впервые появился в мод-шаблоне версии 3.0.0. Данный файл содержит код меню галереи, отображающей фоны и спрайты вашей модификации.
 
 ### **pronouns.rpy**
 
-This file was introduced in Version 2.4.8 of the mod template. This file allows players to input their given pronouns into the game.
+Этот файл впервые появился в мод-шаблоне версии 2.4.8. В этом файле игрокам даётся возможность ввести свои предпочтительные местоимения во время игры.
