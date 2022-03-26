@@ -1,19 +1,19 @@
-# Contents
+# Содержание
 
 ## achievements.rpy
-This file contains the code for the achievements menu and notification that shows your progress throughout the mod.
+Данный файл содержит код меню достижений и уведомления, отображающего прогресс прохождения модификации.
 
 ## bsod.rpy
-This file contains the code to call a fake Blue Screen of Death/Kernel Panic to the players' computer.
+Данный файл содержит код для вызова ложного Синего экрана смерти/Паники ядра на компьютере игроков.
 
 ## extras_screen.rpy
 
-This file contains the code for the extras menu that allows multiple screens to be selected without cluttering the main options.
+Данный файл содержит код меню Доп. контента, которое может содержать в себе дополнительные экраны и тем самым освобождает от необходимости захламлять основные разделы Главного меню.
 
 ## gallery.rpy
 
-This file contains the code for the gallery menu that shows backgrounds and sprites from your mod.
+Данный файл содержит код меню галереи, отображающей фоны и спрайты в вашей модификации.
 
 ## pronouns.rpy
 
-This file allows players to input their given pronouns into the game.
+В этом файле игрокам даётся возможность ввести свои предпочтительные местоимения во время игры.
