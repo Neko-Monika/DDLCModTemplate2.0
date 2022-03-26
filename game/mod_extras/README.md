@@ -8,7 +8,7 @@
 
 ### **extras_screen.rpy**
 
-This file was introduced in Version 3.0.1 of the mod template. This file contains the code for the extras menu that allows multiple screens to be selected without cluttering the main options.
+Этот файл впервые появился в мод-шаблоне версии 3.0.1. Данный файл содержит код меню Доп. контента, которое позволяет выбрать несколько экранов, не загромождая основные опции.
 
 ### **gallery.rpy**
 
