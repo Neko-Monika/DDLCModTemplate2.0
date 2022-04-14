@@ -103,7 +103,7 @@ init -1 python:
 
                 # используется visit_all вместо _show() в связи с устареванием
                 thing.visit_all(lambda d : None)
-        
+
         renpy.display.core.SceneLists.add = NewSceneLists.add
 
     ## Исправляет проблему, из-за которой некоторые переходы (задний план меню) начинали проигрываться заново.
