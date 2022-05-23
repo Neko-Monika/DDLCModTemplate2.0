@@ -113,13 +113,13 @@ init python:
     def next_image(back=False):
         global current_img_name
 
-        # Create a new list from the keys
+        # Создаёт новый список на основе ключей словаря
         all_keys = list(galleryList.keys())
 
-        # Get the current key as index
+        # Берёт текущий ключ в качестве индекса
         current_index = all_keys.index(current_img_name)
 
-        # Get the next key as index
+        # Берёт следующий ключ в качестве индекса
         next_index = current_index - 1 if back else current_index + 1
 
         try: 
