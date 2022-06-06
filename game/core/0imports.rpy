@@ -1,28 +1,28 @@
 
 # 0imports.rpy
-# This file imports certain python modules at runtime for DDLC and template
-# features.
+# В этом файле импортируются конкретные модули Python, необходимые для DDLC
+# и функционирования шаблона, во время запуска игры.
 
 python early:
-    # For DSR/DSP, Effects
+    # Для DSR/DSP, эффектов
     import math 
 
-    # For Credits
+    # Для титров
     import datetime
 
-    # For Glitchtext
+    # Для глитч-текста
     import random
 
-    # For Splash
+    # Для вступительной заставки
     import re
     import os
 
-    # For BSOD
+    # Для Синего экрана смерти
     import subprocess
     import platform
 
 init python:
-    # Achievements/Gallery
+    # Достижения/Галерея
     try:
         from store.achievements import achievementList, Achievement, AchievementCount
     except ModuleNotFoundError:

@@ -1,13 +1,14 @@
-## Copyright 2019-2023 Azariel Del Carmen (bronya_rand). All rights reserved.
+## Авторское право 2019-2023 Азариэль Дель Кармен (bronya_rand). Все права защищены.
 
 # extras_screen.rpy
-# This file contains the screen code for the extras menu for more screen options
-# (Achievements/Gallery)
+# В этом файле содержится код экрана для меню Доп. контента, которое отображает 
+# кнопки перехода на другие экраны (Достижения/Галерея).
 #
-# To add a new slot to this menu, increase either the row or column count and copy
-# the frames provided below already as a base to your own extras menu option.
-# Make sure that the vpgrid is full or else you will get an error.
-# Use `null` (without `'s) if you need to fill empty space.
+# Для добавления нового слота в этом меню увеличьте число строк или столбцов, а затем скопируйте
+# и вставьте нижеприведённые рамки для основы вашего отдельного пункта меню Доп. контента.
+# Убедитесь, что vpgrid заполнен, в противном случае у вас возникнет исключение.
+# Используйте `null` (без знаков `), если вам нужно заполнить пустое пространство, либо добавьте
+# свойство `allow_underfull True` (также без знаков `; не рекомендуется).
 
 default enable_gallery = True
 default enable_achievements = True
@@ -16,15 +17,15 @@ screen extras():
     tag menu
     style_prefix "extras"
 
-    use game_menu(_("Extras")):
+    use game_menu(_("Доп. контент")):
 
         fixed:
-                
+
             vpgrid id "ext":
 
                 rows 1
                 cols 3
-                        
+
                 xalign 0.5
                 yalign 0.4
 
@@ -40,8 +41,8 @@ screen extras():
                             yalign 0.5
 
                             imagebutton:
-                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (40, 75), Text("Gallery", style="extras_text"))
-                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (38, 73), Text("Gallery", style="extras_hover_text"))
+                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (40, 75), Text(_("Галерея"), style="extras_text"))
+                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (38, 73), Text(_("Галерея"), style="extras_hover_text"))
                                 action ShowMenu("gallery")
 
                 if enable_achievements: 
@@ -52,10 +53,10 @@ screen extras():
                         vbox:
                             xalign 0.5
                             yalign 0.5
-            
+
                             imagebutton:
-                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (40, 75), Text("Awards", style="extras_text"))
-                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (38, 73), Text("Awards", style="extras_hover_text"))
+                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (40, 75), Text(_("Награды"), style="extras_text"))
+                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (38, 73), Text(_("Награды"), style="extras_hover_text"))
                                 action ShowMenu("achievements")
 
                 frame:
@@ -65,10 +66,10 @@ screen extras():
                     vbox:
                         xalign 0.5
                         yalign 0.5
-            
+
                         imagebutton:
-                            idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (40, 75), Text("Credits", style="extras_text"))
-                            hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (38, 73), Text("Credits", style="extras_hover_text"))
+                            idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (40, 75), Text(_("Авторы"), style="extras_text"))
+                            hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (38, 73), Text(_("Авторы"), style="extras_hover_text"))
                             action ShowMenu("about")
 
             vbar value YScrollValue("ext") xalign 0.99 ysize 560

@@ -1,37 +1,38 @@
 ## script-poemgame.rpy
 
-# This file contains the code to the DDLC poem game (now improved [finally...])
-# Still commented a bit by Terra.
+# Этот файл содержит код мини-игры про сочинение стихотворений из DDLC (уже улучшенный [наконец-то...])
+# Всё ещё сопровождён комментариями Terra.
 
 init python: 
-    # This dictionary stores every poemword and the class preference values of each character.
+    # Этот словарь хранит все слова и значения предпочтения конкретных персонажей.
     full_wordlist = {}
 
-    # This class holds a word, and point values for each of the four heroines
+    # Этот класс определяет искомое слово и значение очков для каждой из четырёх героинь
     class PoemWord:
         def __init__(self, s, n, y, glitch=False):
             self.sPoint = s
             self.nPoint = n
             self.yPoint = y
             self.glitch = glitch
-    
-    with renpy.file("poem_game/poemwords.txt") as pf:
-        for line in pf:
-            line = line.decode("utf-8").strip()
 
-            # Ignore lines beginning with '#' and empty lines
+    # На своих ошибках аффтар не учится, мдэ... (прим. пер.)
+    with renpy.open_file("poem_game/poemwords.txt", encoding="utf-8") as pf:
+        for line in pf:
+            line = line.strip()
+
+            # Игнорирование строк, начинающихся с решётки («#»), и пустых строк
             if line == '' or '#' in line: continue
 
-            # File format: word,sPoint,nPoint,yPoint
+            # Формат файла: word (слово),sPoint (очки Сайори),nPoint (очки Нацуки),yPoint (очки Юри)
             x = line.split(',')
 
             full_wordlist[x[0]] = PoemWord(int(x[1]), int(x[2]), int(x[3]))
 
-    # For use with Act 2-3 words
+    # Для использования со словами во втором и третьем актах
     glitch_word = PoemWord(0, 0, 0, True)
     monika_word = PoemWord(0, 0, 0, False)
-                
-    # This class handles Chibi Movement in a better way
+
+    # Этот класс управляет движениями чиби лучшим образом
     class ChibiTrans(object):
         def __init__(self):
             self.charTime = renpy.random.random() * 4 + 4
@@ -73,17 +74,17 @@ init python:
             self.charZoom = trans.xzoom
             return 0
     
-    # This dictionary stores every poemgame character and their points.
+    # Этот словарь хранит всех персонажей в мини-игре и их количество очков.
     chibis = {}
 
-    # This class supers' ChibiTrans and is used to store poem point data.
+    # Этот класс наследует ChibiTrans и используется для хранения данных об очках, набранных в мини-игре.
     class Chibi(ChibiTrans):
         POEM_DISLIKE_THRESHOLD = 29
         POEM_LIKE_THRESHOLD = 45
 
         def __init__(self, name):
             if not isinstance(name, str):
-                raise Exception("'name' argurment must be a string, not " + type(name))
+                raise Exception(f"Аргумент 'name' должен быть строкой, а не {type(name)}.")
                 
             self.charPointTotal = 0
             self.appeal = 0
@@ -96,7 +97,7 @@ init python:
 
         def add(self, point):
             self.charPointTotal += point
-        
+
         def calculate_appeal(self):
             if self.charPointTotal < self.POEM_DISLIKE_THRESHOLD:
                 return -1
@@ -107,38 +108,39 @@ init python:
 
     seen_eyes_this_chapter = False
 
-    # Declare Chibi variables for transforms and points (cept Monika), she only needs to move around.
+    # Объявление переменных чиби для трансформаций и очков (за исключением Моники; ей нужно только передвигаться).
     chibi_s = Chibi('sayori')
     chibi_n = Chibi('natsuki')
     chibi_m = ChibiTrans()
     chibi_y = Chibi('yuri')
 
-    # Start of the poem game in python
+    # Начало мини-игры под прослойкой Python
     def poem_game_start():
         played_baa = False
         poemgame_glitch = False
 
-        # Resets points of every character
+        # Сбрасывает очки у каждого персонажа
         for c in chibis:
             chibis[c].reset()
-        
-        # Makes a copy of the full dictionary for editing purposes.
+
+        # Создаёт копию заполненного словаря для дальнейшего редактирования.
         wordList = full_wordlist.copy()
 
-        # A way better while loop than Dan did
+        # Лучшая реализация цикла «пока», чем то, что было у Дэна
         progress = 1
         while progress <= 20:
-            # This section grabs 10 random words and stores the word in a list.
+            # В этом разделе отбирается 10 случайных слов и записывается в список.
             random_words = []
             for w in range(10):
                 word = random.choice(list(wordList.keys()))
                 random_words.append(word)
-                # Remove the word once its picked and added from the local copy.
+                # Удаляет слово, как только оное было выбрано и добавлено из локальной копии.
                 del wordList[word]
 
-            # Display the poem game
+            # Отображает мини-игру
             poemword = renpy.call_screen("poem_test", words=random_words, progress=progress, poemgame_glitch=poemgame_glitch)
-            # Checks if the word is in the game and not a unique Act 2-3 bugged word.
+
+            # Проверяет, что это слово есть в списке и не является уникальным для второго и третьего актов.
             if poemword in full_wordlist:
                 t = full_wordlist[poemword]
             else:
@@ -147,16 +149,16 @@ init python:
                 else:
                     t = monika_word
 
-            # If we are not in a bugged poem game state, do normal stuff, else do buggy stuff
+            # Если мини-игра у нас сейчас не глючная, всё будет проходить как обычно, в противном случае должны начаться глюки
             if not poemgame_glitch:
-                if t.glitch: #This conditional controls what happens when the glitch word is selected.
+                if t.glitch: # Это условие указывает, что должно произойти, когда было выбрано глючное слово.
                     poemgame_glitch = True
                     renpy.music.play(audio.t4g)
                     renpy.show("white")
                     renpy.show("y_sticker glitch", at_list=[sticker_glitch], zorder=10)
                 elif persistent.playthrough != 3:
                     renpy.play(gui.activate_sound)
-                    # Act 1
+                    # Акт 1
                     if persistent.playthrough == 0:
                         if t.sPoint >= 3:
                             renpy.show("s_sticker hop")
@@ -165,51 +167,51 @@ init python:
                         if t.yPoint >= 3:
                             renpy.show("y_sticker hop")
                     else:
-                        # Act 2
-                        if persistent.playthrough == 2 and chapter == 2 and random.randint(0,10) == 0: renpy.show("m_sticker hop") #1/10 chance for Monika's sticker to show.
-                        elif t.nPoint > t.yPoint: renpy.show("n_sticker hop") #Since there's just Yuri and Natsuki in Act 2, whoever has the higher value for the word hops.
+                        # Акт 2
+                        if persistent.playthrough == 2 and chapter == 2 and random.randint(0,10) == 0: renpy.show("m_sticker hop") # Чиби Моники подпрыгнет с шансом 1/10.
+                        elif t.nPoint > t.yPoint: renpy.show("n_sticker hop") # Поскольку во Втором акте остались Юри и Нацуки, та, чьё слово имеет больше очков, подпрыгнет.
                         elif persistent.playthrough == 2 and not persistent.seen_sticker and random.randint(0,100) == 0:
-                            renpy.show("y_sticker hopg") #"y_sticker_2g.png". 1/100 chance to see it, if we haven't seen it already.
+                            renpy.show("y_sticker hopg") # "y_sticker_2g.png". Если мы его ещё не видели, есть шанс 1/100 на то, чтобы его увидеть.
                             persistent.seen_sticker = True
-                        elif persistent.playthrough == 2 and chapter == 2: renpy.show("y_sticker_cut hop") #Yuri's cut arms sticker.
+                        elif persistent.playthrough == 2 and chapter == 2: renpy.show("y_sticker_cut hop") # Стикер Юри с порезанными руками.
                         else: renpy.show("y_sticker hop")
             else:
-                r = random.randint(0, 10) #1/10 chance to hear "baa", one time.
+                r = random.randint(0, 10) # Шанс 1/10 на то, чтобы услышать «ба-а» при выборе слова.
                 if r == 0 and not played_baa:
                     renpy.play("gui/sfx/baa.ogg")
                     played_baa = True
                 elif r <= 5: renpy.play(gui.activate_sound_glitch)
 
-            # Adds points to the characters and progress by 1.
+            # Добавляет очки персонажам и увеличивает прогресс на 1.
             chibi_s.charPointTotal += t.sPoint
             chibi_n.charPointTotal += t.nPoint
             chibi_y.charPointTotal += t.yPoint
             progress += 1
     
-    # End of the game
+    # Конец игры
     def poem_game_finish():
-        # Act 1
+        # Акт 1
         if persistent.playthrough == 0:
-            # For chapter 1, add 5 points to whomever we sided with
+            # В первой главе это добавляет 5 очков той девушке, на чью сторону мы встали.
             if chapter == 1:
                 chibis[ch1_choice].charPointTotal += 5
 
             poemwinner[chapter] = max(chibis, key=lambda c: chibis[c].charPointTotal)
         else:
-            # Act 2
+            # Акт 2
             if chibi_n.charPointTotal > chibi_y.charPointTotal: poemwinner[chapter] = "natsuki"
             else: poemwinner[chapter] = "yuri"
 
-        # Add appeal point based on poem winner
+        # Добавляет очки признания, опираясь на то, кто набрал больше очков в мини-игре
         chibis[poemwinner[chapter]].appeal += 1
 
-        # Set poem appeal
+        # Устанавливает степень признания
         s_poemappeal[chapter] = chibi_s.calculate_appeal()
         n_poemappeal[chapter] = chibi_n.calculate_appeal()
         y_poemappeal[chapter] = chibi_y.calculate_appeal()
 
-        # Poem winner always has appeal 1 (loves poem)
-        exec(poemwinner[chapter][0] + "_poemappeal[chapter] = 1")
+        # У победительницы значение признания всегда будет равно 1 (т.е. стих ей понравился).
+        exec(f"{poemwinner[chapter][0]}_poemappeal[chapter] = 1")
 
 screen poem_test(words, progress, poemgame_glitch):
     default numWords = 20
@@ -226,11 +228,11 @@ screen poem_test(words, progress, poemgame_glitch):
                 else:
                     pstring = str(progress)
 
-            text pstring + "/" + str(numWords):
+            text f"{pstring}/{numWords}":
                 style "poemgame_text"
                 ypos 80
 
-        # Two fixed areas for the two sections of poemgame we have
+        # Две фиксированные зоны для двух разделов мини-игры, которые у нас есть
         fixed:
             xpos 440
             ypos 160
@@ -242,8 +244,8 @@ screen poem_test(words, progress, poemgame_glitch):
                 for i in range(5):
                     if persistent.playthrough == 3:
                         python:
-                            s = list("Monika")
-                            for k in range(6): # This gives random corruption effects to the "Monika" words.
+                            s = list(__("Моника"))
+                            for k in range(6): # Применяет различные искажения к словам "Моника".
                                 if random.randint(0, 4) == 0:
                                     s[k] = ' '
                                 elif random.randint(0, 4) == 0:
@@ -251,7 +253,7 @@ screen poem_test(words, progress, poemgame_glitch):
                             wordString = "".join(s)
                     elif persistent.playthrough == 2 and not poemgame_glitch and chapter >= 1 and progress < numWords and random.randint(0, 400) == 0:
                         python:
-                            wordString = glitchtext(80) # This gives a chance for a random word in Act 2 to be the glitched word.
+                            wordString = glitchtext(80) # Устанавливает небольшой шанс того, что случайное слово во Втором акте будет глючным.
                     else:
                         python:
                             wordString = words[i]
@@ -271,8 +273,8 @@ screen poem_test(words, progress, poemgame_glitch):
                 for i in range(5):
                     if persistent.playthrough == 3:
                         python:
-                            s = list("Monika")
-                            for k in range(6): # This gives random corruption effects to the "Monika" words.
+                            s = list(__("Моника"))
+                            for k in range(6): # Применяет различные искажения к словам "Моника".
                                 if random.randint(0, 4) == 0:
                                     s[k] = ' '
                                 elif random.randint(0, 4) == 0:
@@ -280,7 +282,7 @@ screen poem_test(words, progress, poemgame_glitch):
                             wordString = "".join(s)
                     elif persistent.playthrough == 2 and not poemgame_glitch and chapter >= 1 and progress < numWords and random.randint(0, 400) == 0:
                         python:
-                            wordString = glitchtext(80) # This gives a chance for a random word in Act 2 to be the glitched word.
+                            wordString = glitchtext(80) # Устанавливает небольшой шанс того, что случайное слово во Втором акте будет глючным.
                     else:
                         python:
                             wordString = words[5+i]
@@ -292,42 +294,46 @@ screen poem_test(words, progress, poemgame_glitch):
 label poem(transition=True):
     stop music fadeout 2.0
 
-    if persistent.playthrough == 3: #Takes us to the glitched notebook if we're in Just Monika Mode.
+    if persistent.playthrough == 3: # Если мы в режиме Только Моника, то нас перекинет на глючную тетрадь.
         scene bg notebook-glitch
     else:
         scene bg notebook
-    
+
     if persistent.playthrough == 3: 
-        show m_sticker at sticker_mid #Just Monika.
+        show m_sticker at sticker_mid # Только Моника.
     else:
         if persistent.playthrough == 0:
-            show s_sticker at sticker_left #Only show Sayori's sticker in Act 1.
-        show n_sticker at sticker_mid #Natsuki's sticker
+            show s_sticker at sticker_left # Покажет в первом акте только чиби Сайори.
+        show n_sticker at sticker_mid # Чиби Нацуки.
         if persistent.playthrough == 2 and chapter == 2:
-            show y_sticker_cut at sticker_right #Replace Yuri's sticker with the "cut arms" sticker..
+            show y_sticker_cut at sticker_right # Заменяет чиби Юри на оный с "порезанными руками".
         else:
-            show y_sticker at sticker_right #Yuri's sticker
+            show y_sticker at sticker_right # Чиби Юри.
         if persistent.playthrough == 2 and chapter == 2:
-            show m_sticker at sticker_m_glitch #Monika's sticker
-        
+            show m_sticker at sticker_m_glitch # Чиби Моники.
+
     if transition:
         with dissolve_scene_full
 
     if persistent.playthrough == 3:
-        play music ghostmenu #Change the music in Just Monika.
+        play music ghostmenu # Изменяет музыку в режиме Только Моника.
     else:
         play music t4
 
     $ config.allow_skipping = False
     $ allow_skipping = False
 
-    if persistent.playthrough == 0 and chapter == 0: #Shows the below dialogue the first time the minigame is played.
-        call screen dialog("It's time to write a poem!\n\nPick words you think your favorite club member\nwill like. Something good might happen with\nwhoever likes your poem the most!", ok_action=Return())
-    
+    if persistent.playthrough == 0 and chapter == 0: # Показывает модальное окно при первом запуске мини-игры.
+        call screen dialog(_p("""Пришло время написать стихотворение!
+
+Выберите слова, которые, по-вашему, подойдут нравящейся вам девушке.
+С той девушкой, которой больше всего понравится ваше стихотворение,
+у вас может произойти что-то хорошее!"""), ok_action=Return())
+
     $ poem_game_start()
     $ poem_game_finish()
 
-    # Call the new poem eye scare label if we are in Act 2 and we yet seen eyes
+    # Вызывает новый лейбл со страшными глазами, если мы на Втором акте и ещё не видели их
     if persistent.playthrough == 2 and persistent.seen_eyes == None and renpy.random.randint(0,5) == 0:
         call poem_eye_scare
 
@@ -341,7 +347,7 @@ label poem(transition=True):
     pause 1.0
     return
 
-## Scare code moved as it's own label
+## Код страшных глаз переехал в отдельный лейбл
 label poem_eye_scare:
     $ seen_eyes_this_chapter = True
     $ quick_menu = False
@@ -361,7 +367,7 @@ label poem_eye_scare:
     $ quick_menu = True
     return
 
-############ Image definitions start here. #############
+############ Определения изображений начинаются здесь. #############
 image bg eyes_move:
     "images/bg/eyes.png"
     parallel:
