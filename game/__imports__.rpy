@@ -1,27 +1,27 @@
 
 # __imports__.rpy
-# This file imports certain python modules at runtime for DDLC and template
-# features.
+# В этом файле импортируются конкретные модули Python, необходимые для DDLC
+# и функционирования шаблона, во время запуска игры.
 
 python early:
-    # For Achievements/Gallery
+    # Для Достижений и Галереи
     import math 
 
-    # For Credits
+    # Для титров
     import datetime
 
-    # For Glitchtext
+    # Для глитч-текста
     import random
 
-    # For Splash
+    # Для вступительной заставки
     import re
     import os
 
-    # For BSOD
+    # Для Синего экрана смерти
     import subprocess
     import platform
 
-    # For Gallery
+    # Для Галереи
     import threading
     import renpy.display.image as imgcore
 
@@ -29,7 +29,7 @@ python early:
 default -20 persistent.enable_discord = True
 
 init -19 python:
-    # For Discord RPC
+    # Для Игровой активности в Discord
     if persistent.enable_discord:
         from discord_rpc import DiscordRPC
         RPC = DiscordRPC("979471077187125248")

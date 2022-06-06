@@ -1,18 +1,18 @@
 ## script-poemgame.rpy
 
-# Commented to absurdity, blame Terra.
+# Файл прокомментирован до абсурда, вините в этом Терру.
 
-# Worth noting how the game gets here in the first place:
-    # This script is called via "call poem" in script.rpy.
-    # All of the Act 1 instances are done simply with "call poem".
-    # Some of the Act 2 instances are done with "call poem (False)"
-        # This is how we get the abrupt cut-in to the mini-game in Act 2.
-# Images are defined after the main poem game loop.
+# Стоит отметить, как игра вообще попадает сюда:
+    # Этот скрипт вызывается при помощи команды «call poem» в файле script.rpy.
+    # Во время первого акта мини-игра запускается вышеописанной командой.
+    # Во втором же акте, в некоторых случаях, применяется команда «call poem (False)»
+        # Таким образом можно сделать внезапный переход на мини-игру во втором акте.
+# Определения всех изображений приведены после основного цикла мини-игры про сочинение стихов.
 
-init python: # This whole block runs when DDLC is started (as opposed to when the poem minigame is called)
+init python: # Весь этот блок запускается во время инициализации DDLC (в отличие от вызова самой мини-игры)
     poem_txt = "poemwords.txt"
 
-    # This class holds a word, and point values for each of the four heroines
+    # Этот класс определяет искомое слово и значение очков для каждой из четырёх героинь
     class PoemWord:
         def __init__(self, word, sPoint, nPoint, yPoint, glitch=False):
             self.word = word
@@ -21,20 +21,20 @@ init python: # This whole block runs when DDLC is started (as opposed to when th
             self.yPoint = yPoint
             self.glitch = glitch
 
-    # Static variables for characters' poem appeal: Dislike, Neutral, Like
+    # Статичные значения для оценки стихотворения персонажами: Не нравится, Нормально, Нравится
     POEM_DISLIKE_THRESHOLD = 29
     POEM_LIKE_THRESHOLD = 45
 
-    # Building the word list
+    # Построение списка слов (аффтару бы я посоветовал немного покурить Документацию к новому Ренпаю - прим. пер.)
     full_wordlist = []
-    with renpy.file(poem_txt) as wordfile:
+    with renpy.open_file(poem_txt, encoding="utf-8") as wordfile:
         for line in wordfile:
-            line = line.decode("utf-8").strip()
+            line = line.strip()
 
-            # Ignore lines beginning with '#' and empty lines
+            # Игнорирование строк, начинающихся с решётки («#»), и пустых строк
             if line == '' or '#' in line: continue
 
-            # File format: word,sPoint,nPoint,yPoint
+            # Формат файла: word (слово),sPoint (очки Сайори),nPoint (очки Нацуки),yPoint (очки Юри)
             x = line.split(',')
             full_wordlist.append(PoemWord(x[0], float(x[1]), float(x[2]), float(x[3])))
 
@@ -56,10 +56,10 @@ init python: # This whole block runs when DDLC is started (as opposed to when th
     yuriZoom = 1
     monikaZoom = 1
 ##################################################################################
-#These functions define random pause lengths for each of the stickers' movements.
-#renpy.random.random() returns a random floating point number between 0 and 1
-#So the -Doki-Time variable for each is a random decimal ranging from 4 to 8.
-#These are used in the image definitions.
+# Эти функции определяют случайную длину паузы для перемещения стикеров персонажей на экране.
+# renpy.random.random() возвращает случайное число с плавающей точкой в промежутке между 0 и 1
+# Следовательно, переменная -Доки-Времени для каждого стикера является случайным десятичным значением от 4 до 8.
+# Они также используются в определениях изображений.
 
     def randomPauseSayori(trans, st, at):
         global sayoriTime
@@ -89,7 +89,7 @@ init python: # This whole block runs when DDLC is started (as opposed to when th
             return None
         return 0
 
-##############These functions define random movements for the stickers.#######
+############## Эти функции отвечают за случайные передвижения стикеров. #######
     def randomMoveSayori(trans, st, at):
         global sayoriPos
         global sayoriOffset
@@ -181,35 +181,39 @@ init python: # This whole block runs when DDLC is started (as opposed to when th
 ##################################################################################
 label poem(transition=True):
     stop music fadeout 2.0
-    if persistent.playthrough == 3: #Takes us to the glitched notebook if we're in Just Monika Mode.
+    if persistent.playthrough == 3: # Это условие заставляет игру показать глючную тетрадь, если мы находимся в режиме «Только Моника».
         scene bg notebook-glitch
     else:
         scene bg notebook
-    show screen quick_menu #This allows the player to pull up the save menu during the poem minigame.
-    if persistent.playthrough == 3: 
-        show m_sticker at sticker_mid #Just Monika.
+    show screen quick_menu # Эта функция даёт возможность открыть меню Сохранения во время мини-игры.
+    if persistent.playthrough == 3:
+        show m_sticker at sticker_mid # Только Моника.
     else:
         if persistent.playthrough == 0:
-            show s_sticker at sticker_left #Only show Sayori's sticker in Act 1.
-        show n_sticker at sticker_mid #Natsuki's sticker
+            show s_sticker at sticker_left # Влияет только на отображение стикера Сайори в Первом акте.
+        show n_sticker at sticker_mid # Стикер Нацуки.
         if persistent.playthrough == 2 and chapter == 2:
-            show y_sticker_cut at sticker_right #Replace Yuri's sticker with the "cut arms" sticker..
+            show y_sticker_cut at sticker_right # Меняет стикер Юри на неё же с порезанными руками.
         else:
-            show y_sticker at sticker_right #Yuri's sticker
+            show y_sticker at sticker_right # Обычный стикер Юри.
         if persistent.playthrough == 2 and chapter == 2:
-            show m_sticker at sticker_m_glitch #Monika's sticker
+            show m_sticker at sticker_m_glitch # Стикер Моники.
     if transition:
-        with dissolve_scene_full #Gives the dissolve transition if the minigame isn't called with False.
+        with dissolve_scene_full # Мини-игра появляется с эффектом проявления, если команда для вызова мини-игры не содержала «(False)».
     if persistent.playthrough == 3:
-        play music ghostmenu #Change the music in Just Monika.
+        play music ghostmenu # Меняет музыку в режиме «Только Моника».
     else:
         play music t4
     $ config.skipping = False
     $ config.allow_skipping = False
-    $ allow_skipping = False #Not completely sure why skipping has to be explicitly disabled, but apparently it does..
-    if persistent.playthrough == 0 and chapter == 0: #Shows the below dialogue the first time the minigame is played.
-        call screen dialog("It's time to write a poem!\n\nPick words you think your favorite club member\nwill like. Something good might happen with\nwhoever likes your poem the most!", ok_action=Return())
-    python: #Variable initialization here. Important to note, these initialize at the start of the mini-game.
+    $ allow_skipping = False # Не совсем уверен, зачем тут явно указан запрет пропуска, но, судя по всему, так надо.
+    if persistent.playthrough == 0 and chapter == 0: # Показывает нижеприведённое диалоговое окно, если мини-игра началась впервые.
+        call screen dialog("""Пришло время написать стихотворение!
+
+Выберите слова, которые, по-вашему, подойдут нравящейся вам девушке.
+С той девушкой, которой больше всего понравится ваше стихотворение,
+у вас может произойти что-то хорошее!""", ok_action=Return()) # """ <- из-за этой фигни у меня всё внизу пошло синим, хотя подобное оформление текста разрешено - прим. пер.
+    python: # Это блок инициализации. Стоит отметить, что он проходит инициализацию после начала мини-игры.
         poemgame_glitch = False
         played_baa = False
         progress = 1
@@ -232,102 +236,99 @@ label poem(transition=True):
         natsukiZoom = 1
         yuriZoom = 1
 
-
-
-
-        # Main loop for drawing and selecting words
+        # Основной цикл для отрисовки и выбора слов.
         while True:
             ystart = 160
-##################This block of code controls the word counter.###########################################
+################## Этот блок кода управляет счётчиком выбранных слов. ###########################################
             if persistent.playthrough == 2 and chapter == 2:
-                #This makes the counter do the "111111111" thing in Act 2.
+                # Это заставляет счётчик «рисовать» единицы во Втором акте.
                 pstring = ""
                 for i in range(progress):
-                    pstring += "1" #Appends "1" to pstring each loop.
+                    pstring += "1" # Добавляет "1" в pstring с каждым выбранным словом.
             else:
                 pstring = str(progress)
-            ui.text(pstring + "/" + str(numWords), style="poemgame_text", xpos=810, ypos=80, color='#000') #This is the word counter.
-##################This block of code puts the poem words on the screen.###################################
-            for j in range(2): #In python, range() is not inclusive. So j loops from 0 to 1.
-                if j == 0: x = 440 #These two lines build columns out of the words. The first column is at 440px and the second at 680px.
-                else: x = 680
-                ui.vbox() #This is outdated UI code to create a vbox. It adds things to the vbox until it hits a ui.close()
+            ui.text(pstring + "/" + str(numWords), style="poemgame_text", xpos=810, ypos=80, color="#000") # Это счётчик слов.
+################## Этот блок кода добавляет слова для стихотворения на экран. ###################################
+            for j in range(2): # range() в Питоне не инклюзивный, поэтому j имеет значение от 0 до 1.
+                if j == 0: x = 440 # Эти две строки формируют столбцы из слов. Первый столбец смещён на 440 пкс, а второй - на 770 (в оригинале - на 680).
+                else: x = 770 # Для использования нового значения необходима «растянутая» тетрадь из русификатора от Энтузиасты Team - прим. пер.
+                ui.vbox() # Это устаревший UI-код для создания vbox. Он добавляет в vbox нижеописанное до тех пор, пока не будет объявлен ui.close()
                 for i in range(5):
-                    if persistent.playthrough == 3: #This sets all the words to "Monika" in Just Monika.
-                        s = list("Monika")
-                        for k in range(6): #This gives random corruption effects to the "Monika" words.
+                    if persistent.playthrough == 3: # Это заменяет все слова на «Моника» в режиме «Только Моника».
+                        s = list("Моника")
+                        for k in range(6): # Это добавляет различные искажения в слова «Моника».
                             if random.randint(0, 4) == 0:
                                 s[k] = ' '
                             elif random.randint(0, 4) == 0:
                                 s[k] = random.choice(nonunicode)
                         word = PoemWord("".join(s), 0, 0, 0, False)
                     elif persistent.playthrough == 2 and not poemgame_glitch and chapter >= 1 and progress < numWords and random.randint(0, 400) == 0:
-                        word = PoemWord(glitchtext(80), 0, 0, 0, True) #This gives a chance for a random word in Act 2 to be the glitched word.
-                    else: #Normal circumstances
-                        word = random.choice(wordlist) #Pick a random word out the wordlist
-                        wordlist.remove(word) #Remove the word from the list. This prevents a word from being on the screen twice.
+                        word = PoemWord(glitchtext(80), 0, 0, 0, True) # Это даёт шанс выпадения глючного слова во Втором акте.
+                    else: # Обычные обстоятельства.
+                        word = random.choice(wordlist) # Выбор случайного слова из списка слов.
+                        wordlist.remove(word) # Удаление выбранного слова из списка. Это предотвращает повторное появление искомого слова на экране.
                     ui.textbutton(word.word, clicked=ui.returns(word), text_style="poemgame_text", xpos=x, ypos=i * 56 + ystart)
-                ui.close() #Closes the vbox from above
-##################This block controls what happens when words are selected.############################
+                ui.close() # Закрывает вышеприведённый vbox
+################## Этот блок управляет тем, что должно произойти, когда было выбрано слово. ############################
             t = ui.interact()
             if not poemgame_glitch:
-                if t.glitch: #This conditional controls what happens when the glitch word is selected.
+                if t.glitch: # Это условие указывает, что должно произойти, когда было выбрано глючное слово.
                     poemgame_glitch = True
                     renpy.music.play(audio.t4g)
-                    #The below three lines are just a scene statement in python. It's exactly the same as 'scene bg white'.
+                    # Две нижеприведённые строки являются выражением «scene» в Питоне. Это ровно то же самое, что и «scene white». Третья же выводит глючный стикер Юри крупным планом.
                     renpy.scene()
                     renpy.show("white")
                     renpy.show("y_sticker glitch", at_list=[sticker_glitch])
                 elif persistent.playthrough != 3:
                     renpy.play(gui.activate_sound)
-                    if persistent.playthrough == 0: #Act 1. This makes the stickers hop when words are picked.
+                    if persistent.playthrough == 0: # Первый акт. Это заставляет стикеры подпрыгивать, когда было выбрано слово.
                         if t.sPoint >= 3:
                             renpy.show("s_sticker hop")
                         if t.nPoint >= 3:
                             renpy.show("n_sticker hop")
                         if t.yPoint >= 3:
                             renpy.show("y_sticker hop")
-                    else: #Act 2
-                        if persistent.playthrough == 2 and chapter == 2 and random.randint(0,10) == 0: renpy.show("m_sticker hop") #1/10 chance for Monika's sticker to show.
-                        elif t.nPoint > t.yPoint: renpy.show("n_sticker hop") #Since there's just Yuri and Natsuki in Act 2, whoever has the higher value for the word hops.
+                    else: # Второй акт.
+                        if persistent.playthrough == 2 and chapter == 2 and random.randint(0,10) == 0: renpy.show("m_sticker hop") # Шанс 1/10 на появление стикера Моники.
+                        elif t.nPoint > t.yPoint: renpy.show("n_sticker hop") # Так как во Втором акте у нас только Юри и Нацуки, чьё слово имеет больше очков, та и подпрыгивает.
                         elif persistent.playthrough == 2 and not persistent.seen_sticker and random.randint(0,100) == 0:
-                            renpy.show("y_sticker hopg") #"y_sticker_2g.png". 1/100 chance to see it, if we haven't seen it already.
+                            renpy.show("y_sticker hopg") # "y_sticker_2g.png". Если мы его ещё не видели, есть шанс 1/100 на то, чтобы его увидеть.
                             persistent.seen_sticker = True
-                        elif persistent.playthrough == 2 and chapter == 2: renpy.show("y_sticker_cut hop") #Yuri's cut arms sticker.
+                        elif persistent.playthrough == 2 and chapter == 2: renpy.show("y_sticker_cut hop") # Стикер Юри с порезанными руками.
                         else: renpy.show("y_sticker hop")
             else:
-                r = random.randint(0, 10) #1/10 chance to hear "baa", one time.
+                r = random.randint(0, 10) # Шанс 1/10 на то, чтобы услышать «ба-а» при выборе слова.
                 if r == 0 and not played_baa:
                     renpy.play("gui/sfx/baa.ogg")
                     played_baa = True
                 elif r <= 5: renpy.play(gui.activate_sound_glitch)
-            #Add the word's point values to the running total
+            # Добавляет значения очков к подытогам.
             sPointTotal += t.sPoint
             nPointTotal += t.nPoint
             yPointTotal += t.yPoint
             progress += 1
-            if progress > numWords: #This stops the minigame once we've picked all the words.
+            if progress > numWords: # Как только мы выбрали все слова, это завершает мини-игру.
                 break
-##################End of main loop.##################################################################
+################## Конец основного цикла. ##################################################################
 
         if persistent.playthrough == 0:
-            # For chapter 1, add 5 points to whomever we sided with
+            # В первой главе это добавляет 5 очков той девушке, на чью сторону мы встали.
             if chapter == 1:
                 exec(ch1_choice[0] + "PointTotal += 5")
-            # Logic for taking point totals and assigning poem appeal, scene order, etc.
+            # Логика подсчёта подытогов и присвоения признания, порядка сцен и т.д.
             unsorted_pointlist = {"sayori": sPointTotal, "natsuki": nPointTotal, "yuri": yPointTotal}
             pointlist = sorted(unsorted_pointlist, key=unsorted_pointlist.get)
 
-            # Set poemwinner to the highest scorer
+            # Указывает победительницу по наибольшему количеству очков.
             poemwinner[chapter] = pointlist[2]
         else:
             if nPointTotal > yPointTotal: poemwinner[chapter] = "natsuki"
             else: poemwinner[chapter] = "yuri"
 
-        # Add appeal point based on poem winner
+        # Добавляет очко признания победительнице.
         exec(poemwinner[chapter][0] + "_appeal += 1")
 
-        # Set poemappeal
+        # Указывает очки признания.
         if sPointTotal < POEM_DISLIKE_THRESHOLD: s_poemappeal[chapter] = -1
         elif sPointTotal > POEM_LIKE_THRESHOLD: s_poemappeal[chapter] = 1
         if nPointTotal < POEM_DISLIKE_THRESHOLD: n_poemappeal[chapter] = -1
@@ -335,7 +336,7 @@ label poem(transition=True):
         if yPointTotal < POEM_DISLIKE_THRESHOLD: y_poemappeal[chapter] = -1
         elif yPointTotal > POEM_LIKE_THRESHOLD: y_poemappeal[chapter] = 1
 
-        # Poem winner always has appeal 1 (loves poem)
+        # У победительницы значение признания всегда будет равно 1 (т.е. стих ей понравился).
         exec(poemwinner[chapter][0] + "_poemappeal[chapter] = 1")
 
     if persistent.playthrough == 2 and persistent.seen_eyes == None and renpy.random.randint(0,5) == 0:
@@ -364,7 +365,7 @@ label poem(transition=True):
         linear 1.0 alpha 1.0
     pause 1.0
     return
-############ Image definitions start here. #############
+############ Здесь начинаются определения изображений. #############
 image bg eyes_move:
     "images/bg/eyes.png"
     parallel:
