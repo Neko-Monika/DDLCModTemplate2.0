@@ -1,21 +1,21 @@
 
 # exceptions.rpy
-# This file contains the exceptions for certain DDLC/Template errors
-# DO NOT MODIFY THIS FILE!
+# В данном файле содержатся сообщения об исключениях во время работы DDLC/мод-шаблона
+# НЕ ИЗМЕНЯЙТЕ ЭТОТ ФАЙЛ!
 
 python early:
     
     class NotRenPyEight(Exception):
         def __str__(self):
-            return "This version of the mod template is designed for Ren'Py 8.\nEither build/run your mod on Ren'Py 8, or install the 'py2' mod template instead from scratch."
+            return "Данная версия мод-шаблона предназначена для Ren'Py 8.\nСкачайте последнюю версию SDK с официального сайта, или, если оная у вас уже есть, соберите свою модификацию на ней."
 
     class DDLCRPAsMissing(Exception):
         def __init__(self, archive):
             self.archive = archive
 
         def __str__(self):
-            return "'" + self.archive + ".rpa' was not found in the game folder. Check your DDLC installation for missing RPAs and try again."
+            return f"Файл «{self.archive}.rpa» не был найден в папке игры. Проверьте правильность установки модификации на оригинальную DDLC и повторите попытку."
 
     class IllegalModLocation(Exception):
         def __str__(self):
-            return "DDLC mods/mod projects cannot be run from this folder as it is a OneDrive or another cloud folder.\nMove your mod/mod project to another location and try again."
+            return "Модификации для DDLC и проекты оных не могут быть запущены из этой папки, т.к. это папка OneDrive или иного облачного хранилища.\nПереместите папку модификации/проекта в другую директорию и повторите попытку."
