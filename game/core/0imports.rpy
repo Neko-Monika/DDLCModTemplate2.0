@@ -1,36 +1,36 @@
 
 # __imports__.rpy
-# This file imports certain python modules at runtime for DDLC and template
-# features.
+# В этом файле импортируются конкретные модули Python, необходимые для DDLC
+# и функционирования шаблона, во время запуска игры.
 
 python early:
-    # For Achievements/Gallery
+    # Для Достижений и Галереи
     import math 
 
-    # For Credits
+    # Для титров
     import datetime
 
-    # For Glitchtext
+    # Для глитч-текста
     import random
 
-    # For Splash
+    # Для вступительной заставки
     import re
     import os
 
-    # For BSOD
+    # Для Синего экрана смерти
     import subprocess
     import platform
 
-    # For Gallery
+    # Для Галереи
     import threading
     import renpy.display.image as imgcore
 
 init -19 python:
-    # By default we will disable Discord RPC.
-    # To enable Discord RPC, set this to true.
-    # Recommended to set this to False if you using autoreload (Shift+R).
+    # Игровая активность в Дискорде отключена по умолчанию.
+    # Для её включения измените значение нижеуказанной переменной на True.
+    # Если вы используете Автоматическую перезагрузку (Shift+R), рекомендуется оставить значение переменной как есть.
     persistent.enable_discord = False
-    # For Discord RPC
+    # Для Игровой активности в Дискорде
     if persistent.enable_discord:
         from discord_rpc import DiscordRPC
         from pypresence import DiscordNotFound
