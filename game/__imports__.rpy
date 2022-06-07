@@ -1,27 +1,27 @@
 
 # __imports__.rpy
-# This file imports certain python modules at runtime for DDLC and template
-# features.
+# В этом файле импортируются конкретные модули Python, необходимые для DDLC
+# и функционирования шаблона, во время запуска игры.
 
 python early:
-    # For Achievements/Gallery
+    # Для Достижений и Галереи
     import math 
     from collections import OrderedDict 
 
-    # For Credits
+    # Для титров
     import datetime
 
-    # For Glitchtext
+    # Для глитч-текста
     import random
 
-    # For Splash
+    # Для вступительной заставки
     import re
     import os
 
-    # For BSOD
+    # Для Синего экрана смерти
     import subprocess
     import platform
 
-    # For Gallery
+    # Для Галереи
     import threading
     import renpy.display.image as imgcore
