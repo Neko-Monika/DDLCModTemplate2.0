@@ -13,3 +13,4 @@ errors.txt
 *.pyc
 __pycache__
 ZIPs
+.vscode/settings.json
