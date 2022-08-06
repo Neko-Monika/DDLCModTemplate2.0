@@ -8,12 +8,6 @@
 
 ## НЕ МОДИФИЦИРУЙТЕ ЭТОТ ФАЙЛ! ##
 
-# Проверяем, запущен ли мод-шаблон на Ren'Py 8
-python early:
-
-    if renpy.version_tuple < (8, 0, 0, 22062402):
-        raise NotRenPyEight
-
 label lockdown_check:
 
     $ version = renpy.version()
