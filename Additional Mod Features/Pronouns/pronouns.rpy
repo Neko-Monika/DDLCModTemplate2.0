@@ -29,10 +29,10 @@ init python:
         pronoun_temp = ""
 
 label pronoun_screen:
-    $ renpy.call_screen("pronoun_input", message="Введите первое местоимение (Он/Она)", ok_action=Function(SetPronoun, type="he"))
-    $ renpy.call_screen("pronoun_input", message="Введите второе местоимение (Его/Её)", ok_action=Function(SetPronoun, type="he's"), hes=True)
-    $ renpy.call_screen("pronoun_input", message="Введите третье местоимение (Ему/Ей)", ok_action=Function(SetPronoun, type="him"))
-    $ renpy.call_screen("pronoun_input", message="Введите четвёртое местоимение ((о) Нём/Ней)", ok_action=Function(SetPronoun, type="are"))
+    call screen pronoun_input(message=_("Введите первое местоимение (Он/Она)"), ok_action=Function(SetPronoun, type="he"))
+    call screen pronoun_input(message=_("Введите второе местоимение (Его/Её)"), ok_action=Function(SetPronoun, type="he's"), hes=True)
+    call screen pronoun_input(message=_("Введите третье местоимение (Ему/Ей)"), ok_action=Function(SetPronoun, type="him"))
+    call screen pronoun_input(message=_("Введите четвёртое местоимение ((о) Нём/Ней)"), ok_action=Function(SetPronoun, type="are"))
     return
 
 screen pronoun_input(message, ok_action, hes=False):
@@ -61,12 +61,8 @@ screen pronoun_input(message, ok_action, hes=False):
             python:
                 allowList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
                 # Бесполезно в русском языке. Оставлено для ввода английских местоимений - прим. пер.
-                if hes:
-                    allowList = allowList + "'"
-                else:
-                    allowList = allowList.replace("'", "")
 
-            input default "" value VariableInputValue("pronoun_temp") length 12 allow allowList
+            input default "" value VariableInputValue("pronoun_temp") length 12 allow f"{allowList}{chr(39) if hes else ''}"
 
             hbox:
                 xalign 0.5
