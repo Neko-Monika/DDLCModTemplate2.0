@@ -1,8 +1,11 @@
 
-To start this mod on Linux, start the mod by running './LinuxLauncher.sh' (without quotes) instead
-of running it via DDLC.sh or the mod's own SH file. This new SH file fixes a issue with mods running
-on Linux due to a import error by old Ren'Py 6 files.
+Чтобы запустить данную модификацию на ОС Linux, запустите как программу файл LinuxLauncher.sh (или
+откройте Терминал и отправьте команду "./LinuxLauncher.sh"; без кавычек). Ни в коем случае не
+запускайте как программу файл DDLC.sh или Bash-файл вашей модификации. Вышеупомянутый Bash-файл
+исправляет проблему с запуском модификаций на Linux, которая возникает из-за наличия файлов движка
+Ren'Py 6-й ревизии.
 
-If you get a error with the SH file, make sure it's set to LF and not CRLF via a Text Editor.
+Если у вас возникает ошибка при запуске Bash-файла, откройте его в текстовом редакторе и убедитесь,
+что последовательность конца строки в нём указана как LF, а не как CRLF.
 
-That is all. Happy mod playing!
+Это всё. Приятной игры!
