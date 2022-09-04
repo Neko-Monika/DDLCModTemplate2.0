@@ -829,7 +829,7 @@ image natsuki 5by = Composite((960, 960), (18, 22), "natsuki/y.png", (0, 0), "na
 image natsuki 5bz = Composite((960, 960), (18, 22), "natsuki/z.png", (0, 0), "natsuki/3b.png")
 
 # Эти определения изображения являются остатками кода определённых выражений
-# Нацуки, найденные в оригинальном релизе DDLC 1.0.
+# Нацуки, найденные в оригинальном релизе DDLC версии 1.0.
 image natsuki 1 = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 2 = Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/2r.png", (0, 0), "natsuki/1t.png")
 image natsuki 3 = Composite((960, 960), (0, 0), "natsuki/2l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")

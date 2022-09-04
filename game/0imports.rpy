@@ -33,15 +33,11 @@ python early:
     if renpy.version_tuple < (8, 0, 0, 22062402):
         raise NotRenPyEight
 
-# Игровая активность Discord будет включена *только* при том условии, если мод
-# запущен на Windows, Linux или macOS - прим. пер.
-default -20 persistent.enable_discord = renpy.variant("pc")
-
 init -19 python:
+    persistent.enable_discord = True
     # Для Игровой активности в Discord
     if persistent.enable_discord:
         from discord_rpc import DiscordRPC
-        try:
-            RPC = DiscordRPC("979471077187125248")
-        except DiscordNotFound:
-            persistent.enable_discord = False
+        from pypresence import DiscordNotFound
+        try: RPC = DiscordRPC("979471077187125248")
+        except DiscordNotFound: pass
