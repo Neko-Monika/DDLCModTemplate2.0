@@ -301,7 +301,7 @@ label splashscreen:
                         process_list[i] = f"{x}.exe"
                 except: 
                     pass            
-        else:
+        elif renpy.linux or renpy.macintosh:
             try: process_list = subprocess.check_output("ps -A --format cmd", universal_newlines=True, shell=True).strip().split("\n") # Linux
             except subprocess.CalledProcessError: process_list = subprocess.check_output("ps -A -o command", universal_newlines=True, shell=True).strip().split("\n") # MacOS
 
