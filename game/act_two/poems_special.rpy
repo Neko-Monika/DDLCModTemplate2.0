@@ -1,34 +1,34 @@
 ## poem_special.rpy
 
-# This file defines the special poems that the player can see during Act 2.
-# Only three poems are ever shown to the player which are selected at random
-# by 'splash.rpy'.
-image poem_special1 = "poem_special/poem_special1.png" # Hxppy Thoughts
-image poem_special2 = "poem_special/poem_special2.png" # Can You Hear Me?
-image poem_special3 = "poem_special/poem_special3.png" # Nothing is Real
-image poem_special4 = "poem_special/poem_special4.png" # Cutting Memento
-image poem_special5: # Stare at the dot/I love you
+# В этом файле определены особые стихотворения, которые игрок может увидеть во время прохождения Второго акта игры.
+# Игроку показываются только три таких стихотворения, которые были выбраны случайным образом во время исполнения
+# конкретного цикла в файле «splash.rpy».
+image poem_special1 = "poem_special/poem_special1.png" # Счхстлхвые мхсли
+image poem_special2 = "poem_special/poem_special2.png" # Ты меня слышишь?
+image poem_special3 = "poem_special/poem_special3.png" # Ничто не реально
+image poem_special4 = "poem_special/poem_special4.png" # Воспоминания о порезе
+image poem_special5: # Пристально смотри на точку/Я люблю тебя
     "poem_special/poem_special5a.png"
     10.0
     "poem_special/poem_special5b.png"
-image poem_special6 = "poem_special/poem_special6.png" # A Joke
-image poem_special7a = "poem_special/poem_special7a.png" # Corrupted Monika
-image poem_special7b = "poem_special/poem_special7b.png" # Corrupted Monika 2
-image poem_special8 = "poem_special/poem_special8.png" # A Dream
-image poem_special9 = "poem_special/poem_special9.png" # Things I Like About Papa
-image poem_special10 = "poem_special/poem_special10.png" # Go to Therapy
-image poem_special11 = "poem_special/poem_special11.png" # A Dream 2
+image poem_special6 = "poem_special/poem_special6.png" # Шутка
+image poem_special7a = "poem_special/poem_special7a.png" # Искажённый спрайт Моники
+image poem_special7b = "poem_special/poem_special7b.png" # Искажённый спрайт Моники 2
+image poem_special8 = "poem_special/poem_special8.png" # Сон
+image poem_special9 = "poem_special/poem_special9.png" # Что я люблю в папе
+image poem_special10 = "poem_special/poem_special10.png" # Я не могу заставить себя сходить к психотерапевту
+image poem_special11 = "poem_special/poem_special11.png" # Сон 2
 
-# This image defines the ending poem where we can either get Monika's or Dan's
-# message.
+# Это изображение, в зависимости от конкретного условия, показывает либо
+# послание Моники, либо послание Дэна.
 image poem_end = ConditionSwitch(
     "persistent.clearall == True", "poem_special/poem_end_clearall.png",
     "True", "poem_special/poem_end.png")
 
-# This label shows the special poems the player can see during their playthrough
-# of the mod. 
-# To use this, use 'call poem_special(X)' where X is the poem number to show from
-# the poem list above.
+# Этот лейбл показывает особое стихотворение, которое игрок может увидеть во время
+# прохождения модификации. 
+# Чтобы показать такое стихотворение, используйте «call poem_special(X)», где X - номер 
+# стихотворения в списке стихотворений выше.
 label poem_special(poem=1):
     $ quick_menu = False
     play sound page_turn
@@ -36,7 +36,7 @@ label poem_special(poem=1):
     if poem == 7:
         show poem_special7a as ps with Dissolve(1.0)
     else:
-        show expression "poem_special" + str(poem) as ps with Dissolve(1.0)
+        show expression f"poem_special{poem}" as ps with Dissolve(1.0)
 
     $ pause()
 
@@ -49,7 +49,7 @@ label poem_special(poem=1):
     $ quick_menu = True
     return
 
-# Backwards Compatibility
+# Обратная совместимость
 label poem_special_1:
     call poem_special(1)
     return
