@@ -10,7 +10,7 @@ define persistent.demo = False
 define persistent.steam = ("steamapps" in config.basedir.lower())
 
 # Эта переменная указывает, включён ли в модификации Режим разработчика.
-define config.developer = False
+define config.developer = "auto"
 
 # Это выражение на Python запускает модуль singleton, дабы был разрешён
 # запуск только одной копии модификации.
