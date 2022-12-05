@@ -35,8 +35,8 @@ screen extras():
                             yalign 0.5
 
                             imagebutton:
-                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (40, 75), Text(_("Галерея"), style="extras_text"))
-                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (38, 73), Text(_("Галерея"), style="extras_hover_text"))
+                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (32, 75), Text(_("Галерея"), style="extras_text"))
+                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/gallery.png", (30, 73), Text(_("Галерея"), style="extras_hover_text"))
                                 action ShowMenu("gallery")
 
                 if enable_achievements: 
@@ -49,8 +49,8 @@ screen extras():
                             yalign 0.5
 
                             imagebutton:
-                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (40, 75), Text(_("Награды"), style="extras_text"))
-                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (38, 73), Text(_("Награды"), style="extras_hover_text"))
+                                idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (29, 75), Text(_("Награды"), style="extras_text"))
+                                hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/achievements.png", (27, 73), Text(_("Награды"), style="extras_hover_text"))
                                 action ShowMenu("achievements")
 
                 frame:
@@ -62,8 +62,8 @@ screen extras():
                         yalign 0.5
 
                         imagebutton:
-                            idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (40, 75), Text(_("Авторы"), style="extras_text"))
-                            hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (38, 73), Text(_("Авторы"), style="extras_hover_text"))
+                            idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (36, 75), Text(_("Авторы"), style="extras_text"))
+                            hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (34, 73), Text(_("Авторы"), style="extras_hover_text"))
                             action ShowMenu("about")
 
                 ## Увеличьте значение рядов или столбцов перед тем, как раскомментировать это
@@ -83,6 +83,7 @@ screen extras():
             vbar value YScrollValue("ext") xalign 0.99 ysize 560
 
 style extras_text:
+    font gui.interface_font
     color "#000"
     outlines []
     size 20
