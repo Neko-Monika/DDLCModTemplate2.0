@@ -1,4 +1,4 @@
-﻿
+
 translate None strings:
 
     # renpy/common/00accessibility.rpy:28
@@ -277,65 +277,69 @@ translate None strings:
     old "%b %d, %H:%M"
     new "%d %b, %H:%M"
 
-    # renpy/common/00action_file.rpy:363
+    # renpy/common/00action_file.rpy:364
     old "Save slot %s: [text]"
     new "Слот сохранения %s: [text]"
 
-    # renpy/common/00action_file.rpy:444
+    # renpy/common/00action_file.rpy:445
     old "Load slot %s: [text]"
     new "Слот загрузки %s: [text]"
 
-    # renpy/common/00action_file.rpy:497
+    # renpy/common/00action_file.rpy:498
     old "Delete slot [text]"
     new "Удалить слот [text]"
 
-    # renpy/common/00action_file.rpy:576
+    # renpy/common/00action_file.rpy:577
     old "File page auto"
     new "Автосохранения"
 
-    # renpy/common/00action_file.rpy:578
+    # renpy/common/00action_file.rpy:579
     old "File page quick"
     new "Быстрые сохранения"
 
-    # renpy/common/00action_file.rpy:580
+    # renpy/common/00action_file.rpy:581
     old "File page [text]"
     new "Страница сохранений [text]"
 
-    # renpy/common/00action_file.rpy:638
+    # renpy/common/00action_file.rpy:639
     old "Page {}"
     new "{} страница"
 
-    # renpy/common/00action_file.rpy:638
+    # renpy/common/00action_file.rpy:639
     old "Automatic saves"
     new "Автосохранения"
 
-    # renpy/common/00action_file.rpy:638
+    # renpy/common/00action_file.rpy:639
     old "Quick saves"
     new "Быстрые сохранения"
 
-    # renpy/common/00action_file.rpy:779
+    # renpy/common/00action_file.rpy:780
     old "Next file page."
     new "Следующая страница сохранений"
 
-    # renpy/common/00action_file.rpy:851
+    # renpy/common/00action_file.rpy:852
     old "Previous file page."
     new "Предыдущая страница сохранений"
 
-    # renpy/common/00action_file.rpy:912
+    # renpy/common/00action_file.rpy:913
     old "Quick save complete."
     new "Быстрое сохранение завершено."
 
-    # renpy/common/00action_file.rpy:930
+    # renpy/common/00action_file.rpy:931
     old "Quick save."
     new "Быстрое сохранение"
 
-    # renpy/common/00action_file.rpy:949
+    # renpy/common/00action_file.rpy:950
     old "Quick load."
     new "Быстрая загрузка"
 
-    # renpy/common/00action_other.rpy:375
+    # renpy/common/00action_other.rpy:381
     old "Language [text]"
     new "Язык [text]"
+
+    # renpy/common/00action_other.rpy:703
+    old "Open [text] directory."
+    new "Открыть папку [text]."
 
     # renpy/common/00director.rpy:708
     old "The interactive director is not enabled here."
@@ -429,247 +433,259 @@ translate None strings:
     old "Audio Filename:"
     new "Имя файла:"
 
-    # renpy/common/00gui.rpy:384
+    # renpy/common/00gui.rpy:445
     old "Are you sure?"
     new "Вы уверены?"
 
-    # renpy/common/00gui.rpy:385
+    # renpy/common/00gui.rpy:446
     old "Are you sure you want to delete this save?"
     new "Вы уверены, что хотите удалить это сохранение?"
 
-    # renpy/common/00gui.rpy:386
+    # renpy/common/00gui.rpy:447
     old "Are you sure you want to overwrite your save?"
     new "Вы уверены, что хотите перезаписать ваше сохранение?"
 
-    # renpy/common/00gui.rpy:387
+    # renpy/common/00gui.rpy:448
     old "Loading will lose unsaved progress.\nAre you sure you want to do this?"
     new "Загрузка игры приведёт к потере несохранённого прогресса.\nВы уверены, что хотите это сделать?"
 
-    # renpy/common/00gui.rpy:388
+    # renpy/common/00gui.rpy:449
     old "Are you sure you want to quit?"
     new "Вы уверены, что хотите выйти?"
 
-    # renpy/common/00gui.rpy:389
+    # renpy/common/00gui.rpy:450
     old "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
     new "Вы уверены, что хотите вернуться в главное меню?\nЭто приведёт к потере несохранённого прогресса."
 
-    # renpy/common/00gui.rpy:390
+    # renpy/common/00gui.rpy:451
     old "Are you sure you want to end the replay?"
     new "Вы уверены, что хотите завершить повтор?"
 
-    # renpy/common/00gui.rpy:391
+    # renpy/common/00gui.rpy:452
     old "Are you sure you want to begin skipping?"
     new "Вы уверены, что хотите начать пропуск?"
 
-    # renpy/common/00gui.rpy:392
+    # renpy/common/00gui.rpy:453
     old "Are you sure you want to skip to the next choice?"
     new "Вы точно хотите пропустить всё до следующего выбора?"
 
-    # renpy/common/00gui.rpy:393
+    # renpy/common/00gui.rpy:454
     old "Are you sure you want to skip unseen dialogue to the next choice?"
     new "Вы уверены, что хотите пропустить непрочитанные диалоги до следующего выбора?"
 
-    # renpy/common/00keymap.rpy:306
+    # renpy/common/00keymap.rpy:310
     old "Failed to save screenshot as %s."
     new "Провалена попытка сохранить скриншот как %s."
 
-    # renpy/common/00keymap.rpy:318
+    # renpy/common/00keymap.rpy:322
     old "Saved screenshot as %s."
     new "Скриншот сохранён как %s."
 
-    # renpy/common/00library.rpy:195
+    # renpy/common/00library.rpy:230
     old "Skip Mode"
     new "Режим Пропуска"
 
-    # renpy/common/00library.rpy:281
+    # renpy/common/00library.rpy:316
     old "This program contains free software under a number of licenses, including the MIT License and GNU Lesser General Public License. A complete list of software, including links to full source code, can be found {a=https://www.renpy.org/l/license}here{/a}."
     new "Эта программа содержит свободное и открытое программное обеспечение под несколькими лицензиями, включая лицензию MIT и GNU Lesser General Public. Полный список лицензий, включая ссылки на полный исходный код, можно найти {a=https://www.renpy.org/l/license}здесь{/a}."
 
-    # renpy/common/00preferences.rpy:254
+    # renpy/common/00preferences.rpy:259
     old "display"
     new "режим экрана"
 
-    # renpy/common/00preferences.rpy:266
+    # renpy/common/00preferences.rpy:271
     old "transitions"
     new "переходы"
 
-    # renpy/common/00preferences.rpy:275
+    # renpy/common/00preferences.rpy:280
     old "skip transitions"
     new "пропускать переходы"
 
-    # renpy/common/00preferences.rpy:277
+    # renpy/common/00preferences.rpy:282
     old "video sprites"
     new "видео-спрайты"
 
-    # renpy/common/00preferences.rpy:286
+    # renpy/common/00preferences.rpy:291
     old "show empty window"
     new "показывать пустое окно диалога"
 
-    # renpy/common/00preferences.rpy:295
+    # renpy/common/00preferences.rpy:300
     old "text speed"
     new "скорость текста"
 
-    # renpy/common/00preferences.rpy:303
+    # renpy/common/00preferences.rpy:308
     old "joystick"
     new "джойстик"
 
-    # renpy/common/00preferences.rpy:303
+    # renpy/common/00preferences.rpy:308
     old "joystick..."
     new "джойстик..."
 
-    # renpy/common/00preferences.rpy:310
+    # renpy/common/00preferences.rpy:315
     old "skip"
     new "пропускать"
 
-    # renpy/common/00preferences.rpy:313
+    # renpy/common/00preferences.rpy:318
     old "skip unseen [text]"
     new "пропускать весь [text]"
 
-    # renpy/common/00preferences.rpy:318
+    # renpy/common/00preferences.rpy:323
     old "skip unseen text"
     new "пропускать весь текст"
 
-    # renpy/common/00preferences.rpy:320
+    # renpy/common/00preferences.rpy:325
     old "begin skipping"
     new "начать пропуск"
 
-    # renpy/common/00preferences.rpy:324
+    # renpy/common/00preferences.rpy:329
     old "after choices"
     new "после выборов"
 
-    # renpy/common/00preferences.rpy:331
+    # renpy/common/00preferences.rpy:336
     old "skip after choices"
     new "пропускать после выборов"
 
-    # renpy/common/00preferences.rpy:333
+    # renpy/common/00preferences.rpy:338
     old "auto-forward time"
     new "скорость авточтения"
 
-    # renpy/common/00preferences.rpy:347
+    # renpy/common/00preferences.rpy:352
     old "auto-forward"
     new "авточтение"
 
-    # renpy/common/00preferences.rpy:354
+    # renpy/common/00preferences.rpy:359
     old "Auto forward"
     new "Авточтение"
 
-    # renpy/common/00preferences.rpy:357
+    # renpy/common/00preferences.rpy:362
     old "auto-forward after click"
     new "продолжать авточтение после клика"
 
-    # renpy/common/00preferences.rpy:366
+    # renpy/common/00preferences.rpy:371
     old "automatic move"
     new "автоматически передвигать мышь к кнопке"
 
-    # renpy/common/00preferences.rpy:375
+    # renpy/common/00preferences.rpy:380
     old "wait for voice"
     new "ждать голос"
 
-    # renpy/common/00preferences.rpy:384
+    # renpy/common/00preferences.rpy:389
     old "voice sustain"
     new "не останавливать голос"
 
-    # renpy/common/00preferences.rpy:393
+    # renpy/common/00preferences.rpy:398
     old "self voicing"
     new "озвучка через синтезатор речи"
 
-    # renpy/common/00preferences.rpy:402
+    # renpy/common/00preferences.rpy:407
     old "self voicing volume drop"
     new "уменьшение громкости при озвучке через синтезатор речи"
 
-    # renpy/common/00preferences.rpy:410
+    # renpy/common/00preferences.rpy:415
     old "clipboard voicing"
     new "синтез речи из буфера обмена"
 
-    # renpy/common/00preferences.rpy:419
+    # renpy/common/00preferences.rpy:424
     old "debug voicing"
     new "режим дебага синтеза речи"
 
-    # renpy/common/00preferences.rpy:428
+    # renpy/common/00preferences.rpy:433
     old "emphasize audio"
     new "усилить громкость заранее заданных звуковых каналов за счёт приглушения остальных каналов"
 
-    # renpy/common/00preferences.rpy:437
+    # renpy/common/00preferences.rpy:442
     old "rollback side"
     new "сторона отката"
 
-    # renpy/common/00preferences.rpy:447
+    # renpy/common/00preferences.rpy:452
     old "gl powersave"
     new "настройка графики. Экономия энергии"
 
-    # renpy/common/00preferences.rpy:453
+    # renpy/common/00preferences.rpy:458
     old "gl framerate"
     new "настройка графики. Частота кадров"
 
-    # renpy/common/00preferences.rpy:456
+    # renpy/common/00preferences.rpy:461
     old "gl tearing"
     new "настройка графики. Разрывание кадров"
 
-    # renpy/common/00preferences.rpy:459
+    # renpy/common/00preferences.rpy:464
     old "font transform"
     new "преобразование шрифта"
 
-    # renpy/common/00preferences.rpy:462
+    # renpy/common/00preferences.rpy:467
     old "font size"
     new "размер шрифта"
 
-    # renpy/common/00preferences.rpy:470
+    # renpy/common/00preferences.rpy:475
     old "font line spacing"
     new "межстрочный интервал"
 
-    # renpy/common/00preferences.rpy:478
+    # renpy/common/00preferences.rpy:483
     old "system cursor"
     new "системный курсор"
 
-    # renpy/common/00preferences.rpy:487
+    # renpy/common/00preferences.rpy:492
     old "renderer menu"
     new "меню рендерера"
 
-    # renpy/common/00preferences.rpy:490
+    # renpy/common/00preferences.rpy:495
     old "accessibility menu"
     new "меню специальных возможностей"
 
-    # renpy/common/00preferences.rpy:493
+    # renpy/common/00preferences.rpy:498
     old "high contrast text"
     new "высококонтрастный текст"
 
-    # renpy/common/00preferences.rpy:512
+    # renpy/common/00preferences.rpy:507
+    old "audio when minimized"
+    new "звук при сворачивании окна"
+
+    # renpy/common/00preferences.rpy:527
+    old "main volume"
+    new "общая громкость"
+
+    # renpy/common/00preferences.rpy:528
     old "music volume"
     new "громкость музыки"
 
-    # renpy/common/00preferences.rpy:513
+    # renpy/common/00preferences.rpy:529
     old "sound volume"
     new "громкость звуков"
 
-    # renpy/common/00preferences.rpy:514
+    # renpy/common/00preferences.rpy:530
     old "voice volume"
     new "громкость голоса"
 
-    # renpy/common/00preferences.rpy:515
+    # renpy/common/00preferences.rpy:531
+    old "mute main"
+    new "режим без звука"
+
+    # renpy/common/00preferences.rpy:532
     old "mute music"
     new "без музыки"
 
-    # renpy/common/00preferences.rpy:516
+    # renpy/common/00preferences.rpy:533
     old "mute sound"
     new "без звуков"
 
-    # renpy/common/00preferences.rpy:517
+    # renpy/common/00preferences.rpy:534
     old "mute voice"
     new "без голоса"
 
-    # renpy/common/00preferences.rpy:518
+    # renpy/common/00preferences.rpy:535
     old "mute all"
     new "режим без звука"
 
-    # renpy/common/00preferences.rpy:599
+    # renpy/common/00preferences.rpy:616
     old "Clipboard voicing enabled. Press 'shift+C' to disable."
     new "Озвучка буфера обмена включена. Нажмите 'shift+C', чтобы отключить её."
 
-    # renpy/common/00preferences.rpy:601
+    # renpy/common/00preferences.rpy:618
     old "Self-voicing would say \"[renpy.display.tts.last]\". Press 'alt+shift+V' to disable."
     new "Синтезатор речи должен сказать \"[renpy.display.tts.last]\". Нажмите 'alt+shift+V', чтобы отключить его."
 
-    # renpy/common/00preferences.rpy:603
+    # renpy/common/00preferences.rpy:620
     old "Self-voicing enabled. Press 'v' to disable."
     new "Синтезатор речи включён. Нажмите 'v', чтобы отключить его."
 
@@ -777,23 +793,23 @@ translate None strings:
     old "Type to filter: "
     new "Текущий фильтр: "
 
-    # renpy/common/_developer/developer.rpym:631
+    # renpy/common/_developer/developer.rpym:633
     old "Textures: [tex_count] ([tex_size_mb:.1f] MB)"
     new "Текстур: [tex_count] ([tex_size_mb:.1f] МБ)"
 
-    # renpy/common/_developer/developer.rpym:635
+    # renpy/common/_developer/developer.rpym:637
     old "Image cache: [cache_pct:.1f]% ([cache_size_mb:.1f] MB)"
     new "Кеш изображений: [cache_pct:.1f]% ([cache_size_mb:.1f] МБ)"
 
-    # renpy/common/_developer/developer.rpym:645
+    # renpy/common/_developer/developer.rpym:647
     old "✔ "
     new "✔ "
 
-    # renpy/common/_developer/developer.rpym:648
+    # renpy/common/_developer/developer.rpym:650
     old "✘ "
     new "✘ "
 
-    # renpy/common/_developer/developer.rpym:653
+    # renpy/common/_developer/developer.rpym:655
     old "\n{color=#cfc}✔ predicted image (good){/color}\n{color=#fcc}✘ unpredicted image (bad){/color}\n{color=#fff}Drag to move.{/color}"
     new "\n{color=#cfc}✔ предсказанное изображение (хорошо){/color}\n{color=#fcc}✘ внезапное изображение (плохо){/color}\n{color=#fff}Нажмите, чтобы передвинуть.{/color}"
 
@@ -845,115 +861,115 @@ translate None strings:
     old "Contacting App Store\nPlease Wait..."
     new "Связываюсь с App Store\nПожалуйста, ждите..."
 
-    # renpy/common/00updater.rpy:391
+    # renpy/common/00updater.rpy:419
     old "The Ren'Py Updater is not supported on mobile devices."
     new "Ren'Py Updater не поддерживается на мобильных устройствах."
 
-    # renpy/common/00updater.rpy:520
+    # renpy/common/00updater.rpy:548
     old "An error is being simulated."
     new "Симулируется ошибка."
 
-    # renpy/common/00updater.rpy:704
+    # renpy/common/00updater.rpy:738
     old "Either this project does not support updating, or the update status file was deleted."
     new "Или этот проект не поддерживает обновление, или файл статуса обновления был удалён."
 
-    # renpy/common/00updater.rpy:718
+    # renpy/common/00updater.rpy:752
     old "This account does not have permission to perform an update."
     new "У этого аккаунта нет прав проводить обновление."
 
-    # renpy/common/00updater.rpy:721
+    # renpy/common/00updater.rpy:755
     old "This account does not have permission to write the update log."
     new "У этого аккаунта нет прав писать лог обновления."
 
-    # renpy/common/00updater.rpy:746
+    # renpy/common/00updater.rpy:783
     old "Could not verify update signature."
     new "Не могу верифицировать подпись обновления."
 
-    # renpy/common/00updater.rpy:1013
+    # renpy/common/00updater.rpy:1084
     old "The update file was not downloaded."
     new "Файл обновления не был загружен."
 
-    # renpy/common/00updater.rpy:1031
+    # renpy/common/00updater.rpy:1102
     old "The update file does not have the correct digest - it may have been corrupted."
     new "Файл обновления не содержит корректного дайджеста — он может быть повреждён."
 
-    # renpy/common/00updater.rpy:1181
+    # renpy/common/00updater.rpy:1252
     old "While unpacking {}, unknown type {}."
     new "При распаковке {} обнаружен неизвестный тип {}."
 
-    # renpy/common/00updater.rpy:1553
+    # renpy/common/00updater.rpy:1624
     old "Updater"
     new "Обновление"
 
-    # renpy/common/00updater.rpy:1560
+    # renpy/common/00updater.rpy:1631
     old "An error has occured:"
     new "Возникла ошибка:"
 
-    # renpy/common/00updater.rpy:1562
+    # renpy/common/00updater.rpy:1633
     old "Checking for updates."
     new "Проверка обновлений."
 
-    # renpy/common/00updater.rpy:1564
+    # renpy/common/00updater.rpy:1635
     old "This program is up to date."
     new "Эта программа обновлена."
 
-    # renpy/common/00updater.rpy:1566
+    # renpy/common/00updater.rpy:1637
     old "[u.version] is available. Do you want to install it?"
     new "[u.version] доступна. Вы хотите её установить?"
 
-    # renpy/common/00updater.rpy:1568
+    # renpy/common/00updater.rpy:1639
     old "Preparing to download the updates."
     new "Подготовка к загрузке обновлений."
 
-    # renpy/common/00updater.rpy:1570
+    # renpy/common/00updater.rpy:1641
     old "Downloading the updates."
     new "Загрузка обновлений."
 
-    # renpy/common/00updater.rpy:1572
+    # renpy/common/00updater.rpy:1643
     old "Unpacking the updates."
     new "Распаковка обновлений."
 
-    # renpy/common/00updater.rpy:1574
+    # renpy/common/00updater.rpy:1645
     old "Finishing up."
     new "Завершаю..."
 
-    # renpy/common/00updater.rpy:1576
+    # renpy/common/00updater.rpy:1647
     old "The updates have been installed. The program will restart."
     new "Обновления установлены. Программа будет перезапущена."
 
-    # renpy/common/00updater.rpy:1578
+    # renpy/common/00updater.rpy:1649
     old "The updates have been installed."
     new "Обновления были установлены."
 
-    # renpy/common/00updater.rpy:1580
+    # renpy/common/00updater.rpy:1651
     old "The updates were cancelled."
     new "Обновления были отменены."
 
-    # renpy/common/00updater.rpy:1595
+    # renpy/common/00updater.rpy:1666
     old "Proceed"
     new "Продолжить"
 
-    # renpy/common/00compat.rpy:324
+    # renpy/common/00compat.rpy:371
     old "Fullscreen"
     new "Полный"
 
-    # renpy/common/00gallery.rpy:590
+    # renpy/common/00gallery.rpy:627
     old "Image [index] of [count] locked."
     new "Изображение [index] из [count] закрыто."
 
-    # renpy/common/00gallery.rpy:610
+    # renpy/common/00gallery.rpy:647
     old "prev"
     new "пред"
 
-    # renpy/common/00gallery.rpy:611
+    # renpy/common/00gallery.rpy:648
     old "next"
     new "след"
 
-    # renpy/common/00gallery.rpy:612
+    # renpy/common/00gallery.rpy:649
     old "slideshow"
     new "слайд-шоу"
 
-    # renpy/common/00gallery.rpy:613
+    # renpy/common/00gallery.rpy:650
     old "return"
     new "вернуться"
 
@@ -1097,155 +1113,159 @@ translate None strings:
     old "Back (B)"
     new "Back (B)"
 
-    # renpy/common/_errorhandling.rpym:553
+    # renpy/common/_errorhandling.rpym:555
     old "Open"
     new "Журнал"
 
-    # renpy/common/_errorhandling.rpym:555
+    # renpy/common/_errorhandling.rpym:557
     old "Opens the traceback.txt file in a text editor."
     new "Открывает файл traceback.txt в текстовом редакторе."
 
-    # renpy/common/_errorhandling.rpym:557
+    # renpy/common/_errorhandling.rpym:559
     old "Copy BBCode"
     new "Скопировать как BBCode"
 
-    # renpy/common/_errorhandling.rpym:559
+    # renpy/common/_errorhandling.rpym:561
     old "Copies the traceback.txt file to the clipboard as BBcode for forums like https://lemmasoft.renai.us/."
     new "Копирует файл traceback.txt в буфер обмена как BBCode для форумов типа https://lemmasoft.renai.us/."
 
-    # renpy/common/_errorhandling.rpym:561
+    # renpy/common/_errorhandling.rpym:563
     old "Copy Markdown"
     new "Скопировать как Markdown"
 
-    # renpy/common/_errorhandling.rpym:563
+    # renpy/common/_errorhandling.rpym:565
     old "Copies the traceback.txt file to the clipboard as Markdown for Discord."
     new "Копирует файл traceback.txt в буфер обмена как Markdown для Дискорда."
 
-    # renpy/common/_errorhandling.rpym:592
+    # renpy/common/_errorhandling.rpym:594
     old "An exception has occurred."
     new "Возникло исключение."
 
-    # renpy/common/_errorhandling.rpym:615
+    # renpy/common/_errorhandling.rpym:617
     old "Rollback"
     new "Назад"
 
-    # renpy/common/_errorhandling.rpym:617
+    # renpy/common/_errorhandling.rpym:619
     old "Attempts a roll back to a prior time, allowing you to save or choose a different choice."
     new "Пытается вернуться назад, позволяя вам сохраниться или принять другой выбор."
 
-    # renpy/common/_errorhandling.rpym:620
+    # renpy/common/_errorhandling.rpym:622
     old "Ignore"
     new "Игнорировать"
 
-    # renpy/common/_errorhandling.rpym:624
+    # renpy/common/_errorhandling.rpym:626
     old "Ignores the exception, allowing you to continue."
     new "Игнорирует это исключение, позволяя вам продолжить."
 
-    # renpy/common/_errorhandling.rpym:626
+    # renpy/common/_errorhandling.rpym:628
     old "Ignores the exception, allowing you to continue. This often leads to additional errors."
     new "Игнорирует это исключение, позволяя вам продолжить. Зачастую это ведёт к дополнительным ошибкам."
 
-    # renpy/common/_errorhandling.rpym:630
+    # renpy/common/_errorhandling.rpym:632
     old "Reload"
     new "Перезагрузить"
 
-    # renpy/common/_errorhandling.rpym:632
+    # renpy/common/_errorhandling.rpym:634
     old "Reloads the game from disk, saving and restoring game state if possible."
     new "Перезагружает игру с диска, сохраняя и восстанавливая её состояние, если это возможно."
 
-    # renpy/common/_errorhandling.rpym:635
+    # renpy/common/_errorhandling.rpym:637
     old "Console"
     new "Консоль"
 
-    # renpy/common/_errorhandling.rpym:637
+    # renpy/common/_errorhandling.rpym:639
     old "Opens a console to allow debugging the problem."
     new "Открывает консоль, позволяющую отладить проблему."
 
-    # renpy/common/_errorhandling.rpym:650
+    # renpy/common/_errorhandling.rpym:652
     old "Quits the game."
     new "Выходит из игры."
 
-    # renpy/common/_errorhandling.rpym:671
+    # renpy/common/_errorhandling.rpym:673
     old "Parsing the script failed."
     new "Обработка сценария завершилась неудачно."
 
-    # renpy/common/00console.rpy:492
+    # renpy/common/00console.rpy:524
     old "Press <esc> to exit console. Type help for help.\n"
     new "Нажмите <esc>, чтобы выйти из консоли. Введите help для помощи.\n"
 
-    # renpy/common/00console.rpy:496
+    # renpy/common/00console.rpy:528
     old "Ren'Py script enabled."
     new "Ren'Py script активирован."
 
-    # renpy/common/00console.rpy:498
+    # renpy/common/00console.rpy:530
     old "Ren'Py script disabled."
     new "Ren'Py script деактивирован."
 
-    # renpy/common/00console.rpy:747
+    # renpy/common/00console.rpy:779
     old "help: show this help"
     new "help: показывает помощь"
 
-    # renpy/common/00console.rpy:752
+    # renpy/common/00console.rpy:784
     old "commands:\n"
     new "команды:\n"
 
-    # renpy/common/00console.rpy:762
+    # renpy/common/00console.rpy:794
     old " <renpy script statement>: run the statement\n"
     new " <оператор renpy script>: запуск оператора\n"
 
-    # renpy/common/00console.rpy:764
+    # renpy/common/00console.rpy:796
     old " <python expression or statement>: run the expression or statement"
     new " <выражение или оператор python>: запустить выражение или оператор"
 
-    # renpy/common/00console.rpy:772
+    # renpy/common/00console.rpy:804
     old "clear: clear the console history"
     new "clear: очищает историю консоли"
 
-    # renpy/common/00console.rpy:776
+    # renpy/common/00console.rpy:808
     old "exit: exit the console"
     new "exit: выход из консоли"
 
-    # renpy/common/00console.rpy:784
+    # renpy/common/00console.rpy:816
+    old "stack: print the return stack"
+    new "stack: выводит стэк возврата (return stack)"
+
+    # renpy/common/00console.rpy:838
     old "load <slot>: loads the game from slot"
     new "load <слот>: загружает игру из выбранного слота"
 
-    # renpy/common/00console.rpy:797
+    # renpy/common/00console.rpy:851
     old "save <slot>: saves the game in slot"
     new "save <слот>: сохраняет игру в выбранный слот"
 
-    # renpy/common/00console.rpy:808
+    # renpy/common/00console.rpy:862
     old "reload: reloads the game, refreshing the scripts"
     new "reload: перезагружает игру, обновляет скрипты"
 
-    # renpy/common/00console.rpy:816
+    # renpy/common/00console.rpy:870
     old "watch <expression>: watch a python expression\n watch short: makes the representation of traced expressions short (default)\n watch long: makes the representation of traced expressions as is"
     new "watch <выражение>: наблюдать за выражением python\n watch short: укорачивает отображение отслеживаемых выражений (по умолчанию)\n watch long: делает отображение отслеживаемых выражений как есть"
 
-    # renpy/common/00console.rpy:851
+    # renpy/common/00console.rpy:907
     old "unwatch <expression>: stop watching an expression"
     new "unwatch <выражение>: прекратить наблюдать за выражением"
 
-    # renpy/common/00console.rpy:886
+    # renpy/common/00console.rpy:953
     old "unwatchall: stop watching all expressions"
     new "unwatchall: глобальное прекращение наблюдения"
 
-    # renpy/common/00console.rpy:903
+    # renpy/common/00console.rpy:974
     old "jump <label>: jumps to label"
     new "jump <label>: прыжок на метку"
 
-    # renpy/common/00console.rpy:919
+    # renpy/common/00console.rpy:990
     old "short: Shorten the representation of objects on the console (default)."
     new "short: Сокращённое представление обектов (repr) в консоли (по умолчанию)."
 
-    # renpy/common/00console.rpy:923
+    # renpy/common/00console.rpy:994
     old "long: Print the full representation of objects on the console."
     new "long: Выводить полное представление обектов (repr) в консоли."
 
-    # renpy/common/00console.rpy:927
+    # renpy/common/00console.rpy:998
     old "escape: Enables escaping of unicode symbols in unicode strings."
     new "escape: Включает экранирование Unicode символов в строках unicode."
 
-    # renpy/common/00console.rpy:931
+    # renpy/common/00console.rpy:1002
     old "unescape: Disables escaping of unicode symbols in unicode strings and print it as is (default)."
     new "unescape: Выключает экранирование Unicode символов в строках unicode и выводит их как есть (по умолчанию)."
 
