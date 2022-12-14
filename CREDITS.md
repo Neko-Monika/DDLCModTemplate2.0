@@ -1,20 +1,27 @@
 
-# Credits
-Special thanks to the following for contributing to the mod template
-> This list goes from the past to present.
+# Авторы
+Выражаю отдельную благодарность за вклад в создание мод-шаблона следующим людям:
+> Вкладчики перечислены по хронологии.
 
-- Dan Salvato (DDLC)
+- Дэн Салвато (DDLC)
 - renpytom (Ren'Py)
-- MAS Team (template base before revamping)
+- Команда MAS (база шаблона до переделки)
 - alicerunsonfedora (Xcode)
-- Terra (In-depth poem game)
+- Terra (подробное руководство по мини-игре про написание стихотворений)
 - Yagamirai01 (NVL)
-- Alexxonder (Auto Color Adjustments)
-- Elckarow (Python 3 updates, New poem responses/effects)
-- NekoLaiS (Cryllic compatibility)
-- The DDMC Community (Feature suggestions and feedback)
-- Pseurae (Donation/Act 3 GL2 Fix)
-- Lezalith (New Console (4.1.1+))
-- RS/6000 (New Mod Template Logo (4.2.1+))
-- Tulkas (Android Gestures)
-- FiT (Weiss Chibi Branding Icon Design)
+- Alexxonder (автоматическая цветокоррекция)
+- Elckarow (обновления под Python 3, новые реакции на стихи/эффекты)
+- NekoLaiS (совместимость с кириллицей)
+- Сообщество DDMC (предложения по функциям и отзывы)
+- Pseurae (пожертвования/исправление спецэффектов в третьем акте)
+- Lezalith (новая консоль (4.1.1+))
+- RS/6000 (новый логотип мод-шаблона (4.2.1+))
+- Tulkas (жесты на ОС Android)
+- FiT (дизайн значка для брендинга с чиби Weiss)
+
+# Перевод на русский
+
+- Энтузиасты Team (перевод оригинальной DDLC)
+- Русскоговорящие вкладчики репозитория renpy на GitHub (базовый перевод интерфейса)
+- Amanda Watson (скриптовая и текстовая составляющие)
+- Inui-senpai (графическая составляющая)
