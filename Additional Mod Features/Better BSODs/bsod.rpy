@@ -3,22 +3,6 @@
 # bsod.rpy
 # В этом файле содержится код экрана для отображения ложного Синего экрана смерти.
 
-## Экран Синего экрана смерти ############################################################
-##
-## Этот экран используется для мимикрии СЭС/паники ядра на компьютере игроков на всех
-## возможных платформах (на мобильных устройствах будет использоваться экран паники ОС Linux).
-##
-## Синтаксис:
-## bsodCode - Код ошибки, который вы хотите показать игроку. Если не дано, будет 
-##            подставлено «DDLC_ESCAPE_PLAN_FAILED».
-## bsodFile (только Windows 7) - Мимикрия имени файла, из-за которого 
-##            возникла проблема. Если не дано, будет подставлено «libGLESv2.dll».
-## rsod (только Windows 11) - Меняет Чёрный ЭС Windows 11 на Красный.
-##
-## Примеры:
-## show screen bsod("DOKI_DOKI", "renpy32.dll", False) 
-## show screen bsod("EILEEN_EXCEPTION_NOT_HANDLED", rsod=True)
-
 init python:
     cursor = 0
 
@@ -52,6 +36,21 @@ init python:
         try: osVer = tuple(map(int, subprocess.check_output("powershell (Get-WmiObject -class Win32_OperatingSystem).Version", universal_newlines=True, shell=True).split("."))) # Vista+
         except: osVer = tuple(map(int, platform.version().split("."))) or (5, 1, 2600) # XP возвращает JIC (но Ren'Py 8 даже не поддерживает XP...)
 
+## Экран Синего экрана смерти ############################################################
+##
+## Этот экран используется для мимикрии СЭС/паники ядра на компьютере игроков на всех
+## возможных платформах (на мобильных устройствах будет использоваться экран паники ОС Linux).
+##
+## Синтаксис:
+## bsodCode - Код ошибки, который вы хотите показать игроку. Если не дано, будет 
+##            подставлено «DDLC_ESCAPE_PLAN_FAILED».
+## bsodFile (только Windows 7) - Мимикрия имени файла, из-за которого 
+##            возникла проблема. Если не дано, будет подставлено «libGLESv2.dll».
+## rsod (только Windows 11) - Меняет Чёрный ЭС Windows 11 на Красный.
+##
+## Примеры:
+## show screen bsod("DOKI_DOKI", "renpy32.dll", False) 
+## show screen bsod("EILEEN_EXCEPTION_NOT_HANDLED", rsod=True)
 screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=False):
 
     layer "master"

@@ -3,6 +3,12 @@
 # extras_screen.rpy
 # В этом файле содержится код экрана для меню Доп. контента, которое отображает 
 # кнопки перехода на другие экраны (Достижения/Галерея).
+#
+# Для добавления нового слота в этом меню увеличьте число строк или столбцов, а затем скопируйте
+# и вставьте нижеприведённые рамки для основы вашего отдельного пункта меню Доп. контента.
+# Убедитесь, что vpgrid заполнен, в противном случае у вас возникнет исключение.
+# Используйте `null` (без знаков `), если вам нужно заполнить пустое пространство, либо добавьте
+# свойство `allow_underfull True` (также без знаков `).
 
 default enable_gallery = True
 default enable_achievements = True
@@ -65,20 +71,6 @@ screen extras():
                             idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (36, 75), Text(_("Авторы"), style="extras_text"))
                             hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/about.png", (34, 73), Text(_("Авторы"), style="extras_hover_text"))
                             action ShowMenu("about")
-
-                ## Увеличьте значение рядов или столбцов перед тем, как раскомментировать это
-                # frame:
-                #     xsize 160
-                #     ysize 140
-
-                #     vbox:
-                #         xalign 0.5
-                #         yalign 0.5
-        
-                #         imagebutton:
-                #             idle Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/ost_player.png", (40, 75), Text(_("Проигрыватель саундтреков DDLC"), style="extras_text"))
-                #             hover Composite((150, 130), (50, 20), "mod_assets/mod_extra_images/ost_player.png", (38, 73), Text(_("Проигрыватель саундтреков DDLC"), style="extras_hover_text"))
-                #             action [ShowMenu("new_music_room"), Function(ost_start)]
 
             vbar value YScrollValue("ext") xalign 0.99 ysize 560
 

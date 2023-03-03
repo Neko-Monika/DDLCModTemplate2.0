@@ -26,6 +26,8 @@ init -1 python in gallery:
     #          спрайтом персонажа.
     # already_unlocked - Эта переменная указывает, что изображение будет
     #                    открытым сразу же после запуска игры.
+    #
+    # Для разблокировки изображения пропишите `$ X.unlock()` (без знаков `; где X - название переменной вашего изображения в Галерее).
     class GalleryImage:
 
         def __init__(self, image, small_size=None, name=None, artist=None, sprite=False, already_unlocked=False):
