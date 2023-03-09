@@ -1121,6 +1121,208 @@ style viewframe_text is confirm_prompt_text:
 #             textbutton _("Сброс") action [Hide("display_options"), Function(renpy.reset_physical_size)]
 #             textbutton _("Установить") action [Hide("display_options"), Function(set_physical_resolution, scale)]
 
+screen ddlc_preferences():
+    hbox:
+        box_wrap True
+
+        if renpy.variant("pc"):
+
+            vbox:
+                style_prefix "radio"
+                label _("Режим экрана")
+                textbutton _("Оконный") action Preference("display", "window")
+                textbutton _("Полноэкранный") action Preference("display", "fullscreen")
+                # textbutton _("Ещё") action Show("display_options")
+
+        if config.developer:
+            vbox:
+                style_prefix "radio"
+                label _("Сторона отката")
+                textbutton _("Отключено") action Preference("rollback side", "disable")
+                textbutton _("Левая") action Preference("rollback side", "left")
+                textbutton _("Правая") action Preference("rollback side", "right")
+
+        vbox:
+            style_prefix "check"
+            label _("Пропускать")
+            textbutton _("Непрочитанное") action Preference("skip", "toggle")
+            textbutton _("После выборов") action Preference("after choices", "toggle")
+            # textbutton _("Переходы") action InvertSelected(Preference("transitions", "toggle"))
+
+    null height (4 * gui.pref_spacing)
+
+    hbox:
+        style_prefix "slider"
+        box_wrap True
+
+        vbox:
+
+            hbox:
+                label _("Скорость вывода текста")
+
+                null width 5
+
+                text str(preferences.text_cps) style "value_text"
+
+            #bar value Preference("text speed")
+            bar value FieldValue(_preferences, "text_cps", range=180, max_is_zero=False, style="slider", offset=20)
+
+            hbox:
+                label _("Задержка при авточтении")
+
+                null width 5
+
+                text str(round(preferences.afm_time)) style "value_text"
+
+            bar value Preference("auto-forward time")
+
+        vbox:
+
+            if config.has_music:
+                hbox:
+                    label _("Громкость музыки")
+
+                    null width 5
+
+                    text str(round(preferences.get_volume("music") * 100)) style "value_text"
+
+                hbox:
+                    bar value Preference("music volume")
+
+            if config.has_sound:
+
+                hbox:
+                    label _("Громкость звуков")
+
+                    null width 5
+
+                    text str(round(preferences.get_volume("sfx") * 100)) style "value_text"
+
+                hbox:
+                    bar value Preference("sound volume")
+
+                    if config.sample_sound:
+                        textbutton _("Проверка") action Play("sound", config.sample_sound)
+
+            if config.has_voice:
+                hbox:
+                    label _("Громкость голоса")
+
+                    null width 5
+
+                    text str(round(preferences.get_volume("voice") * 100)) style "value_text"
+
+                hbox:
+                    bar value Preference("voice volume")
+
+                    if config.sample_voice:
+                        textbutton _("Проверка") action Play("voice", config.sample_voice)
+
+            if config.has_music or config.has_sound or config.has_voice:
+                null height gui.pref_spacing
+
+                textbutton _("Отключить звук"):
+                    action Preference("all mute", "toggle")
+                    style "mute_all_button"
+
+screen template_preferences():
+    hbox:
+        box_wrap True
+
+        if extra_settings:
+            vbox:
+                style_prefix "check"
+                label _("Режимы игры")
+                textbutton _("Режим «Без цензуры»") action If(persistent.uncensored_mode, 
+                    ToggleField(persistent, "uncensored_mode"), 
+                    Show("confirm", message=_p("""Вы уверены, что хотите включить Режим «Без цензуры»?
+Это приведёт к показу контента, который предназначен только для взрослых, или контента, который может быть чувствительным для некоторых групп людей.
+
+Поведение настройки зависит от мододела, если тот ввёл соответствующие проверки в своём сценарии."""), 
+                        yes_action=[Hide("confirm"), ToggleField(persistent, "uncensored_mode")],
+                        no_action=Hide("confirm")
+                    ))
+                textbutton _("Режим летсплейщика") action If(persistent.lets_play, 
+                    ToggleField(persistent, "lets_play"),
+                    [ToggleField(persistent, "lets_play"), Show("dialog", 
+                        message=_p("""Вы включили Режим летсплейщика.
+Этот режим даёт возможность пропустить контент, который может показаться неприемлемым, или применяет альтернативные сюжетные варианты.
+
+Поведение настройки зависит от мододела, если тот ввёл соответствующие проверки в своём сценарии."""), 
+                        ok_action=Hide("dialog")
+                    )])
+
+        vbox:
+            style_prefix "name"
+            label _("Имя игрока")
+
+            null height 3
+
+            if player == "":
+                text _("Имя не указано") xalign 0.5
+            else:
+                text "[player]" xalign 0.5
+
+            textbutton _("Сменить имя") action Show(screen="name_input", message=_("Введите своё имя"), ok_action=Function(FinishEnterName, launchGame=False)):
+                text_style "navigation_button_text"
+
+        python:
+            has_discord_module = True
+            try:
+                RPC
+            except NameError:
+                has_discord_module = False
+
+        if not renpy.android and has_discord_module:
+            vbox:
+                style_prefix "name"
+                label _("Игровая активность Discord")
+
+                python:
+                    connect_status = _("Не в сети")
+                    if not persistent.enable_discord:
+                        connect_status = _("Отключена")
+                    if RPC.rpc_connected:
+                        connect_status = _("Подключена")
+
+                null height 3
+
+                text "[connect_status!t]" xalign 0.5
+
+                python:
+                    enable_text = _("Включить")
+                    if persistent.enable_discord:
+                        enable_text = _("Выключить")
+
+                textbutton enable_text action [ToggleField(persistent, "enable_discord"), 
+                    If(persistent.enable_discord, Function(RPC.close), Function(RPC.connect, reset=True))]:
+                        text_style "navigation_button_text"
+                if persistent.enable_discord and not RPC.rpc_connected:
+                    textbutton _("Переподключиться") action Function(RPC.connect, reset=True):
+                        text_style "navigation_button_text"
+
+    null height (4 * gui.pref_spacing)
+
+    hbox:
+        box_wrap True
+
+        if enable_languages and translations:
+            vbox:
+                style_prefix "radio"
+                label _("Язык")
+                hbox:
+                    viewport:
+                        mousewheel True
+                        scrollbars "vertical"
+                        ysize 120
+                        has vbox
+
+                        for tran in translations:
+                            vbox:
+                                for tlid, tlname in tran:
+                                    textbutton tlname:
+                                        action Language(tlid)
+
 ## Экран настроек ##############################################################
 ##
 ## Экран настроек позволяет игроку настраивать игру под себя.
@@ -1134,7 +1336,7 @@ screen preferences():
     python:
         cols = 4 if not renpy.mobile else 2
 
-    default ddlc_settings = True
+    default cur_settings = "ddlc"
 
     use game_menu(_("Настройки"), scroll="viewport"):
 
@@ -1145,218 +1347,17 @@ screen preferences():
                 style_prefix "navigation"
                 xoffset 150
                 spacing 5
-                textbutton _("Настройки DDLC") action [SetScreenVariable("ddlc_settings", True), SensitiveIf(not ddlc_settings)]
-                textbutton _("Настройки мод-шаблона") action [SetScreenVariable("ddlc_settings", False), SensitiveIf(ddlc_settings)]
+                textbutton _("Настройки DDLC") action [SetScreenVariable("cur_settings", "ddlc"), SensitiveIf(cur_settings != "ddlc")]
+                textbutton _("Настройки мод-шаблона") action [SetScreenVariable("cur_settings", "template"), SensitiveIf(cur_settings != "template")]
 
             null height 10
 
-            if ddlc_settings:
-
-                hbox:
-                    box_wrap True
-
-                    if renpy.variant("pc"):
-
-                        vbox:
-                            style_prefix "radio"
-                            label _("Режим экрана")
-                            textbutton _("Оконный") action Preference("display", "window")
-                            textbutton _("Полноэкранный") action Preference("display", "fullscreen")
-                            # textbutton _("Ещё") action Show("display_options")
-
-                    if config.developer:
-                        vbox:
-                            style_prefix "radio"
-                            label _("Сторона отката")
-                            textbutton _("Отключено") action Preference("rollback side", "disable")
-                            textbutton _("Левая") action Preference("rollback side", "left")
-                            textbutton _("Правая") action Preference("rollback side", "right")
-
-                    vbox:
-                        style_prefix "check"
-                        label _("Пропускать")
-                        textbutton _("Непрочитанное") action Preference("skip", "toggle")
-                        textbutton _("После выборов") action Preference("after choices", "toggle")
-                        # textbutton _("Переходы") action InvertSelected(Preference("transitions", "toggle"))
-
-                null height (4 * gui.pref_spacing)
-
-                hbox:
-                    style_prefix "slider"
-                    box_wrap True
-
-                    vbox:
-
-                        hbox:
-                            label _("Скорость вывода текста")
-
-                            null width 5
-
-                            text str(preferences.text_cps) style "value_text"
-
-                        #bar value Preference("text speed")
-                        bar value FieldValue(_preferences, "text_cps", range=180, max_is_zero=False, style="slider", offset=20)
-
-                        hbox:
-                            label _("Задержка при авточтении")
-
-                            null width 5
-
-                            text str(round(preferences.afm_time)) style "value_text"
-
-                        bar value Preference("auto-forward time")
-
-                    vbox:
-
-                        if config.has_music:
-                            hbox:
-                                label _("Громкость музыки")
-
-                                null width 5
-
-                                text str(round(preferences.get_volume("music") * 100)) style "value_text"
-
-                            hbox:
-                                bar value Preference("music volume")
-
-                        if config.has_sound:
-
-                            hbox:
-                                label _("Громкость звуков")
-
-                                null width 5
-
-                                text str(round(preferences.get_volume("sfx") * 100)) style "value_text"
-
-                            hbox:
-                                bar value Preference("sound volume")
-
-                                if config.sample_sound:
-                                    textbutton _("Проверка") action Play("sound", config.sample_sound)
-
-                        if config.has_voice:
-                            hbox:
-                                label _("Громкость голоса")
-
-                                null width 5
-
-                                text str(round(preferences.get_volume("voice") * 100)) style "value_text"
- 
-                            hbox:
-                                bar value Preference("voice volume")
-
-                                if config.sample_voice:
-                                    textbutton _("Проверка") action Play("voice", config.sample_voice)
-
-                        if config.has_music or config.has_sound or config.has_voice:
-                            null height gui.pref_spacing
-
-                            textbutton _("Отключить звук"):
-                                action Preference("all mute", "toggle")
-                                style "mute_all_button"
-
-            else:
-                hbox:
-                    box_wrap True
-
-                    if extra_settings:
-                        vbox:
-                            style_prefix "check"
-                            label _("Режимы игры")
-                            textbutton _("Режим «Без цензуры»") action If(persistent.uncensored_mode, 
-                                ToggleField(persistent, "uncensored_mode"), 
-                                Show("confirm", message=_p("""Вы уверены, что хотите включить Режим «Без цензуры»?
-Это приведёт к показу контента, который предназначен только для взрослых, или контента, который может быть чувствительным для некоторых групп людей.
-
-Поведение настройки зависит от мододела, если тот ввёл соответствующие проверки в своём сценарии."""), 
-                                    yes_action=[Hide("confirm"), ToggleField(persistent, "uncensored_mode")],
-                                    no_action=Hide("confirm")
-                                ))
-                            textbutton _("Режим летсплейщика") action If(persistent.lets_play, 
-                                ToggleField(persistent, "lets_play"),
-                                [ToggleField(persistent, "lets_play"), Show("dialog", 
-                                    message=_p("""Вы включили Режим летсплейщика.
-Этот режим даёт возможность пропустить контент, который может показаться неприемлемым, или применяет альтернативные сюжетные варианты.
-
-Поведение настройки зависит от мододела, если тот ввёл соответствующие проверки в своём сценарии."""), 
-                                    ok_action=Hide("dialog")
-                                )])
-
-                    vbox:
-                        style_prefix "name"
-                        label _("Имя игрока")
-
-                        null height 3
-
-                        if player == "":
-                            text _("Имя не указано") xalign 0.5
-                        else:
-                            text "[player]" xalign 0.5
-
-                        textbutton _("Сменить имя") action Show(screen="name_input", message=_("Введите своё имя"), ok_action=Function(FinishEnterName, launchGame=False)):
-                            text_style "navigation_button_text"
-
-                    python:
-                        has_discord_module = True
-                        try:
-                            RPC
-                        except NameError:
-                            has_discord_module = False
-
-                    if not renpy.android and has_discord_module:
-                        vbox:
-                            style_prefix "name"
-                            label _("Игровая активность Discord")
-
-                            python:
-                                connect_status = _("Не в сети")
-                                if not persistent.enable_discord:
-                                    connect_status = _("Отключена")
-                                if RPC.rpc_connected:
-                                    connect_status = _("Подключена")
-
-                            null height 3
-
-                            text "[connect_status]" xalign 0.5
-
-                            python:
-                                enable_text = _("Включить")
-                                if persistent.enable_discord:
-                                    enable_text = _("Выключить")
-
-                            textbutton enable_text action [ToggleField(persistent, "enable_discord"), 
-                                If(persistent.enable_discord, Function(RPC.close), Function(RPC.connect, reset=True))]:
-                                    text_style "navigation_button_text"
-                            if persistent.enable_discord and not RPC.rpc_connected:
-                                textbutton _("Переподключиться") action Function(RPC.connect, reset=True):
-                                    text_style "navigation_button_text"
-
-                null height (4 * gui.pref_spacing)
-
-                hbox:
-                    box_wrap True
-
-                    if enable_languages and translations:
-                        vbox:
-                            style_prefix "radio"
-                            label _("Язык")
-                            hbox:
-                                viewport:
-                                    mousewheel True
-                                    scrollbars "vertical"
-                                    ysize 120
-                                    has vbox
-
-                                    for tran in translations:
-                                        vbox:
-                                            for tlid, tlname in tran:
-                                                textbutton tlname:
-                                                    action Language(tlid)
+            use expression f"{cur_settings}_preferences" # <- всего одна строчка, а делает ровно то же самое, что и "велосипед" Ази с условиями - прим. пер.
 
     text "вер. [config.version]":
-                xalign 1.0 yalign 1.0
-                xoffset -10 yoffset -10
-                style "main_menu_version"
+        xalign 1.0 yalign 1.0
+        xoffset -10 yoffset -10
+        style "main_menu_version"
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text

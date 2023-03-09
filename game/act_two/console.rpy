@@ -39,7 +39,7 @@ init python:
     def add_to_history(input):
         global console_history
 
-        console_history.insert(0, input)
+        console_history.insert(0, input[1])
         if len(console_history) > 5:
             console_history.pop(5)
 
@@ -114,3 +114,10 @@ style console_screen_text:
     color "#fff"
     size 18
     outlines []
+
+# Этот лейбл очищает историю внутриигровой консоли и введённых команд.
+# Было решено оставить его, т.к. он просто добавляет паузу в некоторых местах.
+label updateconsole_clearall(text="", history=""):
+    $ pause(len(text) / 30.0 + 0.5)
+    $ pause(0.5)
+    return

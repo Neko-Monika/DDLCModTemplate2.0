@@ -9,7 +9,7 @@ default persistent.achievements = {}
 init -1 python in achievements:
     from store import persistent, im
     achievementList = {}
-    
+
     # Этот класс определяет код для создания достижения (без счётчика).
     # Синтаксис:
     # name - Эта переменная содержит читабельное название достижения.

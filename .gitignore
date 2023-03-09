@@ -11,3 +11,5 @@ game/saves
 errors.txt
 *.pyc
 .vscode/settings.json
+__pycache__
+ZIPs
