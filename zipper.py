@@ -1,5 +1,5 @@
 from zipfile import ZipFile, ZIP_DEFLATED
-from zipper_env import PY3, EXTRAS
+from zipper_env import EXTRAS
 import sys
 import os
 
@@ -22,27 +22,22 @@ def main():
     try:
         version = sys.argv[1]
     except IndexError:
-        raise Exception("Version number not provided.")
+        raise Exception("Не указан номер версии.")
 
     if len(tuple(version.strip().split("."))) != 3:
-        raise Exception('Invalid version number. Valid version number is "X.X.X".')
+        raise Exception('Некорректный номер версии. Допустимое значение: "X.X.X".')
 
-    if PY3:
-        print("We building Py3 tonight.\n")
-    else:
-        print("We building Py2 tonight.\n")
+    print("Сегодня вечером мы собираем Py3-пакет.\n")
 
-    # Create ZIP Directory
+    # Создание каталога для ZIP-архивов
     if not os.path.exists("./ZIPs"):
         os.makedirs("./ZIPs")
 
-    main_zip_name = str(PRIMARY_NAME + version)
-    if PY3:
-        main_zip_name += "-Py3"
+    main_zip_name = f"{PRIMARY_NAME}{version}-Py3"
 
-    print("Creating Template ZIP file.")
+    print("Создаю ZIP-файл шаблона.")
     with ZipFile(
-        os.path.join(".", "ZIPs", main_zip_name + ".zip"),
+        os.path.join(".", "ZIPs", f"{main_zip_name}.zip"),
         "w",
         ZIP_DEFLATED,
         compresslevel=5,
@@ -57,18 +52,14 @@ def main():
                 if validLocation:
                     main_template.write(path)
 
-    print("Finished writing the Mod Template ZIP package.\n")
+    print("Запись ZIP-пакета мод-шаблона завершена.\n")
 
     if EXTRAS:
-        print("Creating Extra Template content ZIP file.")
-        extras_zip_name = str(PRIMARY_NAME + version)
-        if PY3:
-            extras_zip_name += "-Py3Extras"
-        else:
-            extras_zip_name += "-Extras"
+        print("Создаю ZIP-файл доп. контента шаблона.")
+        extras_zip_name = f"{PRIMARY_NAME}{version}-Py3Extras"
 
         with ZipFile(
-            os.path.join(".", "ZIPs", extras_zip_name + ".zip"),
+            os.path.join(".", "ZIPs", f"{extras_zip_name}.zip"),
             "w",
             ZIP_DEFLATED,
             compresslevel=5,
@@ -79,9 +70,9 @@ def main():
                     if "Additional Mod Features" in path:
                         extras_template.write(path)
 
-        print("Finished writing the Mod Template Extras ZIP package.\n")
+        print("Запись ZIP-пакета доп. контента шаблона завершена.\n")
 
-    print("Finished packaging.")
+    print("Упаковка завершена.")
 
 
 if __name__ == "__main__":
