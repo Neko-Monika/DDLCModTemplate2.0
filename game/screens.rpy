@@ -513,7 +513,7 @@ screen navigation():
             textbutton _("Настройки") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
             if not enable_extras_menu:
-                textbutton _("Авторы") action ShowMenu("about")
+                textbutton _("Авторы") action [ShowMenu("about"), SensitiveIf(renpy.get_screen("about") == None)]
 
             if renpy.variant("pc"):
 
@@ -816,9 +816,9 @@ screen about():
                 ## Не трогайте и не удаляйте нижеприведённые строки, но если вдруг символов «©» или «–» нет в вашем шрифте, их можно убрать отсюда.
                 ## Вы можете добавить что-нибудь над или под этим текстом.
                 ## Если вы решили не добавлять упоминание автора на экране заставки, первая строчка ДОЛЖНА остаться здесь.
-                text _p("""Сделано с помощью {a=https://github.com/GanstaKingofSA/DDLCModTemplate2.0}Мод-шаблона DDLC 2.0{/a} от GanstaKingofSA.
-Авторское право © 2019-[current_year] Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.
-Игра «Литературный клуб "Тук-тук"». Авторские права © 2017 Team Salvato. Все права защищены.
+                text _p("""Сделано с помощью {a=https://github.com/GanstaKingofSA/DDLCModTemplate2.0}Мод-шаблона DDLC 2.0{/a} от GanstaKingofSA.\n
+Авторское право © 2019-[current_year] Азариэль Дель Кармен (GanstaKingofSA). Все права защищены.\n
+Игра «Литературный клуб "Тук-тук"». Авторские права © 2017 Team Salvato. Все права защищены.\n
 Сделано на {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]""")
 
 
@@ -1228,10 +1228,12 @@ screen ddlc_preferences():
 screen template_preferences():
     hbox:
         box_wrap True
+        spacing 25
 
         if extra_settings:
             vbox:
                 style_prefix "check"
+                xmaximum 1000
                 label _("Режимы игры")
                 textbutton _("Режим «Без цензуры»") action If(persistent.uncensored_mode, 
                     ToggleField(persistent, "uncensored_mode"), 
