@@ -1,16 +1,16 @@
-# Contents
+# Содержание
 
 ## cgs.rpy
-This file defines all the character graphics (CGs) in DDLC such as Yuri's Chocolate CG and Natsuki's Manga CG.
+В этом файле определены все сценки с персонажами (CG) из DDLC по типу сценки с Юри и шоколадкой и с Нацуки и мангой.
 
 ## definitions.rpy
-This file defines the code, music, variables and images in DDLC and in your mod.
+В этом файле определены код, музыка, переменные и изображения, используемые DDLC и вашей модификацией.
 
 ## effects.rpy
-This file defines the effects that occur in Act Two of the game.
+В этом файле определены эффекты, которые появляются во втором акте игры.
 
 ## splash.rpy
-This file stores the Team Salvato compliant splash screen, code for special poem assignment, languages, and more.
+В этом файле содержится экран заставки, соответствующий требованиям Team Salvato, код назначения конкретных особых стихотворений, перечень доступных языков и многое другое.
 
 ## transforms.rpy
-This file defines all the transitions and animations in the game.
+В этом файле определены переходы и анимации в игре.

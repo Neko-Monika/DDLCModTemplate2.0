@@ -1,10 +1,10 @@
-# Contents
+# Содержание
 
 ## poemwords.txt
-This file contains the words that can be used to write your poem and the like value to the words for each character from 1 (Bad) to 3 (Good).
-   > Syntax: `word, s_like, n_like, y_like`
+В этом файле содержатся слова, которые можно использовать в написании стихотворения, и оценка каждого слова персонажами от 1 (плохо) до 3 (хорошо).
+   > Синтаксис: `слово, оценка_сайори, оценка_нацуки, оценка_юри`
    
-   > `word`: string, `s_like`: integer, `n_like`: integer, `y_like`: integer
+   > `слово`: строка, `оценка_сайори`: целое число, `оценка_нацуки`: целое число, `оценка_юри`: целое число
 
 ## script-poemgame.rpy
-This file contains the code for the poemgame at the end of each day in Act One to Act Two and a corrupted poemgame in Act Three.
+В этом файле содержится код мини-игры про написание стихотворения в конце каждого дня в первом и втором актах, и искажённый вариант этой игры в третьем акте.
