@@ -1,10 +1,10 @@
-# Contents
+# Содержание
 
 ## console.rpy
-This file defines the code for Monika's console that appears at the end of Act Two through Act Four.
+В этом файле содержится код консоли Моники, которая появляется в конце второго и четвёртого актов.
 
 ## glitchtext.rpy
-This file defines the glitched/corrupted text seen in Act Two through Four of the game.
+В этом файле содержится код глючного/искажённого текста, который можно было увидеть с первый по четвёртый акты игры.
 
 ## poems_special.rpy
-This file defines the special poems that the player can see during Act Two. Only three poems are ever shown to the player which are selected at random by `splash.rpy` (in *definitions* folder).
+В этом файле содержится код особых стихотворений, которые игрок может увидеть во время прохождения второго акта. Игроку за всю игру показываются только три таких стихотворения, выбранных случайным образом в коде файла `splash.rpy` (находится в папке *definitions*).

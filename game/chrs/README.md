@@ -1,13 +1,13 @@
-# Contents
+# Содержание
 
 ## monika.chr
-Monika's character file. Technically just a PNG.
+Файл персонажа Моники. Технически является изображением формата PNG.
 
 ## natsuki.chr
-Natsuki's character file. Technically just a JPEG.
+Файл персонажа Нацуки. Технически является изображением формата JPEG.
 
 ## sayori.chr
-Sayori's character file. Technically just Sayo-nara's OGG file.
+Файл персонажа Сайори. Технически является аудиозаписью трека «Сайо-нара» формата OGG.
 
 ## yuri.chr
-Yuri's character file. Technically just a poem in a text file.
+Файл персонажа Юри. Технически является стихотворением, записанным в текстовый документ.

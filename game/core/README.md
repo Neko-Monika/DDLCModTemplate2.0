@@ -1,27 +1,27 @@
-# Contents
-> These files are crucial to DDLC/the mod template itself. **DO NOT** delete or edit these files (except `credits.rpy`) unless you know what you are doing.
+# Содержание
+> Данные файлы необходимы для работоспособности DDLC/мод-шаблона. **НИ В КОЕМ СЛУЧАЕ** не удаляйте и не редактируйте эти файлы (кроме `credits.rpy`), если только вы не уверены в том, что делаете.
 
 ## 0imports.rpy
-This file imports the needed python modules necessary for DDLC and the template to run properly.
+В данном файле импортируются необходимые для корректной работы DDLC и мод-шаблона модули Python.
 
 ## credits.rpy
-This file defines the code for the credits that play at the end of Act Four.
+В данном файле расписан код для титров, которые запускаются в конце Четвёртого акта.
 
-## depreciation.rpy
-This file contains old labels formerly used by old features before a revised update. **This file is temporary and may be removed at any time**.
+## depreciated.rpy
+В данном файле содержатся старые лейблы, ранее использовавшиеся старыми функциями до обновления с ревизией кода. **Этот файл является временным и может быть удалён в любое время**.
 
 ## exceptions.rpy
-This file stores the exceptions that the mod template can throw to you during development. The following exceptions stored in this file that can occur are:
+В данном файле хранятся исключения, которые мод-шаблон может вызвать во время разработки. Список исключений и причины их возникновения:
 
-- `NotRenPyEight` - You are attempting to run this mod project on Ren'Py 6 or 7.
-   > Solution: Run your mod in Ren'Py 8 or download the Python 2 template and make your mod from scratch with it.
-- `DDLCRPAsMissing` - You are missing a RPA file in the *game* folder which the game requires in order to load the game properly. 
-   > Solution: Add the missing RPA and try relaunching the game again.
-- `IllegalModLocation` - You have placed your mod/mod project in a location that the mod template prohibits (usually the OneDrive folder). 
-   > Solution: Move the mod/mod project to a different location and try relaunching the game again.
+- `NotRenPyEight` - Вы попытались запустить этот мод-шаблон на Ren'Py SDK 6-й или 7-й версии.
+   > Решение: Переместите папку с проектом вашей модификации в папку Ren'Py SDK 8-й версии, если последний у вас уже есть, в противном случае установите его и переместите папку.
+- `DDLCRPAsMissing` - В вашей папке *game* отсутствуют необходимые для работы игры RPA-архивы.
+   > Решение: Скопируйте недостающий RPA-файл (его название указано в исключении) и перезапустите игру.
+- `IllegalModLocation` - Ваша модификация или её проект находится в папке, эксплуатация которой мод-шаблоном запрещена (как правило, это папка OneDrive). 
+   > Решение: Переместите папку модификации или её проекта в другую директорию и перезапустите игру.
 
 ## lockdown_check.rpy
-This file checks to see if you are running the mod template on a prohibited Ren'Py version, Ren'Py 8 or a untested Ren'Py version and warns you about it.
+Данный файл проверяет, пытаетесь ли вы запустить мод-шаблон на недопустимой версии Ren'Py SDK (ниже 8.x или тестовая) и предупреждает вас об этом.
 
 ## renpy_patches.rpy
-This file contains patches necessary for DDLC to run properly on higher versions of Ren'Py.
+В данном файле содержатся патчи, необходимые для корректной работы DDLC на более новых версиях Ren'Py.
