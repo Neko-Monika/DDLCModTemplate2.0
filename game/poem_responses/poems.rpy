@@ -3,7 +3,7 @@
 # В этом файле определены стихотворения в игре, которые девушки показывают
 # игроку во время мини-игры про обмен стихами.
 
-init python:
+init 1 python:
 
     class Author(object):
         """
@@ -175,6 +175,9 @@ init python:
         pause()
         renpy.hide_screen("poem")
         renpy.transition(dissolve)
+
+        if not persistent.first_poem:
+            persistent.first_poem = True
 
         config.allow_skipping = allow_skipping
         store._skipping = skipping

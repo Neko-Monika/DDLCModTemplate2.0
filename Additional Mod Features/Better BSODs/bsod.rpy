@@ -46,7 +46,7 @@ init python:
 ##            подставлено «DDLC_ESCAPE_PLAN_FAILED».
 ## bsodFile (только Windows 7) - Мимикрия имени файла, из-за которого 
 ##            возникла проблема. Если не дано, будет подставлено «libGLESv2.dll».
-## rsod (только Windows 11) - Меняет Чёрный ЭС Windows 11 на Красный.
+## rsod (только Windows 11) - Меняет Синий ЭС Windows 11 на Красный.
 ##
 ## Примеры:
 ## show screen bsod("DOKI_DOKI", "renpy32.dll", False) 

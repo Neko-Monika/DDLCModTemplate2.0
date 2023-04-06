@@ -42,9 +42,25 @@ init -3 python:
         img_bounds = renpy.image_size(path)
         return Transform(path, size=(dsp(img_bounds[0]), dsp(img_bounds[1])))
 
+## Жесты для ОС Android (предоставлены Tulkas)
+## Эти жесты дают игрокам доступ к различным разделам настроек, используя только сенсорный экран.
+# Провести пальцем вверх - экран Сохранений
+# Провести пальцем вниз - скрыть диалоговое окно
+# Провести пальцем влево - экран Истории
+# Провести пальцем вправо - пропуск текста
+define config.gestures = { "n" : 'game_menu', "s" : "hide_windows", "e" : 'toggle_skip', "w" : "history" }
+
 # Это выражение Python, исполняемое во время инициализации (init python) настраивает функции,
 # горячие клавиши и аудио-каналы для игры.
 init python:
+    ## Прочие жесты для ОС Android
+    # Эта переменная создаёт горячую клавишу для экрана Истории.
+    config.underlay.append(renpy.Keymap(history = ShowMenu("history"))) 
+
+    # Эти закомментированные переменные переназначают горячие клавиши с Отката диалога на вызов экрана Истории.
+    # config.keymap["rollback"] = []
+    # config.keymap["history"] = [ 'K_PAGEUP', 'repeat_K_PAGEUP', 'K_AC_BACK', 'mousedown_4' ]
+
     # Эти объявления переменных настраивают горячие клавиши для определённых действий в игре.
     config.keymap['game_menu'].remove('mouseup_3')
     config.keymap['hide_windows'].append('mouseup_3')
