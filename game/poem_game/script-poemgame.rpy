@@ -303,7 +303,7 @@ label poem(transition=True):
         show m_sticker at sticker_mid # Только Моника.
     else:
         if persistent.playthrough == 0:
-            show s_sticker at sticker_left # Покажет в первом акте только чиби Сайори.
+            show s_sticker at sticker_left # Покажет чиби Сайори только в первом акте.
         show n_sticker at sticker_mid # Чиби Нацуки.
         if persistent.playthrough == 2 and chapter == 2:
             show y_sticker_cut at sticker_right # Заменяет чиби Юри на оный с "порезанными руками".

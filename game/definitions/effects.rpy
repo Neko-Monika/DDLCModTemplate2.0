@@ -6,10 +6,7 @@ init python:
     # Эта функция делает снимок экрана игры для дальнейшего накладывания
     # на него разных эффектов.
     def screenshot_srf():
-        if renpy.version_tuple > (7, 3, 5, 606):
-            srf = renpy.display.draw.screenshot(None)
-        else:
-            srf = renpy.display.draw.screenshot(None, False)
+        srf = renpy.display.draw.screenshot(None)
 
         return srf
 
@@ -41,7 +38,7 @@ init python:
         global _windows_hidden
         _windows_hidden = not enabled
 
-## Invert(length, delay)
+## Инверсия(длина, задержка) (Invert(length, delay))
 # Этот экран вызывается выражением `show screen invert()` для инвертирования цветов экрана.
 # Синтаксис:
 # length - Указывает, сколько будет длиться эффект.
@@ -67,14 +64,14 @@ init python:
             self.offset = 0
             self.offsetMin = offsetMin
             self.offsetMax = offsetMax
-        
+
         def update(self, st):
             st = st % (self.offTime + self.onTime)
             if st > self.offTime and self.offset == 0:
                 self.offset = random.randint(self.offsetMin, self.offsetMax)
             elif st <= self.offTime and self.offset != 0:
                 self.offset = 0
-    
+
     # В этом классе содержится код для вывода эффекта разрыва экраном «tear».
     class Tear(renpy.Displayable):
         def __init__(self, number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf=None):
@@ -96,7 +93,7 @@ init python:
             tearpoints.sort()
             for i in range(number+1):
                 self.pieces.append(TearPiece(tearpoints[i], tearpoints[i+1], offtimeMult, ontimeMult, offsetMin, offsetMax))
-        
+
         def render(self, width, height, st, at):
             render = renpy.Render(self.width, self.height)
             render.blit(self.srf, (0,0))
@@ -107,14 +104,14 @@ init python:
             renpy.redraw(self, 0)
             return render
 
-## Tear
+## Эффект разрыва (Tear)
 # Этот экран вызывается выражением `show screen tear()` для разрыва экрана.
 # Синтаксис:
 # number - Указывает, на сколько частей будет разрываться экран.
 # offtimeMult - Определяет множитель времени действия эффекта.
 # ontimeMult - Определяет множитель времени, в течение которого длится эффект.
 # offsetMin - Определяет минимальное смещение времени по множителю.
-# offsetMax - Определяет the максимальное смещение времени по множителю.
+# offsetMax - Определяет максимальное смещение времени по множителю.
 # srf - Определяет изображение экрана, полученное функцией «screenshot_srf», если оное было объявлено.
 screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None):
     zorder 150
@@ -122,7 +119,7 @@ screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, s
     on "show" action Function(hide_windows_enabled, enabled=False)
     on "hide" action Function(hide_windows_enabled, enabled=True)
 
-# RectStatic
+# Статичные прямоугольники (RectStatic)
 # Эти изображения с преобразованиями показывают глючные прямоугольники в игре во время Третьего акта,
 # когда Моника была удалена из игры.
 
@@ -141,7 +138,7 @@ image m_rectstatic3:
     RectStatic(im.FactorScale(im.Crop("gui/menu_art_s.png", (100, 100, 64, 64)), 0.5), 2, 32, 32).sm
 
 init python:
-    # Этот класс определяет код, используемый для эффекта статичных прямоугольников (RectStatic).
+    # Этот класс определяет код, используемый для эффекта статичных прямоугольников.
     class RectStatic(object):
         def __init__(self, theDisplayable, numRects=12, rectWidth = 30, rectHeight = 30):
             self.sm = SpriteManager(update=self.update)
@@ -172,8 +169,8 @@ init python:
                     self.timers[i] = st + random.random() * 0.4 + 0.1
             return 0
 
-    ## ParticleBurst
-    # Этот класс определяет код, используемый для эффекта разрыва частиц (ParticleBurst).
+    ## Эффект разрыва частиц (ParticleBurst)
+    # Этот класс определяет код, используемый для эффекта разрыва частиц.
     class ParticleBurst(object):
         def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 3, particleYSpeed = 5):
             self.sm = SpriteManager(update=self.update)
@@ -214,8 +211,8 @@ init python:
                 sindex += 1
             return 0
 
-    ## Blood
-    # Этот класс определяет код, используемый для эффекта крови (Blood) для Юри во Втором акте.
+    ## Эффект крови (Blood)
+    # Этот класс определяет код, используемый для эффекта крови для Юри во Втором акте.
     class Blood(object):
         def __init__(self, theDisplayable, density=120.0, particleTime=1.0, dripChance=0.05, dripSpeedX=0.0, dripSpeedY=120.0, dripTime=180.0, burstSize=100, burstSpeedX=200.0, burstSpeedY=400.0, numSquirts=4, squirtPower=400, squirtTime=0.25):
             self.sm = SpriteManager(update=self.update)
@@ -337,13 +334,13 @@ image blood_eye2:
     Blood("blood_particle", dripChance=0.005, numSquirts=0, burstSize=0).sm
 
 init python:
-    ## AnimatedMask
-    # Этот класс определяет код, используемый для эффекта анимированной маски (AnimatedMask) в Третьем акте.
+    ## Анимированная маска (AnimatedMask)
+    # Этот класс определяет код, используемый для эффекта анимированной маски в Третьем акте.
     class AnimatedMask(renpy.Displayable):
-        
+
         def __init__(self, child, mask, maskb, oc, op, moving=True, speed=1.0, frequency=1.0, amount=0.5, **properties):
             super(AnimatedMask, self).__init__(**properties)
-            
+
             self.child = renpy.displayable(child)
             self.mask = renpy.displayable(mask)
             self.maskb = renpy.displayable(maskb)
@@ -355,55 +352,52 @@ init python:
             self.speed = speed
             self.amount = amount
             self.frequency = frequency
-        
+
         def render(self, width, height, st, at):
-            
+
             cr = renpy.render(self.child, width, height, st, at)
             mr = renpy.render(self.mask, width, height, st, at)
             mb = renpy.Render(width, height)
-            
-            
+
             if self.moving:
                 mb.place(self.mask, ((-st * 50) % (width * 2)) - (width * 2), 0)
                 mb.place(self.maskb, -width / 2, 0)
             else:
                 mb.place(self.mask, 0, 0)
                 mb.place(self.maskb, 0, 0)
-            
-            
-            
+
             cw, ch = cr.get_size()
             mw, mh = mr.get_size()
-            
+
             w = min(cw, mw)
             h = min(ch, mh)
             size = (w, h)
-            
+
             if self.size != size:
                 self.null = Null(w, h)
-            
+
             nr = renpy.render(self.null, width, height, st, at)
-            
+
             rv = renpy.Render(w, h)
-            
+
             complete = self.oc + math.pow(math.sin(st * self.speed / 8), 64 * self.frequency) * self.amount
 
             rv.operation = renpy.display.render.IMAGEDISSOLVE
             rv.operation_alpha = 1.0
             rv.operation_complete = complete
             rv.operation_parameter = self.op
-            
+
             if renpy.display.render.models:
 
                 target = rv.get_size()
 
                 op = self.op
 
-                # Prevent a DBZ if the user gives us a 0 ramp.
+                # Предотвращает возникновение ошибки "деление на ноль", если пользователь отдал нулевую рампу.
                 if op < 1:
                     op = 1
 
-                # Compute the offset to apply to the alpha.
+                # Вычисляет смещение для применения к альфе.
                 start = -1.0
                 end = op / 256.0
                 offset = start + (end - start) * complete
@@ -414,11 +408,11 @@ init python:
                 rv.add_uniform("u_renpy_dissolve_offset", offset)
                 rv.add_uniform("u_renpy_dissolve_multiplier", 256.0 / op)
                 rv.add_property("mipmap", renpy.config.mipmap_dissolves if (self.style.mipmap is None) else self.style.mipmap)
-            
+
             rv.blit(mb, (0, 0), focus=False, main=False)
             rv.blit(nr, (0, 0), focus=False, main=False)
             rv.blit(cr, (0, 0))
-            
+
             renpy.redraw(self, 0)
             return rv
 
@@ -447,7 +441,7 @@ image bsod_2:
 
 image bsod = Composite((1280, 720), (0, 0), "bsod_1", (0, 0), "bsod_2")
 
-## Вены
+## Вены (Veins)
 # Это изображение с преобразованиями создаёт ореол из вен вокруг экрана, которые трясутся и пульсируют
 # случайным образом во Втором акте.
 image veins:

@@ -77,7 +77,7 @@ default preferences.sfx_volume = 0.75
 
 # Указывает название папки сохранённых данных вашей модификации.
 # Сохранения можно найти здесь:
-# Windows: %AppData%/RenPy/
+# Windows: %AppData%/RenPy/ (включите показ скрытых файлов и папок в меню Проводника)
 # macOS: $HOME/Library/RenPy/ (включите показ папки «Библиотеки» в Настройках Finder)
 # Linux: $HOME/.renpy/ (включите показ скрытых файлов в Настройках вашего файлового менеджера)
 define config.save_directory = "DDLCModTemplateTwo-Py3"
@@ -109,8 +109,11 @@ define config.menu_clear_layers = ["front"]
 define config.gl_test_image = "white"
 
 init python:
+    # Удаляет директорию "game/saves" из перечня известных директорий для сохранения в ПК-версиях; не работает на 8.1.x - прим. пер.
     if len(renpy.loadsave.location.locations) > 1: del(renpy.loadsave.location.locations[1])
+    # Отключает поддержку геймпада
     renpy.game.preferences.pad_enabled = False
+    # Заменяет "--" и " - " на "—"
     def replace_text(s):
         s = s.replace('--', u'\u2014') 
         s = s.replace(' - ', u'\u2014') 

@@ -1,15 +1,15 @@
 # discord.rpy
-# This file sets up Discord Rich Presence into your mod.
-# This requires that pypresence is installed in your mod (bundled with this template).
+# Этот файл настраивает Игровую активность Discord под вашу модификацию.
+# Для работы обязательно наличие библиотеки pypresence (идёт в комплекте с этим шаблоном).
 
-## BEFORE STARTING READ THIS.
-## To make RPC work for you, make a new application on Discord's Developer Portal
+## ПРОЧИТАЙТЕ НИЖЕПРИВЕДЁННЫЙ ТЕКСТ ПЕРЕД ТЕМ, КАК НАЧАТЬ РАБОТУ.
+## Дабы Игровая активность работала, создайте новое приложение на Портале разработчиков Discord
 ## https://discord.com/developers/applications
-## Follow the comments inside of `set_defaults` in order to setup RPC to your liking.
+## Следуйте комментариям внутри установок по умолчанию (`set_defaults`), чтобы настроить Игровую активность под себя.
 
-## Based similarly off off Lazalith's RPC code: https://github.com/Lezalith/RenPy-Discord-Presence
+## Работает аналогично коду Игровой активности от Lezalith: https://github.com/Lezalith/RenPy-Discord-Presence
 
-default persistent.enable_discord = not renpy.android
+default persistent.enable_discord = renpy.variant("pc")
 
 init -950 python in discord:
     from pypresence import Presence, DiscordError, DiscordNotFound, InvalidPipe
@@ -22,38 +22,39 @@ init -950 python in discord:
             self.client_id = str(client_id)
             self.start = time.time()
             self.rpc_connected = False
-            
+
             self.set_defaults()
             self.original_props = self.self_dict()
             self.props = {}
             self.auth()
             self.connect()
 
-        # Easy method to reset stuff back to stock RPC info.
+        # Простой метод сбросить информацию в Игровой активности на значения по умолчанию.
         def set_defaults(self):
-            # Details indicates what the player is doing ATM
-            # Example: In Main Menu
+            # Детали, описывающие то, чем игрок сейчас занимается
+            # Пример: В главном меню
             self.details = renpy.version()
 
-            # State indicates additional information to details
-            # Example: Browsing Settings
-            self.state = "Monika Is Watching You Code"
+            # Состояние, отражающее дополнительную информацию в деталях
+            # Пример: Просматривает Настройки
+            self.state = "Моника следит за тем, что ты пишешь в коде"
 
-            # Defines the largest image to use in rich presence as the
-            # main icon.
+            # Определяет большое изображение, которое будет использоваться
+            # в Игровой активности в качестве основной иконки.
             self.large_image  = "ddlcmodtemplatelogo"
 
-            # Defines the text when a user hovers on the large icon in
-            # a players' status.
-            # Example: DDLC Mod Template
-            self.large_text  = "Remembering"  # Uses the name of the mod defined in-game.
+            # Определяет текст, который будет отображаться при наведении указателя
+            # на большую иконку в статусе игрока.
+            # Пример: Мод-шаблон DDLC
+            self.large_text  = "Воспоминания"  # Используется название модификации, определённое в игре.
 
-            # Defines the smallest image to use in rich presence as the
-            # secondary icon.
+            # Определяет маленькое изображение, которое будет использоваться
+            # в Игровой активности в качестве дополнительной иконки.
             self.small_image = "test"
-            # Defines the text when a user hovers on the small icon in
-            # a players' status.
-            self.small_text = config.version  # Uses the version name of the mod
+
+            # Определяет текст, который будет отображаться при наведении указателя
+            # на маленькую иконку в статусе игрока.
+            self.small_text = config.version  # Используется версия модификации.
 
         def self_dict(self):
             return {
@@ -65,7 +66,7 @@ init -950 python in discord:
                 "small_text": self.small_text,
                 "start": self.start,
             }
-        
+
         def reset_time(self):
             self.start = time.time()
 
@@ -73,7 +74,7 @@ init -950 python in discord:
             if not persistent.enable_discord: 
                 self.rpc = None
                 return
-                
+
             try:
                 self.rpc = Presence(self.client_id)
             except (DiscordError, DiscordNotFound):
@@ -98,7 +99,7 @@ init -950 python in discord:
 
         def reset(self):
             self.set(**self.original_props)
-        
+
         def record_to_rollback(self):
             global rollback_status
             rollback_status = deepcopy(self.props)
@@ -127,7 +128,7 @@ init -950 python in discord:
             for p in props:
                 self.props[p] = props[p]
             self.props["start"] = self.start
-            
+
             self.rpc.update(**self.props)
             self.record_to_rollback()
 
@@ -139,7 +140,7 @@ init -950 python in discord:
 default discord.rollback_status = {}
 
 init -940 python:
-    # Place your Discord RPC token inside the ""'s
+    # Вставьте токен своей Игровой активности Discord внутрь двойных кавычек
     RPC = discord.DiscordRPC("979471077187125248")
 
     config.quit_callbacks += [RPC.close] 

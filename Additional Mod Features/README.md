@@ -1,33 +1,30 @@
-# Welcome to the Added Optional Features of the DDLC Mod Template!
+# Добро пожаловать в раздел Дополнительных функций Мод-шаблона DDLC!
 
-This section contains all optional code you can use in your mod that was previously bundled with the template (under `mod_extras`) but now separated to return back to the original template aesthetic. 
+В данном разделе содержится весь необязательный код, который вы можете использовать в своей модификации и который ранее был включён в сам шаблон (в папке `mod_extras`), но теперь отделён, чтобы вернуться к исходной эстетике шаблона. 
 
-## Installation
-For most code here, all you need to do is copy the respective feature files inside their folders to your projects' game folder. Everything should work out of the box once you run DDLC again.
-> If a file requires additional steps, please refer to its' own README file.
+## Установка
+Для большинства имеющихся здесь кодов достаточно скопировать соответствующие файлы функций из их папок в папку *game* вашего проекта. После повторного запуска DDLC всё должно заработать.
+> Если для работы файла необходимо предпринять дополнительные шаги, прочитайте соответствующий файл README.
 
-## Contents
+## Содержание
 
-### Achievements
-This folder contains the code for the achievements menu and notification that shows your progress throughout the mod.
+### Achievements (Достижения)
+В данной папке содержится код меню Достижений и уведомления, отображающего прогресс прохождения модификации.
 
-### Better BSODs
-This folder contains the code to call a fake Blue Screen of Death/Kernel Panic to the players' computer.
+### Better BSODs (Улучшенные Синие экраны смерти)
+В данной папке содержится код для вызова ложного Синего экрана смерти/Паники ядра на компьютере игрока.
 
-### Better Screen Tear
-This folder contains the code for a improved tear effect for glitches (made by Elckarow).
+### Better Screen Tear (Улучшенный эффект разрыва экрана)
+В данной папке содержится код улучшенного эффекта разрыва экрана для создания глюков (сделано Elckarow).
 
 ### Discord
-This folder contains the code to use Discord's RPC in DDLC.
+В данной папке содержится код для использования Игровой активности Discord в DDLC.
 
-### Extras Screen
+### Extras Screen (Экран Доп. контента)
+В данной папке содержится код меню Доп. контента, который делает возможным выбор нескольких экранов, не захламляя основные кнопки Главного меню.
 
-This folder contains the code for the extras menu that allows multiple screens to be selected without cluttering the main options.
+### Gallery (Галерея)
+В данной папке содержится код меню Галереи, в котором можно просмотреть фоны и спрайты вашей модификации.
 
-### Gallery
-
-This folder contains the code for the gallery menu that shows backgrounds and sprites from your mod.
-
-### Pronouns
-
-This folder allows players to input their given pronouns into the game.
+### Pronouns (Местоимения)
+В данной папке содержится код, который даёт игрокам возможность указать предпочтительные местоимения в игре.

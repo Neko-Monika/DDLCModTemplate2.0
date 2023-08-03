@@ -83,7 +83,7 @@ init 1 python:
             elif style is False:
                 style = "default"
 
-            poem = title + (f"\n\n{text}" if separate_title_from_text and title else text)
+            poem = f"{title}\n\n{text}" if separate_title_from_text and title else f"{title}{text}"
 
             super(Poem, self).__init__(poem, style=style, **properties)
 

@@ -472,11 +472,7 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        # На мобильных устройствах кнопка "Помощь" с действием по умолчанию бесполезна, а позиция навигации строго зависит от его наполнения - прим. пер.
-        if renpy.variant("pc"):
-            yalign 0.8
-        else:
-            yalign 0.6
+        yalign 0.8
 
         spacing gui.navigation_spacing
 
@@ -2070,7 +2066,7 @@ screen choose_language():
             xsize 760
             spacing 30
 
-            label renpy.translate_string(_("{#in language font}Please select a language"), local_lang):
+            label renpy.translate_string(_("{#используйте шрифт локализации}Выберите язык"), local_lang):
                 style "confirm_prompt"
                 xalign 0.5
 
@@ -2085,19 +2081,19 @@ screen choose_language():
                                 hovered SetScreenVariable("local_lang", tlid)
                                 unhovered SetScreenVariable("local_lang", chosen_lang)
 
-            $ lang_name = renpy.translate_string("{#language name and font}", local_lang)
+            $ lang_name = renpy.translate_string("{#название языка и шрифт}", local_lang)
             
             hbox:
                 xalign 0.5
                 spacing 100
 
-                textbutton renpy.translate_string(_("{#in language font}Select"), local_lang):
+                textbutton renpy.translate_string(_("{#используйте шрифт локализации}Выбрать"), local_lang):
                     style "confirm_button"
                     action [Language(chosen_lang), Return()]
 
 translate None strings:
-    old "{#language name and font}"
-    new "English"
+    old "{#название языка и шрифт}"
+    new "Русский"
 
 label choose_language:
     call screen choose_language

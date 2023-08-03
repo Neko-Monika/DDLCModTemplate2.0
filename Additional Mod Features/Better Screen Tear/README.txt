@@ -1,5 +1,5 @@
-Better Screen Tear Installation
+Установка Улучшенного эффекта разрыва экрана
 
-Copy effects_tear.rpy to game/definitions.
+Скопируйте файл "effects_tear.rpy" в каталог "game/definitions".
 
-If you use this tear effect, refer to the file on using this special tear effect.
+Если вы собираетесь использовать этот эффект разрыва экрана, см. примеры использования в самом файле.

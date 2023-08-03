@@ -1,26 +1,26 @@
 init 10 python:
-    
+
     class TearDisplayable(object):
         """
-        To use like a transform.
+        Для использования в качестве трансформации.
         ```
         show sayori turned at TearDisplayable()
         ```
 
         `number`: int
-            The number of pieces.
-        
+            Количество фрагментов.
+
         `offsetRange`: tuple[int | float, int | float]
-            The offset minmum / maximum.
-        
+            Минимум и максимум смещения.
+
         `chroma`: bool
-            Do we apply chromatic aberration to the pieces?
-        
+            Применять хроматическую аберрацию к фрагментам?
+
         `key`: Any | None
-            If not `None`, all `TearDisplayable` that have this key will use the same `tear` effect.
-        
+            Если не `None`, все объекты `TearDisplayable`, которые имеют этот ключ, будут использовать тот же эффект разрыва (`tear`).
+
         `render_child`: bool
-            If true, the child will be rendered below the pieces.
+            Если истинно, дочерние объекты будут обрабатываться под фрагментами.
         """
         def __init__(self, number=10, offtimeMult=1, ontimeMult=1, offsetRange=(0, 50), chroma=False, key=None, render_child=True):
             self.number = number
@@ -30,7 +30,7 @@ init 10 python:
             self.chroma = chroma
             self.key = key
             self.render_child = render_child
-        
+
         def __call__(self, child):
             rv = _TearDisplayable(child, self.number, self.offtimeMult, self.ontimeMult, self.offsetRange, self.chroma, self.render_child)
             if self.key is not None: rv.tear = _TearCore._cache.setdefault(self.key, rv.tear)
@@ -39,79 +39,79 @@ init 10 python:
     class TearSurface(_BaseTear):
         """
         `srf`: Render | Surface | GL2Model | None
-            The surface used. If `None` is passed, takes a screenshot and uses it as surface
-            (the screenshot's size doesn't exactly match the screen's size, careful with that).
-        
-        Saving while a displayable like this is showing isn't possible.
+            Используемая поверхность. Если передано `None`, делает снимок экрана и использует его как поверхность
+            (размер скриншота не будет аналогичным размеру экрана, будьте с этим осторожны).
+
+        Сохранение игры во время показа подобного отображаемого элемента невозможно.
         """
         def __init__(self, number=10, offtimeMult=1, ontimeMult=1, offsetRange=(0, 50), chroma=False, render_child=True, srf=None):
             super(TearSurface, self).__init__(number, offtimeMult, ontimeMult, offsetRange, chroma, render_child)
             self.srf = srf or screenshot_srf()
-        
+
         def render(self, w, h, st, at):
             return self._srf_render(self.srf, w, h, st, at)
-    
+
     def Tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None, chroma=False):
         return TearSurface(number, offtimeMult, ontimeMult, (offsetMin, offsetMax), chroma, srf)
-    
+
     class GlicthedDisplayable(object):
         """
-        Takes a number of tuples that are expected to contain 8 elements, which are the following:
+        Принимает определённое число кортежей, в которых должно быть 8 элементов; последние являются следующим:
 
         `center`: tuple[position, position]
-            The center point of the rectangle created from the pieces.
-        
+            Центр созданного из фрагментов прямоугольника.
+
         `cols`: int
-            The number of pieces in the x axis.
-        
+            Количество фрагментов по горизонтали.
+
         `rows`: int
-            The number of rows of `cols` pieces there are.
-        
+            Количество рядов в каждом столбце (`cols`).
+
         `size`: tuple[position | position]
-            The size of the pieces (relative to the box).
-        
+            Размер фрагментов (относительно коробки).
+
         `box`: tuple[position | position | position | position]
-            The pieces will be taken from a subsurface made by cropping the surface to `box`.
-            Works the same way as the `crop` transform property.
-        
+            Фрагменты будут взяты из субповерхности, созданной путём обрезки поверхности до коробки (`box`).
+            Работает так же, как и свойство трансформации `crop`.
+
         `offtimeMult`: int | float
-            Similar to `TearDisplayable`.
+            Аналогично `TearDisplayable`.
 
         `ontimeMult`: int | float
-            Similar to `TearDisplayable`.
-        
+            Аналогично `TearDisplayable`.
+
         `d`: renpy.Displayable | None
-            A displayable to take the pieces from. If `None`, the child is used.
-        
-        The `add_glitch` method can also be used instead of the constructor, if it's easier for you.
+            Отображаемый объект, из которого будут браться фрагменты. Если `None`, будет использован дочерний элемент.
+
+        Вместо конструктора можно также использовать метод `add_glitch`, если вам так проще.
 
         ```
         show sayori turned at GlicthedDisplayable(((0.5, 0.1), 7, 3, (40, 40), 1, 1), ((0.5, 0.7), 10, 1, (30, 50), 1, 1, "bg residential_day"))
         ```
-        and
+        и
         ```
         show sayori turned at GlicthedDisplayable().add_glitch((0.5, 0.1), 7, 3, (40, 40), 1, 1).add_glitch(center=(0.5, 0.7), cols=10, rows=1, size=(30, 50), offtimeMult=1, ontimeMult=1, d="bg residential_day")
         ```
-        are the same.
+        работают одинаково.
         """
         def __init__(self, *args):
             self.glitches = [ ]
             for glitch in args: self.add_glitch(*glitch)
-        
+
         def add_glitch(self, center=(0.5, 0.5), cols=5, rows=5, size=(50, 50), box=(0.0, 0.0, 1.0, 1.0), offtimeMult=1, ontimeMult=1, d=None):
             self.glitches.append((center, max(cols, 1), max(rows, 1), size, box, offtimeMult, ontimeMult, d))
             return self
-        
+
         def __call__(self, child):
-            if not self.glitches: raise ValueError("glitch not given")
+            if not self.glitches: raise ValueError("Не дано: glitch")
             return _GlicthedDisplayable(child, *self.glitches)  
 
 init python:
     @renpy.pure
     def position(x, size):
         """
-        Same behavior as 7.4.9.
-        A value of type `float` means relative positionning: the value will be multiplied by `size`.
+        Поведение аналогично 7.4.9.
+        Значение плавающего (`float`) типа означает относительное размещение: значение будет умножено на размер (`size`).
         """
         if type(x) is float: return x * size
         return x
@@ -133,7 +133,7 @@ init python:
                 self.xoffset = random.randint(self.xoffsetMin, self.xoffsetMax) * random.choice((1, -1))
             elif st <= self.offTime and self.xoffset != 0:
                 self.xoffset = 0
-    
+
     class _TearCore(object):
         _cache = { }
 
@@ -155,9 +155,9 @@ init python:
             width, height = srf.get_size()
             render = renpy.Render(width, height)
 
-            # the ypos of where we render the pieces
-            # due to Render.subsurface converting the values to int, "holes" might appear when rendering.
-            # to fix this, we use the sum of the height of the previous subsurfaces (which is an int) as ypos.
+            # Положение по вертикали (ypos) относительно объекта, где будут отображаться фрагменты
+            # Из-за того, что Render.subsurface конвертирует значения в целочисленный тип (int), во время отображения могут появляться "дыры".
+            # Чтобы исправить это, мы используем сумму высоты предыдущих субповерхностей (которые являются целыми числами) в качестве положения по вертикали.
             ypos = 0
 
             for piece in self.pieces:
@@ -168,7 +168,7 @@ init python:
 
                 if self.chroma:
                     piece_render = renpy.Render(piece_width, piece_height)
-                
+
                     for color_mask in (
                         (False, False, True, True),
                         (False, True, False, True),
@@ -181,19 +181,19 @@ init python:
                         mask_render.zoom(xzoom, 1.0)
 
                         piece_render.blit(mask_render, (0, 0), main=False)
-                    
+
                     subsrf = piece_render
 
                 render.subpixel_blit(subsrf, (piece.xoffset, ypos), main=False)
                 ypos += piece_height
-            
+
             return render
-    
+
     class _BaseTear(renpy.Displayable):
         def __init__(self, number, offtimeMult, ontimeMult, offsetRange, chroma, render_child):
             super(_BaseTear, self).__init__()
             self.tear = _TearCore(number, offtimeMult, ontimeMult, offsetRange, chroma, render_child)
-        
+
         def _srf_render(self, srf, w, h, st, at):
             tr = self.tear.render(srf, w, h, st, at)
             renpy.redraw(self, 0)
@@ -203,23 +203,23 @@ init python:
                 rv.blit(srf, (0, 0))
                 rv.blit(tr, (0, 0), main=False)
                 return rv
-            
+
             return tr
 
     class _TearDisplayable(_BaseTear):
         def __init__(self, child, number, offtimeMult, ontimeMult, offsetRange, chroma, render_child):
             super(_TearDisplayable, self).__init__(number, offtimeMult, ontimeMult, offsetRange, chroma, render_child)
             self.child = renpy.displayable(child)
-        
+
         def render(self, w, h, st, at):
             return self._srf_render(renpy.render(self.child, w, h, st, at), w, h, st, at)
 
         def event(self, ev, x, y, st):
             return self.child.event(ev, x, y, st)
-        
+
         def visit(self):
             return [self.child]
-        
+
         def predict_one(self):
             renpy.display.predict.displayable(self.child)
 
@@ -232,14 +232,14 @@ init python:
             self.offTime = random.uniform(0.0, 0.24) * offtimeMult
 
             self.pos = None
-        
+
         def update(self, st):
             st %= self.offTime + self.onTime
             if st > self.offTime and self.pos is None:
                 self.pos = (random.random(), random.random())
             elif st <= self.offTime and self.pos is not None:
                 self.pos = None
-        
+
     class _GlicthedDisplayableCore(object):
         def __init__(self, center, cols, rows, size, box, offtimeMult, ontimeMult, d):
             self.pieces = [
@@ -254,17 +254,17 @@ init python:
             self.size = size
             self.box = box
             self.d = renpy.easy.displayable_or_none(d)
-        
+
         def render(self, srf, width, height, st, at):
             """
             `srf`: Render | Surface | GL2Model
-                The surface to draw the pieces from.
+                Поверхность, с которой будут срисовываться фрагменты.
             
             `width`: int | float
-                The width of the child render.
+                Ширина дочернего рендера.
             
             `height`: int | float
-                The height of the child render.
+                Высота дочернего рендера.
             """
             rv = renpy.Render(width, height)
 
@@ -286,10 +286,10 @@ init python:
             yrange = box_height - rect_ysize
 
             if xrange < 0 or yrange < 0:
-                raise ValueError("""\
-can't crop rect
-crop: ({}, {})
-rect: ({}, {})""".format(xrange, yrange, rect_xsize, rect_ysize))
+                raise ValueError(f"""\
+Не удалось вырезать прямоугольник.
+Площадь обрезки: ({xrange}, {yrange})
+Прямоугольник: ({rect_xsize}, {rect_ysize})""")
 
             sw = self.cols * rect_xsize
             sh = self.rows * rect_ysize
@@ -318,7 +318,7 @@ rect: ({}, {})""".format(xrange, yrange, rect_xsize, rect_ysize))
                 _GlicthedDisplayableCore(*glitch)
                 for glitch in args
             ]
-        
+
         def glitch_render(self, cr, w, h, st, at):
             rv = renpy.Render(w, h)
             cr_w, cr_h = cr.get_size()
@@ -336,7 +336,7 @@ rect: ({}, {})""".format(xrange, yrange, rect_xsize, rect_ysize))
         def __init__(self, child, *args):
             super(_GlicthedDisplayable, self).__init__(*args)
             self.child = renpy.displayable(child)
-    
+
         def render(self, w, h, st, at):
             rv = renpy.render(self.child, w, h, st, at)
             glitch = self.glitch_render(rv, w, h, st, at)
@@ -349,6 +349,6 @@ rect: ({}, {})""".format(xrange, yrange, rect_xsize, rect_ysize))
 
         def visit(self):
             return [self.child]
-        
+
         def predict_one(self):
             renpy.display.predict.displayable(self.child)
