@@ -1,174 +1,174 @@
 ## credits.rpy
 
-# This file controls the ending of DDLC and your mod!
+# Этот файл управляет концовкой DDLC и вашей модификации!
 
-# These images shows the CGs seen in-game then deletes them after a few seconds
-# from the credits if the game isn't 100% complete.
+# Эти определения изображений показывают сценки, которые можно было увидеть в игре,
+# а затем, если игра была пройдена не на 100%, происходит их «удаление» из титров.
 image credits_cg1:
     "images/cg/credits/1.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg2:
     "images/cg/credits/2.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg3:
     "images/cg/credits/3.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg4:
     "images/cg/credits/4.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg5:
     "images/cg/credits/5.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg6:
     "images/cg/credits/6.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg7:
     "images/cg/credits/7.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg8:
     "images/cg/credits/8.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg9:
     "images/cg/credits/9.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg10:
     "images/cg/credits/10.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
-# These images shows the CGs not seen in-game then deletes them after a few seconds
-# from the credits.
+# Эти определения изображений показывают неувиденные сценки в игре, а затем происходит
+# их «удаление» из титров.
 image credits_cg1_locked:
     "images/cg/credits/1b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg2_locked:
     "images/cg/credits/2b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg3_locked:
     "images/cg/credits/3b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg4_locked:
     "images/cg/credits/4b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg5_locked:
     "images/cg/credits/5b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg6_locked:
     "images/cg/credits/6b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg7_locked:
     "images/cg/credits/7b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg8_locked:
     "images/cg/credits/8b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg9_locked:
     "images/cg/credits/9b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
 image credits_cg10_locked:
     "images/cg/credits/10b.png"
-    size (640, 360)
+    xysize (640, 360)
     8.6
     "images/menu/notfound.png"
 
-# These images shows every CG in the game and does not delete them from THE
-# credits if the game is 100% complete.
+# Эти определения изображений показывают все просмотренные сценки в игре,
+# и их «удаление» из титров НЕ происходит, т.к. игра была пройдена на 100%.
 image credits_cg1_clearall:
     "images/cg/credits/1.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg2_clearall:
     "images/cg/credits/2.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg3_clearall:
     "images/cg/credits/3.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg4_clearall:
     "images/cg/credits/4.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg5_clearall:
     "images/cg/credits/5.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg6_clearall:
     "images/cg/credits/6.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg7_clearall:
     "images/cg/credits/7.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg8_clearall:
     "images/cg/credits/8.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg9_clearall:
     "images/cg/credits/9.png"
-    size (640, 360)
+    xysize (640, 360)
 
 image credits_cg10_clearall:
     "images/cg/credits/10.png"
-    size (640, 360)
+    xysize (640, 360)
 
-# This image shows the DDLC logo with certain transforms.
+# Это определение изображения показывает логотип DDLC с применёнными к нему трансформациями.
 image credits_logo:
     "gui/logo.png"
     truecenter
@@ -177,7 +177,7 @@ image credits_logo:
     4.5
     linear 2.0 alpha 0
 
-# This image shows the Team Salvato logo with certain transforms.
+# Это определение изображения показывает логотип Team Salvato с применёнными к нему трансформациями.
 image credits_ts:
     "images/bg/splash-white.png"
     xalign 0.5 yalign 0.6
@@ -186,184 +186,204 @@ image credits_ts:
     4.5
     linear 2.0 alpha 0
 
-# This style declares the text appearance of the work type credits text in the
-# credits.
+# Этот стиль объявляет оформление заголовков (роль человека в разработке игры)
+# в титрах.
 style credits_header:
-    font "gui/font/RifficFree-Bold.ttf"
+    font "gui/font/v_CCBellyLaugh.ttf"
     color "#ffaae6"
     size 36
     text_align 0.5
     outlines []
 
-# This style declares the text appearance of the person type credits text in the
-# credits.
+# Этот стиль объявляет оформление абзацев (имя/прозвище человека, участвовавшего
+# в разработке игры) в титрах.
 style credits_text:
-    font "gui/font/Halogen.ttf"
+    font "gui/font/comic.ttf"
     color "#fff"
     size 36
     text_align 0.5
     outlines []
 
-# This style declares the text appearance of Monika's lyrics text in the credits.
+# Этот стиль объявляет оформление текста песни Моники в титрах.
 style monika_credits_text:
-    font "gui/font/m1.ttf"
+    font "gui/font/Adventure.ttf"
     color "#fff"
-    size 40
+    size 30
     text_align 0.5
+    line_leading 1
     outlines []
 
-# This image shows the work-type credits text to the credits (Game Concept).
+# Это определение изображения показывает заголовки в титрах (напр. «Концепция и дизайн игры»).
 image credits_header = ParameterizedText(style="credits_header", ypos=-40)
 
-# This image shows the person-type credits text to the credits (Dan Salvato).
+# Это определение изображения показывает абзацы в титрах (напр. «Дэн Салвато»).
 image credits_text = ParameterizedText(style="credits_text", ypos=40)
 
-# This image shows the Monika lyrics text in the credits.
+# Прим. пер.: эти определения изображений взяты из русификатора от Энтузиасты Team
+# и необходимы для корректного отображения текста в титрах
+
+# Заголовки, два человека
+image credits_header2 = ParameterizedText(style="credits_header", ypos=-55)
+
+# Абзацы, два человека
+image credits_text2 = ParameterizedText(style="credits_text", ypos=30)
+
+# Заголовки, три человека
+image credits_header_3 = ParameterizedText(style="credits_header", ypos=-85)
+
+# Абзацы, три человека
+image credits_text_3 = ParameterizedText(style="credits_text", ypos=30)
+
+# Заголовки, пять человек
+image credits_header_5 = ParameterizedText(style="credits_header", ypos=-140)
+
+# Абзацы, пять человек
+image credits_text_5 = ParameterizedText(style="credits_text", ypos=25)
+
+# Это определение изображения показывает текст песни Моники в титрах.
 image monika_credits_text = ParameterizedText(style="monika_credits_text", xalign=0.5)
 
-# This transform handles the credits scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания титров.
 transform credits_scroll:
     subpixel True
     yoffset 740
     linear 15 yoffset -380
 
-# This transform handles the credits text scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания текста титров.
 transform credits_text_scroll:
     anchor (0.5, 0.5) subpixel True
     yoffset 920
     linear 15 yoffset -200
 
-# This transform handles the credits chibi scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания чибиков в титрах.
 transform credits_sticker_scroll:
     subpixel True
     yoffset 940
     7.8
     linear 15 yoffset -180
 
-# This transform handles the credits right scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания титров справа.
 transform credits_scroll_right:
     xalign 0.9
     credits_scroll
 
-# This transform handles the credits left scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания титров слева.
 transform credits_scroll_left:
     xalign 0.1
     credits_scroll
 
-# This transform handles the credits text right scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания текста титров справа.
 transform credits_text_scroll_right:
     xpos 960
     credits_text_scroll
 
-# This transform handles the credits text left scrolling animation in the credits.
+# Эта трансформация управляет анимацией прокручивания текста титров слева.
 transform credits_text_scroll_left:
     xpos 320
     credits_text_scroll
 
-# This transform handles the Sayori Chibi animation in the credits.
+# Эта трансформация управляет анимацией чибика Сайори в титрах.
 transform credits_sticker_1:
     yanchor 1.00
     xalign 0.32
     credits_sticker_scroll
 
-# This transform handles the Natsuki Chibi animation in the credits.
+# Эта трансформация управляет анимацией чибика Нацуки в титрах.
 transform credits_sticker_2:
     yanchor 1.00
     xalign 0.44
     credits_sticker_scroll
 
-# This transform handles the Yuri Chibi animation in the credits.
+# Эта трансформация управляет анимацией чибика Юри в титрах.
 transform credits_sticker_3:
     yanchor 1.00
     xalign 0.56
     credits_sticker_scroll
 
-# This transform handles the Monika Chibi animation in the credits.
+# Эта трансформация управляет анимацией чибика Моники в титрах.
 transform credits_sticker_4:
     yanchor 1.00
     xalign 0.68
     credits_sticker_scroll
 
-# This variable handles the y position of the Monika lyrics in the credits.
+# Эта переменная указывает позицию текста песни Моники по вертикали.
 define credits_ypos = 250
 
-# These image transforms shows Monika's lyrics when she sings Your Reality in 
-# the credits.
+# Эти изображения с трансформациями показывают текст песни «Твоя реальность»,
+# исполняемой Моникой.
 image mcredits_1a:
     ypos credits_ypos
-    xoffset -205
+    xoffset -340
     "black"
     10.33
-    Text("Every day,", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 13.0, ramplen=4, alpha=False)
+    Text("День за днём,", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.5, ramplen=4, alpha=False)
 
 image mcredits_1b:
     ypos credits_ypos
-    xoffset -35
+    xoffset -30
     "black"
     11.75
-    Text("I imagine a future where", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 12.0, ramplen=4, alpha=False)
+    Text("строю мир в голове, где будем", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 7.0, ramplen=4, alpha=False)
 
 image mcredits_1c:
     ypos credits_ypos
-    xoffset 170
+    xoffset 307
     "black"
     13.76
-    Text("I can be with you", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 15.0, ramplen=4, alpha=False)
+    Text("лишь мы с тобой.", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.0, ramplen=4, alpha=False)
 
 image mcredits_2a:
     ypos credits_ypos + 50
-    xoffset -226
+    xoffset -340
     "black"
     19.45
-    Text("In my hand", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 13.0, ramplen=4, alpha=False)
+    Text("На листе", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.5, ramplen=4, alpha=False)
 
 image mcredits_2b:
     ypos credits_ypos + 50
-    xoffset -10
+    xoffset -60
     "black"
     20.9
-    Text(" is a pen that will write a poem", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.0, ramplen=4, alpha=False)
+    Text("пером выведу стих, в котором", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 7.0, ramplen=4, alpha=False)
 
 image mcredits_2c:
     ypos credits_ypos + 50
-    xoffset 225
+    xoffset 285
     "black"
     23.27
-    Text("of me and you", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 15.0, ramplen=4, alpha=False)
-
+    Text("ты здесь, со мной.", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.0, ramplen=4, alpha=False)
 
 image mcredits_3:
     ypos credits_ypos + 100
     "black"
     28.35
-    Text("The ink flows down into a dark puddle", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 16.0, ramplen=4, alpha=False)
+    Text("Тёмной лужей чернила вдруг стали,", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 10.5, ramplen=4, alpha=False)
 
 image mcredits_4:
     ypos credits_ypos + 150
-    xoffset -5
     "black"
     32.9
-    Text(" Just move your hand -- write the way into his heart!", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 9.0, ramplen=4, alpha=False)
+    Text("Просто пиши - дай им стать большой рекой.", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 7.5, ramplen=4, alpha=False)
 
 image mcredits_5:
     ypos credits_ypos + 200
     "black"
     37.5
-    Text("But in this world of infinite choices", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 16.0, ramplen=4, alpha=False)
+    Text("В мире, где миллионы решений,", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 11.5, ramplen=4, alpha=False)
 
 image mcredits_6a:
     ypos credits_ypos + 250
-    xoffset -145
+    xoffset -185
     "black"
     42.0
-    Text(" What will it take", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 10.0, ramplen=4, alpha=False)
+    Text("Куда же плыть", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 6.5, ramplen=4, alpha=False)
 
 image mcredits_6b:
     ypos credits_ypos + 250
-    xoffset 85
+    xoffset 110
     "black"
     43.47
-    Text(" just to find that special day?", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 10.0, ramplen=4, alpha=False)
+    Text("вместе с нею за мечтой?", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 6.5, ramplen=4, alpha=False)
 
 image mcredits_7:
     "black"
@@ -371,13 +391,13 @@ image mcredits_7:
     48.62
     linear 1.5 alpha 1.0
 
-# This image is a left-over image for Monika's lyrics in-game from DDLC's 
-# development.
+# Это определение изображения является остатками кода текста песни Моники
+# из тестовой версии DDLC.
 image mcredits_1_test:
     ypos credits_ypos + 300
-    Text("What will it take just to find that special day?", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 15.0, ramplen=4)
+    Text("Какой же путь вместе нас сведёт с тобой?", style="monika_credits_text") with ImageDissolve("images/menu/wipeleft.png", 10.0, ramplen=4)
 
-# These images shows the glitched Monika poem image shown in the credits.
+# Эти определения изображений показывают искажённое изображение Моники со стихотворением перед началом титров.
 image end_glitch1:
     "bg/end-glitch1.jpg"
     alpha 0.0
@@ -420,31 +440,30 @@ image end_glitch4:
         linear 4 yoffset 0
         repeat
 
-# This label starts the first part of the credits with Monika herself.
+# Этот лейбл запускает первую часть титров с Моникой.
 label credits:
-    # This variable declaration makes sure that the game reloads to the credits
-    # if they close the game.
+    # Это объявление переменной указывает, что если вдруг игрок закрыл игру,
+    # при следующем запуске начнутся титры.
     $ persistent.autoload = "credits" 
 
-    # This variable declaration saves the persistent data in the game to the 
-    # save file.
+    # Эта команда сохраняет постоянные данные игры в отдельный файл.
     $ renpy.save_persistent()
 
-    # These variable declarations unmaps the game menu and hide window button and
-    # makes a new keymap cache.
+    # Нижеследующие команды отвязывают горячие клавиши вызова Игрового меню и скрытия
+    # диалогового окна, а затем идёт обновление кэша привязок для вступления изменений в силу.
     $ config.keymap['game_menu'] = []
     $ config.keymap['hide_windows'] = []
     $ renpy.display.behavior.clear_keymap_cache()
 
-    # These variable declarations makes it so the player can't skip or access the 
-    # quick menu in the credits file
+    # Эти объявления переменных блокируют функцию Пропуска и доступ к Быстрому меню,
+    # пока идут титры.
     $ quick_menu = False
     $ config.skipping = False
     $ config.allow_skipping = False
 
     scene black
 
-    # This play statement starts Monika's spoken dialogue in the credits.
+    # Эта команда воспроизведения запускает диалог Моники в титрах.
     play music "bgm/end-voice.ogg" noloop
 
     show noise zorder 9:
@@ -493,22 +512,22 @@ label credits:
     show end_glitch1 zorder 2
     show black as bar zorder 9:
         alpha 0.3
-        size (1280,500)
+        xysize (1280,500)
         block:
             ypos 720
             linear 15 ypos -500
             repeat
 
-    pause 41
+    pause 39
     scene black
     pause 0.5
-    $ run_input(__("renpy.music.play(\"ddlc.ogg\")"), __("Playing audio \"ddlc.ogg\"..."))
+    $ run_input(__("renpy.music.play(\"ddlc.ogg\")"), __("Воспроизведение \"ddlc.ogg\"..."))
     pause 1.0
     hide screen console_screen
-    # This play statement starts Your Reality to 50 seconds in the credits.
+    # Эта команда воспроизведения запускает «Твоя реальность» и играет его ровно 50 секунд.
     play music "<to 50.0>bgm/credits.ogg" noloop
 
-    # This section shows the small lyrics shown in the credits.
+    # В этом разделе выводятся на экран строчки из текста песни.
     show mcredits_1a zorder 50
     show mcredits_1b zorder 49
     show mcredits_1c zorder 48
@@ -525,7 +544,7 @@ label credits:
     pause 50
     jump credits2
 
-# This label starts the second part of the credits with development information.
+# Этот лейбл запускает вторую часть титров с командой разработчиков.
 label credits2:
     python:
         sayoriTime = renpy.random.random() * 4 + 4
@@ -552,109 +571,110 @@ label credits2:
     show credits_logo
     pause 9.12
 
-    # These variable declarations and show statement determines whether a CG in 
-    # the game is shown, grayed-out (locked) or shown and deleted afterwards.
+    # Эти объявления переменных и команда отображения определяют, какая сценка в титрах
+    # будет показана цветной или чёрно-белой (неоткрытой) и будет ли она удалена впоследствии.
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
-    show expression ("credits_cg1" + lockedtext) as credits_image_1 at credits_scroll_right
-    
-    # These show statements shows the work-type and person-type credits in the 
-    # credits.
-    show credits_header "Concept & Game Design" as credits_header_1 at credits_text_scroll_left
-    show credits_text "Dan Salvato" as credits_text_1 at credits_text_scroll_left
-    
+    show expression f"credits_cg1{lockedtext}" as credits_image_1 at credits_scroll_right
+
+    # Эти команды отображения показывают заголовок (роль человека в разработке
+    # игры) и абзац (имя/прозвище человека, участвовавшего в разработке игры) титров.
+    # Прим. пер.: обязательно учитывайте кол-во людей в абзаце, иначе текст будет отображаться некорректно.
+    show credits_header "Концепция и дизайн игры" as credits_header_1 at credits_text_scroll_left
+    show credits_text "Дэн Салвато" as credits_text_1 at credits_text_scroll_left
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     $ pause(16.95 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/n_cg1.png\")", __("n_cg1.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/n_cg1.png\")", __("Удалено: \"n_cg1.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/n_cg1.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg2" + lockedtext) as credits_image_2 at credits_scroll_left
-    
-    show credits_header "Character Art" as credits_header_2 at credits_text_scroll_right
+    show expression f"credits_cg2{lockedtext}" as credits_image_2 at credits_scroll_left
+
+    show credits_header "Художник по персонажам" as credits_header_2 at credits_text_scroll_right
     show credits_text "Satchely" as credits_text_2 at credits_text_scroll_right
-    
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     $ pause(26.05 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/n_cg2.png\")", __("n_cg2.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/n_cg2.png\")", __("Удалено: \"n_cg2.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/n_cg2.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg3" + lockedtext) as credits_image_1 at credits_scroll_right
-    
-    show credits_header "Background Art" as credits_header_1 at credits_text_scroll_left
+    show expression f"credits_cg3{lockedtext}" as credits_image_1 at credits_scroll_right
+
+    show credits_header "Художник по фонам" as credits_header_1 at credits_text_scroll_left
     show credits_text "Velinquent" as credits_text_1 at credits_text_scroll_left
-    
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     $ pause(35.15 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/y_cg1.png\")", __("y_cg1.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/y_cg1.png\")", __("Удалено: \"y_cg1.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/y_cg1.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg4" + lockedtext) as credits_image_2 at credits_scroll_left
-    
-    show credits_header "Writing" as credits_header_2 at credits_text_scroll_right
-    show credits_text "Dan Salvato" as credits_text_2 at credits_text_scroll_right
-    
+    show expression f"credits_cg4{lockedtext}" as credits_image_2 at credits_scroll_left
+
+    show credits_header "Автор сценария" as credits_header_2 at credits_text_scroll_right
+    show credits_text "Дэн Салвато" as credits_text_2 at credits_text_scroll_right
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     $ pause(44.25 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/y_cg2.png\")", __("y_cg2.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/y_cg2.png\")", __("Удалено: \"y_cg2.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/y_cg2.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg5" + lockedtext) as credits_image_1 at credits_scroll_right
-    
-    show credits_header "Music" as credits_header_1 at credits_text_scroll_left
-    show credits_text "Dan Salvato" as credits_text_1 at credits_text_scroll_left
-    
+    show expression f"credits_cg5{lockedtext}" as credits_image_1 at credits_scroll_right
+
+    show credits_header "Композитор" as credits_header_1 at credits_text_scroll_left
+    show credits_text "Дэн Салвато" as credits_text_1 at credits_text_scroll_left
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
-    $ pause(53.35 - (datetime.datetime.now() - starttime).total_seconds())
+    $ pause(54.30 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/n_cg3.png\")", __("n_cg3.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/n_cg3.png\")", __("Удалено: \"n_cg3.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/n_cg3.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg6" + lockedtext) as credits_image_2 at credits_scroll_left
-    
-    show credits_header "Vocals" as credits_header_2 at credits_text_scroll_right
-    show credits_text "Jillian Ashcraft" as credits_text_2 at credits_text_scroll_right
-    
+    show expression f"credits_cg6{lockedtext}" as credits_image_2 at credits_scroll_left
+
+    show credits_header2 "Исполнители песни" as credits_header_2 at credits_text_scroll_right
+    show credits_text2 "Джиллиан Эшкрафт\nAka" as credits_text_2 at credits_text_scroll_right
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
-    $ pause(62.45 - (datetime.datetime.now() - starttime).total_seconds())
+    $ pause(63.10 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/y_cg2.png\")", __("y_cg2.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/y_cg2.png\")", __("Удалено: \"y_cg2.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/y_cg2.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg7" + lockedtext) as credits_image_1 at credits_scroll_right
-    
-    show credits_header "Special Thanks" as credits_header_1 at credits_text_scroll_left
-    show credits_text "Masha Gutin\nKagefumi" as credits_text_1 at credits_text_scroll_left
-    
+    show expression f"credits_cg7{lockedtext}" as credits_image_1 at credits_scroll_right
+
+    show credits_header_5 "Перевод оригинала" as credits_header_1 at credits_text_scroll_left
+    show credits_text_5 "Erizo\nMamavl\nDOOMer\nFibYar\nAka" as credits_text_1 at credits_text_scroll_left
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
-    $ pause(71.55 - (datetime.datetime.now() - starttime).total_seconds())
+    $ pause(71.30 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/s_cg1.png\")", __("s_cg1.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/s_cg1.png\")", __("Удалено: \"s_cg1.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/s_cg1.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg8" + lockedtext) as credits_image_2 at credits_scroll_left
-    
-    show credits_header "Special Thanks" as credits_header_2 at credits_text_scroll_right
-    show credits_text "David Evelyn\nCorey Shin" as credits_text_2 at credits_text_scroll_right
-    
+    show expression f"credits_cg8{lockedtext}" as credits_image_2 at credits_scroll_left
+
+    show credits_header_3 "Особая благодарность" as credits_header_2 at credits_text_scroll_right
+    show credits_text_3 "Маша Гутин\nKagefumi\nДэвид Ивлин" as credits_text_2 at credits_text_scroll_right
+
     show s_sticker at credits_sticker_1
     show n_sticker at credits_sticker_2
     show y_sticker at credits_sticker_3
@@ -664,42 +684,42 @@ label credits2:
     $ if persistent.clearall: lockedtext = "_clearall"
     $ imagenum += 1
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/s_cg2.png\")", __("s_cg2.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/s_cg2.png\")", __("Удалено: \"s_cg2.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/s_cg2.png\")") / 30.0 + 0.5)
     $ pause(88.00 - (datetime.datetime.now() - starttime).total_seconds())
-    show expression ("credits_cg9" + lockedtext) as credits_image_1 at credits_scroll_right
-    
-    show credits_header "Special Thanks" as credits_header_1 at credits_text_scroll_left
-    show credits_text "Alecia Bardachino\nMatt Naples" as credits_text_1 at credits_text_scroll_left
-    
+    show expression f"credits_cg9{lockedtext}" as credits_image_1 at credits_scroll_right
+
+    show credits_header_3 "Особая благодарность" as credits_header_1 at credits_text_scroll_left
+    show credits_text_3 "Кори Шин\nАлесия Бардачино\nМэтт Нэплс" as credits_text_1 at credits_text_scroll_left
+
     $ lockedtext = "" if persistent.clear[imagenum] else "_locked"
     $ if persistent.clearall: lockedtext = "_clearall"
     $ pause(95.00 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/s_cg3.png\")", __("s_cg3.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/s_cg3.png\")", __("Удалено: \"s_cg3.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/s_cg3.png\")") / 30.0 + 0.5)
-    show expression ("credits_cg10" + lockedtext) as credits_image_2 at credits_scroll_left
-    
-    show credits_header "Special Thanks" as credits_header_2 at credits_text_scroll_right
-    show credits_text "Monika\n[player]" as credits_text_2 at credits_text_scroll_right
-    
-    $ pause(104.10 - (datetime.datetime.now() - starttime).total_seconds())
+    show expression f"credits_cg10{lockedtext}" as credits_image_2 at credits_scroll_left
+
+    show credits_header "Особая благодарность" as credits_header_2 at credits_text_scroll_right
+    show credits_text "Моника\n[player]" as credits_text_2 at credits_text_scroll_right
+
+    $ pause(103.50 - (datetime.datetime.now() - starttime).total_seconds())
     if not persistent.clearall:
-        $ run_input("os.remove(\"images/cg/m_cg1.png\")", __("m_cg1.png deleted successfully."))
+        $ run_input("os.remove(\"images/cg/m_cg1.png\")", __("Удалено: \"m_cg1.png\"."))
     else:
         $ pause(len("os.remove(\"images/cg/m_cg1.png\")") / 30.0 + 0.5)
 
-    $ run_input("os.remove(\"game/screens.rpy\")", __("screens.rpy deleted successfully."))
-    $ run_input("os.remove(\"game/gui.rpy\")", __("gui.rpy deleted successfully."))
-    $ run_input("os.remove(\"game/menu.rpy\")", __("menu.rpy deleted successfully."))
-    $ run_input("os.remove(\"game/script.rpy\")", __("script.rpy deleted successfully."))
+    $ run_input("os.remove(\"game/screens.rpy\")", __("Удалено: \"screens.rpy\"."))
+    $ run_input("os.remove(\"game/gui.rpy\")", __("Удалено: \"gui.rpy\"."))
+    $ run_input("os.remove(\"game/menu.rpy\")", __("Удалено: \"menu.rpy\"."))
+    $ run_input("os.remove(\"game/script.rpy\")", __("Удалено: \"script.rpy\"."))
     $ pause(115.72 - (datetime.datetime.now() - starttime).total_seconds())
-    
+
     hide screen console_screen
     show credits_ts
-    show credits_text "made with love by":
+    show credits_text "сделано с любовью":
         zoom 0.75 xalign 0.5 yalign 0.25 alpha 0 subpixel True
         linear 2.0 alpha 1
         4.5
@@ -708,8 +728,9 @@ label credits2:
     play sound page_turn
     show poem_end with Dissolve(1)
 
-    # This label starts the end of the game loop with the ending poem or Dan's 
-    # special letter and a fake game corruption error to quit the game.
+    # Этот лейбл запускает цикл с концом игры и выводит на экран прощальное письмо Моники или особенное письмо Дэна,
+    # а при нажатии любой клавиши, которая должна в теории пролистать текст дальше - выводит ложное окно с сообщением
+    # о повреждении/отсутствии файлов и единственной кнопкой, которая закрывает игру.
     label postcredits_loop:
         $ persistent.autoload = "postcredits_loop"
         $ renpy.save_persistent()
@@ -722,12 +743,12 @@ label credits2:
 
         scene black
 
-        # This show statement either shows Monika's or Dan's Goodbye Message.
+        # Эта команда отображения показывает прощальное письмо Моники или особенное письмо Дэна.
         show poem_end
-        # This pause statement pauses for indefinite time.
+        # Эта команда ставит пропускаемую паузу.
         $ pause()
-        
-        # This call screen statement shows a fake error corruption message that
-        # makes the player quit the game.
-        call screen dialog(message="Error: Script file is missing or corrupt.\nPlease reinstall the game.", ok_action=Quit(confirm=False))
+
+        # Эта команда показа экрана выводит на экран ложное окно с сообщением
+        # о повреждении/отсутствии файлов и единственной кнопкой, которая закрывает игру.
+        call screen dialog("Ошибка: некоторые файлы повреждены или отсутствуют.\nПереустановите игру.", Quit(confirm=False))
         return

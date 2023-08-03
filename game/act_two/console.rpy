@@ -43,7 +43,7 @@ init python:
         if len(console_history) > 5:
             console_history.pop(5)
 
-    # Add the output to history after code is done
+    # Добавить результат команды в историю после того, как код будет исполнен.
     def input_finished():
         global new_input
 
