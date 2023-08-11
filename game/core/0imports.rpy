@@ -21,7 +21,7 @@ python early:
     import subprocess
     import platform
 
-init python:
+init -1 python:
     # Достижения/Галерея
     try:
         from store.achievements import achievementList, Achievement, AchievementCount
