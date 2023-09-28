@@ -1,4 +1,5 @@
 init 10 python:
+    import io
 
     class TearDisplayable(object):
         """
@@ -41,15 +42,17 @@ init 10 python:
         `srf`: Render | Surface | GL2Model | None
             Используемая поверхность. Если передано `None`, делает снимок экрана и использует его как поверхность
             (размер скриншота не будет аналогичным размеру экрана, будьте с этим осторожны).
-
-        Сохранение игры во время показа подобного отображаемого элемента невозможно.
         """
         def __init__(self, number=10, offtimeMult=1, ontimeMult=1, offsetRange=(0, 50), chroma=False, render_child=True, srf=None):
             super(TearSurface, self).__init__(number, offtimeMult, ontimeMult, offsetRange, chroma, render_child)
-            self.srf = srf or screenshot_srf()
+            srf = srf or screenshot_srf()
+
+            with io.BytesIO() as sio:
+                renpy.display.module.save_png(srf, sio, 0)
+                self.data = sio.getvalue()
 
         def render(self, w, h, st, at):
-            return self._srf_render(self.srf, w, h, st, at)
+            return self._srf_render(renpy.display.pgrender.load_image(io.BytesIO(self.data), "TearSurface.png"), w, h, st, at)
 
     def Tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None, chroma=False):
         return TearSurface(number, offtimeMult, ontimeMult, (offsetMin, offsetMax), chroma, srf)
