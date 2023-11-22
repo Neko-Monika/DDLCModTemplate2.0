@@ -6,7 +6,7 @@
 
 default persistent.gallery_imgs = {}
 
-init -1 python in gallery:
+init -2 python in gallery:
     from store import Transform, persistent, config, Hide, Composite
     import os
     import renpy.display.image as imgcore
@@ -93,7 +93,6 @@ init -1 python in gallery:
                 renpy.show_screen("dialog", message=__(f"Изображение «{self.name}» было экспортировано в папку Галереи.")), ok_action=Hide("dialog"))
 
 init python:
-    # from store.gallery import GalleryImage, galleryList
     current_img_name = None
     # Эта функция совершает переход к следующему/предыдущему изображению в галерее.
     def next_image(back=False):
