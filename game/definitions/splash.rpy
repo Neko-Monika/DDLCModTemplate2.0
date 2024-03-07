@@ -8,7 +8,7 @@
 # распаковать их, дабы сборка дистрибутива работала.
 init -100 python:
     if not renpy.android:
-        for archive in ["audio", "fonts", "images"]:
+        for archive in ["audio", "images"]:
             if archive not in config.archives:
                 raise DDLCRPAsMissing(archive)
 
