@@ -1226,6 +1226,7 @@ screen template_preferences():
 
         if extra_settings:
             vbox:
+                xmaximum 1000
                 style_prefix "check"
                 label _("Режимы игры")
                 textbutton _("Режим «Без цензуры»") action If(persistent.uncensored_mode, 
@@ -1246,6 +1247,8 @@ screen template_preferences():
 Поведение настройки зависит от мододела, если тот ввёл соответствующие проверки в своём сценарии."""), 
                         ok_action=Hide("dialog")
                     )])
+
+            null width 20
 
         vbox:
             style_prefix "name"
