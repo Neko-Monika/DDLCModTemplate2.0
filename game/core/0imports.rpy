@@ -27,7 +27,7 @@ init -1 python:
         from store.achievements import achievementList, Achievement, AchievementCount
     except ModuleNotFoundError:
         pass
-    
+
     try:
         from store.gallery import GalleryImage, galleryList
     except ModuleNotFoundError:

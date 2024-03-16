@@ -66,7 +66,7 @@ label ch23_main:
     n 1q "You say that like I do it on a regular basis or something."
     n "I just wasn't paying attention, okay? I'm sorry."
     n 4u "Seriously... What's gotten into you lately?"
-    if n_appeal >= 2:
+    if chibi_n.appeal >= 2:
         n "Look..."
         n "I did some thinking about yesterday."
         n 2q "I was a little more hostile than I meant to be..."
@@ -238,7 +238,7 @@ label ch23_main:
     y 2u "Um... Thank you for understanding, Monika."
     if poemwinner[2] == "natsuki":
         $ poemwinner[2] = "yuri"
-        $ y_appeal += 1
+        $ chibi_y.appeal += 1
 
     scene bg club_day2
     show yuri 3 zorder 2 at t11
@@ -255,7 +255,7 @@ label ch23_end:
     with wipeleft_scene
     call screen confirm("", Return(True), Return(True))
     if _return:
-        call expression "poem_special_" + str(persistent.special_poems[2])
+        call expression f"poem_special_{persistent.special_poems[2]}"
         scene black with Dissolve(1.0)
     else:
         pass
@@ -266,7 +266,7 @@ label ch23_end:
     m "Okay, everyone!"
     m "It's time to figure out the festival preparations."
     m 1i "Let's hurry and get this over with."
-    if n_appeal >= 2:
+    if chibi_n.appeal >= 2:
         show natsuki 4q zorder 3 at f31
         n "..."
     else:
@@ -282,7 +282,7 @@ label ch23_end:
     show monika zorder 3 at f32
     m 2r "Look, can we just get this done?"
     m 2d "I'm going to be printing and assembling all the poetry pamphlets."
-    if n_appeal >= 2:
+    if chibi_n.appeal >= 2:
         m 2i "Natsuki, you can make cupcakes."
         m "I know you're at least good at that."
         show monika zorder 2 at t32
@@ -430,7 +430,7 @@ label ch23_end:
             "Monika":
                 pass
         scene bg club_day
-        $ audio.t3m = "<from " + str(musicpos) + " loop 4.618>bgm/3.ogg"
+        $ audio.t3m = f"<from {musicpos} loop 4.618>bgm/3.ogg"
         play music t3m
         show monika 5 at i11
     else:
@@ -496,13 +496,13 @@ label ch23_end:
     hide monika
     "Monika giggles as Yuri pushes her out the door."
     python:
-        try: renpy.file(config.basedir + "/have a nice weekend!")
-        except: open(config.basedir + "/have a nice weekend!", "w").write("G2pilVJccjJiQZ1poiM3iYZhj3I0IRbvj3wxomnoeOatVHUxZ2ozGKJgjXMzj2LgoOitBOM1dSDzHMatdRpmQZpidNehG29mkTxwmDJbGJxsjnVeQT9mTPSwSAOwnuWhSE50ByMpcuJoqGstJOCxqHCtdvG3HJV0TOGuwOIyoOGhwOHgm2GhlZpyISJik3J/")
-        try: os.remove(config.basedir + "/hxppy thxughts.png")
+        try: open(f"{config.basedir}/have a nice weekend!")
+        except: open(f"{config.basedir}/have a nice weekend!", "w").write("G2pilVJccjJiQZ1poiM3iYZhj3I0IRbvj3wxomnoeOatVHUxZ2ozGKJgjXMzj2LgoOitBOM1dSDzHMatdRpmQZpidNehG29mkTxwmDJbGJxsjnVeQT9mTPSwSAOwnuWhSE50ByMpcuJoqGstJOCxqHCtdvG3HJV0TOGuwOIyoOGhwOHgm2GhlZpyISJik3J/")
+        try: os.remove(f"{config.basedir}/hxppy thxughts.png")
         except: pass
-        try: os.remove(config.basedir + "/CAN YOU HEAR ME.txt")
+        try: os.remove(f"{config.basedir}/CAN YOU HEAR ME.txt")
         except: pass
-        try: os.remove(config.basedir + "/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt")
+        try: os.remove(f"{config.basedir}/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.txt")
         except: pass
 
     play music t10y
@@ -636,8 +636,7 @@ label yuri_kill_2:
     scene black
     window show(None)
     if not renpy.music.get_playing(channel='music') == audio.t6s:
-        $ audiostart = str(renpy.random.random() * 360)
-        $ audio.t6s = "<from " + audiostart + " loop 43.572>bgm/6s.ogg"
+        $ audio.t6s = f"<from {renpy.random.random() * 360} loop 43.572>bgm/6s.ogg"
         play music t6s
     show y_kill
     label yuri_kill_loop:
@@ -656,7 +655,7 @@ label yuri_kill_2:
 
 label yuri_kill_3:
     python:
-        try: os.remove(config.basedir + "/have a nice weekend!")
+        try: os.remove(f"{config.basedir}/have a nice weekend!")
         except: pass
     $ persistent.autoload = "yuri_kill_3"
     $ renpy.save_persistent()
@@ -667,8 +666,7 @@ label yuri_kill_3:
     $ style.say_dialogue = style.normal
     $ gtext = glitchtext(renpy.random.randint(8, 80))
     if not renpy.music.get_playing(channel='music') == audio.t6s:
-        $ audiostart = str(renpy.random.random() * 360)
-        $ audio.t6s = "<from " + audiostart + " loop 43.572>bgm/6s.ogg"
+        $ audio.t6s = f"<from {renpy.random.random() * 360} loop 43.572>bgm/6s.ogg"
         play music t6s
     scene bg club_day
     "[gtext]"

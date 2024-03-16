@@ -324,7 +324,7 @@ screen choice(items):
             if "kwargs=" in i.caption:
 
                 $ kwarg = i.caption.split("(kwargs=")[-1].replace(")", "")
-                $ caption = i.caption.replace(" (kwargs=" + kwarg + ")", "")
+                $ caption = i.caption.replace(f" (kwargs={kwarg})", "")
 
                 if "#" in kwarg:
                     

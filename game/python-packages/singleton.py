@@ -28,13 +28,11 @@ class SingleInstance:
     def __init__(self, flavor_id=""):
         import sys
         self.initialized = False
-        basename = os.path.splitext(os.path.abspath(sys.argv[0]))[0].replace(
-            "/", "-").replace(":", "").replace("\\", "-") + '-%s' % flavor_id + '.lock'
+        basename = f"{os.path.splitext(os.path.abspath(sys.argv[0]))[0].replace('/', '-').replace(':', '').replace('\\', '-')}-{flavor_id}.lock"
         # os.path.splitext(os.path.abspath(sys.modules['__main__'].__file__))[0].replace("/", "-").replace(":", "").replace("\\", "-") + '-%s' % flavor_id + '.lock'
-        self.lockfile = os.path.normpath(
-            tempfile.gettempdir() + '/' + basename)
+        self.lockfile = os.path.normpath(f"{tempfile.gettempdir()}/{basename}")
 
-        logger.debug("SingleInstance lockfile: " + self.lockfile)
+        logger.debug(f"SingleInstance lockfile: {self.lockfile}")
         if sys.platform == 'win32':
             try:
                 # file already exists, we try to remove (in case previous
@@ -83,7 +81,7 @@ class SingleInstance:
             if logger:
                 logger.warning(e)
             else:
-                print("Unloggable error: %s" % e)
+                print(f"Unloggable error: {e}")
             sys.exit(-1)
 
 

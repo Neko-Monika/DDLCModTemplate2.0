@@ -2,6 +2,7 @@ default persistent.monikatopics = []
 default persistent.monika_reload = 0
 default persistent.tried_skip = None
 default persistent.monika_kill = None
+default persistent.current_monikatopic = 0
 
 image mask_child:
     "images/cg/monika/child_2.png"
@@ -144,7 +145,7 @@ label ch30_noskip:
         $ pause(4.0)
         if not persistent.current_monikatopic or persistent.current_monikatopic == 26:
             $ persistent.current_monikatopic = 1
-        call expression "ch30_" + str(persistent.current_monikatopic)
+        call expression f"ch30_{persistent.current_monikatopic}"
     jump ch30_loop
     return
 
@@ -764,7 +765,7 @@ label ch30_autoload:
     play music m1
     window auto
     if persistent.monika_reload <= 4:
-        call expression "ch30_reload_" + str(persistent.monika_reload)
+        call expression f"ch30_reload_{persistent.monika_reload}"
     else:
         call ch30_reload_4
     $ persistent.monika_reload += 1
@@ -778,7 +779,7 @@ label ch30_autoload:
         $ pause(4.0)
         if not persistent.current_monikatopic or persistent.current_monikatopic == 26:
             $ persistent.current_monikatopic = 1
-        call expression "ch30_" + str(persistent.current_monikatopic)
+        call expression f"ch30_{persistent.current_monikatopic}"
     jump ch30_loop
 
 
@@ -884,7 +885,7 @@ label ch30_waitloop:
         persistent.monikatopics.remove(persistent.current_monikatopic)
 
 
-    call expression "ch30_" + str(persistent.current_monikatopic)
+    call expression f"ch30_{persistent.current_monikatopic}"
     jump ch30_loop
 
 

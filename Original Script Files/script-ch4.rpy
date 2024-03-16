@@ -274,7 +274,7 @@ label ch4_main:
     "I think Sayori is right."
     "I shouldn't be worrying too much, and we're definitely going to have a great time tomorrow."
     "I should just focus on what's ahead of me!"
-    call expression "ch4_exclusive_" + ch4_scene
+    call expression f"ch4_exclusive_{ch4_scene}"
     call ch4_end
 
     return

@@ -327,7 +327,7 @@ label yuri_exclusive2_2_ch22:
     scene bg corridor
     with wipeleft_scene
     $ currentpos = get_pos()
-    play music "<from " + str(currentpos) + " loop 10.893>bgm/6o.ogg"
+    play music f"<from {currentpos} loop 10.893>bgm/6o.ogg"
     mc "Let's see..."
     "The most logical place for Yuri to be would be the nearest water fountain..."
     $ y_name = "Yuri"
@@ -348,7 +348,7 @@ label yuri_exclusive2_2_ch22:
     y "Kya--!"
 
     $ currentpos = 45.264 - (get_pos() / 2.0)
-    $ audio.t6r = "<from " + str(currentpos) + " to 39.817 loop 0>bgm/6r.ogg"
+    $ audio.t6r = f"<from {currentpos} to 39.817 loop 0>bgm/6r.ogg"
     $ quick_menu = False
     play music t6r
     show yuri zorder 1 at thide
@@ -387,7 +387,7 @@ label yuri_exclusive2_2_ch22:
     if poemwinner[0] == "yuri" and chapter == 3:
         jump yuri_exclusive2_2_ch23
     $ currentpos = 90.528 - (get_pos() * 2.0)
-    $ audio.t6r = "<from " + str(currentpos) + " loop 10.893>bgm/6.ogg"
+    $ audio.t6r = f"<from {currentpos} loop 10.893>bgm/6.ogg"
     $ quick_menu = True
     play music t6r
     hide noise

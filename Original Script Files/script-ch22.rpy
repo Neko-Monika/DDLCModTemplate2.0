@@ -235,12 +235,12 @@ label ch22_main:
     y "I was wondering if you would like to spend some time together today."
     y 3o "I mean--in the club!"
     if poemwinner[0] == "natsuki":
-        $ y_appeal = 1
+        $ chibi_y.appeal = 1
         mc "Ah, I suppose so."
         mc "I don't think I could say no to you, after you gave that book to me."
         mc "Well, I guess I need to make sure Natsuki isn't waiting for me."
         mc "After we finished reading yesterday, she--"
-        if n_appeal >= 2:
+        if chibi_n.appeal >= 2:
             y 3r "She's fine!"
             $ style.say_dialogue = style.normal
             y 3h "She's reading over there. See?"
@@ -255,7 +255,7 @@ label ch22_main:
             scene black
             window auto
             $ pause(2.0)
-            play music "<from " + str(currentpos) + " loop 10.893>bgm/6.ogg"
+            play music f"<from {currentpos} loop 10.893>bgm/6.ogg"
             jump ch22_main2
         else:
             y 3r "S-She's fine!"
@@ -264,7 +264,7 @@ label ch22_main:
             mc "Ah--"
             mc "In that case, I don't see any problem..."
     else:
-        $ y_appeal = 2
+        $ chibi_y.appeal = 2
         mc "Yeah, definitely."
         mc "I planned on it anyway."
     show yuri zorder 2 at h11
@@ -292,7 +292,7 @@ label ch22_main2:
     scene bg club_day2
     show yuri 3a at i11
     with wipeleft
-    $ nextscene = "yuri_exclusive2_" + str(eval("y_appeal")) + "_ch22"
+    $ nextscene = f"yuri_exclusive2_{eval('chibi_y.appeal')}_ch22"
     call expression nextscene
 
     return
@@ -303,7 +303,7 @@ label ch22_end:
     with wipeleft_scene
     call screen confirm("You have unlocked a special poem.\nWould you like to read it?", Return(True), Return(False))
     if _return:
-        call expression "poem_special_" + str(persistent.special_poems[1])
+        call expression f"poem_special_{persistent.special_poems[1]}"
         scene black with Dissolve(1.0)
     else:
         pass
@@ -378,7 +378,7 @@ label ch22_end:
         hide i2 onlayer front
         show layer master
         show layer screens
-        play music "<from " + str(currentpos) + " loop 4.618>bgm/3.ogg"
+        play music f"<from {currentpos} loop 4.618>bgm/3.ogg"
     y "I don't really do well with last-minute preparations..."
     show yuri zorder 2 at t33
     show monika zorder 3 at f32
@@ -515,11 +515,11 @@ label ch22_end:
         xpos 630 ypos -50 zoom 2.0
     $ style.say_dialogue = style.edited
     $ currentpos = get_pos() / 2.07
-    play music "<from " + str(currentpos) + " loop 1.532>bgm/9g.ogg"
+    play music f"<from {currentpos} loop 1.532>bgm/9g.ogg"
     y "Who cares about that obnoxious brat?"
     $ style.say_dialogue = style.normal
     $ currentpos = get_pos() * 2.07
-    play music "<from " + str(currentpos) + " loop 3.172>bgm/9.ogg"
+    play music f"<from {currentpos} loop 3.172>bgm/9.ogg"
     hide black
     hide y_glitch_head
     y "I mean, I like how nice and quiet the club is right now..."
@@ -532,7 +532,7 @@ label ch22_end:
         xpos 430 ypos -450 zoom 4.5
     $ style.say_dialogue = style.edited
     $ currentpos = get_pos() / 2.07
-    play music "<from " + str(currentpos) + " loop 1.532>bgm/9g.ogg"
+    play music f"<from {currentpos} loop 1.532>bgm/9g.ogg"
     y "Nobody would cry if she killed herself."
     $ style.say_dialogue = style.normal
     $ currentpos = get_pos() * 2.07
@@ -543,7 +543,7 @@ label ch22_end:
         pos (710,380) zoom 2.5
     $ pause(0.75)
     stop sound
-    play music "<from " + str(currentpos) + " loop 3.172>bgm/9.ogg"
+    play music f"<from {currentpos} loop 3.172>bgm/9.ogg"
     hide black
     hide y_glitch_head
     hide blood_eye

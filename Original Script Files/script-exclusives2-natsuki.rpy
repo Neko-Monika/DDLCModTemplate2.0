@@ -264,7 +264,7 @@ label natsuki_exclusive2_1:
     hide n_cg1_base
 
     $ currentpos = get_pos()
-    $ audio.t6g = "<from " + str(currentpos) + " loop 10.893>bgm/6g.ogg"
+    $ audio.t6g = f"<from {currentpos} loop 10.893>bgm/6g.ogg"
     play music t6g
     $ ntext = glitchtext(96)
     $ style.say_dialogue = style.edited

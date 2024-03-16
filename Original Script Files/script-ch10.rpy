@@ -24,7 +24,7 @@ label ch10_main:
         currentpos = get_pos()
         startpos = currentpos - 0.3
         if startpos < 0: startpos = 0
-        track = "<from " + str(startpos) + " to " + str(currentpos) + ">bgm/2.ogg"
+        track = f"<from {startpos} to {currentpos}>bgm/2.ogg"
         renpy.music.play(track, loop=True)
     $ pause(1.0)
     $ gtext = glitchtext(48)

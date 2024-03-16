@@ -12,7 +12,7 @@
    <a href="https://ko-fi.com/K3K22K8SU">
       <img src="https://www.ko-fi.com/img/githubbutton_sm.svg">
    </a>
-   <a href="https://github.com/GanstaKingofSA/DDLCModTemplate2.0/releases/latest">
+   <a href="https://github.com/Bronya-Rand/DDLCModTemplate2.0/releases/latest">
       <img src=".github/IMAGES/download.png">
    </a>
 </p>
@@ -29,7 +29,7 @@
 
 ### Требования к упоминаниям авторов
 Вы должны указать авторство на экране титров вашей модификации и/или в файле `credits.txt`. Ниже расположен пример упоминания, который вы можете использовать:
-   > Этот мод появился на свет благодаря мод-шаблону версии 2.0 от bronya_rand: https://github.com/GanstaKingofSA/DDLCModTemplate2.0
+   > Этот мод появился на свет благодаря мод-шаблону версии 2.0 от bronya_rand: https://github.com/Bronya-Rand/DDLCModTemplate2.0
 
 Экран авторов включён в игре по умолчанию, и открыть его можно либо через раздел Доп. контента, либо по нажатию на отдельную кнопку, если искомый раздел отключён.
 
@@ -74,7 +74,7 @@
 4. Особые стихотворения (случайные стихи, появляющиеся во втором акте DDLC) <u>[были улучшены!]</u>.
 
 ### Начало работы
-Следуйте шагам, приведённым [здесь](https://ganstakingofsa.github.io/information/guides/Installing-the-Mod-Template-Recent.html), чтобы установить мод-шаблон.
+Следуйте шагам, приведённым [здесь](https://bronya-rand.github.io/information/guides/Installing-the-Mod-Template-Recent.html), чтобы установить мод-шаблон.
 > Как только вы закончите писать свой скрипт, выберите *Построить дистрибутивы*. Снимите флажки со всех вариантов и отметьте только `DDLC-совместимый мод на Ren'Py 8`, после чего нажмите на <u>Построить</u>. Это создаст кроссплатформенный .ZIP-архив, имеющий *Renpy8-DDLCMod* в названии, с файлами вашей модификации.
 
 ### Начало работы для портирования/моддинга на Android

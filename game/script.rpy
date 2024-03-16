@@ -150,7 +150,7 @@ label start:
 
     #         # Это выражение «если» либо вызывает особый обмен стихами, либо
     #         # продолжает игру как обычно.
-    #         if y_appeal >= 3:
+    #         if chibi_y.appeal >= 3:
     #             call poemresponse_start2
     #         else:
     #             call poemresponse_start
