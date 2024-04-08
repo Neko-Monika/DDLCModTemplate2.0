@@ -3,11 +3,22 @@
 # Этот файл содержит определения всех эффектов в DDLC, используемых во Втором акте.
 
 init python:
-    # Эта функция делает снимок экрана игры для дальнейшего накладывания
-    # на него разных эффектов.
+    # Эта функция возвращает размер скриншота поверхности экрана с соотношением сторон 16:9.
+    def screenshot_srf_size():
+        width, height = renpy.get_physical_size()
+        if float(width) / float(height) > 16.0/9.0:
+            width = height * 16 / 9
+        else:
+            height = width * 9 / 16
+        return (width, height)
+
+    # Эта функция делает внутренний снимок экрана игры, который будет
+    # использован для наложения спецэффектов.
     def screenshot_srf():
         srf = renpy.display.draw.screenshot(None)
 
+        # Размер скриншота должен соответствовать размеру окна.
+        srf = renpy.display.scale.smoothscale(srf, screenshot_srf_size())
         return srf
 
     # Эта функция инвертирует изображение для дальнейшего использования классом «Invert».
@@ -22,8 +33,7 @@ init python:
     class Invert(renpy.Displayable):
         def __init__(self, delay=0.0, screenshot_delay=0.0):
             super(Invert, self).__init__()
-            self.width, self.height = renpy.get_physical_size()
-            self.height = self.width * 9 / 16
+            self.width, self.height = screenshot_srf_size()
             self.srf = invert()
             self.delay = delay
 
@@ -33,25 +43,18 @@ init python:
                 render.blit(self.srf, (0, 0))
             return render
 
-    # Эта функция скрывает все внутриигровые окна.
-    def hide_windows_enabled(enabled=True):
-        global _windows_hidden
-        _windows_hidden = not enabled
-
 ## Инверсия(длина, задержка) (Invert(length, delay))
-# Этот экран вызывается выражением `show screen invert()` для инвертирования цветов экрана.
+# Этот экран вызывается выражением `show screen invert(L, D)` для инвертирования цветов экрана (L - длительность эффекта, D - задержка перед показом).
 # Синтаксис:
-# length - Указывает, сколько будет длиться эффект.
-# delay - Ждёт X секунд, прежде чем показать эффект.
+#   length - Указывает, сколько будет длиться эффект.
+#   delay - Ждёт X секунд, прежде чем показать эффект.
 screen invert(length, delay=0.0):
     add Invert(delay) size (1280, 720)
     timer delay action PauseAudio("music")
     timer delay action Play("sound", "sfx/glitch1.ogg")
     timer length + delay action Hide("invert")
-    on "show" action Function(hide_windows_enabled, enabled=False)
     on "hide" action PauseAudio("music", False)
     on "hide" action Stop("sound")
-    on "hide" action Function(hide_windows_enabled, enabled=True)
 
 init python:
     # В этом классе содержится код для эффекта разрыва экрана.
@@ -76,12 +79,8 @@ init python:
     class Tear(renpy.Displayable):
         def __init__(self, number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf=None):
             super(Tear, self).__init__()
-            self.width, self.height = renpy.get_physical_size()
+            self.width, self.height = screenshot_srf_size()
 
-            if float(self.width) / float(self.height) > 16.0/9.0:
-                self.width = self.height * 16 / 9
-            else:
-                self.height = self.width * 9 / 16
             self.number = number
             if not srf: self.srf = screenshot_srf()
             else: self.srf = srf
@@ -116,8 +115,6 @@ init python:
 screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None):
     zorder 150
     add Tear(number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf) size (1280,720)
-    on "show" action Function(hide_windows_enabled, enabled=False)
-    on "hide" action Function(hide_windows_enabled, enabled=True)
 
 # Статичные прямоугольники (RectStatic)
 # Эти изображения с преобразованиями показывают глючные прямоугольники в игре во время Третьего акта,
