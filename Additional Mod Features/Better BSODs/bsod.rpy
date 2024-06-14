@@ -1,4 +1,4 @@
-## Авторское право 2019-2023 Азариэль Дель Кармен (bronya_rand). Все права защищены.
+## Авторское право 2019-2024 Азариэль Дель Кармен (bronya_rand). Все права защищены.
 
 # bsod.rpy
 # В этом файле содержится код экрана для отображения ложного Синего экрана смерти.
@@ -187,7 +187,7 @@ screen bsod(bsodCode="DDLC_ESCAPE_PLAN_FAILED", bsodFile="libGLESv2.dll", rsod=F
         vbox:
             style_prefix "bsod_linux"
 
-            text "metaverse-pci.c:v[config.version] 5/22/2023 Metaverse Enterprise Solutions\n"
+            text "metaverse-pci.c:v[config.version] 5/22/2024 Metaverse Enterprise Solutions\n"
             text "  https://www.metaverse-enterprise.com/network/metaverse-pci.html"
             text "hd0: METAVERSE ENTERPRISE VIRTUAL HARDDISK, ATA DISK drive"
             text "sda0 at 0x1f0 - 0x1f7, 0x3f6 on irq 14"
