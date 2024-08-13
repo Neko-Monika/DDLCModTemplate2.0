@@ -143,7 +143,7 @@ init -940 python:
     # Вставьте токен своей Игровой активности Discord внутрь двойных кавычек
     RPC = discord.DiscordRPC("979471077187125248")
 
-    config.quit_callbacks += [RPC.close] 
-    config.after_load_callbacks += [RPC.on_load]
-    config.interact_callbacks += [RPC.rollback_check] 
-    config.start_callbacks += [RPC.reset]
+    config.quit_callbacks.append(RPC.close)
+    config.after_load_callbacks.append(RPC.on_load)
+    config.interact_callbacks.append(RPC.rollback_check)
+    config.start_callbacks.append(RPC.reset)

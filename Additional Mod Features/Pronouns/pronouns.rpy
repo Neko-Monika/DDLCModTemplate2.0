@@ -1,71 +1,32 @@
 ## Авторское право 2019-2024 Азариэль Дель Кармен (bronya_rand). Все права защищены.
+## Рефакторинг: Amanda Watson
 
 ## pronouns.rpy
 # В этом файле спрашивают предпочтительные местоимения игрока.
 
-default pronoun_temp = ""
-
 init python:
-    # Азя, ты чёрт, можно же писать [he!c]... - прим. пер.
-    def SetPronoun(type):
-        global pronoun_temp
-        if not pronoun_temp: return
-        if type == "he":
-            persistent.he = pronoun_temp.lower()
-            he = pronoun_temp.lower()
-            he_capital = pronoun_temp.lower().capitalize()
-        elif type == "he's":
-            persistent.hes = pronoun_temp.lower()
-            hes = pronoun_temp.lower()
-            hes_capital = pronoun_temp.lower().capitalize()
-        elif type == "are":
-            persistent.are = pronoun_temp.lower()
-            are = pronoun_temp.lower()
-            are_capital = pronoun_temp.lower().capitalize()
-        elif type == "him":
-            persistent.him = pronoun_temp.lower()
-            him = pronoun_temp.lower()
-            him_capital = pronoun_temp.lower().capitalize()
-        pronoun_temp = ""
+    def male_tag(tag, argument):
+        if persistent.male:
+            return [(renpy.TEXT_TEXT, argument)]
+        else:
+            return [(renpy.TEXT_TEXT, "")]
 
-label pronoun_screen:
-    call screen pronoun_input(message=_("Введите первое местоимение (Он/Она)"), ok_action=Function(SetPronoun, type="he"))
-    call screen pronoun_input(message=_("Введите второе местоимение (Его/Её)"), ok_action=Function(SetPronoun, type="he's"), hes=True)
-    call screen pronoun_input(message=_("Введите третье местоимение (Ему/Ей)"), ok_action=Function(SetPronoun, type="him"))
-    call screen pronoun_input(message=_("Введите четвёртое местоимение ((о) Нём/Ней)"), ok_action=Function(SetPronoun, type="are"))
+    def female_tag(tag, argument):
+        if not persistent.male:
+            return [(renpy.TEXT_TEXT, argument)]
+        else:
+            return [(renpy.TEXT_TEXT, "")]
+
+    config.self_closing_custom_text_tags["M"] = male_tag
+    config.self_closing_custom_text_tags["F"] = female_tag
+
+label pronouns_test:
+    menu:
+        "Я мальчик":
+            $ persistent.male = True
+        "Я девочка":
+            $ persistent.male = False
+
+    "{M=Путешественник}{F=Путешественница}, ты {M=принёс}{F=принесла} доски?"
+
     return
-
-screen pronoun_input(message, ok_action, hes=False):
-
-    ## Гарантирует, что другие экраны будут недоступны, пока показан этот экран.
-    modal True
-
-    zorder 200
-
-    style_prefix "confirm"
-
-    add "gui/overlay/confirm.png"
-    key "K_RETURN" action [Play("sound", gui.activate_sound), ok_action]
-
-    frame:
-
-        vbox:
-            xalign .5
-            yalign .5
-            spacing 30
-
-            label _(message):
-                style "confirm_prompt"
-                xalign 0.5
-            
-            python:
-                allowList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-                # Бесполезно в русском языке. Оставлено для ввода английских местоимений - прим. пер.
-
-            input default "" value VariableInputValue("pronoun_temp") length 12 allow f"{allowList}{chr(39) if hes else ''}"
-
-            hbox:
-                xalign 0.5
-                spacing 100
-
-                textbutton _("ОК") action [ok_action, Return(0)]
