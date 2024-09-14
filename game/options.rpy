@@ -108,9 +108,13 @@ define config.predict_statements = 50
 define config.menu_clear_layers = ["front"]
 define config.gl_test_image = "white"
 
+# Указывает, сохранять ли текущую строку диалога (раскомментируйте, если используете подмену диалогов в Истории)
+# define config.history_current_dialogue = False
+
+# Откатывает значения громкости, указываемые в этом мод-шаблоне явно, к старому формату (проценты вместо дБ)
+define config.quadratic_volumes = True
+
 init python:
-    # Удаляет директорию "game/saves" из перечня известных директорий для сохранения в ПК-версиях; не работает на 8.1.x - прим. пер.
-    if len(renpy.loadsave.location.locations) > 1: del(renpy.loadsave.location.locations[1])
     # Отключает поддержку геймпада
     renpy.game.preferences.pad_enabled = False
     # Заменяет "--" и " - " на "—"

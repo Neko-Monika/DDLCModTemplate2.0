@@ -40,12 +40,12 @@ init 10 python:
     class TearSurface(_BaseTear):
         """
         `srf`: Render | Surface | GL2Model | None
-            Используемая поверхность. Если передано `None`, делает снимок экрана и использует его как поверхность
-            (размер скриншота будет аналогичным размеру окна игры, если верить Документации).
+            Используемая поверхность. В качестве оной используется скриншот текущего состояния
+            в байтах; передача какого-либо значения извне игнорируется.
         """
         def __init__(self, number=10, offtimeMult=1, ontimeMult=1, offsetRange=(0, 50), chroma=False, render_child=True, srf=None):
             super(TearSurface, self).__init__(number, offtimeMult, ontimeMult, offsetRange, chroma, render_child)
-            self.srf = srf or renpy.screenshot_to_bytes(None)
+            self.srf = renpy.screenshot_to_bytes(None)
 
         def render(self, w, h, st, at):
             return self._srf_render(renpy.display.pgrender.load_image(io.BytesIO(self.srf), "TearSurface.png"), w, h, st, at)
