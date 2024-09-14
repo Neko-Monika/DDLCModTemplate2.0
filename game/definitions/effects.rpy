@@ -2,120 +2,6 @@
 
 # Этот файл содержит определения всех эффектов в DDLC, используемых во Втором акте.
 
-init python:
-    # Эта функция возвращает размер скриншота поверхности экрана с соотношением сторон 16:9.
-    def screenshot_srf_size():
-        width, height = renpy.get_physical_size()
-        if float(width) / float(height) > 16.0/9.0:
-            width = height * 16 / 9
-        else:
-            height = width * 9 / 16
-        return (width, height)
-
-    # Эта функция делает внутренний снимок экрана игры, который будет
-    # использован для наложения спецэффектов.
-    def screenshot_srf():
-        srf = renpy.display.draw.screenshot(None)
-
-        # Размер скриншота должен соответствовать размеру окна.
-        srf = renpy.display.scale.smoothscale(srf, screenshot_srf_size())
-        return srf
-
-    # Эта функция инвертирует изображение для дальнейшего использования классом «Invert».
-    def invert():
-        srf = screenshot_srf()
-        inv = renpy.Render(srf.get_width(), srf.get_height()).canvas().get_surface()
-        inv.fill((255,255,255,255))
-        inv.blit(srf, (0,0), None, 2) 
-        return inv
-
-    # Этот класс содержит код для инвертирования цветов и дальнейшего вывода экраном «invert».
-    class Invert(renpy.Displayable):
-        def __init__(self, delay=0.0, screenshot_delay=0.0):
-            super(Invert, self).__init__()
-            self.width, self.height = screenshot_srf_size()
-            self.srf = invert()
-            self.delay = delay
-
-        def render(self, width, height, st, at):
-            render = renpy.Render(self.width, self.height)
-            if st >= self.delay:
-                render.blit(self.srf, (0, 0))
-            return render
-
-## Инверсия(длина, задержка) (Invert(length, delay))
-# Этот экран вызывается выражением `show screen invert(L, D)` для инвертирования цветов экрана (L - длительность эффекта, D - задержка перед показом).
-# Синтаксис:
-#   length - Указывает, сколько будет длиться эффект.
-#   delay - Ждёт X секунд, прежде чем показать эффект.
-screen invert(length, delay=0.0):
-    add Invert(delay) size (1280, 720)
-    timer delay action PauseAudio("music")
-    timer delay action Play("sound", "sfx/glitch1.ogg")
-    timer length + delay action Hide("invert")
-    on "hide" action PauseAudio("music", False)
-    on "hide" action Stop("sound")
-
-init python:
-    # В этом классе содержится код для эффекта разрыва экрана.
-    class TearPiece:
-        def __init__(self, startY, endY, offtimeMult, ontimeMult, offsetMin, offsetMax):
-            self.startY = startY
-            self.endY = endY
-            self.offTime = (random.random() * 0.2 + 0.2) * offtimeMult
-            self.onTime = (random.random() * 0.2 + 0.2) * ontimeMult
-            self.offset = 0
-            self.offsetMin = offsetMin
-            self.offsetMax = offsetMax
-
-        def update(self, st):
-            st = st % (self.offTime + self.onTime)
-            if st > self.offTime and self.offset == 0:
-                self.offset = random.randint(self.offsetMin, self.offsetMax)
-            elif st <= self.offTime and self.offset != 0:
-                self.offset = 0
-
-    # В этом классе содержится код для вывода эффекта разрыва экраном «tear».
-    class Tear(renpy.Displayable):
-        def __init__(self, number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf=None):
-            super(Tear, self).__init__()
-            self.width, self.height = screenshot_srf_size()
-
-            self.number = number
-            if not srf: self.srf = screenshot_srf()
-            else: self.srf = srf
-
-            self.pieces = []
-            tearpoints = [0, self.height]
-            for i in range(number):
-                tearpoints.append(random.randint(10, int(self.height) - 10))
-            tearpoints.sort()
-            for i in range(number+1):
-                self.pieces.append(TearPiece(tearpoints[i], tearpoints[i+1], offtimeMult, ontimeMult, offsetMin, offsetMax))
-
-        def render(self, width, height, st, at):
-            render = renpy.Render(self.width, self.height)
-            render.blit(self.srf, (0,0))
-            for piece in self.pieces:
-                piece.update(st)
-                subsrf = self.srf.subsurface((0, max(0, piece.startY - 1), self.width, max(0, piece.endY - piece.startY)))
-                render.blit(subsrf, (piece.offset, piece.startY))
-            renpy.redraw(self, 0)
-            return render
-
-## Эффект разрыва (Tear)
-# Этот экран вызывается выражением `show screen tear()` для разрыва экрана.
-# Синтаксис:
-# number - Указывает, на сколько частей будет разрываться экран.
-# offtimeMult - Определяет множитель времени действия эффекта.
-# ontimeMult - Определяет множитель времени, в течение которого длится эффект.
-# offsetMin - Определяет минимальное смещение времени по множителю.
-# offsetMax - Определяет максимальное смещение времени по множителю.
-# srf - Определяет изображение экрана, полученное функцией «screenshot_srf», если оное было объявлено.
-screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, srf=None):
-    zorder 150
-    add Tear(number, offtimeMult, ontimeMult, offsetMin, offsetMax, srf) size (1280,720)
-
 # Статичные прямоугольники (RectStatic)
 # Эти изображения с преобразованиями показывают глючные прямоугольники в игре во время Третьего акта,
 # когда Моника была удалена из игры.
@@ -124,7 +10,7 @@ screen tear(number=10, offtimeMult=1, ontimeMult=1, offsetMin=0, offsetMax=50, s
 image m_rectstatic:
     RectStatic(Solid("#000"), 32, 32, 32).sm
     pos (0, 0)
-    size (32, 32)
+    xysize (32, 32)
 
 # Это изображение с преобразованиями добавляет несколько квадратов, вырезанных из логотипа DDLC.
 image m_rectstatic2:
@@ -312,21 +198,21 @@ image blood_particle:
 # Это изображение с преобразованиями добавляет каплю крови, которая
 # создаёт всплеск и капает в течение трёх минут.
 image blood:
-    size (1, 1)
+    xysize (1, 1)
     truecenter
     Blood("blood_particle").sm
 
 # Это изображение с преобразованиями добавляет каплю крови, которая
 # не создаёт всплеск, а вероятность капания увеличивается.
 image blood_eye:
-    size (1, 1)
+    xysize (1, 1)
     truecenter
     Blood("blood_particle", dripChance=0.5, numSquirts=0).sm
 
 # Это изображение с преобразованиями добавляет каплю крови, которая
 # имеет очень низкий шанс капания.
 image blood_eye2:
-    size (1, 1)
+    xysize (1, 1)
     truecenter
     Blood("blood_particle", dripChance=0.005, numSquirts=0, burstSize=0).sm
 
@@ -426,7 +312,7 @@ init python:
 
 image bsod_1:
     "images/bg/bsod.png"
-    size (1280,720)
+    xysize (1280,720)
 image bsod_2:
     "black"
     0.1
