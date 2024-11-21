@@ -782,40 +782,49 @@ screen about():
 
     tag menu
 
-    python:
-        current_year = str(datetime.date.today().year)
-
     ## Выражение «use» включает экран игрового меню внутрь этого экрана.
     ## Дочерний vbox включён в порт просмотра внутри экрана игрового
     ## меню.
-    use game_menu(_("Авторы"), scroll="viewport"):
+    use game_menu(_("Авторы")):
 
         style_prefix "about"
 
-        window:
-            xoffset 35
-            has fixed:
-                yfit True
+        viewport:
+            scrollbars "vertical"
+            mousewheel True
+            draggable True
+            yinitial 0.0
+            side_yfill True
 
             vbox:
-                add Transform("mod_assets/DDLCModTemplateLogo.png", size=(200,200)) xalign .5
+                window:
+                    xoffset 35
+                    has fixed:
+                        yfit True
 
-                null height 5
-                
-                label "[config.name!t]" xalign .5
-                text _("Версия [config.version!t]\n") xalign .5
+                    vbox:
+                        add Transform("mod_assets/DDLCModTemplateLogo.png", size=(200,200)) xalign .5
 
-                ## gui.about обычно установлено в options.rpy.
-                if gui.about:
-                    text "[gui.about!t]\n"
+                        null height 5
+                        
+                        label "[config.name!t]" xalign .5
+                        text _("Версия [config.version!t]\n") xalign .5
 
-                ## Не трогайте и не удаляйте нижеприведённые строки, но если вдруг символов «©» или «–» нет в вашем шрифте, их можно убрать отсюда.
-                ## Вы можете добавить что-нибудь над или под этим текстом.
-                ## Если вы решили не добавлять упоминание автора на экране заставки, первая строчка ДОЛЖНА остаться здесь.
-                text _p("""Сделано с помощью {a=https://github.com/GanstaKingofSA/DDLCModTemplate2.0}Мод-шаблона DDLC 2.0{/a} от bronya_rand.
-Авторское право © 2019-[current_year] Азариэль Дель Кармен (bronya_rand). Все права защищены.
-Игра «Литературный клуб "Тук-тук"». Авторские права © 2017 Team Salvato. Все права защищены.
-Сделано на {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]""")
+                        ## gui.about обычно установлено в options.rpy.
+                        if gui.about:
+                            text "[gui.about!t]\n"
+
+                        ## Не трогайте и не удаляйте нижеприведённые строки, но если вдруг символов «©» или «–» нет в вашем шрифте, их можно убрать отсюда.
+                        ## Вы можете добавить что-нибудь над или под этим текстом.
+                        ## Если вы решили не добавлять упоминание автора на экране заставки, первая строчка ДОЛЖНА остаться здесь.
+                        text _p("""\
+Сделано с помощью {a=https://github.com/GanstaKingofSA/DDLCModTemplate2.0}Мод-шаблона DDLC 2.0{/a} от bronya_rand.
+Авторское право © 2019-[datetime.date.today().year] Азариэль Дель Кармен (bronya_rand). Все права защищены.\n
+Перевод: Amanda Watson и Inui-senpai, специально для RG Smoking Room.\n
+Игра «Литературный клуб "Тук-тук"». Авторские права © 2017 Team Salvato. Все права защищены.\n
+Сделано на {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].
+
+[renpy.license!t]""")
 
 ## Это переопределяется в options.rpy для добавления текста в экран «Об игре».
 define gui.about = ""
