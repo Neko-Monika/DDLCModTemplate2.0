@@ -84,8 +84,8 @@ init python:
 
         def __init__(self, name):
             if not isinstance(name, str):
-                raise Exception(f"Аргумент 'name' должен быть строкой, а не {type(name)}.")
-                
+                raise TypeError(f"Аргумент 'name' должен быть строкой, а не {type(name)}.")
+
             self.charPointTotal = 0
             self.appeal = 0
             super().__init__()
@@ -326,8 +326,8 @@ label poem(transition=True):
     if persistent.playthrough == 0 and chapter == 0: # Показывает модальное окно при первом запуске мини-игры.
         call screen dialog(_p("""Пришло время написать стихотворение!
 
-Выберите слова, которые, по-вашему, подойдут нравящейся вам девушке.
-С той девушкой, которой больше всего понравится ваше стихотворение,
+Выберите слова, которые, по-вашему, подойдут нравящейся вам девушке.\n
+С той девушкой, которой больше всего понравится ваше стихотворение,\n
 у вас может произойти что-то хорошее!"""), ok_action=Return())
 
     $ poem_game_start()

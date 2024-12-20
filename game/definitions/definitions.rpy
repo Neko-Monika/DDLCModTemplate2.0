@@ -95,7 +95,7 @@ init python:
     # текущего акта в модификации и перечня восстанавливаемых персонажей.
     def restore_character(names):
         if not isinstance(names, list):
-            raise Exception("Аргумент 'names' должен быть списком. Пример: [\"monika\", \"sayori\"].")
+            raise TypeError("Аргумент 'names' должен быть списком. Пример: [\"monika\", \"sayori\"].")
 
         for x in names:
             try: open(f"{user_dir}/characters/{x}.chr", "rb")
