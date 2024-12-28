@@ -1714,7 +1714,6 @@ screen name_input(message, ok_action):
     style_prefix "confirm"
 
     add "gui/overlay/confirm.png"
-    key "K_RETURN" action [Play("sound", gui.activate_sound), ok_action]
 
     frame:
 
@@ -1735,6 +1734,8 @@ screen name_input(message, ok_action):
                 spacing 100
 
                 textbutton _("ОК") action ok_action
+
+    key "K_RETURN" action [Play("sound", gui.activate_sound), ok_action]
 
 screen dialog(message, ok_action):
 

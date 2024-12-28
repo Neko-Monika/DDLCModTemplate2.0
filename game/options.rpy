@@ -135,6 +135,8 @@ init python:
         else:
             return (float(height) * (float(config.screen_width) / float(config.screen_height)), height)
 
+    config.adjust_view_size = force_integer_multiplier
+
 ## Настройка дистрибуции #########################################################
 ##
 ## Этот раздел контролирует, как Ren'Py строит файлы дистрибутива из вашего проекта.
