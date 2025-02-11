@@ -1,14 +1,14 @@
 ---
-name: Pull Request Template
-about: Template for PRs for added features, fixes, etc
+name: Шаблон запроса на слияние
+about: Шаблон для запросов на слияние правок, которые добавляют функции, вносят правки и т.д.
 title: ''
 labels: enhancement
 assignees: ''
 
 ---
 
-**The following Pull Request contains the following changes to the Mod Template**
-Add changes, bug fixes, features added here
+**Этот запрос на слияние содержит следующие правки, которые предлагается внести в мод-шаблон**
+Опишите здесь внесённые изменения, исправленные ошибки и/или добавленные функции.
 
-**Additional Information (if applicable)**
-Add any additional information that you think I should know of this Pull Request
+**Дополнительные сведения (если применимо)**
+Добавьте любые дополнительные сведения об этом запросе на слияние, которые, как вам кажется, я должен знать.

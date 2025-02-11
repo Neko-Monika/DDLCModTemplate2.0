@@ -1,23 +1,23 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Отчёт об ошибке
+about: Создайте отчёт, дабы помочь нам стать лучше
 title: ''
 labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Описание ошибки**
+Чёткое и понятное описание ошибки.
 
-**To Reproduce**
-Steps to reproduce the behavior
+**Как получить ошибку**
+Шаги, которые нужно выполнить, чтобы увидеть её.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Ожидаемое поведение**
+Чёткое и понятное описание того, что должно было произойти.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Скриншоты**
+Если применимо, добавьте скриншоты, дабы было проще понять проблему.
 
-**Additional context**
-Add any other context about the problem here.
+**Дополнительные сведения**
+Добавьте сюда любые другие сведения о проблеме.
